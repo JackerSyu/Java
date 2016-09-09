@@ -1,0 +1,55 @@
+=================================
+J01
+=================================
+
+(1)關於整數
+class Main {
+public static void main(String[] args) {
+int i=100;
+System.out.println(i);
+}
+}
+
+(2)關於浮點數
+class Main {
+	public static void main(String[] args) {
+		double i=12.345;
+		System.out.println(i);
+	}
+}
+
+(3)關於字元
+class Main {
+	public static void main(String[] args) {
+		char i='A';
+		System.out.println(i);
+	}
+}
+
+(4)關於布林
+class Main {
+	public static void main(String[] args) {
+		boolean i=true;
+		boolean j=10<5;
+		System.out.println(i);
+		System.out.println(j);
+	}
+}
+
+(5)型態轉換
+class Main {
+	public static void main(String[] args) {
+		double i=123.4567890123;
+		float j=(float)i;
+		System.out.println(j);
+	}
+}
+
+(6)用Math類別中的方法
+class Main {
+	public static void main(String[] args) {
+		double i=Math.sqrt(15);
+		System.out.println(i);
+	}
+}
+
