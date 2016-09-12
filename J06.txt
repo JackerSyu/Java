@@ -1,0 +1,40 @@
+=================================
+J06
+=================================
+
+(1)
+class Main {
+	public static void main(String[] args) {
+    	for(int i=0; i<100; i++)
+    		System.out.println(i);
+	}
+}
+
+(2)
+class Main {
+	public static void main(String[] args) {
+    	for(int i=1; i<=9; i++){
+    		for(int j=1; j<=9; j++){
+    			System.out.printf("%d*%d=%d \t", i, j, i*j);
+    		}
+    		System.out.println();
+    	}
+	}
+}
+
+(3)
+class Main {
+	public static void main(String[] args) {
+		int cnt=0;
+		
+    	for(;;){
+    		cnt++;
+    		int i=(int)(Math.random()*10000);
+    		
+    		if(i==100){
+    			System.out.println("共執行:"+cnt+"次");
+    			break;
+    		}
+    	}
+	}
+}
