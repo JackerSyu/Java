@@ -1,0 +1,77 @@
+=================================
+J09
+=================================
+
+(1)
+class Student{
+    public String stuNo;
+    public String stuName;
+    public char gender;
+}
+
+class Main{
+	public static void main(String args[]){
+		Student s=new Student();   //建立一個Student物件
+
+		s.stuNo="10556001";   //設定物件的成員值
+		s.stuName="王小明";
+		s.gender='M';
+		
+		System.out.println(s.stuNo);        //取出成員值
+		System.out.println(s.stuName);
+		System.out.println(s.gender);
+	}
+}
+
+
+(2)
+class Student {
+    public String stuNo;
+    public String stuName;
+    public char gender;
+
+    //建構元
+    public Student(String stuNo, String stuName, char gender){
+        this.stuNo=stuNo;
+        this.stuName=stuName;
+        this.gender=gender;
+    }
+}
+
+class Main{
+	public static void main(String args[]){
+		Student s=new Student("10556001", "王小明", 'M');
+		
+		System.out.println(s.stuNo); 
+		System.out.println(s.stuName);
+		System.out.println(s.gender);
+	}
+}
+
+
+(3)
+class Student {
+    public String stuNo;
+    public String stuName;
+    public char gender;
+
+    //建構元
+    public Student(String stuNo, String stuName, char gender){
+        this.stuNo=stuNo;
+        this.stuName=stuName;
+        this.gender=gender;
+    }
+}
+
+class Main{
+	public static void main(String args[]){
+		Student s=new Student("10556001", "王小明", 'M');
+		s.gender='A'; 
+		/*假設程式處理的性別只有'M'(男), 'F'(女) 及 '/u0000'(未有資料),
+		  此為錯誤的性別值.*/
+				
+		System.out.println(s.stuNo); 
+		System.out.println(s.stuName);
+		System.out.println(s.gender);
+	}
+}
