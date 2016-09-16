@@ -75,3 +75,36 @@ class Main{
 		System.out.println(s.gender);
 	}
 }
+
+
+(4)
+class Student {
+    private String stuNo;
+    private String stuName;
+    private char gender;
+
+    //建構元
+    public Student(String stuNo, String stuName, char gender){
+        this.stuNo=stuNo;
+        this.stuName=stuName;
+        if(gender!='M' && gender!='F'){
+        	this.gender='\u0000';
+        }else{
+        	this.gender=gender;
+        }	
+    }
+    
+    public String getStuNo(){return this.stuNo;}
+    public String getStuName(){return this.stuName;}
+    public char getGender(){return this.gender;}
+}
+
+class Main{
+	public static void main(String args[]){
+		Student s=new Student("10556001", "王小明", 'A');
+				
+		System.out.println(s.getStuNo()); 
+		System.out.println(s.getStuName());
+		System.out.println(s.getGender());
+	}
+}
