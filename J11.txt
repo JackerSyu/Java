@@ -1,0 +1,90 @@
+﻿=================================
+J11
+=================================
+
+(1)
+class MyMath{
+	public static double max(double a, double b, double c){
+		return Math.max(Math.max(a, b), c);
+	}
+	
+	public static int max(int a, int b, int c){
+		return Math.max(Math.max(a, b), c);
+	}
+}
+
+class Main {
+	public static void main(String[] args) {
+		System.out.println(MyMath.max(10, 3, 9));
+		System.out.println(MyMath.max(10.5, 20.4, 15.3));
+	}
+}
+
+(2)
+class Employee{
+	//正職員工的薪水計算
+	public static int salary(char rank, int overHours){
+		int baseSalary;
+		
+		if(rank=='A')
+			baseSalary=30000;
+		else
+			baseSalary=25000;
+			
+		return baseSalary + 150*overHours;	//正職月薪=底薪+每小時150元加班費
+	}
+	
+	//兼職員工的薪水計算
+	public static int salary(int hours){
+		return 125*hours;  //兼職薪水=每小時125元
+	}
+}
+
+class Main {
+	public static void main(String[] args) {
+		System.out.println(Employee.computeSalary('A', 20));
+		System.out.println(Employee.computeSalary(180));
+	}
+}
+
+(3)
+class Cube{
+	double length, width, height;
+	
+	//未傳入參數
+	public Cube(){
+		length=0;
+		width=0;
+		height=0;
+	}
+	
+	//傳入1個double
+	public Cube(double i){
+		length=i;
+		width=i;
+		height=i;
+	}
+	
+	//傳入3個double
+	public Cube(double length, double width, double height){
+		this.length=length;
+		this.width=width;
+		this.height=height;
+	}
+	
+	public double volumn(){
+		return length*width*height;
+	}
+}
+
+class Main {
+	public static void main(String[] args) {
+		Cube a=new Cube();
+		Cube b=new Cube(10);
+		Cube c=new Cube(5, 6, 7);
+		
+		System.out.println(a.volumn());
+		System.out.println(b.volumn());
+		System.out.println(c.volumn());
+	}
+}
