@@ -56,7 +56,7 @@ class Employee{
 
 //兒子類別
 class MyEmployee extends Employee{
-	public String phoneNumber;
+	private String phoneNumber;
 	
 	//建構元
 	public MyEmployee(){
