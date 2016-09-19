@@ -3,6 +3,7 @@ J14
 =================================
 
 (1)
+//父親類別
 class Employee{
 	private String empNo;
 	private String empName;
@@ -53,6 +54,7 @@ class Employee{
 	}
 }
 
+//兒子類別
 class MyEmployee extends Employee{
 	public String phoneNumber;
 	
@@ -65,14 +67,14 @@ class MyEmployee extends Employee{
 		super(empNo, empName, rank);
 		this.phoneNumber=phoneNumber;
 	}
-	
-	
+		
 	public void setPhoneNumber(String phoneNumber){this.phoneNumber=phoneNumber;}
 	public String getPhoneNumber(){return phoneNumber;}
 }
 
 class Main {
 	public static void main(String[] args) {
+		//產生第1個員工
 		MyEmployee emp01 = new MyEmployee();
 		
 		emp01.setEmpNo("001");
@@ -86,7 +88,7 @@ class Main {
 		System.out.println(emp01.getPhoneNumber()); 
 		System.out.println(emp01.salary(400000));
 		
-		
+		//產生第2個員工
 		MyEmployee emp02 = new MyEmployee("002", "陳小華", 'B', "0922-333-444");
 
 		System.out.println(emp02.getEmpNo());  
