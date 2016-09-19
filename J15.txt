@@ -1,0 +1,109 @@
+=================================
+J15
+=================================
+
+(1)
+//父親是抽象類別
+abstract class Employee{
+	private String empNo;
+	private String empName;
+	private char rank;
+	
+	//建構元
+	public Employee(){
+		empNo=null;
+		empName=null;
+		rank='\u0000';
+	}
+	
+	public Employee(String empNo, String empName, char rank){
+		this.empNo=empNo;
+		this.empName=empName;
+		this.rank=rank;
+	}
+	
+	//設定成員值, setter
+	public void setEmpNo(String empNo){this.empNo=empNo;}
+	public void setEmpName(String empName){this.empName=empName;}
+	public void setRank(char rank){this.rank=rank;}
+	
+	//取出成員值, getter
+	public String getEmpNo(){return empNo;}
+	public String getEmpName(){return empName;}
+	public char getRank(){return rank;}
+	
+	//計算薪水. 沒有方法內容的抽象方法
+	abstract int salary();
+}
+
+//兒子完成父親的抽象方法後, 就不抽象了
+class MyEmployee extends Employee{
+	private String phoneNumber;
+	private int monthTotal;
+	
+	//建構元
+	public MyEmployee(){
+		this.phoneNumber=null;
+	}
+	
+	public MyEmployee(String empNo, String empName, char rank, String phoneNumber, int monthTotal){
+		super(empNo, empName, rank);
+		this.phoneNumber=phoneNumber;
+		this.monthTotal=monthTotal;
+	}
+	
+	public void setPhoneNumber(String phoneNumber){this.phoneNumber=phoneNumber;}
+	public String getPhoneNumber(){return phoneNumber;}
+	
+	public void setMonthTotal(int monthTotal){this.monthTotal=monthTotal;}
+	public int getMonthTotal(){return monthTotal;}
+	
+	//將父親的抽象方法貝具體化
+	public int salary(){
+		int commission;
+		
+		switch(super.getRank()){
+			case 'A':
+				commission=(int)(monthTotal*0.15);
+				break;
+			case 'B':
+				commission=(int)(monthTotal*0.12);
+				break;
+			case 'C':
+				commission=(int)(monthTotal*0.08);
+				break;
+			default:
+				commission=(int)(monthTotal*0.05);
+		}
+		
+		return commission;
+	}
+}
+
+class Main {
+	public static void main(String[] args) {
+		//第1個員工
+		MyEmployee emp01 = new MyEmployee();
+		
+		emp01.setEmpNo("001");
+		emp01.setEmpName("王小明");
+		emp01.setRank('A');
+		emp01.setPhoneNumber("0911-222-333");
+		emp01.setMonthTotal(400000);
+		printEmployee(emp01);
+		
+		//第2個員工
+		MyEmployee emp02 = new MyEmployee("002", "陳小華", 'B', "0922-333-444", 450000);
+		printEmployee(emp02);
+	}
+	
+	//印出員工資料的方法
+	public static void printEmployee(MyEmployee emp){
+		System.out.println(emp.getEmpNo());  
+		System.out.println(emp.getEmpName());  
+		System.out.println(emp.getRank());  
+		System.out.println(emp.getMonthTotal());
+		System.out.println(emp.salary());	
+		System.out.println();
+	}
+}
