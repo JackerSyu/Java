@@ -1,31 +1,25 @@
 =================================
-J13
+J14
 =================================
 
 (1)
-import javax.swing.*;
-import java.awt.*;
-
-public class MyFrame extends JFrame {
-    public MyFrame(){
-        this.setTitle("我的JFrame");
-        this.getContentPane().setBackground(new Color(100, 100, 100));
-        this.setSize(new Dimension(300,300));
-        this.setVisible(true);
-    }
-}
-
-public class Main {
-    public static void main(String[] args) {
-        new MyFrame();
-    }    
-}
-
-(2)
 class Employee{
 	private String empNo;
 	private String empName;
 	private char rank;
+	
+	//建構元
+	public Employee(){
+		empNo=null;
+		empName=null;
+		rank='\u0000';
+	}
+	
+	public Employee(String empNo, String empName, char rank){
+		this.empNo=empNo;
+		this.empName=empName;
+		this.rank=rank;
+	}
 	
 	//設定成員值, setter
 	public void setEmpNo(String empNo){this.empNo=empNo;}
@@ -62,23 +56,43 @@ class Employee{
 class MyEmployee extends Employee{
 	public String phoneNumber;
 	
+	//建構元
+	public MyEmployee(){
+		this.phoneNumber=null;
+	}
+	
+	public MyEmployee(String empNo, String empName, char rank, String phoneNumber){
+		super(empNo, empName, rank);
+		this.phoneNumber=phoneNumber;
+	}
+	
+	
 	public void setPhoneNumber(String phoneNumber){this.phoneNumber=phoneNumber;}
 	public String getPhoneNumber(){return phoneNumber;}
 }
 
 class Main {
 	public static void main(String[] args) {
-		MyEmployee emp = new MyEmployee();
+		MyEmployee emp01 = new MyEmployee();
 		
-		emp.setEmpNo("001");
-		emp.setEmpName("王小明");
-		emp.setRank('A');
-		emp.setPhoneNumber("0911-222-333");
+		emp01.setEmpNo("001");
+		emp01.setEmpName("王小明");
+		emp01.setRank('A');
+		emp01.setPhoneNumber("0911-222-333");
 		
-		System.out.println(emp.getEmpNo());  
-		System.out.println(emp.getEmpName());  
-		System.out.println(emp.getRank());  
-		System.out.println(emp.getPhoneNumber()); 
-		System.out.println(emp.salary(400000));
+		System.out.println(emp01.getEmpNo());  
+		System.out.println(emp01.getEmpName());  
+		System.out.println(emp01.getRank());  
+		System.out.println(emp01.getPhoneNumber()); 
+		System.out.println(emp01.salary(400000));
+		
+		
+		MyEmployee emp02 = new MyEmployee("002", "陳小華", 'B', "0922-333-444");
+
+		System.out.println(emp02.getEmpNo());  
+		System.out.println(emp02.getEmpName());  
+		System.out.println(emp02.getRank());  
+		System.out.println(emp02.getPhoneNumber()); 
+		System.out.println(emp02.salary(450000));
 	}
 }
