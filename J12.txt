@@ -1,0 +1,40 @@
+=================================
+J12
+=================================
+
+(1)
+class Main {
+	public static void main(String[] args) {
+		System.out.println(10*10*Math.PI);  
+	}
+}
+
+(2)
+class Common{
+	public static String connection="140.131.114.10/myDB";
+	public static String user="test";
+	public static String password="testPW";
+}
+
+class Main {
+	public static void main(String[] args) {
+		System.out.println(Common.connection);  
+		System.out.println(Common.user); 
+		System.out.println(Common.password); 
+	}
+}
+
+(3)
+class Common{
+	public static final String connection="140.131.114.10/myDB";
+	public static final String user="test";
+	public static final String password="testPW";
+}
+
+class Main {
+	public static void main(String[] args) {
+		System.out.println(Common.connection);  
+		System.out.println(Common.user); 
+		System.out.println(Common.password); 
+	}
+}
