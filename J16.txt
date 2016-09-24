@@ -1,90 +1,90 @@
-﻿=================================
+=================================
 J16
 =================================
 
 (1)
 //父親類別, 員工
 class Employee{
-	private String empNo;
-	private String empName;
-	private char rank;
+    private String empNo;
+    private String empName;
+    private char rank;
 	
-	public Employee(){
-		empNo=null;
-		empName=null;
-		rank='\u0000';
-	}
+    public Employee(){
+        empNo=null;
+        empName=null;
+        rank='\u0000';
+    }
 	
-	public Employee(String empNo, String empName, char rank){
-		this.empNo=empNo;
-		this.empName=empName;
-		this.rank=rank;
-	}
+    public Employee(String empNo, String empName, char rank){
+        this.empNo=empNo;
+        this.empName=empName;
+        this.rank=rank;
+    }
 		
-	public void setEmpNo(String empNo){this.empNo=empNo;}
-	public void setEmpName(String empName){this.empName=empName;}
-	public void setRank(char rank){this.rank=rank;}
+    public void setEmpNo(String empNo){this.empNo=empNo;}
+    public void setEmpName(String empName){this.empName=empName;}
+    public void setRank(char rank){this.rank=rank;}
 	
-	public String getEmpNo(){return empNo;}
-	public String getEmpName(){return empName;}
-	public char getRank(){return rank;}
+    public String getEmpNo(){return empNo;}
+    public String getEmpName(){return empName;}
+    public char getRank(){return rank;}
 	
-	//計算薪水
-	int salary(){
-		int m;
+    //計算薪水
+    int salary(){
+        int m;
 		
-		if(rank=='A'){	
-			m=50000;
-		}else if(rank=='B'){
-			m=40000;
-		}else if(rank=='C'){
-			m=30000;
-		}else{
-			m=25000;
-		}	
+        if(rank=='A'){	
+            m=50000;
+        }else if(rank=='B'){
+            m=40000;
+        }else if(rank=='C'){
+            m=30000;
+        }else{
+            m=25000;
+        }	
 		
-		return m;
-	}
+        return m;
+    }
 }
 
 
-//兒子類叮, 時薪的員工
+//兒子類別, 時薪的員工
 class HourlyEmployee extends Employee{
-	private int workHours;
+    private int workHours;
 	
-	public HourlyEmployee(){this.workHours=0;}
+    public HourlyEmployee(){this.workHours=0;}
 	
-	public HourlyEmployee(String empNo, String empName, char rank, int workHours){
-		super(empNo, empName, rank);
-		this.workHours=workHours;
-	}
+    public HourlyEmployee(String empNo, String empName, char rank, int workHours){
+        super(empNo, empName, rank);
+        this.workHours=workHours;
+    }
 	
-	public void setWorkHours(int workHours){this.workHours=workHours;}
-	public int getWorkHours(){return workHours;}
+    public void setWorkHours(int workHours){this.workHours=workHours;}
+    public int getWorkHours(){return workHours;}
 	
-	//時薪員工計算薪水, 改寫父親計算薪水的方法
-	public int salary(){
-		return 150*workHours;
-	}
+    //時薪員工計算薪水, 改寫父親計算薪水的方法
+    public int salary(){
+        return 150*workHours;
+    }
 }
 
 
 class Main{
-	public static void main(String args[]){
-		//員工
-		Employee emp01 = new Employee("001", "王小明", 'A');
-		printEmployee(emp01);
+    public static void main(String args[]){
+        //員工
+        Employee emp01 = new Employee("001", "王小明", 'A');
+        printEmployee(emp01);
 			
-		//時薪員工
-		HourlyEmployee emp02 = new HourlyEmployee("002", "陳小華", 'H', 250);
+        //時薪員工
+        HourlyEmployee emp02 = new HourlyEmployee("002", "陳小華", 'H', 250);
         printEmployee(emp02);
-	}	
+    }	
 
-	public static void printEmployee(Employee emp){
-		System.out.println(emp.getEmpNo());  
-		System.out.println(emp.getEmpName());  
-		System.out.println(emp.getRank()); 
-		System.out.println(emp.salary());	
-		System.out.println();
-	}	
+    public static void printEmployee(Employee emp){
+        System.out.println(emp.getEmpNo());  
+        System.out.println(emp.getEmpName());  
+        System.out.println(emp.getRank()); 
+        System.out.println(emp.salary());	
+        System.out.println();
+    }	
 }
