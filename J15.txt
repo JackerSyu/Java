@@ -107,3 +107,116 @@ class Main {
 		System.out.println();
 	}
 }
+
+
+
+(2)
+//父親類別, 員工(抽象類別)
+abstract class Employee{
+    private String empNo;
+    private String empName;
+    private char rank;
+	
+    public Employee(){
+        empNo=null;
+        empName=null;
+        rank='\u0000';
+    }
+	
+    public Employee(String empNo, String empName, char rank){
+        this.empNo=empNo;
+        this.empName=empName;
+        this.rank=rank;
+    }
+		
+    public void setEmpNo(String empNo){this.empNo=empNo;}
+    public void setEmpName(String empName){this.empName=empName;}
+    public void setRank(char rank){this.rank=rank;}
+	
+    public String getEmpNo(){return empNo;}
+    public String getEmpName(){return empName;}
+    public char getRank(){return rank;}
+	
+    //計算薪水(抽象方法, 沒有具體內容)
+    abstract int salary();
+}
+
+//兒子類別, 傭金員工
+class CommissionEmployee extends Employee{
+    private int salesAmt;
+    private int salesQuota=300000;  
+	
+    public CommissionEmployee(){this.salesAmt=0;}
+	
+    public CommissionEmployee(String empNo, String empName, char rank, int salesAmt){
+        super(empNo, empName, rank);
+        this.salesAmt=salesAmt;
+    }
+	
+    public void setSalesAmt(int salesAmt){this.salesAmt=salesAmt;}
+    public int getSalesAmt(){return salesAmt;}
+	
+    //傭金員工計算薪水的具體內容
+    public int salary(){
+		char rank=super.getRank();
+		int baseSalary=0;
+		
+        if(rank=='A'){	
+            baseSalary=50000;
+        }else if(rank=='B'){
+            baseSalary=40000;
+        }else if(rank=='C'){
+            baseSalary=30000;
+        }else{
+            baseSalary=25000;
+        }
+        
+    	int tot= baseSalary + (int)((salesAmt - salesQuota)*0.1);
+    	
+    	return tot;
+    }
+}
+
+//兒子類別, 時薪員工
+class HourlyEmployee extends Employee{
+    private int workHours;
+	
+    public HourlyEmployee(){this.workHours=0;}
+	
+    public HourlyEmployee(String empNo, String empName, char rank, int workHours){
+        super(empNo, empName, rank);
+        this.workHours=workHours;
+    }
+	
+    public void setWorkHours(int workHours){this.workHours=workHours;}
+    public int getWorkHours(){return workHours;}
+	
+    //時薪員工計算薪水的具體內容
+    public int salary(){
+        return 150*workHours;
+    }
+}
+
+class Main{
+    public static void main(String args[]){
+        //傭金員工
+        CommissionEmployee emp01 = new CommissionEmployee("001", "王小明", 'A', 450000);
+        printEmployee(emp01);
+			
+        //時薪員工
+        HourlyEmployee emp02 = new HourlyEmployee("002", "陳小華", 'C', 200);
+        printEmployee(emp02);
+    }	
+
+    //------------------------------------------------------------------------------
+    // 傭金員工是一種員工, 時薪員工也是一種員工, 所以傳入參數類型採用Employee,
+    // 可以以同一個方法, 傳入不同的 CommissionEmployee 及 HourlyEmployee物件.
+    //------------------------------------------------------------------------------
+    public static void printEmployee(Employee emp){
+        System.out.println(emp.getEmpNo());  
+        System.out.println(emp.getEmpName());  
+        System.out.println(emp.getRank()); 
+        System.out.println(emp.salary());   //根據傳入物件呼叫不同的salary()方法, 稱為多型(Polymorphism)	
+        System.out.println();
+    }	
+}
