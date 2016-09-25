@@ -59,6 +59,7 @@ class MyEmployee extends Employee{
 	public int getMonthTotal(){return monthTotal;}
 	
 	//將父親的抽象方法貝具體化
+    @Override	
 	public int salary(){
 		int commission;
 		
@@ -193,7 +194,7 @@ class HourlyEmployee extends Employee{
     public int getWorkHours(){return workHours;}
 	
     //時薪員工計算薪水的具體內容
-	@Override
+    @Override
     public int salary(){
         return 150*workHours;
     }
