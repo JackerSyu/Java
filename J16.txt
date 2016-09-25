@@ -1,4 +1,4 @@
-=================================
+﻿=================================
 J16
 =================================
 
@@ -77,6 +77,97 @@ class Main{
 			
         //時薪員工
         HourlyEmployee emp02 = new HourlyEmployee("002", "陳小華", 'H', 250);
+        printEmployee(emp02);
+    }	
+
+    public static void printEmployee(Employee emp){
+        System.out.println(emp.getEmpNo());  
+        System.out.println(emp.getEmpName());  
+        System.out.println(emp.getRank()); 
+        System.out.println(emp.salary());	
+        System.out.println();
+    }	
+}
+
+
+(2)
+//父親類別, 員工
+class Employee{
+    private String empNo;
+    private String empName;
+    private char rank;
+	
+    public Employee(){
+        empNo=null;
+        empName=null;
+        rank='\u0000';
+    }
+	
+    public Employee(String empNo, String empName, char rank){
+        this.empNo=empNo;
+        this.empName=empName;
+        this.rank=rank;
+    }
+		
+    public void setEmpNo(String empNo){this.empNo=empNo;}
+    public void setEmpName(String empName){this.empName=empName;}
+    public void setRank(char rank){this.rank=rank;}
+	
+    public String getEmpNo(){return empNo;}
+    public String getEmpName(){return empName;}
+    public char getRank(){return rank;}
+	
+    //計算薪水
+    int salary(){
+        int m;
+		
+        if(rank=='A'){	
+            m=50000;
+        }else if(rank=='B'){
+            m=40000;
+        }else if(rank=='C'){
+            m=30000;
+        }else{
+            m=25000;
+        }	
+		
+        return m;
+    }
+}
+
+
+//兒子類別, 傭金員工
+class CommissionEmployee extends Employee{
+    private int salesAmt;
+    private int salesQuota=300000;  
+	
+    public CommissionEmployee(){this.salesAmt=0;}
+	
+    public CommissionEmployee(String empNo, String empName, char rank, int salesAmt){
+        super(empNo, empName, rank);
+        this.salesAmt=salesAmt;
+    }
+	
+    public void setSalesAmt(int salesAmt){this.salesAmt=salesAmt;}
+    public int getSalesAmt(){return salesAmt;}
+	
+    //傭金員工計算薪水, 改寫父親計算薪水的方法
+    public int salary(){
+        //先呼叫父親的底薪, 再加上10%銷售傭金
+    	int tot= super.salary() + (int)((salesAmt - salesQuota)*0.1);  
+    	return tot;
+    }
+}
+
+
+class Main{
+    public static void main(String args[]){
+        //員工
+        Employee emp01 = new Employee("001", "王小明", 'A');
+        printEmployee(emp01);
+			
+        //傭金員工
+        CommissionEmployee emp02 = new CommissionEmployee("002", "陳小華", 'C', 450000);
         printEmployee(emp02);
     }	
 
