@@ -119,7 +119,7 @@ class Employee{
     public char getRank(){return rank;}
 	
     //計算薪水
-    int salary(){
+    public int salary(){
         int m;
 		
         if(rank=='A'){	
