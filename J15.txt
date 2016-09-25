@@ -157,7 +157,7 @@ class CommissionEmployee extends Employee{
     public int getSalesAmt(){return salesAmt;}
 	
     //傭金員工計算薪水的具體內容
-	@Override
+    @Override
     public int salary(){
 		char rank=super.getRank();
 		int baseSalary=0;

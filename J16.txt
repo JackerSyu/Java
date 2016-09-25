@@ -63,7 +63,7 @@ class HourlyEmployee extends Employee{
     public int getWorkHours(){return workHours;}
 	
     //時薪員工計算薪水, 改寫父親計算薪水的方法
-	@Override
+    @Override
     public int salary(){
         return 150*workHours;
     }
@@ -153,7 +153,7 @@ class CommissionEmployee extends Employee{
     public int getSalesAmt(){return salesAmt;}
 	
     //傭金員工計算薪水, 改寫父親計算薪水的方法
-	@Override
+    @Override
     public int salary(){
         //先呼叫父親的底薪, 再加上10%銷售傭金
     	int tot= super.salary() + (int)((salesAmt - salesQuota)*0.1);  
