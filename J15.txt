@@ -98,7 +98,7 @@ class Main {
         printEmployee(emp02);
     }
 	
-	//印出員工資料的方法
+    //印出員工資料的方法
     public static void printEmployee(MyEmployee emp){
         System.out.println(emp.getEmpNo());  
         System.out.println(emp.getEmpName());  
