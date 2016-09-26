@@ -1,0 +1,122 @@
+//一個應付款的介面
+interface Payable{
+    public String item();	
+    public int payment();
+}
+
+//租車類別完成應付款介面的功能
+class CarRental implements Payable{
+    private String type;
+    private int rentDays;
+    	
+    public CarRental(){
+        this.type=null;
+        this.rentDays=0;
+    }
+	
+    public CarRental(String type, int rentDays){
+        this.type=type;
+        this.rentDays=rentDays;
+    }
+	
+    public void setType(String type){this.type=type;}
+    public String getType(){return type;}
+	
+    public void setRentDays(int rentDays){this.rentDays=rentDays;}
+    public int getRentDays(){return rentDays;}	
+    
+    //實作介面的方法	
+    @Override
+    public String item(){
+        return "租車費";    	
+    }    
+    
+    //實作介面的方法	
+    @Override	
+    public int payment(){
+        int price=0;
+		
+        if(type.equals("3000cc")){
+            price=4000;
+        }else if(type.equals("2400cc")){
+            price=2500;
+        }else if(type.equals("1800cc")){
+            price=2000;
+        }else{
+            price=1500;
+        }
+				
+        return price*rentDays;
+    }
+}
+
+
+//租房類別完成應付款介面的功能
+class RoomRental implements Payable{
+    private boolean specialDiscount;
+    	
+    public RoomRental(){
+        this.specialDiscount=false;
+    }
+	
+    public RoomRental(boolean specialDiscount){
+        this.specialDiscount=specialDiscount;
+    }
+	
+    public void setSpecialDiscount(boolean specialDiscount){
+        this.specialDiscount=specialDiscount;
+    }
+	
+    public boolean getSpeicalDiscount(){return specialDiscount;}
+
+    //實作介面的方法	
+    @Override
+    public String item(){
+        return "房租費";    	
+    }  
+    
+    //實作介面的方法	
+    @Override	
+    public int payment(){
+        int price;
+		
+        if(specialDiscount){
+            price=2400;
+        }else{
+            price=3000;
+        }
+				
+        return price;
+    }
+}
+
+class Main {
+    private static int total=0;
+	
+    public static void main(String[] args) {
+        //租車物件
+        CarRental c1 = new CarRental("1500cc", 3);
+        CarRental c2 = new CarRental("2400cc", 2);	
+		
+        printPayment(c1);
+        printPayment(c2);				
+		
+        //租房物件
+        RoomRental r1 = new RoomRental(true);
+        RoomRental r2 = new RoomRental(false);
+		
+        printPayment(r1);
+        printPayment(r2);			
+        
+        //印出合計金額	
+        System.out.println("合計:" + total + "元");
+        System.out.println("================");
+    }
+	
+    //印出付款明細
+    public static void printPayment(Payable payable){
+        total+=payable.payment();    	
+        System.out.println(payable.item() + ":" + payable.payment() + "元"); 
+        System.out.println("----------------");        
+    }
+}
