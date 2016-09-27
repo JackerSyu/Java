@@ -72,7 +72,7 @@ class Main {
         //HashMap物件
         HashMap hm=new HashMap();		
         
-		//累計英文單字出現次數
+        //累計英文單字出現次數
         for(int i=0; i<k.length; i++){
             if(!hm.containsKey(k[i])){
                 hm.put(k[i], new Integer("1"));           //若單字不存在, 記錄出現1次
