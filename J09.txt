@@ -6,97 +6,97 @@ J09
 import java.util.*;
 
 class Main{
-	public static void main(String args[]){
-		Scanner scanner=new Scanner(System.in);
+    public static void main(String args[]){
+        Scanner scanner=new Scanner(System.in);
 		
-		String id = scanner.next();
-		String gender=id.substring(1,2);
+        String id = scanner.next();
+        String gender=id.substring(1,2);
 		
-		if(gender.equals("1")){
-			System.out.println("男");
-		}else if(gender.equals("2")){
-			System.out.println("女");
-		}else{
-			System.out.println("輸入錯誤");
-		}
-	}
+        if(gender.equals("1")){
+            System.out.println("男");
+        }else if(gender.equals("2")){
+            System.out.println("女");
+        }else{
+            System.out.println("輸入錯誤");
+        }
+    }
 }
 
 (2)
 import java.util.*;
 
 class Main {
-  public static void main(String[] args) {
-    Scanner scanner=new Scanner(System.in);
-	String id = scanner.next();
+    public static void main(String[] args) {
+        Scanner scanner=new Scanner(System.in);
+        String id = scanner.next();
 	
-	try{	
-		String gender=id.substring(1,2);
+        try{	
+            String gender=id.substring(1,2);
 				
-		if(gender.equals("1")){
-			System.out.println("男");
-		}else if(gender.equals("2")){
-			System.out.println("女");
-		}else{
-			System.out.println("輸入錯誤");
-		}
-	}catch(StringIndexOutOfBoundsException e){
-		System.out.println("輸入資料長度不足");
-		return;
-	}	
-  }
+            if(gender.equals("1")){
+                System.out.println("男");
+            }else if(gender.equals("2")){
+                System.out.println("女");
+            }else{
+                System.out.println("輸入錯誤");
+            }
+        }catch(StringIndexOutOfBoundsException e){
+            System.out.println("輸入資料長度不足");
+            return;
+        }	
+    }
 }
 
 (3)
 import java.util.*;
 
 class Main {
-  public static void main(String[] args) {
-	Scanner scanner=new Scanner(System.in);
-	String id = scanner.next();
+    public static void main(String[] args) {
+        Scanner scanner=new Scanner(System.in);
+        String id = scanner.next();
 		
-	try{	
-		String gender=id.substring(1,2);
-		int k=Integer.parseInt(gender);
+        try{	
+            String gender=id.substring(1,2);
+            int k=Integer.parseInt(gender);
 					
-		if(k==1){
-			System.out.println("男");
-		}else if(k==2){
-			System.out.println("女");
-		}else{
-			System.out.println("輸入錯誤");
-		}
-	}catch(Exception e){
-		System.out.println("輸入資料長度應足夠且身份證第二碼應是數字");
-		return;		
-	}	
-  }
+            if(k==1){
+                System.out.println("男");
+            }else if(k==2){
+                System.out.println("女");
+            }else{
+                System.out.println("輸入錯誤");
+            }
+        }catch(Exception e){
+            System.out.println("輸入資料長度應足夠且身份證第二碼應是數字");
+            return;		
+        }	
+    }
 }
 
 (4)
 import java.util.*;
 
 class Main {
-  public static void main(String[] args) {
-    Scanner scanner=new Scanner(System.in);
-	String id = scanner.next();
-	String msg=null;
+    public static void main(String[] args) {
+        Scanner scanner=new Scanner(System.in);
+        String id = scanner.next();
+        String msg=null;
 	
-	try{	
-		String gender=id.substring(1,2);
-		int k=Integer.parseInt(gender);
+        try{	
+            String gender=id.substring(1,2);
+            int k=Integer.parseInt(gender);
 				
-		if(k==1){
-			msg="男";
-		}else if(k==2){
-			msg="女";
-		}else{
-			msg="輸入錯誤";
-		}
-	}catch(Exception e){
-		msg="輸入資料長度應足夠且身份證第二碼應是數字";		
-	}finally{
-		System.out.println(msg);
-	}	
-  }
+            if(k==1){
+                msg="男";
+            }else if(k==2){
+                msg="女";
+            }else{
+                msg="輸入錯誤";
+            }
+        }catch(Exception e){
+            msg="輸入資料長度應足夠且身份證第二碼應是數字";		
+        }finally{
+            System.out.println(msg);
+        }	
+    }
 }

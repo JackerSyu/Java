@@ -10,17 +10,17 @@ class Student{
 }
 
 class Main{
-	public static void main(String args[]){
-		Student s=new Student();   //建立一個Student物件
+    public static void main(String args[]){
+        Student s=new Student();   //建立一個Student物件
 
-		s.stuNo="10556001";   //設定物件的成員值
-		s.stuName="王小明";
-		s.gender='M';
+        s.stuNo="10556001";   //設定物件的成員值
+        s.stuName="王小明";
+        s.gender='M';
 		
-		System.out.println(s.stuNo);        //取出成員值
-		System.out.println(s.stuName);
-		System.out.println(s.gender);
-	}
+        System.out.println(s.stuNo);        //取出成員值
+        System.out.println(s.stuName);
+        System.out.println(s.gender);
+    }
 }
 
 
@@ -39,13 +39,13 @@ class Student {
 }
 
 class Main{
-	public static void main(String args[]){
-		Student s=new Student("10556001", "王小明", 'M');
+    public static void main(String args[]){
+        Student s=new Student("10556001", "王小明", 'M');
 		
-		System.out.println(s.stuNo); 
-		System.out.println(s.stuName);
-		System.out.println(s.gender);
-	}
+        System.out.println(s.stuNo); 
+        System.out.println(s.stuName);
+        System.out.println(s.gender);
+    }
 }
 
 
@@ -64,16 +64,16 @@ class Student {
 }
 
 class Main{
-	public static void main(String args[]){
-		Student s=new Student("10556001", "王小明", 'M');
-		s.gender='A'; 
-		/*假設程式處理的性別只有'M'(男), 'F'(女) 及 '/u0000'(未有資料),
-		  此為錯誤的性別值.*/
+    public static void main(String args[]){
+        Student s=new Student("10556001", "王小明", 'M');
+        s.gender='A'; 
+        // 假設程式處理的性別只有'M'(男), 'F'(女) 及 '/u0000'(未有資料),
+        // 此為錯誤的性別值.
 				
-		System.out.println(s.stuNo); 
-		System.out.println(s.stuName);
-		System.out.println(s.gender);
-	}
+        System.out.println(s.stuNo); 
+        System.out.println(s.stuName);
+        System.out.println(s.gender);
+    }
 }
 
 
@@ -88,9 +88,9 @@ class Student {
         this.stuNo=stuNo;
         this.stuName=stuName;
         if(gender!='M' && gender!='F'){
-        	this.gender='\u0000';
+            this.gender='\u0000';
         }else{
-        	this.gender=gender;
+            this.gender=gender;
         }	
     }
     
@@ -100,11 +100,11 @@ class Student {
 }
 
 class Main{
-	public static void main(String args[]){
-		Student s=new Student("10556001", "王小明", 'A');
+    public static void main(String args[]){
+        Student s=new Student("10556001", "王小明", 'A');
 				
-		System.out.println(s.getStuNo()); 
-		System.out.println(s.getStuName());
-		System.out.println(s.getGender());
-	}
+        System.out.println(s.getStuNo()); 
+        System.out.println(s.getStuName());
+        System.out.println(s.getGender());
+    }
 }
