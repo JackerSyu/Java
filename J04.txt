@@ -4,58 +4,58 @@ J04
 
 (1)
 class Main {
-  public static void main(String[] args) {
-    double total=12000;
+    public static void main(String[] args) {
+        double total=12000;
     
-    if(total>10000){
-    	total*=0.9;
+        if(total>10000){
+            total*=0.9;
+        }
+    
+        System.out.println(total);
     }
-    
-    System.out.println(total);
-  }
 }
 
 (2)
 class Main {
-  public static void main(String[] args) {
-    double total=8000;
+    public static void main(String[] args) {
+        double total=8000;
     
-    if(total>10000){
-    	total*=0.9;
-    }else{
-    	total*=0.95;
+        if(total>10000){
+            total*=0.9;
+        }else{
+            total*=0.95;
+        }
+    
+        System.out.println(total);
     }
-    
-    System.out.println(total);
-  }
 }
 
 (3) 
 class Main {
-  public static void main(String[] args) {
-    int price=200;
-    int age=18;
-    String status="學生";
+    public static void main(String[] args) {
+        int price=200;
+        int age=18;
+        String status="學生";
     
-    if(age<0 || status.equals("學生"))
-    	price=(int)(price*0.8);
+        if(age<0 || status.equals("學生"))
+            price=(int)(price*0.8);
     	
-    System.out.println(price);
-  }
+        System.out.println(price);
+    }
 }
 
 (4)
 class Main {
-	public static void main(String[] args) {
-		int price=200;
-		int age=18;
-		String status="學生";
+    public static void main(String[] args) {
+        int price=200;
+        int age=18;
+        String status="學生";
 		
-		if(age<20)
-			price=(int)(price*0.8);
-		else if(status.equals("學生"))
-			price=(int)(price*0.8);
+        if(age<20)
+            price=(int)(price*0.8);
+        else if(status.equals("學生"))
+            price=(int)(price*0.8);
 			
-		System.out.println(price);
-	}
+        System.out.println(price);
+    }
 }

@@ -4,51 +4,52 @@ J05
 
 (1)
 class Main {
-	public static void main(String[] args) {
-		double total=12000;
-		char rank='b';
+    public static void main(String[] args) {
+        double total=12000;
+        char rank='b';
 		
-		switch(rank){
-    		case 'a':
-        		total*=0.7;
-        		break;
-    		case 'b':
-        		total*=0.8;
-        		break;
-		    case 'c':
-        		total*=0.9;
-        		break;
-    		default:
-        		total*=0.95;
-		}
+        switch(rank){
+            case 'a':
+                total*=0.7;
+                break;
+            case 'b':
+                total*=0.8;
+                break;
+            case 'c':
+                total*=0.9;
+                break;
+            default:
+                total*=0.95;
+        }
 		
-		System.out.println(total);
-	}
+        System.out.println(total);
+    }
 }
+
 
 (2)
 class Main {
-	public static void main(String[] args) {
-		double total=12000;
-		char rank='b';
+    public static void main(String[] args) {
+        double total=12000;
+        char rank='b';
 		
-		switch(rank){
-    		case 'a':
-    		case 'b':
-        		total*=0.7;
-        		break;
-    		case 'c':
-    		case 'd':
-    		case 'e':
-        		total*=0.8;
-        		break;
-		    case 'f':
-        		total*=0.9;
-        		break;
-    		default:
-        		total*=0.95;
-		}
+        switch(rank){
+            case 'a':
+            case 'b':
+                total*=0.7;
+                break;
+            case 'c':
+            case 'd':
+            case 'e':
+                total*=0.8;
+                break;
+            case 'f':
+                total*=0.9;
+                break;
+            default:
+                total*=0.95;
+        }
 		
-		System.out.println(total);
-	}
+        System.out.println(total);
+    }
 }
