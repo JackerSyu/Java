@@ -160,8 +160,8 @@ class CommissionEmployee extends Employee{
     //傭金員工計算薪水的具體內容
     @Override
     public int salary(){
-		char rank=super.getRank();
-		int baseSalary=0;
+        char rank=super.getRank();
+        int baseSalary=0;
 		
         if(rank=='A'){	
             baseSalary=50000;
