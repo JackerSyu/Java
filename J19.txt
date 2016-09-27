@@ -79,7 +79,7 @@ class Main {
         }
 		
         //印出存在HashSet物件中的資料個數
-		System.out.println();
-		System.out.println("共有:" + hs.size() + "個不重覆單字");
+        System.out.println();
+        System.out.println("共有:" + hs.size() + "個不重覆單字");
     }
 }
