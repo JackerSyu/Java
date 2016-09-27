@@ -42,7 +42,7 @@ class Main {
     private static void printInfo(HashMap hm){
         System.out.println("儲存資料共:" + hm.size() + "個");
         
-        //使用疊代器將 HashMap 物件中的資料印出
+        //使用迭代器將 HashMap 物件中的資料印出
         Iterator iterator = hm.entrySet().iterator();
         while (iterator.hasNext()) {
             Map.Entry pair = (Map.Entry)iterator.next();
@@ -90,7 +90,7 @@ class Main {
     private static void printInfo(HashMap hm){
        System.out.println("儲存資料共:" + hm.size() + "個");
         
-        //使用疊代器將 HashMap 物件中的資料印出
+        //使用迭代器將 HashMap 物件中的資料印出
         Iterator iterator = hm.entrySet().iterator();
         while (iterator.hasNext()) {
             Map.Entry pair = (Map.Entry)iterator.next();

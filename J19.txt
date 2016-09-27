@@ -38,7 +38,7 @@ class Main {
     private static void printInfo(HashSet hs){
         System.out.println("儲存資料共:" + hs.size() + "個");
         
-        //使用疊代器將HashSet物件中的資料印出
+        //使用迭代器將HashSet物件中的資料印出
         Iterator iterator = hs.iterator();       
         while (iterator.hasNext()){
             System.out.println(iterator.next());  
@@ -72,7 +72,7 @@ class Main {
             hs.add(k[i]);	
         }	
 		
-        //使用疊代器將HashSet物件中的資料一一取出
+        //使用迭代器將HashSet物件中的資料一一取出
         Iterator iterator = hs.iterator();       
         while (iterator.hasNext()){
             System.out.println(iterator.next());  
