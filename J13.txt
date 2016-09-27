@@ -23,63 +23,63 @@ public class Main {
 
 (2)
 class Employee{
-	private String empNo;
-	private String empName;
-	private char rank;
+    private String empNo;
+    private String empName;
+    private char rank;
 	
-	//設定成員值, setter
-	public void setEmpNo(String empNo){this.empNo=empNo;}
-	public void setEmpName(String empName){this.empName=empName;}
-	public void setRank(char rank){this.rank=rank;}
+    //設定成員值, setter
+    public void setEmpNo(String empNo){this.empNo=empNo;}
+    public void setEmpName(String empName){this.empName=empName;}
+    public void setRank(char rank){this.rank=rank;}
 	
-	//取出成員值, getter
-	public String getEmpNo(){return empNo;}
-	public String getEmpName(){return empName;}
-	public char getRank(){return rank;}
+    //取出成員值, getter
+    public String getEmpNo(){return empNo;}
+    public String getEmpName(){return empName;}
+    public char getRank(){return rank;}
 	
-	//計算傭金
-	public int commission(int total){
-		int commission;
+    //計算傭金
+    public int commission(int total){
+        int commission;
 		
-		switch(rank){
-			case 'A':
-				commission=(int)(total*0.15);
-				break;
-			case 'B':
-				commission=(int)(total*0.12);
-				break;
-			case 'C':
-				commission=(int)(total*0.08);
-				break;
-			default:
-				commission=(int)(total*0.05);
-		}
+        switch(rank){
+            case 'A':
+                commission=(int)(total*0.15);
+                break;
+            case 'B':
+                commission=(int)(total*0.12);
+                break;
+            case 'C':
+                commission=(int)(total*0.08);
+                break;
+            default:
+                commission=(int)(total*0.05);
+        }
 		
-		return commission;
-	}
+        return commission;
+    }
 }
 
 
 class MyEmployee extends Employee{
-	public String phoneNumber;
+    public String phoneNumber;
 	
-	public void setPhoneNumber(String phoneNumber){this.phoneNumber=phoneNumber;}
-	public String getPhoneNumber(){return phoneNumber;}
+    public void setPhoneNumber(String phoneNumber){this.phoneNumber=phoneNumber;}
+    public String getPhoneNumber(){return phoneNumber;}
 }
 
 
 class Main {
-	public static void main(String[] args) {
-		MyEmployee emp = new MyEmployee();
+    public static void main(String[] args) {
+        MyEmployee emp = new MyEmployee();
 		
-		emp.setEmpNo("001");
-		emp.setEmpName("王小明");
-		emp.setRank('A');
-		emp.setPhoneNumber("0911-222-333");
+        emp.setEmpNo("001");
+        emp.setEmpName("王小明");
+        emp.setRank('A');
+        emp.setPhoneNumber("0911-222-333");
 		
-		System.out.println(emp.getEmpNo());  
-		System.out.println(emp.getEmpName());  
-		System.out.println(emp.getRank());  
-		System.out.println(emp.getPhoneNumber());  
-	}
+        System.out.println(emp.getEmpNo());  
+        System.out.println(emp.getEmpName());  
+        System.out.println(emp.getRank());  
+        System.out.println(emp.getPhoneNumber());  
+    }
 }
