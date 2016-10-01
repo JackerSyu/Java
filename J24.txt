@@ -8,7 +8,7 @@ import java.util.regex.*;
 class Main {
     public static void main(String[] args) {
 		
-		//一個「.」表示一個任意字元
+        // 一個「.」表示一個任意字元
         boolean b1 = Pattern.matches("資.甲", "資一甲");
         System.out.println(b1);   //true
         
@@ -17,14 +17,14 @@ class Main {
         
         System.out.println();
 		
-		//[資外企] 表示字元 「資」, 「外」, 「企」 其中之一
+        // [資外企] 表示字元 「資」, 「外」, 「企」 其中之一
         System.out.println(Pattern.matches("[資外企].甲", "資一甲"));   //true
         System.out.println(Pattern.matches("[資外企].甲", "外一甲"));   //true	
         System.out.println(Pattern.matches("[資外企].甲", "國一甲"));   //false
         
         System.out.println();
         
-        //[^資外企] 表示除 「資」, 「外」, 「企」以外的字元
+        // [^資外企] 表示除 「資」, 「外」, 「企」以外的字元
         System.out.println(Pattern.matches("[^資外企].甲", "資一甲"));   //false
         System.out.println(Pattern.matches("[^資外企].甲", "外一甲"));   //false	
         System.out.println(Pattern.matches("[^資外企].甲", "國一甲"));   //true
@@ -32,7 +32,7 @@ class Main {
         System.out.println();
         
 		     
-        //一個「*」表示前方的規定文字可出現0次, 1次, 或多次
+       // 一個「*」表示前方的規定文字可出現0次, 1次, 或多次
         System.out.println(Pattern.matches("[資外企].*甲", "資一甲"));     //true
         System.out.println(Pattern.matches("[資外企].*甲", "外一甲"));     //true	
         System.out.println(Pattern.matches("[資外企].*甲", "國一甲"));     //false       
