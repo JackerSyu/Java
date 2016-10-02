@@ -2,6 +2,36 @@
 練習02 字串的處理
 =================================
 
+
+import java.util.*;
+
+class Main {
+	public static void main(String[] args) {
+        Scanner scanner=new Scanner(System.in);
+        String s;
+        
+        try{
+            System.out.print("請輸入測試字串:");
+            s=scanner.next().trim();           
+        }catch(Exception e){
+            System.out.println("資料輸入錯誤!");
+            return;
+        }     
+
+        //---------------------------
+        // 你的程式加在以下的區間中
+        //---------------------------
+				
+		
+		
+		
+		
+        //---------------------------
+    }
+}
+
+
+
 判斷輸入的字串是否符合以下的條件:
 
 (1)

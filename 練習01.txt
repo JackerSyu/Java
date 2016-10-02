@@ -1,11 +1,43 @@
-=================================
+﻿=================================
 練習01   しらすみか, GO!  
 =================================
 
 
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        Scanner scanner=new Scanner(System.in);
+        double height, weight;
+        
+        try{
+            System.out.print("請輸入身高(公尺):");
+            height=Double.parseDouble(scanner.next().trim());
+            
+            System.out.print("請輸入體重(公斤):");
+            weight=Double.parseDouble(scanner.next().trim());           
+        }catch(Exception e){
+            System.out.println("資料輸入錯誤!");
+            return;
+        }     
+
+        //---------------------------
+        // 你的程式加在以下的區間中
+        //---------------------------
+				
+		
+		
+		
+		
+        //---------------------------
+    }
+}
+
+
+
 (1)
 輸入身高(公尺)及體重(公斤), 計算輸入值的BMI. 
-身體質量指數BMI = 體重(公斤) / 身高(公尺)的平方 
+身體質量指數BMI = 身高(公尺) / 體重(公斤)的平方 
 例如:
 身高為1.7公尺, 體重為50公斤
 BMI大約為17.30103....
