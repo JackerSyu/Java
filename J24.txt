@@ -40,3 +40,76 @@ class Main {
         System.out.println(Pattern.matches("[資外企].*甲", "外甲"));       //true       
     }
 }
+
+
+(2)
+import java.util.regex.*;
+
+class Main {
+    public static void main(String[] args) {
+        //\\d{5}表示5個數字
+        System.out.println(Pattern.matches("[5-7]\\d{5}", "756001"));    //true 
+        System.out.println(Pattern.matches("[5-7]\\d{5}", "7556001"));   //false    
+
+        System.out.println(Pattern.matches("[8-9]\\d{6}", "8556001"));   //true
+        System.out.println(Pattern.matches("[8-9]\\d{6}", "856001"));    //false
+
+        System.out.println(Pattern.matches("1\\d{7}", "10556001"));      //true
+        System.out.println(Pattern.matches("1\\d{7}", "1056001"));       //false
+    }
+}
+
+
+(3)
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Main
+{
+    public static void main( String args[] ){      
+        // 待比對文章
+        String text = "身處於資訊與物質皆過剩的超變革年代，你是否也敢於挑戰、勇於跳躍？以未來為起點，設計出能被長久喜愛的商品、店鋪、服務與生意。「用設計畫出品牌經營的未來想像！」──台日設計交流平台「設計發浪」　專文推薦為什麼日本生產不出厲害的設計了呢？──問題就出在「品味低俗的社長」。作者川島蓉子為日本ifs未來研究所所長，長期關注研究品牌經營，為日本企業不復往日的精采設計高聲疾呼，她大膽假設，原因就出在「無法對設計做好經營管理的社長」！日本企業高層眼中的「好設計」其實是「沒有品味的設計」、「遠離消費者的設計」，所以消費者不買單，企業業績下滑，衍生出越來越無法進步的惡性循環。「挑戰新事物才是最奢侈的事！」面對世界的瞬息萬變，如果不能掌握對於「未來」的想像，將失去在激烈競爭中勝出的機會。川島蓉子訪問了六位帶領潮流的先驅者，懂得「什麼是好設計」的日本一線企業社長，與「設計出厲害商品」的頂尖設計師，犀利、直接的對談，受訪者們對於時代的解讀方式、工作的創造方式以及自身的磨練方式，字字珠璣，字裡行間都是足以開拓未來視野的有趣回答。";
+
+        // 在設計兩個字前有0~6個字, 但前導字不存在某些符號                
+        String s = "[^、？，。「」 ]{0,6}設計";
+
+        Pattern pattern = Pattern.compile(s);
+        Matcher matcher = pattern.matcher(text);
+
+        // 列出符合的子字串     
+        while(matcher.find()){
+            System.out.println(matcher.group());
+        }
+    }
+}
+
+
+(4)
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Main
+{
+    public static void main( String args[] ){      
+        String text = "<h3><a title = 'Raspberry Pi輕鬆學：遊戲創作×圖形繪製×音樂創作×程式設計×Minecraft×音樂播放器'></a></h3><p><span class='pricing'><del>$400</del> 售價: $312</span> 購買後立即進貨</p><h3><a title='Oracle PL/SQL程式設計(暢銷回饋版)'></a></h3><p><span class='pricing'><del>$580</del> 售價: $452</span> 購買後立即進貨</p><h3><a title='街頭藝術浪潮：街上的美術館，一線藝術家、經紀畫廊、英倫現場 直擊訪談'></a></h3><p><span class='pricing'><del>$470</del> 貴賓價: $423</span> 購買後立即進貨</p>";
+
+        String s = "title\\s*=\\s*'([^']+)'\\s*>";
+        // title    title文字
+        // \\s*     0個或1個或多個空白
+        // =        =文字
+        // \\s*     0個或1個或多個空白
+        // '        '文字
+        // ([^']+)  一個group, 包括不含'的1個或多個文字
+        // '        '文字
+        // \\s*     0個或1個或多個空白
+        // >        >文字
+
+        Pattern pattern = Pattern.compile(s);
+        Matcher matcher = pattern.matcher(text);
+
+        while(matcher.find()){
+            System.out.println(matcher.group(1));
+            System.out.println("--------------");
+        }
+   }
+}
