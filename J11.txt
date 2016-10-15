@@ -21,7 +21,7 @@ class Main {
 }
 
 (2)
-class Employee{
+class EmployeeFunction{
     //正職員工的薪水計算
     public static int salary(char rank, int overHours){
         int baseSalary;
@@ -42,8 +42,8 @@ class Employee{
 
 class Main {
     public static void main(String[] args) {
-        System.out.println(Employee.computeSalary('A', 20));
-        System.out.println(Employee.computeSalary(180));
+        System.out.println(EmployeeEmployeeFunction.computeSalary('A', 20));
+        System.out.println(EmployeeEmployeeFunction.computeSalary(180));
     }
 }
 
