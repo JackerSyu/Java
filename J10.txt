@@ -1,4 +1,4 @@
-﻿=================================
+﻿﻿=================================
 J10
 =================================
 
@@ -106,5 +106,134 @@ class Main{
         System.out.println(s.getStuNo()); 
         System.out.println(s.getStuName());
         System.out.println(s.getGender());
+    }
+}
+
+
+(5)
+class Student {
+    private String stuNo;
+    private String stuName;
+    private char gender;
+
+    //建構元(1)
+    public Student(String stuNo, String stuName, char gender){
+        this.stuNo=stuNo;
+        this.stuName=stuName;
+        if(gender!='M' && gender!='F'){
+            this.gender='\u0000';
+        }else{
+            this.gender=gender;
+        }	
+    }
+    
+    //建構元(2)
+    public Student(){
+        this.stuNo=null;
+        this.stuName=null;
+        this.gender='\u0000';	
+    }
+
+    //設定成員的setter
+    public void setStuNo(String stuNo){this.stuNo=stuNo;}
+    public void setStuName(String stuName){this.stuName=stuName;}
+    
+    public void setGender(char gender){
+        if(gender!='M' && gender!='F'){
+            this.gender='\u0000';
+        }else{
+            this.gender=gender;
+        }
+    }    
+    
+    //取出成員的getter
+    public String getStuNo(){return this.stuNo;}
+    public String getStuName(){return this.stuName;}
+    public char getGender(){return this.gender;}
+}
+
+
+class Main{
+    public static void main(String args[]){
+    	//第一種設定成員值的方式
+        Student s1=new Student("10556001", "王小明", 'A');
+				
+        System.out.println(s1.getStuNo()); 
+        System.out.println(s1.getStuName());
+        System.out.println(s1.getGender());
+        
+        //第二種設定成員值的方式        
+        Student s2=new Student();
+        
+        s2.setStuNo("10556002");
+        s2.setStuName("陳小華");
+        s2.setGender('F');
+		
+        System.out.println(s2.getStuNo()); 
+        System.out.println(s2.getStuName());
+        System.out.println(s2.getGender());
+    }
+}
+
+
+
+(6)
+class Student {
+    private String stuNo;
+    private String stuName;
+    private char gender;
+
+    //建構元(1)
+    public Student(String stuNo, String stuName, char gender){
+        setStuNo(stuNo);
+        setStuName(stuName);
+        setGender(gender);
+    }
+    
+    //建構元(2)
+    public Student(){
+        this.stuNo=null;
+        this.stuName=null;
+        this.gender='\u0000';	
+    }
+
+    //設定成員的setter
+    public void setStuNo(String stuNo){this.stuNo=stuNo;}
+    public void setStuName(String stuName){this.stuName=stuName;}
+    
+    public void setGender(char gender){
+        if(gender!='M' && gender!='F'){
+            this.gender='\u0000';
+        }else{
+            this.gender=gender;
+        }
+    }    
+    
+    //取出成員的getter
+    public String getStuNo(){return this.stuNo;}
+    public String getStuName(){return this.stuName;}
+    public char getGender(){return this.gender;}
+}
+
+
+class Main{
+    public static void main(String args[]){
+    	//第一種設定成員值的方式
+        Student s1=new Student("10556001", "王小明", 'A');
+				
+        System.out.println(s1.getStuNo()); 
+        System.out.println(s1.getStuName());
+        System.out.println(s1.getGender());
+        
+    	//第二種設定成員值的方式        
+        Student s2=new Student();
+        
+		s2.setStuNo("10556002");
+		s2.setStuName("陳小華");
+		s2.setGender('F');
+		
+        System.out.println(s2.getStuNo()); 
+        System.out.println(s2.getStuName());
+        System.out.println(s2.getGender());
     }
 }
