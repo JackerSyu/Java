@@ -54,7 +54,7 @@ class Main{
 
 
 (2)
-延續以上的程式, 增加一個「營業帳單」(CommercialBill)類別,
+延續以上的程式, 增加一個「營業用電帳單」(CommercialBill)類別,
 有以下成員:
   (a)「公司名稱」(company)
   (b)「繳款人」(name)
@@ -70,7 +70,7 @@ class Main{
    
 class Main{
     public static void main(String args[]){
-        //印出以下營業用帳單資料
+        //印出以下營業用電帳單資料
         CommercialBill b1=new CommercialBill("天空文具股份有限公司", "陳大天", "台北市忠孝東路一段10號", 1250);        		
         System.out.println(b1.getCompany()); 
         System.out.println(b1.getName());		
@@ -89,7 +89,7 @@ class Main{
 
 
 (3)
-再延續以上的程式, 增加一個「個人帳單」(ResidentialBill)類別,
+再延續以上的程式, 增加一個「非營業用電帳單」(ResidentialBill)類別,
 有以下成員:
   (a)「姓名」(name)
   (b)「地址」(address)
@@ -104,7 +104,7 @@ class Main{
    
 class Main{
     public static void main(String args[]){
-        //印出以下營業用帳單資料
+        //印出以下營業用電帳單資料
         CommercialBill b1=new CommercialBill("天空文具股份有限公司", "陳大天", "台北市忠孝東路一段10號", 1250);        		
         System.out.println(b1.getCompany()); 
         System.out.println(b1.getName());		
@@ -120,7 +120,7 @@ class Main{
         System.out.println(ElectricityFee.commercial(b2.getDegree())); 		
 
 		
-        //印出以下個人帳單資料
+        //印出以下非營業用電帳單資料
         ResidentialBill b3=new ResidentialBill("王小明", "台北市南港路一段100號", 655);        		
         System.out.println(b3.getName()); 
         System.out.println(b3.getAddress()); 
