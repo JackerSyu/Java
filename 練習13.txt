@@ -1,0 +1,85 @@
+=================================
+練習13
+=================================
+
+
+(1)
+完成一個「學生功能」(StudentFunction)類別,
+有以下靜態方法:
+  (a) public static String deptName(String stuNo) 方法, 可傳入學號, 得到科系名稱
+  
+方法說明:  
+  (a) 科系名稱由學號判斷:
+      若傳入值為「null」, 傳回「null」 
+      否則若學號長度不為「8」, 傳回空值「null」 
+      否則若學號第5碼為:
+	     「1」, 傳回「會資」
+	     「2」, 傳回「財金」
+         「3」, 傳回「財稅」
+         「4」, 傳回「商務」
+         「5」, 傳回「企管」
+         「6」, 傳回「資管」
+         「7」, 傳回「應外」
+         「A」, 傳回「商設」
+         「B」, 傳回「商創」
+         「C」, 傳回「數媒」	
+          若非以上代碼, 傳回「null」					   
+			
+測試:
+class Main{
+    public static void main(String args[]){
+        //印出以下學號的科系名稱	
+        System.out.println(StudentFunction.deptName("10551001")); 
+        System.out.println(StudentFunction.deptName("10552001")); 
+        System.out.println(StudentFunction.deptName("10553001")); 
+        System.out.println(StudentFunction.deptName("10554001")); 
+        System.out.println(StudentFunction.deptName("10555001")); 
+        System.out.println(StudentFunction.deptName("10556001")); 
+		System.out.println(StudentFunction.deptName("10557001")); 
+        System.out.println(StudentFunction.deptName("1055A001")); 
+        System.out.println(StudentFunction.deptName("1055B001")); 
+        System.out.println(StudentFunction.deptName("1055C001")); 
+        System.out.println(StudentFunction.deptName("105560012")); 
+        System.out.println(StudentFunction.deptName("1055D001")); 		
+    }
+}
+  
+
+  
+  
+(2)
+延續以上的程式, 增加一個「學生」(Student)類別,
+有以下成員:
+  (a)「學號」(stuNo)
+  (b)「姓名」(stuName)
+  (c)「年級」(grade)
+有以下方法:
+  (a) 建構元(傳入3個參數, 分別給3個成員)
+  (b) 建構元(無傳入參數)
+  (c) 三個setter方法, 分別設定三個成員值.
+  (d) 三個getter方法, 分別取出三個成員值.
+  
+方法說明:
+  (a) 學號有8碼 而且 第1碼是「1」, 若不符合則填入空值「null」
+  (b) 年級為「1」~「5」, 若不符合則填入「0」  
+  
+測試:
+  建立二個學生類別的物件, 完成後分別取出及印出成員內容, 另外也印出由 StudentFunction 類別得到的科系名稱:
+  
+class Main{
+    public static void main(String args[]){
+        //印出以下學生資料
+        Student s1=new Student("10556001", "王小明", 1);        		
+        System.out.println(s1.getStuNo()); 
+        System.out.println(s1.getStuName()); 
+        System.out.println(s1.getGrade())); 
+        System.out.println(StudentFunction.deptName(s1.getStuNo())); 
+		
+        Student s2=new Student("10457001", "陳小華", 2);        		
+        System.out.println(s2.getStuNo()); 
+        System.out.println(s2.getStuName()); 
+        System.out.println(s2.getGrade())); 
+        System.out.println(StudentFunction.deptName(s2.getStuNo())); 		
+    }
+}
+  
