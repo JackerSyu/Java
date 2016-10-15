@@ -13,8 +13,8 @@
       若傳入值為「null」, 傳回「null」 
       否則若學號長度不為「8」, 傳回空值「null」 
       否則若學號第5碼為:
-	     「1」, 傳回「會資」
-	     「2」, 傳回「財金」
+         「1」, 傳回「會資」
+         「2」, 傳回「財金」
          「3」, 傳回「財稅」
          「4」, 傳回「商務」
          「5」, 傳回「企管」
@@ -35,7 +35,7 @@ class Main{
         System.out.println(StudentFunction.deptName("10554001")); 
         System.out.println(StudentFunction.deptName("10555001")); 
         System.out.println(StudentFunction.deptName("10556001")); 
-		System.out.println(StudentFunction.deptName("10557001")); 
+        System.out.println(StudentFunction.deptName("10557001")); 
         System.out.println(StudentFunction.deptName("1055A001")); 
         System.out.println(StudentFunction.deptName("1055B001")); 
         System.out.println(StudentFunction.deptName("1055C001")); 
@@ -64,7 +64,7 @@ class Main{
   (b) 年級為「1」~「5」, 若不符合則填入「0」  
   
 測試:
-  建立二個學生類別的物件, 完成後分別取出及印出成員內容, 另外也印出由 StudentFunction 類別得到的科系名稱:
+  建立二個學生類別的物件, 完成後分別取出及印出成員內容, 另外也印出由 StudentFunction 類別得到的科系名稱, 如下:
   
 class Main{
     public static void main(String args[]){
