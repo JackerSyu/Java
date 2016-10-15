@@ -228,9 +228,9 @@ class Main{
     	//第二種設定成員值的方式        
         Student s2=new Student();
         
-		s2.setStuNo("10556002");
-		s2.setStuName("陳小華");
-		s2.setGender('F');
+        s2.setStuNo("10556002");
+        s2.setStuName("陳小華");
+        s2.setGender('F');
 		
         System.out.println(s2.getStuNo()); 
         System.out.println(s2.getStuName());
