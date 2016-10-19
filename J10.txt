@@ -277,34 +277,33 @@ class Student {
     public String getStuName(){return this.stuName;}
     public char getGender(){return this.gender;}
     
-    //其他方法
-    //(1)回傳男/女性別
+    //其他方法(1) 回傳男/女性別
     public char genderInChinese(){
     	char k='\u0000';
     	
     	if(gender=='M'){
-    		k='男';
+            k='男';
     	}else if(gender=='F'){
-    		k='女';
+            k='女';
     	}
     	
     	return k;
     }
     
-    //(2)回傳學制名稱
+    //其他方法(2) 回傳學制名稱
     public String division(){
     	String k=null;
     	
     	if(stuNo.length()==8){
-    		char m=stuNo.charAt(3);
+            char m=stuNo.charAt(3);
     	
-    		if(m=='3'){
-    			k="二技";
-    		}else if(m=='4'){
-    			k="四技";
-    		}else if(m=='5'){
-    			k="五專";
-    		}
+            if(m=='3'){
+                k="二技";
+            }else if(m=='4'){
+                k="四技";
+            }else if(m=='5'){
+                k="五專";
+            }
     	}
     	
     	return k;
@@ -312,7 +311,7 @@ class Student {
 }
 
 
-//------------------------------------------------------------
+//------------------------------------------------
 
 class Main{
     public static void main(String args[]){
@@ -325,7 +324,7 @@ class Main{
         System.out.println(s1.genderInChinese());
         System.out.println(s1.division());
         
-        System.out.println("----------------"); 
+        System.out.println("---------"); 
         
     	//第二種設定成員值的方式        
         Student s2=new Student();
