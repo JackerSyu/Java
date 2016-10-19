@@ -237,3 +237,107 @@ class Main{
         System.out.println(s2.getGender());
     }
 }
+
+
+
+(7)
+class Student {
+    private String stuNo;
+    private String stuName;
+    private char gender;
+
+    //建構元(1)
+    public Student(String stuNo, String stuName, char gender){
+        setStuNo(stuNo);
+        setStuName(stuName);
+        setGender(gender);
+    }
+    
+    //建構元(2)
+    public Student(){
+        this.stuNo=null;
+        this.stuName=null;
+        this.gender='\u0000';	
+    }
+
+    //設定成員的setter
+    public void setStuNo(String stuNo){this.stuNo=stuNo;}
+    public void setStuName(String stuName){this.stuName=stuName;}
+    
+    public void setGender(char gender){
+        if(gender!='M' && gender!='F'){
+            this.gender='\u0000';
+        }else{
+            this.gender=gender;
+        }
+    }    
+    
+    //取出成員的getter
+    public String getStuNo(){return this.stuNo;}
+    public String getStuName(){return this.stuName;}
+    public char getGender(){return this.gender;}
+    
+    //其他方法
+    //(1)回傳男/女性別
+    public char genderInChinese(){
+    	char k='\u0000';
+    	
+    	if(gender=='M'){
+    		k='男';
+    	}else if(gender=='F'){
+    		k='女';
+    	}
+    	
+    	return k;
+    }
+    
+    //(2)回傳學制名稱
+    public String division(){
+    	String k=null;
+    	
+    	if(stuNo.length()==8){
+    		char m=stuNo.charAt(3);
+    	
+    		if(m=='3'){
+    			k="二技";
+    		}else if(m=='4'){
+    			k="四技";
+    		}else if(m=='5'){
+    			k="五專";
+    		}
+    	}
+    	
+    	return k;
+    }
+}
+
+
+//------------------------------------------------------------
+
+class Main{
+    public static void main(String args[]){
+    	//第一種設定成員值的方式
+        Student s1=new Student("10556001", "王小明", 'M');
+				
+        System.out.println(s1.getStuNo()); 
+        System.out.println(s1.getStuName());
+        System.out.println(s1.getGender());
+        System.out.println(s1.genderInChinese());
+        System.out.println(s1.division());
+        
+        System.out.println("----------------"); 
+        
+    	//第二種設定成員值的方式        
+        Student s2=new Student();
+        
+        s2.setStuNo("10546002");
+        s2.setStuName("陳小華");
+        s2.setGender('F');
+		
+        System.out.println(s2.getStuNo()); 
+        System.out.println(s2.getStuName());
+        System.out.println(s2.getGender());
+        System.out.println(s2.genderInChinese());
+        System.out.println(s2.division());        
+    }
+}
