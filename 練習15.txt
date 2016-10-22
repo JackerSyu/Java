@@ -69,7 +69,7 @@ class Main{
 方法:
   (a) public void setGrade(String grade)  (設定成員值)
   (b) public String getGrade()            (取出成員值)
-  (c) public void printWithGrade()        (列印有等第的成績單, 輸出成績單範例如下:)  
+  (c) public void print()                 (列印有等第的成績單, 輸出成績單範例如下:)           
       ----------------------------------
         成  績  單
       ----------------------------------
@@ -194,9 +194,9 @@ class Main{
 }
    
 
-請撰寫一個「列印等第的成績單」類別, 讓它繼承了「成績單」類別.
-由於父親有建構元, 兒子也必須有建構元, 並且在兒子的建構元中呼叫父親的建構元.
+請撰寫一個「列印等第的成績單」類別, 讓它繼承「成績單」類別.
 「列印等第的成績單」類別的說明如下:
+(*提示:由於父親有建構元, 兒子也必須有建構元, 並且在兒子的建構元中呼叫父親的建構元.)
 
 類別名稱:TranscriptWithGrade
 成員:
@@ -207,7 +207,7 @@ class Main{
   (b) 建構元()                            (沒有傳入值)
   (c) public void setGrade(String grade)  (設定成員值)
   (d) public String getGrade()            (取出成員值)
-  (e) public void printWithGrade()        (列印有等第的成績單, 輸出成績單範例如下:)  
+  (e) public void print()                 (列印有等第的成績單, 輸出成績單範例如下:)  
       ----------------------------------
         成  績  單
       ----------------------------------
