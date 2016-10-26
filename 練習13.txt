@@ -79,7 +79,19 @@ class Main{
         System.out.println(s2.getStuNo()); 
         System.out.println(s2.getStuName()); 
         System.out.println(s2.getGrade())); 
-        System.out.println(StudentFunction.deptName(s2.getStuNo())); 		
+        System.out.println(StudentFunction.deptName(s2.getStuNo()));
+	
+        Student s3=new Student("10454003", "周小花", 7);        		
+        System.out.println(s3.getStuNo()); 
+        System.out.println(s3.getStuName()); 
+        System.out.println(s3.getGrade())); 
+        System.out.println(StudentFunction.deptName(s3.getStuNo()));	
+
+        Student s4=new Student("104567001", "李小文", 3);        		
+        System.out.println(s4.getStuNo()); 
+        System.out.println(s4.getStuName()); 
+        System.out.println(s4.getGrade())); 
+        System.out.println(StudentFunction.deptName(s4.getStuNo()));
     }
 }
   
