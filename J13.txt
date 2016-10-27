@@ -63,27 +63,41 @@ class Employee{
 
 //--------------------------
 
-class MyEmployee extends Employee{
-    public String phoneNumber;
+class ForeignEmployee extends Employee{
+    public String country;
 	
-    public void setPhoneNumber(String phoneNumber){this.phoneNumber=phoneNumber;}
-    public String getPhoneNumber(){return phoneNumber;}
+    public void setCountry(String country){this.country=country;}
+    public String getCountry(){return this.country;}
 }
 
 //--------------------------
 
 class Main {
     public static void main(String[] args) {
-        MyEmployee emp = new MyEmployee();
+        //(1)
+        Employee e01 = new Employee();
 		
-        emp.setEmpNo("001");
-        emp.setEmpName("王小明");
-        emp.setRank('A');
-        emp.setPhoneNumber("0911-222-333");
+        e01.setEmpNo("001");
+        e01.setEmpName("王小明");
+        e01.setRank('A');
+
+        System.out.println(e01.getEmpNo());  
+        System.out.println(e01.getEmpName());  
+        System.out.println(e01.getRank());  
+
+        System.out.println("-----------");        
+
+        //(2)
+        ForeignEmployee e02 = new ForeignEmployee();
 		
-        System.out.println(emp.getEmpNo());  
-        System.out.println(emp.getEmpName());  
-        System.out.println(emp.getRank());  
-        System.out.println(emp.getPhoneNumber());  
+        e02.setEmpNo("002");
+        e02.setEmpName("陳小華");
+        e02.setRank('B');
+        e02.setCountry("美國");
+        
+        System.out.println(e02.getEmpNo());  
+        System.out.println(e02.getEmpName());  
+        System.out.println(e02.getRank());  
+        System.out.println(e02.getCountry());          
     }
 }
