@@ -36,8 +36,8 @@ class FullTimeEmployee extends Employee{
     //getters
     
 	
-	//列印員工資料及薪水
-	public void print(){}
+    //列印員工資料及薪水
+    public void print(){}
 }
 
 
@@ -53,8 +53,8 @@ class PartTimeEmployee extends Employee{
     //getters
     
 	
-	//列印員工資料及薪水
-	public void print(){}
+    //列印員工資料及薪水
+    public void print(){}
 }
 
 
@@ -64,7 +64,7 @@ class Main{
         //建立一個可存放多個物件的串列清單
         ArrayList arrayList1 = new ArrayList();
         
-		//將多個「全職員工」物件加入串列清單中
+        //將多個「全職員工」物件加入串列清單中
         arrayList1.add(new FullTimeEmployee("人事部", "陳小昱", 'A', 45000, 12));
         arrayList1.add(new FullTimeEmployee("人事部", "李小閱", 'A', 48000, 10));
         arrayList1.add(new FullTimeEmployee("會計部", "廖小昂", 'B', 35000, 14));
@@ -74,10 +74,10 @@ class Main{
         //逐一列印全職員工資料及薪水			
         for(int i=0; i<arrayList1.size(); i++){
             //取出串列清單中的第i個物件		
-        	TranscriptWithGrade t = (FullTimeEmployee)arrayList1.get(i);  
+            FullTimeEmployee t = (FullTimeEmployee)arrayList1.get(i);                       
 			
             //呼叫取出物件的print()方法			
-        	t.print();
+            t.print();
         }
         
 		
@@ -87,7 +87,7 @@ class Main{
         //建立一個可存放多個物件的串列清單
         ArrayList arrayList2 = new ArrayList();
         
-		//將多個「兼職員工」物件加入串列清單中
+        //將多個「兼職員工」物件加入串列清單中
         arrayList2.add(new PartTimeEmployee("人事部", "王小宇", 'A', 120));
         arrayList2.add(new PartTimeEmployee("會計部", "侯小庭", 'A', 185));
         arrayList2.add(new PartTimeEmployee("運輸部", "許小蘭", 'A', 90));
@@ -97,10 +97,10 @@ class Main{
         //逐一列印兼職員工資料及薪水		
         for(int i=0; i<arrayList2.size(); i++){
             //取出串列清單中的第i個物件		
-        	TranscriptWithGrade t = (PartTimeEmployee)arrayList2.get(i);  
+            PartTimeEmployee t = (PartTimeEmployee)arrayList2.get(i);  
 			
             //呼叫取出物件的print()方法			
-        	t.print();
+            t.print();
         } 
     }
 }
