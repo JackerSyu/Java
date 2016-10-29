@@ -65,19 +65,17 @@ class Transcript{
 class TranscriptWithGrade extends Transcript{
     //建構元(1)
     public TranscriptWithGrade(String stuNo, String stuName, int chi, int eng, int mat){
-		super(stuNo, stuName, chi, eng, mat);  //呼叫父親的建構元
+        super(stuNo, stuName, chi, eng, mat);  //呼叫父親的建構元
     }
     
     //建構元(2)
     public TranscriptWithGrade(){
-		super();   //呼叫父親的建構元 
+        super();  //呼叫父親的建構元 
     } 
     
 	
-	//列印有等第成績單, 請完成內容
-	public void print(){
-		
-	}
+    //列印有等第成績單, 請完成內容
+    public void print(){}
 }
 
 
@@ -87,7 +85,7 @@ class Main{
         //建立一個可存放多個物件的串列清單
         ArrayList arrayList = new ArrayList();
         
-		//將多個「列印等第的成績單」物件加入串列清單中
+        //將多個「列印等第的成績單」物件加入串列清單中
         arrayList.add(new TranscriptWithGrade("10556001", "陳小昱", 85, 93, 62));
         arrayList.add(new TranscriptWithGrade("10556002", "李小閱", 64, 87, 66));
         arrayList.add(new TranscriptWithGrade("10556003", "廖小昂", 90, 60, 75));
@@ -103,10 +101,10 @@ class Main{
         //逐一列印成績單			
         for(int i=0; i<arrayList.size(); i++){
             //取出串列清單中的第i個物件		
-        	TranscriptWithGrade t = (TranscriptWithGrade)arrayList.get(i);  
+            TranscriptWithGrade t = (TranscriptWithGrade)arrayList.get(i);   
 			
             //呼叫取出物件的print()方法			
-        	t.print();
+            t.print();
         }	
     }
 }
@@ -165,7 +163,7 @@ class Main{
       英文: 93
       數學: 92
       -------------------------
-	  總分: 270
+      總分: 270
       平均: 90.0
       -------------------------	
 	  
