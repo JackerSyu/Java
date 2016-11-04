@@ -195,6 +195,7 @@ class Main{
         }	
 	
 	
+	
         //建立一個可存放多個物件的串列清單
         ArrayList arrayList2 = new ArrayList();
         
@@ -203,8 +204,7 @@ class Main{
         arrayList2.add(new TranscriptWithTotAvg("10556007", "侯小庭", 96, 70, 84));
         arrayList2.add(new TranscriptWithTotAvg("10556008", "許小蘭", 95, 63, 60));
         arrayList2.add(new TranscriptWithTotAvg("10556009", "石小夫", 50, 100, 95));
-        arrayList2.add(new TranscriptWithTotAvg("10556010", "陳小瑞", 85, 60, 93));
-        
+        arrayList2.add(new TranscriptWithTotAvg("10556010", "陳小瑞", 85, 60, 93));        
 		
         //逐一列印成績單			
         for(int i=0; i<arrayList2.size(); i++){
