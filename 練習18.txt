@@ -36,9 +36,9 @@ abstract class Employee{
     public void setRank(char rank){this.rank=rank;}
     
     //getters
-	public String getBranch(){return this.branch;}
-	public String getName(){return this.name;}
-	public char getRank(){return this.rank;}
+    public String getBranch(){return this.branch;}
+    public String getName(){return this.name;}
+    public char getRank(){return this.rank;}
 	
     //列印員工資料,抽象方法
     abstract public void print();
