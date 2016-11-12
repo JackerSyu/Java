@@ -438,6 +438,7 @@ class Main{
         employee.add(new PartTimeEmployee("B004", "石小夫", 'B', 125));
         employee.add(new PartTimeEmployee("B005", "陳小瑞", 'C', 160)); 
 
+        //印出資料
         for(int i=0; i<employee.size(); i++){
             printEmployee((Employee)employee.get(i));
         }
