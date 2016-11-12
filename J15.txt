@@ -1,26 +1,30 @@
-=================================
-J15
-=================================
-
 (1)
-//父親是抽象類別
-abstract class Employee{
-    private String empNo;
-    private String empName;
-    private char rank;
+****************************************
+*  1個父類別 與 1個子類別            
+****************************************
+
+import java.util.*;
+
+//---------------------------------------------------------------------------------
+//「員工」類別
+class Employee{
+    private String empNo;    //員工編號
+    private String empName;  //姓名
+    private char rank;       //職級
 	
-    //建構元
+    //建構元(1)
+    public Employee(String empNo, String empName, char rank){
+        setEmpNo(empNo);
+        setEmpName(empName);
+        setRank(rank);
+    }
+	
+    //建構元(2)
     public Employee(){
         empNo=null;
         empName=null;
         rank='\u0000';
-    }
-	
-    public Employee(String empNo, String empName, char rank){
-        this.empNo=empNo;
-        this.empName=empName;
-        this.rank=rank;
-    }
+    }		
 	
     //設定成員值, setter
     public void setEmpNo(String empNo){this.empNo=empNo;}
@@ -31,195 +35,419 @@ abstract class Employee{
     public String getEmpNo(){return empNo;}
     public String getEmpName(){return empName;}
     public char getRank(){return rank;}
-	
-    //計算薪水. 沒有方法內容的抽象方法
-    abstract int salary();
 }
 
-//兒子完成父親的抽象方法後, 就不抽象了
-class MyEmployee extends Employee{
-    private String phoneNumber;
-    private int monthTotal;
+
+//---------------------------------------------------------------------------------
+//「全職員工」繼承「員工」
+class FullTimeEmployee extends Employee{
+    private int saleTotal;  //月銷售額
 	
-    //建構元
-    public MyEmployee(){
-        this.phoneNumber=null;
-    }
-	
-    public MyEmployee(String empNo, String empName, char rank, String phoneNumber, int monthTotal){
+    //建構元(1)	
+    public FullTimeEmployee(String empNo, String empName, char rank, int saleTotal){
         super(empNo, empName, rank);
-        this.phoneNumber=phoneNumber;
-        this.monthTotal=monthTotal;
+        setSaleTotal(saleTotal);
     }
 	
-    public void setPhoneNumber(String phoneNumber){this.phoneNumber=phoneNumber;}
-    public String getPhoneNumber(){return phoneNumber;}
+    //建構元(2)
+    public FullTimeEmployee(){
+        super();
+        this.saleTotal=0;
+    }
 	
-    public void setMonthTotal(int monthTotal){this.monthTotal=monthTotal;}
-    public int getMonthTotal(){return monthTotal;}
+    //設定成員值, setter
+    public void setSaleTotal(int saleTotal){this.saleTotal=saleTotal;}
 	
-    //將父親的抽象方法貝具體化
-    @Override	
+    //取出成員值, getter
+    public int getSaleTotal(){return saleTotal;}
+	
+    //全職員工計算薪水的方法
     public int salary(){
-        int commission;
+        int base=0;         //底薪
+        int commission=0;   //傭金
 		
         switch(super.getRank()){
             case 'A':
-                commission=(int)(monthTotal*0.15);
+                base=40000;
+                commission=(int)(saleTotal*0.05);
                 break;
             case 'B':
-                commission=(int)(monthTotal*0.12);
+                base=35000;
+                commission=(int)(saleTotal*0.04);
                 break;
             case 'C':
-                commission=(int)(monthTotal*0.08);
+                base=30000;
+                commission=(int)(saleTotal*0.03);
                 break;
             default:
-                commission=(int)(monthTotal*0.05);
+                base=25000;
+                commission=(int)(saleTotal*0.02);
         }
 		
-        return commission;
+        return (base + commission);
     }
 }
 
+
+//---------------------------------------------------------------------------------
 class Main {
     public static void main(String[] args) {
-        //第1個員工
-        MyEmployee emp01 = new MyEmployee();
-		
-        emp01.setEmpNo("001");
-        emp01.setEmpName("王小明");
-        emp01.setRank('A');
-        emp01.setPhoneNumber("0911-222-333");
-        emp01.setMonthTotal(400000);
-        printEmployee(emp01);
-		
-        //第2個員工
-        MyEmployee emp02 = new MyEmployee("002", "陳小華", 'B', "0922-333-444", 450000);
-        printEmployee(emp02);
+        //將多個「全職員工」物件加入串列清單中
+        ArrayList arrayList = new ArrayList();
+        
+        arrayList.add(new FullTimeEmployee("A001", "陳小昱", 'A', 450000));
+        arrayList.add(new FullTimeEmployee("A002", "李小閱", 'A', 480000));
+        arrayList.add(new FullTimeEmployee("A003", "廖小昂", 'B', 350000));
+        arrayList.add(new FullTimeEmployee("A004", "謝小齊", 'B', 370000));
+        arrayList.add(new FullTimeEmployee("A005", "藍小謙", 'C', 360000)); 
+
+        for(int i=0; i<arrayList.size(); i++){
+            printEmployee((FullTimeEmployee)arrayList.get(i));
+        }
     }
 	
-    //印出員工資料的方法
-    public static void printEmployee(MyEmployee emp){
-        System.out.println(emp.getEmpNo());  
-        System.out.println(emp.getEmpName());  
-        System.out.println(emp.getRank());  
-        System.out.println(emp.getMonthTotal());
-        System.out.println(emp.salary());	
-        System.out.println();
+    //印出員工資料
+    public static void printEmployee(FullTimeEmployee emp){
+        System.out.println("員工編號:" + emp.getEmpNo());  
+        System.out.println("員工姓名:" + emp.getEmpName());  
+        System.out.println("職級:" + emp.getRank());  
+        System.out.println("月銷售額:" + emp.getSaleTotal());
+        System.out.println("薪水:" + emp.salary());	
+        System.out.println("-----------------------");
     }
 }
+
 
 
 
 (2)
-//父親類別, 員工(抽象類別)
-abstract class Employee{
-    private String empNo;
-    private String empName;
-    private char rank;
+****************************************
+*  1個父類別 與 2個子類別           
+****************************************
+
+import java.util.*;
+
+//---------------------------------------------------------------------------------
+//「員工」類別
+class Employee{
+    private String empNo;    //員工編號
+    private String empName;  //姓名
+    private char rank;       //職級
 	
+    //建構元(1)
+    public Employee(String empNo, String empName, char rank){
+        setEmpNo(empNo);
+        setEmpName(empName);
+        setRank(rank);
+    }
+	
+    //建構元(2)
     public Employee(){
         empNo=null;
         empName=null;
         rank='\u0000';
-    }
+    }		
 	
-    public Employee(String empNo, String empName, char rank){
-        this.empNo=empNo;
-        this.empName=empName;
-        this.rank=rank;
-    }
-		
+    //設定成員值, setter
     public void setEmpNo(String empNo){this.empNo=empNo;}
     public void setEmpName(String empName){this.empName=empName;}
     public void setRank(char rank){this.rank=rank;}
 	
+    //取出成員值, getter
     public String getEmpNo(){return empNo;}
     public String getEmpName(){return empName;}
     public char getRank(){return rank;}
-	
-    //計算薪水(抽象方法, 沒有具體內容)
-    abstract int salary();
 }
 
-//兒子類別, 傭金員工
-class CommissionEmployee extends Employee{
-    private int salesAmt;
-    private int salesQuota=300000;  
+
+//---------------------------------------------------------------------------------
+//「全職員工」繼承「員工」
+class FullTimeEmployee extends Employee{
+    private int saleTotal;  //月銷售額
 	
-    public CommissionEmployee(){this.salesAmt=0;}
-	
-    public CommissionEmployee(String empNo, String empName, char rank, int salesAmt){
+    //建構元(1)	
+    public FullTimeEmployee(String empNo, String empName, char rank, int saleTotal){
         super(empNo, empName, rank);
-        this.salesAmt=salesAmt;
+        setSaleTotal(saleTotal);
     }
 	
-    public void setSalesAmt(int salesAmt){this.salesAmt=salesAmt;}
-    public int getSalesAmt(){return salesAmt;}
+    //建構元(2)
+    public FullTimeEmployee(){
+        super();
+        this.saleTotal=0;
+    }
 	
-    //傭金員工計算薪水的具體內容
-    @Override
+    //設定成員值, setter
+    public void setSaleTotal(int saleTotal){this.saleTotal=saleTotal;}
+	
+    //取出成員值, getter
+    public int getSaleTotal(){return saleTotal;}
+	
+    //全職員工計算薪水的方法
     public int salary(){
-        char rank=super.getRank();
-        int baseSalary=0;
+        int base=0;         //底薪
+        int commission=0;   //傭金
 		
-        if(rank=='A'){	
-            baseSalary=50000;
-        }else if(rank=='B'){
-            baseSalary=40000;
-        }else if(rank=='C'){
-            baseSalary=30000;
-        }else{
-            baseSalary=25000;
+        switch(super.getRank()){
+            case 'A':
+                base=40000;
+                commission=(int)(saleTotal*0.05);
+                break;
+            case 'B':
+                base=35000;
+                commission=(int)(saleTotal*0.04);
+                break;
+            case 'C':
+                base=30000;
+                commission=(int)(saleTotal*0.03);
+                break;
+            default:
+                base=25000;
+                commission=(int)(saleTotal*0.02);
         }
-        
-    	int tot= baseSalary + (int)((salesAmt - salesQuota)*0.1);
-    	
-    	return tot;
+		
+        return (base + commission);
     }
 }
 
-//兒子類別, 時薪員工
-class HourlyEmployee extends Employee{
-    private int workHours;
+
+//---------------------------------------------------------------------------------
+//「兼職員工」繼承「員工」
+class PartTimeEmployee extends Employee{
+    private int hours;  //兼職時數
 	
-    public HourlyEmployee(){this.workHours=0;}
-	
-    public HourlyEmployee(String empNo, String empName, char rank, int workHours){
+    //建構元(1)	
+    public PartTimeEmployee(String empNo, String empName, char rank, int hours){
         super(empNo, empName, rank);
-        this.workHours=workHours;
+        setHours(hours);
     }
 	
-    public void setWorkHours(int workHours){this.workHours=workHours;}
-    public int getWorkHours(){return workHours;}
+    //建構元(2)
+    public PartTimeEmployee(){
+        super();
+        this.hours=0;
+    }
 	
-    //時薪員工計算薪水的具體內容
-    @Override
-    public int salary(){
-        return 150*workHours;
+    //設定成員值, setter
+    public void setHours(int hours){this.hours=hours;}
+	
+    //取出成員值, getter
+    public int getHours(){return hours;}
+	
+    //全職員工計算薪水的方法
+    public int salary(){		
+        return (hours*200);
     }
 }
 
-class Main{
-    public static void main(String args[]){
-        //傭金員工
-        CommissionEmployee emp01 = new CommissionEmployee("001", "王小明", 'A', 450000);
-        printEmployee(emp01);
-			
-        //時薪員工
-        HourlyEmployee emp02 = new HourlyEmployee("002", "陳小華", 'C', 200);
-        printEmployee(emp02);
-    }	
 
-    //------------------------------------------------------------------------------
-    // 傭金員工是一種員工, 時薪員工也是一種員工, 所以傳入參數類型採用Employee,
-    // 可以以同一個方法, 傳入不同的 CommissionEmployee 及 HourlyEmployee物件.
-    //------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------
+class Main{
+    public static void main(String[] args) {
+        //將多個「全職員工」物件加入串列清單中
+        ArrayList fullTime = new ArrayList();
+        
+        fullTime.add(new FullTimeEmployee("A001", "陳小昱", 'A', 450000));
+        fullTime.add(new FullTimeEmployee("A002", "李小閱", 'A', 480000));
+        fullTime.add(new FullTimeEmployee("A003", "廖小昂", 'B', 350000));
+        fullTime.add(new FullTimeEmployee("A004", "謝小齊", 'B', 370000));
+        fullTime.add(new FullTimeEmployee("A005", "藍小謙", 'C', 360000)); 
+
+        for(int i=0; i<fullTime.size(); i++){
+            printFullTime((FullTimeEmployee)fullTime.get(i));
+        }
+		
+        //將多個「兼職員工」物件加入串列清單中
+        ArrayList partTime = new ArrayList();
+        
+        partTime.add(new PartTimeEmployee("B001", "王小宇", 'A', 120));
+        partTime.add(new PartTimeEmployee("B002", "侯小庭", 'A', 185));
+        partTime.add(new PartTimeEmployee("B003", "許小蘭", 'A', 90));
+        partTime.add(new PartTimeEmployee("B004", "石小夫", 'B', 125));
+        partTime.add(new PartTimeEmployee("B005", "陳小瑞", 'C', 160)); 
+
+        for(int i=0; i<partTime.size(); i++){
+            printPartTime((PartTimeEmployee)partTime.get(i));
+        }
+    }
+	
+    //印出全職員工資料
+    public static void printFullTime(FullTimeEmployee emp){
+        System.out.println("員工編號:" + emp.getEmpNo());  
+        System.out.println("員工姓名:" + emp.getEmpName()); 
+        System.out.println("薪水:" + emp.salary());	
+        System.out.println("-----------------------");
+    }
+	
+    //印出兼職員工資料
+    public static void printPartTime(PartTimeEmployee emp){
+        System.out.println("員工編號:" + emp.getEmpNo());  
+        System.out.println("員工姓名:" + emp.getEmpName()); 
+        System.out.println("薪水:" + emp.salary());	
+        System.out.println("-----------------------");
+    }
+}
+
+
+
+
+(3)
+***************************************
+*  1個父類別 與 2個子類別               
+*  父類別是抽象類別                     
+*  使用多型的技巧列印資料               
+***************************************
+import java.util.*;
+
+//---------------------------------------------------------------------------------
+//「員工」的抽象類別(有一個未完成的方法)
+abstract class Employee{
+    private String empNo;    //員工編號
+    private String empName;  //姓名
+    private char rank;       //職級
+	
+    //建構元(1)
+    public Employee(String empNo, String empName, char rank){
+        setEmpNo(empNo);
+        setEmpName(empName);
+        setRank(rank);
+    }
+	
+    //建構元(2)
+    public Employee(){
+        empNo=null;
+        empName=null;
+        rank='\u0000';
+    }		
+	
+    //設定成員值, setter
+    public void setEmpNo(String empNo){this.empNo=empNo;}
+    public void setEmpName(String empName){this.empName=empName;}
+    public void setRank(char rank){this.rank=rank;}
+	
+    //取出成員值, getter
+    public String getEmpNo(){return empNo;}
+    public String getEmpName(){return empName;}
+    public char getRank(){return rank;}
+    
+    //抽象方法
+    abstract public int salary();
+}
+
+
+//---------------------------------------------------------------------------------
+//「全職員工」繼承「員工」
+class FullTimeEmployee extends Employee{
+    private int saleTotal;  //月銷售額
+	
+    //建構元(1)	
+    public FullTimeEmployee(String empNo, String empName, char rank, int saleTotal){
+        super(empNo, empName, rank);
+        setSaleTotal(saleTotal);
+    }
+	
+    //建構元(2)
+    public FullTimeEmployee(){
+        super();
+        this.saleTotal=0;
+    }
+	
+    //設定成員值, setter
+    public void setSaleTotal(int saleTotal){this.saleTotal=saleTotal;}
+	
+    //取出成員值, getter
+    public int getSaleTotal(){return saleTotal;}
+	
+    //全職員工計算薪水的方法, 實作父親的抽象方法
+    @Override    
+    public int salary(){
+        int base=0;         //底薪
+        int commission=0;   //傭金
+		
+        switch(super.getRank()){
+            case 'A':
+                base=40000;
+                commission=(int)(saleTotal*0.05);
+                break;
+            case 'B':
+                base=35000;
+                commission=(int)(saleTotal*0.04);
+                break;
+            case 'C':
+                base=30000;
+                commission=(int)(saleTotal*0.03);
+                break;
+            default:
+                base=25000;
+                commission=(int)(saleTotal*0.02);
+        }
+		
+        return (base + commission);
+    }
+}
+
+
+//---------------------------------------------------------------------------------
+//「兼職員工」繼承「員工」
+class PartTimeEmployee extends Employee{
+    private int hours;  //兼職時數
+	
+    //建構元(1)	
+    public PartTimeEmployee(String empNo, String empName, char rank, int hours){
+        super(empNo, empName, rank);
+        setHours(hours);
+    }
+	
+    //建構元(2)
+    public PartTimeEmployee(){
+        super();
+        this.hours=0;
+    }
+	
+    //設定成員值, setter
+    public void setHours(int hours){this.hours=hours;}
+	
+    //取出成員值, getter
+    public int getHours(){return hours;}
+	
+    //全職員工計算薪水的方法, 實作父親的抽象方法
+    @Override    
+    public int salary(){		
+        return (hours*200);
+    }
+}
+
+
+//---------------------------------------------------------------------------------
+class Main{
+    public static void main(String[] args) {
+        //一個可放員工物件的串列清啤
+        ArrayList employee = new ArrayList();
+        
+        //將多個「全職員工」物件加入串列清單中
+        employee.add(new FullTimeEmployee("A001", "陳小昱", 'A', 450000));
+        employee.add(new FullTimeEmployee("A002", "李小閱", 'A', 480000));
+        employee.add(new FullTimeEmployee("A003", "廖小昂", 'B', 350000));
+        employee.add(new FullTimeEmployee("A004", "謝小齊", 'B', 370000));
+        employee.add(new FullTimeEmployee("A005", "藍小謙", 'C', 360000)); 
+
+        //將多個「兼職員工」物件加入串列清單中
+        employee.add(new PartTimeEmployee("B001", "王小宇", 'A', 120));
+        employee.add(new PartTimeEmployee("B002", "侯小庭", 'A', 185));
+        employee.add(new PartTimeEmployee("B003", "許小蘭", 'A', 90));
+        employee.add(new PartTimeEmployee("B004", "石小夫", 'B', 125));
+        employee.add(new PartTimeEmployee("B005", "陳小瑞", 'C', 160)); 
+
+        for(int i=0; i<employee.size(); i++){
+            printEmployee((Employee)employee.get(i));
+        }
+    }
+	
+    //印出員工資料
     public static void printEmployee(Employee emp){
-        System.out.println(emp.getEmpNo());  
-        System.out.println(emp.getEmpName());  
-        System.out.println(emp.getRank()); 
-        System.out.println(emp.salary());   //根據傳入物件呼叫不同的salary()方法, 稱為多型(Polymorphism)	
-        System.out.println();
-    }	
+        System.out.println("員工編號:" + emp.getEmpNo());  
+        System.out.println("員工姓名:" + emp.getEmpName()); 
+        System.out.println("薪水:" + emp.salary());	
+        System.out.println("-----------------------");
+    }
 }
