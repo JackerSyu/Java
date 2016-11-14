@@ -77,6 +77,7 @@ class FieldEmployee extends Employee{
 
 
 //--------------------------------------------------------------------------
+//測試類別
 class Main {
     public static void main(String[] args) {
         //產生1個員工
