@@ -133,9 +133,9 @@ class Tour{
     	int total=priceAdult*adult + priceChild*child;
     	
     	if(total>5000){
-    		total*=0.9;
+            total*=0.9;
     	}else if(total>3000 && total<=5000){
-    		total*=0.8;
+            total*=0.8;
     	}
     	
     	return total;
@@ -184,9 +184,8 @@ class TourWithGuide extends Tour{
     //計算總費用
     @Override
     public int totalPrice(int adult, int child){
-		int total=super.totalPrice(adult, child) + guide;
-		
-		return total;
+        int total=super.totalPrice(adult, child) + guide;		
+        return total;
     }
     
 	//印出帳單
@@ -224,6 +223,4 @@ class Main{
     }
 }
 //==========================================================================================
-
-
 
