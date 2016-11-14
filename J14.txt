@@ -3,7 +3,8 @@ J14
 =================================
 
 (1)
-//父親類別
+//--------------------------------------------------------------------------
+//員工類別
 class Employee{
     private String empNo;
     private String empName;
@@ -54,16 +55,18 @@ class Employee{
     }
 }
 
-//兒子類別
-class MyEmployee extends Employee{
+
+//--------------------------------------------------------------------------
+//外勤員工
+class FieldEmployee extends Employee{
     private String phoneNumber;
 	
     //建構元
-    public MyEmployee(){
+    public FieldEmployee(){
         this.phoneNumber=null;
     }
 	
-    public MyEmployee(String empNo, String empName, char rank, String phoneNumber){
+    public FieldEmployee(String empNo, String empName, char rank, String phoneNumber){
         super(empNo, empName, rank);
         this.phoneNumber=phoneNumber;
     }
@@ -72,29 +75,31 @@ class MyEmployee extends Employee{
     public String getPhoneNumber(){return phoneNumber;}
 }
 
+
+//--------------------------------------------------------------------------
 class Main {
     public static void main(String[] args) {
-        //產生第1個員工
-        MyEmployee emp01 = new MyEmployee();
+        //產生1個員工
+        Employee emp01 = new Employee();
 		
         emp01.setEmpNo("001");
         emp01.setEmpName("王小明");
         emp01.setRank('A');
-        emp01.setPhoneNumber("0911-222-333");
 		
-        System.out.println(emp01.getEmpNo());  
-        System.out.println(emp01.getEmpName());  
-        System.out.println(emp01.getRank());  
-        System.out.println(emp01.getPhoneNumber()); 
-        System.out.println(emp01.salary(400000));
+        System.out.println("員工編號:" + emp01.getEmpNo());   
+        System.out.println("姓名:" + emp01.getEmpName()); 
+        System.out.println("職級:" + emp01.getRank());  
+	System.out.println("薪水:" + emp01.salary(550000));
+	System.out.println("--------------------------------");
 		
-        //產生第2個員工
-        MyEmployee emp02 = new MyEmployee("002", "陳小華", 'B', "0922-333-444");
+        //產生1個外勤員工
+        FieldEmployee emp02 = new FieldEmployee("002", "陳小華", 'B', "0922-333-444");
 
-        System.out.println(emp02.getEmpNo());  
-        System.out.println(emp02.getEmpName());  
-        System.out.println(emp02.getRank());  
-        System.out.println(emp02.getPhoneNumber()); 
-        System.out.println(emp02.salary(450000));
+        System.out.println("員工編號:" +emp02.getEmpNo());  
+        System.out.println("姓名:" + emp02.getEmpName());  
+        System.out.println("職級:" + emp02.getRank());  
+        System.out.println("電話:" + emp02.getPhoneNumber()); 
+        System.out.println("薪水:" + emp02.salary(450000));
+	System.out.println("--------------------------------");
     } 
 }
