@@ -89,8 +89,8 @@ class Main {
         System.out.println("員工編號:" + emp01.getEmpNo());   
         System.out.println("姓名:" + emp01.getEmpName()); 
         System.out.println("職級:" + emp01.getRank());  
-	System.out.println("薪水:" + emp01.salary(550000));
-	System.out.println("--------------------------------");
+        System.out.println("薪水:" + emp01.salary(550000));
+        System.out.println("--------------------------------");
 		
         //產生1個外勤員工
         FieldEmployee emp02 = new FieldEmployee("002", "陳小華", 'B', "0922-333-444");
@@ -100,6 +100,6 @@ class Main {
         System.out.println("職級:" + emp02.getRank());  
         System.out.println("電話:" + emp02.getPhoneNumber()); 
         System.out.println("薪水:" + emp02.salary(450000));
-	System.out.println("--------------------------------");
+        System.out.println("--------------------------------");
     } 
 }
