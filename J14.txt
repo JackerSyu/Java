@@ -34,24 +34,24 @@ class Employee{
     public char getRank(){return rank;}
 	
     //計算薪水
-    public int salary(int total){
-        int commission;
+    public int salary(){
+        int salary=0;
 		
         switch(rank){
             case 'A':
-                commission=(int)(total*0.15);
+                salary=45000;
                 break;
             case 'B':
-                commission=(int)(total*0.12);
+                salary=40000;
                 break;
             case 'C':
-                commission=(int)(total*0.08);
+                salary=35000;
                 break;
             default:
-                commission=(int)(total*0.05);
+                salary=30000;
         }
 		
-        return commission;
+        return salary;
     }
 }
 
@@ -90,7 +90,7 @@ class Main {
         System.out.println("員工編號:" + emp01.getEmpNo());   
         System.out.println("姓名:" + emp01.getEmpName()); 
         System.out.println("職級:" + emp01.getRank());  
-        System.out.println("薪水:" + emp01.salary(550000));
+        System.out.println("薪水:" + emp01.salary());
         System.out.println("--------------------------------");
 		
         //產生1個外勤員工
@@ -100,7 +100,7 @@ class Main {
         System.out.println("姓名:" + emp02.getEmpName());  
         System.out.println("職級:" + emp02.getRank());  
         System.out.println("電話:" + emp02.getPhoneNumber()); 
-        System.out.println("薪水:" + emp02.salary(450000));
+        System.out.println("薪水:" + emp02.salary());
         System.out.println("--------------------------------");
     } 
 }
