@@ -9,20 +9,21 @@ class Employee{
     private String empNo;
     private String empName;
     private char rank;
-	
+
+    //建構元
+    public Employee(String empNo, String empName, char rank){
+        this.empNo=empNo;
+        this.empName=empName;
+        this.rank=rank;
+    }
+
     //建構元
     public Employee(){
         empNo=null;
         empName=null;
         rank='\u0000';
     }
-	
-    public Employee(String empNo, String empName, char rank){
-        this.empNo=empNo;
-        this.empName=empName;
-        this.rank=rank;
-    }
-	
+    
     //設定成員值, setter
     public void setEmpNo(String empNo){this.empNo=empNo;}
     public void setEmpName(String empName){this.empName=empName;}
@@ -60,13 +61,43 @@ class Employee{
 //外勤員工
 class FieldEmployee extends Employee{
     private String phoneNumber;
-	
+    
+    //建構元
+    public FieldEmployee(String empNo, String empName, char rank, String phoneNumber){
+        super(empNo, empName, rank);
+        this.phoneNumber=phoneNumber;
+    }	
+
     //建構元
     public FieldEmployee(){
-        this.phoneNumber=null;
+        super();
+    }    
+
+    //計算薪水
+    public int salary(int salesTotal){
+        return 0;
+    }
+}
+
+
+
+//--------------------------------------------------------------------------
+//領傭金員工
+class CommissionEmployee extends Employee{
+    private String phoneNumber;
+
+    //建構元
+    public CommissionEmployee(String empNo, String empName, char rank){
+        super(empNo, empName, rank);
+        this.phoneNumber=phoneNumber;
+    }
+    
+    //建構元
+    public CommissionEmployee(){
+        super();
     }
 	
-    public FieldEmployee(String empNo, String empName, char rank, String phoneNumber){
+    public CommissionEmployee(String empNo, String empName, char rank, String phoneNumber){
         super(empNo, empName, rank);
         this.phoneNumber=phoneNumber;
     }
@@ -74,7 +105,6 @@ class FieldEmployee extends Employee{
     public void setPhoneNumber(String phoneNumber){this.phoneNumber=phoneNumber;}
     public String getPhoneNumber(){return phoneNumber;}
 }
-
 
 //--------------------------------------------------------------------------
 //測試類別
