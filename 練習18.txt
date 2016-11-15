@@ -186,7 +186,7 @@ abstract class Customer{
     //getters
     public String getPhoneNo(){return this.phoneNo;}
     public String getName(){return this.name;}
-    public int setMinutes(){return this.minutes;}
+    public int getMinutes(){return this.minutes;}
 	
     //列印通話費帳單, 抽象方法
     abstract public void printBill();
