@@ -85,14 +85,14 @@ class FieldEmployee extends Employee{
 
 //--------------------------------------------------------------------------
 //領傭金員工
-class CommissionEmployee extends Employee{
+class CommissionedEmployee extends Employee{
     //建構元
-    public CommissionEmployee(String empNo, String empName, char rank){
+    public CommissionedEmployee(String empNo, String empName, char rank){
         super(empNo, empName, rank);
     }
     
     //建構元
-    public CommissionEmployee(){
+    public CommissionedEmployee(){
         super();
     }
 
