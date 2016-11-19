@@ -141,7 +141,7 @@ class Tour{
     	return total;
     }
     
-	//印出帳單
+    //印出帳單
     public void print(int adult, int child){
     	System.out.println("行程名稱:" + getTitle());
     	System.out.println("大人費用:" + getPriceAdult());
@@ -188,7 +188,7 @@ class TourWithGuide extends Tour{
         return total;
     }
     
-	//印出帳單
+    //印出帳單
     @Override
     public void print(int adult, int child){
     	System.out.println("行程名稱:" + getTitle());
