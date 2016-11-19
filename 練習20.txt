@@ -310,19 +310,17 @@ class Main {
 
 請再增加一個子類別「利息收入類別」(InterestRevenue), 讓它也實作「收入介面」及「可印列介面」2個介面.
 「利息收入類別」有2個成員, 包括:
-private String bank;    //銀行名額
-private int interest;   //利息收入
+  private String bank;    //銀行名額
+  private int interest;   //利息收入
 
 「利息收入類別」有以下方法, 包括:
-    //建構元(1)
-    //建構元(2)
-    //setter	
-    //getter	
-	
-    //實作介面的方法	
-    public String item()    
-    public int revenue()    
-    public void print()
+  建構元(1)
+  建構元(2)
+  setter	
+  getter	  
+  public String item()    
+  public int revenue()    
+  public void print()
 
 測試時請在 class Main 中, 再增加以下「利息收入物件」:
 "台灣銀行", 30000
