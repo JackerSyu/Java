@@ -3,30 +3,37 @@ J17
 =================================
 
 (1)
-//一個應付款的介面
+//-------------------------------------------------------
+//一個「應付款介面」
 interface Payable{
     public String item();	
     public int payment();
 }
 
-//租車類別完成應付款介面的功能
+
+//-------------------------------------------------------
+//「租車類別」完成「應付款介面」的功能
 class CarRental implements Payable{
-    private String type;
-    private int rentDays;
-    	
-    public CarRental(){
-        this.type=null;
-        this.rentDays=0;
-    }
-	
+    private String type;    //車型
+    private int rentDays;   //租用天數
+
+    //建構元(1)
     public CarRental(String type, int rentDays){
         this.type=type;
         this.rentDays=rentDays;
     }
-	
+
+    //建構元(2)
+    public CarRental(){
+        this.type=null;
+        this.rentDays=0;
+    }
+
+    //setter
     public void setType(String type){this.type=type;}
     public String getType(){return type;}
-	
+
+    //getter
     public void setRentDays(int rentDays){this.rentDays=rentDays;}
     public int getRentDays(){return rentDays;}	
     
@@ -56,22 +63,27 @@ class CarRental implements Payable{
 }
 
 
-//租房類別完成應付款介面的功能
+//-------------------------------------------------------
+//「租房類別」完成「應付款介面」的功能
 class RoomRental implements Payable{
-    private boolean specialDiscount;
-    	
+    private boolean specialDiscount;   //是否折扣房型
+
+    //建構元(1)
+    public RoomRental(boolean specialDiscount){
+        this.specialDiscount=specialDiscount;
+    }    
+
+    //建構元(2)
     public RoomRental(){
         this.specialDiscount=false;
     }
 	
-    public RoomRental(boolean specialDiscount){
-        this.specialDiscount=specialDiscount;
-    }
-	
+    //setter	
     public void setSpecialDiscount(boolean specialDiscount){
         this.specialDiscount=specialDiscount;
     }
 	
+    //getter	
     public boolean getSpeicalDiscount(){return specialDiscount;}
 
     //實作介面的方法	
@@ -95,6 +107,9 @@ class RoomRental implements Payable{
     }
 }
 
+
+//-------------------------------------------------------
+//主要流程類別
 class Main {
     private static int total=0;
 	
