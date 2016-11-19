@@ -3,6 +3,8 @@ J17
 =================================
 
 (1)
+import java.util.ArrayList;
+
 //-------------------------------------------------------
 //一個「應付款介面」
 interface Payable{
@@ -114,19 +116,25 @@ class Main {
     private static int total=0;
 	
     public static void main(String[] args) {
-        //租車物件
-        CarRental c1 = new CarRental("1500cc", 3);
-        CarRental c2 = new CarRental("2400cc", 2);	
-		
-        printPayment(c1);
-        printPayment(c2);				
-		
-        //租房物件
-        RoomRental r1 = new RoomRental(true);
-        RoomRental r2 = new RoomRental(false);
-		
-        printPayment(r1);
-        printPayment(r2);			
+        //一個可放「應付款物件」的串列清單
+        ArrayList payList = new ArrayList();
+        
+        //將多個「租車物件」物件加入串列清單中
+        payList.add(new CarRental("3000cc", 3));
+        payList.add(new CarRental("2400cc", 2));
+        payList.add(new CarRental("1800cc", 1));
+        payList.add(new CarRental("1500cc", 2));
+
+        //將多個「租房物件」物件加入串列清單中
+        payList.add(new RoomRental(true));
+        payList.add(new RoomRental(false));
+        payList.add(new RoomRental(true));
+      
+        
+        //呼叫印出付款明細方法
+        for(int i=0; i<payList.size(); i++){
+            printPayment((Payable)payList.get(i));
+        }            
         
         //印出合計金額	
         System.out.println("合計:" + total + "元");
@@ -135,7 +143,7 @@ class Main {
 	
     //印出付款明細
     public static void printPayment(Payable payable){
-        total+=payable.payment();    	
+        total+=payable.payment(); 	
         System.out.println(payable.item() + ":" + payable.payment() + "元"); 
         System.out.println("----------------");        
     }
