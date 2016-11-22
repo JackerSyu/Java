@@ -3,28 +3,33 @@ J16
 =================================
 
 (1)
+//-----------------------------------------------------------------------------
 //父親類別, 員工
 class Employee{
     private String empNo;
     private String empName;
     private char rank;
-	
-    public Employee(){
-        empNo=null;
-        empName=null;
-        rank='\u0000';
-    }
-	
+
+    //建構元(1)	
     public Employee(String empNo, String empName, char rank){
         this.empNo=empNo;
         this.empName=empName;
         this.rank=rank;
     }
-		
+    
+    //建構元(2)
+    public Employee(){
+        empNo=null;
+        empName=null;
+        rank='\u0000';
+    }
+
+    //setter
     public void setEmpNo(String empNo){this.empNo=empNo;}
     public void setEmpName(String empName){this.empName=empName;}
     public void setRank(char rank){this.rank=rank;}
-	
+
+    //getter
     public String getEmpNo(){return empNo;}
     public String getEmpName(){return empName;}
     public char getRank(){return rank;}
@@ -48,18 +53,24 @@ class Employee{
 }
 
 
+//-----------------------------------------------------------------------------
 //兒子類別, 時薪的員工
 class HourlyEmployee extends Employee{
     private int workHours;
-	
-    public HourlyEmployee(){this.workHours=0;}
-	
+
+    //建構元(1)	
     public HourlyEmployee(String empNo, String empName, char rank, int workHours){
         super(empNo, empName, rank);
         this.workHours=workHours;
     }
-	
+    
+    //建構元(2)
+    public HourlyEmployee(){this.workHours=0;}
+    
+    //setter
     public void setWorkHours(int workHours){this.workHours=workHours;}
+    
+    //getter
     public int getWorkHours(){return workHours;}
 	
     //時薪員工計算薪水, 改寫父親計算薪水的方法
@@ -70,7 +81,10 @@ class HourlyEmployee extends Employee{
 }
 
 
+//-----------------------------------------------------------------------------
+//主要流程類別
 class Main{
+    //程式開始執行的方法
     public static void main(String args[]){
         //員工
         Employee emp01 = new Employee("001", "王小明", 'A');
@@ -81,6 +95,7 @@ class Main{
         printEmployee(emp02);
     }	
 
+    //列印資料的方法
     public static void printEmployee(Employee emp){
         System.out.println(emp.getEmpNo());  
         System.out.println(emp.getEmpName());  
@@ -91,35 +106,42 @@ class Main{
 }
 
 
+
+
 (2)
+//-----------------------------------------------------------------------------
 //父親類別, 員工
 class Employee{
     private String empNo;
     private String empName;
     private char rank;
-	
-    public Employee(){
-        empNo=null;
-        empName=null;
-        rank='\u0000';
-    }
-	
+
+    //建構元(1)	
     public Employee(String empNo, String empName, char rank){
         this.empNo=empNo;
         this.empName=empName;
         this.rank=rank;
     }
-		
+    
+    //建構元(2)
+    public Employee(){
+        empNo=null;
+        empName=null;
+        rank='\u0000';
+    }
+
+    //setter
     public void setEmpNo(String empNo){this.empNo=empNo;}
     public void setEmpName(String empName){this.empName=empName;}
     public void setRank(char rank){this.rank=rank;}
-	
+
+    //getter
     public String getEmpNo(){return empNo;}
     public String getEmpName(){return empName;}
     public char getRank(){return rank;}
 	
     //計算薪水
-    public int salary(){
+    int salary(){
         int m;
 		
         if(rank=='A'){	
@@ -137,19 +159,25 @@ class Employee{
 }
 
 
+//-----------------------------------------------------------------------------
 //兒子類別, 傭金員工
 class CommissionEmployee extends Employee{
     private int salesAmt;
     private int salesQuota=300000;  
-	
-    public CommissionEmployee(){this.salesAmt=0;}
-	
+
+    //建構元(1)	
     public CommissionEmployee(String empNo, String empName, char rank, int salesAmt){
         super(empNo, empName, rank);
         this.salesAmt=salesAmt;
     }
-	
+    
+    //建構元(2)
+    public CommissionEmployee(){this.salesAmt=0;}
+ 
+    //setter 
     public void setSalesAmt(int salesAmt){this.salesAmt=salesAmt;}
+    
+    //getter    
     public int getSalesAmt(){return salesAmt;}
 	
     //傭金員工計算薪水, 改寫父親計算薪水的方法
@@ -162,7 +190,10 @@ class CommissionEmployee extends Employee{
 }
 
 
+//-----------------------------------------------------------------------------
+//主要流程類別
 class Main{
+    //程式開始執行的方法
     public static void main(String args[]){
         //員工
         Employee emp01 = new Employee("001", "王小明", 'A');
@@ -173,6 +204,7 @@ class Main{
         printEmployee(emp02);
     }	
 
+    //列印資料的方法
     public static void printEmployee(Employee emp){
         System.out.println(emp.getEmpNo());  
         System.out.println(emp.getEmpName());  
