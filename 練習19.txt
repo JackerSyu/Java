@@ -118,16 +118,16 @@ class Tour{
     
     //建構元(1)
     public Tour(String title, int priceAdult, int priceChild){
-    	setTitle(title);
-    	setPriceAdult(priceAdult);
-    	setPriceChild(priceChild);
+        setTitle(title);
+        setPriceAdult(priceAdult);
+        setPriceChild(priceChild);
     }
     
     //建構元(2)
     public Tour(){
-    	setTitle(null);
-    	setPriceAdult(0);
-    	setPriceChild(0);
+        setTitle(null);
+        setPriceAdult(0);
+        setPriceChild(0);
     }
     
     //setters
@@ -155,13 +155,13 @@ class Tour{
     
     //印出帳單
     public void print(int adult, int child){
-    	System.out.println("行程名稱:" + getTitle());
-    	System.out.println("大人費用:" + getPriceAdult());
-    	System.out.println("小孩費用:" + getPriceChild());
-    	System.out.println("大人人數:" + adult);
-    	System.out.println("小孩人數:" + child);
-    	System.out.println("參加人員費用:" + totalPrice(adult, child));
-    	System.out.println("------------------------");
+        System.out.println("行程名稱:" + getTitle());
+        System.out.println("大人費用:" + getPriceAdult());
+        System.out.println("小孩費用:" + getPriceChild());
+        System.out.println("大人人數:" + adult);
+        System.out.println("小孩人數:" + child);
+        System.out.println("參加人員費用:" + totalPrice(adult, child));
+        System.out.println("------------------------");
     }
 }    
 
@@ -173,24 +173,24 @@ class TourWithGuide extends Tour{
     
     //建構元(1)
     public TourWithGuide(String title, int priceAdult, int priceChild, int guide){
-    	super(title, priceAdult, priceChild);
-    	setGuide(guide);
+        super(title, priceAdult, priceChild);
+        setGuide(guide);
     }    
     
     //建構元(2)
     public TourWithGuide(){
-    	super();
-    	setGuide(0);
+        super();
+        setGuide(0);
     }
     
     //setters
     public void setGuide(int guide){
-    	this.guide=guide;
+        this.guide=guide;
     }
 
     //getters
     public int getGuide(){
-    	return this.guide;
+        return this.guide;
     }
 	
     //計算參加人員費用
@@ -203,14 +203,14 @@ class TourWithGuide extends Tour{
     //印出帳單
     @Override
     public void print(int adult, int child){
-    	System.out.println("行程名稱:" + getTitle());
-    	System.out.println("大人費用:" + getPriceAdult());
-    	System.out.println("小孩費用:" + getPriceChild());
-    	System.out.println("大人人數:" + adult);
-    	System.out.println("小孩人數:" + child);
-    	System.out.println("導遊費用:" + getGuide());		
-    	System.out.println("總金額:" + totalPrice(adult, child));
-    	System.out.println("------------------------");
+        System.out.println("行程名稱:" + getTitle());
+        System.out.println("大人費用:" + getPriceAdult());
+        System.out.println("小孩費用:" + getPriceChild());
+        System.out.println("大人人數:" + adult);
+        System.out.println("小孩人數:" + child);
+        System.out.println("導遊費用:" + getGuide());		
+        System.out.println("總金額:" + totalPrice(adult, child));
+        System.out.println("------------------------");
     }
 }
 
@@ -235,4 +235,3 @@ class Main{
     }
 }
 //==========================================================================================
-
