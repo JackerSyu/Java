@@ -116,21 +116,21 @@ class Employee{
     private String empName;
     private char rank;
 
-    //建構元(1)	
+    //建構元(1)	
     public Employee(String empNo, String empName, char rank){
         this.empNo=empNo;
         this.empName=empName;
         this.rank=rank;
     }
     
-    //建構元(2)
+    //建構元(2)
     public Employee(){
         empNo=null;
         empName=null;
         rank='\u0000';
     }
 
-    //setter
+    //setter
     public void setEmpNo(String empNo){this.empNo=empNo;}
     public void setEmpName(String empName){this.empName=empName;}
     public void setRank(char rank){this.rank=rank;}
@@ -184,8 +184,8 @@ class CommissionEmployee extends Employee{
     @Override
     public int salary(){
         //先呼叫父親的底薪, 再加上10%銷售傭金
-    	int tot= super.salary() + (int)((salesAmt - salesQuota)*0.1);  
-    	return tot;
+        int tot= super.salary() + (int)((salesAmt - salesQuota)*0.1);  
+        return tot;
     }
 }
 
@@ -193,7 +193,7 @@ class CommissionEmployee extends Employee{
 //-----------------------------------------------------------------------------
 //主要流程類別
 class Main{
-    //程式開始執行的方法
+    //程式開始執行的方法
     public static void main(String args[]){
         //員工
         Employee emp01 = new Employee("001", "王小明", 'A');
@@ -204,7 +204,7 @@ class Main{
         printEmployee(emp02);
     }	
 
-    //列印資料的方法
+    //列印資料的方法
     public static void printEmployee(Employee emp){
         System.out.println(emp.getEmpNo());  
         System.out.println(emp.getEmpName());  
