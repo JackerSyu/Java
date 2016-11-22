@@ -8,7 +8,7 @@
 (1)
 請再增加一個「特惠旅遊行程(SpecialTour)」繼承「旅遊行程」, 
 沒有增加成員, 但要改寫父親的 public int totalPrice(int, int) 方法,
-其計算費用方式: [大人及小孩單價乘以大人及小孩人數後的總金額, 再打對折優惠].
+其計算費用方式: [以父親 Tour 類別計算總費用之金額後, 再打對折優惠].
 
 依以下的「特惠旅遊行程」內容, 加印旅遊帳單:
 「林田山懷舊之旅」, 大人每人600元, 小孩每人350元.
@@ -25,11 +25,17 @@
 增加 2 個成員, 「大人用單車每台租金(int adultBikePrice)」及「小孩用單車每台租金(int childBikePrice)」.
 成員值可由 建構元 或 setter 設定, 也可由 getter 取出.
 
-再增加一個 public int totalPrice(int, int, int, int) 方法計算總費用,
-傳入的參數分別是「大人人數」, 「小孩人數」, 「租用大人單車台數」, 「租用小孩單車台數」.
-本活動無優惠折扣.
+增加一個 private int totalBike(int adultBike, int childBike) 方法計算「單車費用」
+其傳入「租用大人單車台數」及「租用小孩單車台數」, 回傳「單車費用」,
+「單車費用」= 大人用單車每台租金 * 租用大人單車台數 + 小孩用單車每台租金 * 租用小孩單車台數.
 
-亦增加一個 public void print(int, int, int, int), 參數意義與計算總費用方法相同.
+再增加一個 public int totalPrice(int, int, int, int) 方法計算「參加人員及單車合計費用」,
+傳入的參數分別是「大人人數」, 「小孩人數」, 「租用大人單車台數」, 「租用小孩單車台數」.
+「參加人員費用」與父親「計算參加人員費用」相同,
+「單車費用」由呼叫由上述的 int totalBike(int, int)方法計算取得,
+「參加人員及單車合計費用」= 參加人員費用 + 單車費用.
+
+亦增加一個 public void print(int, int, int, int)方法, 參數意義與計算總費用方法相同.
 印出帳單資訊, 帳單範例如下:
 ---------------------------------------
 行程名稱:********
@@ -37,15 +43,15 @@
 小孩費用:*****
 大人人數:***
 小孩人數:***
-總金額:*****
+參加人員費用:*****
 
 大人單車每台租金:*****
 小孩單車每台租金:*****
 大人單車數:***
 小孩單車數:***
-總金額:*****
+單車費用:*****
 
-合計金額:*******
+參加人員及單車合計費用:*******
 ---------------------------------------
 
 依以下的「單車旅遊行程」內容, 加印旅遊帳單:
@@ -63,10 +69,16 @@
 增加 2 個成員, 「單人房房費(int singleRoomPrice)」及「雙人房房費(int doubleRoomPrice)」.
 成員值可由 建構元 或 setter 設定, 也可由 getter 取出.
 
-再增加一個 public int totalPrice(int, int, int, int, boolean) 方法計算總費用,
-傳入的參數分別是「大人人數」, 「小孩人數」, 「單人房數」, 「雙人房數」, 「是否升等豪華房型」.
-若升等豪華房型, 加收升等費用, 其為原房間費用的 20%.
-本活動無優惠折扣.
+增加一個 private int totalHotel(int singleRoom, int doubleRoom, double upgrade) 方法計算「房租費用」
+其傳入「單人房間數」,「雙人房間數」及「是否升等豪華房型」, 回傳「房租費用」,
+「房租費用」= 單人房房費 * 單人房間數 + 雙人房房費 * 雙人房間數,
+             但若升等豪華房型, 「房租費用」應增加20%.
+
+再增加一個 public int totalPrice(int, int, int, int, boolean) 方法計算「參加人員及房租合計費用」,
+傳入的參數分別是「大人人數」, 「小孩人數」, 「單人房數」, 「雙人房數」及「是否升等豪華房型」.
+「參加人員費用」與父親「計算參加人員費用」相同,
+「房租費用」由呼叫由上述的 int totalHotel(int, int, boolean)方法計算取得,
+「參加人員及房租合計費用」= 參加人員費用 + 房租費用.
 
 亦增加一個 public void print(int, int, int, int, boolean), 參數意義與計算總費用方法相同.
 印出帳單資訊, 帳單範例如下:
@@ -76,25 +88,25 @@
 小孩費用:*****
 大人人數:***
 小孩人數:***
-總金額:*****
+參加人員費用:*****
 
 單人房房費:*****
 雙人房房費:*****
 單人房數:***
 雙人房數:***
-總金額:*****
-升等費用:******
+是否升等:*****
+房租費用:*****
 
-合計金額:*******
+參加人員及房租合計費用:*******
 ---------------------------------------
 
 依以下的「單車旅遊行程」內容, 加印旅遊帳單:
 「六十石山金針花海行」, 大人每人800元, 小孩每人550元, 單人房房費1250元, 雙人房房費2250元.
 測試:
-3大2小, 1單人2雙人, true: ________________________
-2大1小, 1單人1雙人, true: ________________________
-4大4小, 0單人4雙人, false: ________________________
-6大2小, 6單人1雙人, false: ________________________
+3大2小, 1單人2雙人, 升等豪華房型: ________________________
+2大1小, 1單人1雙人, 升等豪華房型: ________________________
+4大4小, 0單人4雙人, 不升等: ________________________
+6大2小, 6單人1雙人, 不升等: ________________________
 
 
 //==========================================================================================
@@ -128,14 +140,14 @@ class Tour{
     public int getPriceAdult(){return this.priceAdult;}
     public int getPriceChild(){return this.priceChild;}
 	
-    //計算總費用
+    //計算參加人員費用
     public int totalPrice(int adult, int child){
     	int total=priceAdult*adult + priceChild*child;
     	
     	if(total>5000){
-            total*=0.9;
+            total*=0.8;
     	}else if(total>3000 && total<=5000){
-            total*=0.8;
+            total*=0.9;
     	}
     	
     	return total;
@@ -148,7 +160,7 @@ class Tour{
     	System.out.println("小孩費用:" + getPriceChild());
     	System.out.println("大人人數:" + adult);
     	System.out.println("小孩人數:" + child);
-    	System.out.println("總金額:" + totalPrice(adult, child));
+    	System.out.println("參加人員費用:" + totalPrice(adult, child));
     	System.out.println("------------------------");
     }
 }    
@@ -181,7 +193,7 @@ class TourWithGuide extends Tour{
     	return this.guide;
     }
 	
-    //計算總費用
+    //計算參加人員費用
     @Override
     public int totalPrice(int adult, int child){
         int total=super.totalPrice(adult, child) + guide;		
