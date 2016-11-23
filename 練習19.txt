@@ -69,7 +69,7 @@
 增加 2 個成員, 「單人房房費(int singleRoomPrice)」及「雙人房房費(int doubleRoomPrice)」.
 成員值可由 建構元 或 setter 設定, 也可由 getter 取出.
 
-增加一個 private int totalHotel(int singleRoom, int doubleRoom, double upgrade) 方法計算「房租費用」
+增加一個 private int totalHotel(int singleRoom, int doubleRoom, boolean upgrade) 方法計算「房租費用」
 其傳入「單人房間數」,「雙人房間數」及「是否升等豪華房型」, 回傳「房租費用」,
 「房租費用」= 單人房房費 * 單人房間數 + 雙人房房費 * 雙人房間數,
              但若升等豪華房型, 「房租費用」增加20%.
