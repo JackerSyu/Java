@@ -36,7 +36,7 @@ class Employee{
 	
     //計算薪水
     int salary(){
-        int m;
+        int m=0;
 		
         if(rank=='A'){	
             m=50000;
@@ -142,7 +142,7 @@ class Employee{
 	
     //計算薪水
     int salary(){
-        int m;
+        int m=0;
 		
         if(rank=='A'){	
             m=50000;
