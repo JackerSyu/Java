@@ -44,9 +44,9 @@ NetBeans 的內定設定不適合個人習慣時, 可以用:<br>
 選擇選項中的 "Editor" -> "Highlighting" <br>
 在 "Language" 選項選擇 "Java", <br>
 選擇 "Mark Occurrences Of Symbol Under Caret"<br>
-     選擇 "Methods"<br>
-     選擇 "Fields"<br>
-     選擇 "Local Variables"<br>	 
+選擇 "Methods"<br>
+選擇 "Fields"<br>
+選擇 "Local Variables"<br>
 再按 "Apply" 套用即可, 如下: <p>
 
 ![GitHub Logo](/images/netbeans-05.png)
