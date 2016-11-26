@@ -265,10 +265,10 @@ public class MyFrame extends JFrame implements ActionListener, WindowListener{
         this.setTitle("判斷是否奇/偶");
 
         //產生成員物件
-	    jb=new JButton("判斷");
-	    jl1=new JLabel("輸入一個數值");
+        jb=new JButton("判斷");
+        jl1=new JLabel("輸入一個數值");
         jl2=new JLabel("執行結果");
-	    jtf=new JTextField();
+        jtf=new JTextField();
 	
         //監聽視窗事件        
         this.addWindowListener(this);
@@ -280,15 +280,15 @@ public class MyFrame extends JFrame implements ActionListener, WindowListener{
         this.getContentPane().setLayout(null);
 
         //將物件加入畫面
-	    this.getContentPane().add(jb);
-	    this.getContentPane().add(jl1);
+        this.getContentPane().add(jb);
+        this.getContentPane().add(jl1);
         this.getContentPane().add(jl2);
-	    this.getContentPane().add(jtf);
+        this.getContentPane().add(jtf);
 
         //設定物件在畫面中的座標及大小尺寸
-	    jb.setBounds(135, 180, 80, 25);        
-	    jl1.setBounds(35, 100, 100, 25);
-	    jtf.setBounds(135, 100, 100, 25);
+        jb.setBounds(135, 180, 80, 25);        
+        jl1.setBounds(35, 100, 100, 25);
+        jtf.setBounds(135, 100, 100, 25);
         jl2.setBounds(135, 130, 100, 25);
 
         //設定畫面背景色
