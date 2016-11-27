@@ -35,7 +35,7 @@ public class Main{
             in.close();    //關閉輸入串流
             out.close();   //關閉輸出串流
         }catch(IOException e){
-             System.out.println("資料讀取錯誤");
+            System.out.println("資料讀取錯誤");
         }
     }
 }
@@ -60,6 +60,7 @@ public class Main{
         try{            
             URL url = new URL("http://www.mobile01.com/");  //建立一個網站URL物件
             InputStream in = url.openStream();              //建立一個輸入串流 
+            
             //由輸入串流建立一個BufferedReader
             BufferedReader br = new BufferedReader(new InputStreamReader(in, "UTF-8"));
             
