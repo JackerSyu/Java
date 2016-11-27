@@ -6,7 +6,6 @@ J25
 (本練習以NetBeans實作)
 
 
-
 ======================================================================================================
 (1) Main.java
 package myapplication;
@@ -33,6 +32,8 @@ public class Main {
         myFrame.showFrame();
     }    
 }
+
+
 
 
 
@@ -120,7 +121,6 @@ public class MyFrame extends JFrame{
 } 
 
 
-
 ---------------------
 (3-2)
 ---------------------
@@ -132,6 +132,7 @@ public class Main {
         myFrame.showFrame();
     }    
 }
+
 
 
 
@@ -154,7 +155,7 @@ public class MyFrame extends JFrame implements ActionListener{
     JLabel jl1, jl2;
     JTextField jtf;    
     
-    //顯示畫面的方法   
+    //顯示畫面的方法  
     public void showFrame(){
         //加入標題
         this.setTitle("判斷是否奇/偶");
@@ -192,9 +193,9 @@ public class MyFrame extends JFrame implements ActionListener{
         //顯示畫面
         this.setVisible(true);        
     }
-    
-    
-    //改寫父親事件發生的方法
+
+
+    //改寫父親事件發生的方法    
     @Override
     public void actionPerformed(ActionEvent e){
         //如果發生事件的物件是jb
@@ -222,7 +223,6 @@ public class MyFrame extends JFrame implements ActionListener{
         //-----------------------------		
     }
 } 
-
 
 
 ---------------------
@@ -361,6 +361,7 @@ public class MyFrame extends JFrame implements ActionListener, WindowListener{
         //-----------------------------		
     }   
 } 
+
 
 
 
