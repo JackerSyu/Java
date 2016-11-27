@@ -6,11 +6,10 @@ J26
 (本練習以NetBeans實作, 需加入 json程式庫JAR檔)
 
 
-
 ======================================================================================================
----------------------
+=====================
 (1) Main.java
----------------------
+=====================
 package myapplication;
 
 import java.io.StringReader;
@@ -48,9 +47,9 @@ public class Main{
 
 
 ======================================================================================================
----------------------
+=====================
 (2) Main.java
----------------------
+=====================
 package myapplication;
 
 import java.io.StringReader;
@@ -64,9 +63,11 @@ public class Main{
         JsonReader jsonReader;  //宣告讀取JSON物件             
         JsonArray jsonArray;    //宣告JJSON陣列
         
-        try{            
-            jsonReader = Json.createReader(new StringReader(s));  //建立讀取JSON物件
-            jsonArray = jsonReader.readArray();                   //讀取並產生JSON陣列物件              
+        try{
+            //建立讀取JSON物件        
+            jsonReader = Json.createReader(new StringReader(s));  
+            //讀取並產生JSON陣列物件
+            jsonArray = jsonReader.readArray();                                 
         }catch(Exception e){
             System.out.println("資料讀取錯誤");
             return;
@@ -89,9 +90,9 @@ public class Main{
 
 
 ======================================================================================================
----------------------
+=====================
 (3) Main.java
----------------------
+=====================
 package myapplication;
 
 import java.io.StringReader;
@@ -132,9 +133,9 @@ public class Main{
 
 
 ======================================================================================================
----------------------
+=====================
 (4-1) Library.java
----------------------
+=====================
 package myapplication;
 
 public class Library {    
@@ -168,9 +169,9 @@ public class Library {
 }
 
 
--------------------------
+==========================
 (4-2) DataTransfer.java
--------------------------
+==========================
 package myapplication;
 
 import java.util.*;
@@ -216,9 +217,9 @@ public class DataTransfer {
 }
 
 
----------------------
+=====================
 (4-3) Main.java
----------------------
+=====================
 package myapplication;
 
 import java.util.*;
@@ -242,8 +243,3 @@ public class Main{
         }     
     }
 } 
-
-
-
-
-
