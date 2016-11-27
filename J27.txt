@@ -35,7 +35,7 @@ public class Main{
             in.close();    //關閉輸入串流
             out.close();   //關閉輸出串流
         }catch(IOException e){
-            System.out.println("資料讀取錯誤");
+             System.out.println("資料讀取錯誤");
         }
     }
 }
@@ -60,7 +60,6 @@ public class Main{
         try{            
             URL url = new URL("http://www.mobile01.com/");  //建立一個網站URL物件
             InputStream in = url.openStream();              //建立一個輸入串流 
-            
             //由輸入串流建立一個BufferedReader
             BufferedReader br = new BufferedReader(new InputStreamReader(in, "UTF-8"));
             
@@ -179,3 +178,158 @@ public class Main{
 
 
 
+
+
+
+======================================================================================================
+---------------------
+(5-1) Shop.java
+---------------------
+package myapplication;
+
+public class Shop {
+    private String name;          //店名
+    private String add;           //地址
+    private String tel;           //電話
+    private String description;   //店家描述
+
+    //建構元(1)
+    public Shop(String name, String add, String tel, String description){
+        this.name=name;
+        this.add=add;        
+        this.tel=tel;
+        this.description=description;       
+    }
+    
+    //建構元(2)
+    public Shop(){
+        this.name=null;
+        this.add=null;        
+        this.tel=null;
+        this.description=null;
+    }    
+    
+    //getter
+    public String getName(){return this.name;}
+    public String getAdd(){return this.add;}
+    public String getTel(){return this.tel;}
+    public String getDescription(){return this.description;}
+    
+    //setter
+    public void setName(String name){this.name=name;}
+    public void setAdd(String add){this.add=add;}
+    public void setTel(String tel){this.tel=tel;}
+    public void setDescription(String description){this.description=description;}    
+}
+
+
+---------------------
+(5-2) URLData.java
+---------------------
+package myapplication;
+
+import java.net.*;
+import java.io.*;
+import java.util.*;
+import javax.json.Json;
+import javax.json.JsonArray;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
+import javax.json.JsonValue;
+
+public class URLData {
+    //-------------------------------------------------------
+    public static ArrayList getShops(){
+        ArrayList arrayList=new ArrayList();  //儲放結果的ArrayList
+        String s=new String();                //儲放從網站取回的JSON型態字串
+        
+        try {
+            //建立一個URL物件
+            URL url = new URL("http://data.ntpc.gov.tw/od/data/api/D9219E21-A743-4F98-A361-1FFBE8424D73?$format=json");
+            
+            //建立一個HttpURLConnection物件
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            //設定HttpURLConnection物件內容
+            connection.setRequestMethod("GET");
+            connection.setRequestProperty("Content-length", "0");
+            connection.setUseCaches(false);
+            connection.setAllowUserInteraction(false);
+            connection.setConnectTimeout(5000);
+            connection.setReadTimeout(5000);
+            connection.setRequestProperty("User-Agent", "Mozilla/5.0");
+            //與主機連線
+            connection.connect();            
+
+            //建立一個BufferedReader, 將讀取網站資料
+            BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));            
+                   
+            String line;
+            
+            while ((line = br.readLine()) != null) {
+                s=s.concat(line);  //將網站取回的每行加入s中                             
+            }
+            
+            connection.disconnect();
+        } catch (IOException ex) {
+            return null;     
+        }        
+        
+        //**** 將s轉成ArrayList ****
+        JsonReader jsonReader;  //宣告讀取JSON物件             
+        JsonArray jsonArray;    //宣告JSON陣列物件
+        
+        try{            
+            //建立讀取JSON物件
+            jsonReader = Json.createReader(new StringReader(s)); 
+            //讀取並產生JSON陣列物件 
+            jsonArray = jsonReader.readArray();                              
+        }catch(Exception e){
+            return null;  
+        }         
+
+        //印出JsonArray陣列內容
+        for (JsonValue jsonValue : jsonArray) {
+            JsonObject jsonObject=(JsonObject)jsonValue;
+            
+            String name=jsonObject.getString("Name");
+            String add=jsonObject.getString("Add");
+            String tel=jsonObject.getString("Tel");
+            String description=jsonObject.getString("Description");
+            
+            //將讀取的資料建成物件, 加入arrayList中
+            arrayList.add(new Shop(name, add, tel, description));
+        }
+        
+        //結束JSON
+        jsonReader.close();               
+        
+        //回傳結果
+        return arrayList;
+    }
+    //-------------------------------------------------------
+}
+
+
+---------------------
+(5-3) Main.java
+---------------------
+package myapplication;
+
+import java.util.*;
+
+//一個測試類別
+public class Main{
+    public static void main(String args[]){       
+        ArrayList shops = URLData.getShops();
+
+        //印出ArrayList內容
+        for (int i=0; i<shops.size(); i++) {
+            Shop shop=(Shop)shops.get(i);
+            System.out.println(shop.getName());
+            System.out.println(shop.getAdd());
+            System.out.println(shop.getTel());
+            System.out.println(shop.getDescription());
+            System.out.println("--------------------");
+        } 
+    }
+}
