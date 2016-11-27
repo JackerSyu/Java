@@ -243,12 +243,14 @@ public class URLData {
         ArrayList arrayList=new ArrayList();  //儲放結果的ArrayList
         String s=new String();                //儲放從網站取回的JSON型態字串
         
+        //**** 將網站JSON型式字串取回,儲在s中  ****
         try {
             //建立一個URL物件
             URL url = new URL("http://data.ntpc.gov.tw/od/data/api/D9219E21-A743-4F98-A361-1FFBE8424D73?$format=json");
             
             //建立一個HttpURLConnection物件
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            
             //設定HttpURLConnection物件內容
             connection.setRequestMethod("GET");
             connection.setRequestProperty("Content-length", "0");
@@ -257,14 +259,14 @@ public class URLData {
             connection.setConnectTimeout(5000);
             connection.setReadTimeout(5000);
             connection.setRequestProperty("User-Agent", "Mozilla/5.0");
+            
             //與主機連線
             connection.connect();            
 
             //建立一個BufferedReader, 將讀取網站資料
             BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));            
                    
-            String line;
-            
+            String line;            
             while ((line = br.readLine()) != null) {
                 s=s.concat(line);  //將網站取回的每行加入s中                             
             }
