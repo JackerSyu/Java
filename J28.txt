@@ -6,7 +6,6 @@ J28
 (本練習以NetBeans實作, 需加入 MySQL驅動程式的JAR檔)
 
 
-
 ======================================================================================================
 ---------------------
 (1) Main.java
@@ -167,7 +166,7 @@ public class Main{
         
         //執行SQL命令, 印出取出之資料庫資料
         try{
-            stmt = con.prepareStatement("select a.stuNo, a.stuName, a.schNo, b.school from student a, school b where a.schNo=b.schNo");
+            stmt = con.prepareStatement("select a.stuNo, a.stuName, a.schNo, b.school from student a, school b where a.schNo=b.schNo order by a.stuNo");
             rs=stmt.executeQuery();
  	         
             if(!rs.next()){
@@ -278,7 +277,7 @@ public class DBUtil {
         
         //執行SQL命令, 取出之資料庫資料
         try{
-            stmt = con.prepareStatement("select a.stuNo, a.stuName, a.schNo, b.school from student a, school b where a.schNo=b.schNo");
+            stmt = con.prepareStatement("select a.stuNo, a.stuName, a.schNo, b.school from student a, school b where a.schNo=b.schNo order by a.stuNo");
             rs=stmt.executeQuery();
  	         
             if(!rs.next()){
