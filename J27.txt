@@ -150,12 +150,11 @@ public class Main{
             
             //設定HttpURLConnection物件內容
             connection.setRequestMethod("GET");
-            connection.setRequestProperty("Content-length", "0");
             connection.setUseCaches(false);
             connection.setAllowUserInteraction(false);
             connection.setConnectTimeout(5000);
             connection.setReadTimeout(5000);
-            connection.setRequestProperty("User-Agent", "Mozilla/5.0");
+            //connection.setRequestProperty("User-Agent", "Mozilla/5.0");
             
             //與主機連線
             connection.connect();            
