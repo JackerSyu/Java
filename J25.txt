@@ -54,7 +54,7 @@ public class MyFrame extends JFrame {
     public void showFrame(){
         super.setTitle("我的JFrame");
         super.getContentPane().setBackground(new Color(100, 100, 100));
-        super.setSize(new Dimension(300,300));
+        super.setSize(new Dimension(400, 300));
         super.setVisible(true);       
     }
 }
