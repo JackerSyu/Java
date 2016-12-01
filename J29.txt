@@ -185,3 +185,188 @@ public class Main{
         }
     }  
 }
+
+
+
+
+
+
+======================================================================================================
+----------------------------------------------------------
+(2-1) Stored Procedure: highScoreStudentsWithLowBound
+----------------------------------------------------------
+有一個傳入參數, IN, lowBound, int
+
+BEGIN
+	    /* 刪除暫存檔 */
+    DROP TEMPORARY TABLE IF EXISTS tempTable;
+
+    /* 建立暫存檔 */
+    CREATE TEMPORARY TABLE tempTable AS (
+        select stuNo, sum(score) as totalScore
+        from score
+        group by stuNo
+        having sum(score)>=lowBound);
+
+    /* 將student與暫存檔合併結果 */
+    select a.stuNo, a.stuName, a.gender, b.totalScore
+    from student a, tempTable b
+    where a.stuNo=b.stuNo
+    order by b.totalScore desc;
+END
+
+
+---------------------
+(2-2) Student.java
+---------------------
+package myapplication;
+
+public class Student {
+    private String stuNo;      //學號
+    private String stuName;    //姓名
+    private String gender;     //性別
+    private int totalScore;    //總分
+
+    //建構元(1)    
+    public Student(String stuNo, String stuName, String gender, int totalScore){
+        this.stuNo=stuNo;
+        this.stuName=stuName;
+        this.gender=gender;
+        this.totalScore=totalScore;
+    }
+    
+    //建構元(2)
+    public Student(){
+        this.stuNo=null;
+        this.stuName=null;
+        this.gender=null;
+        this.totalScore=0;
+    }   
+         
+    //getter
+    public String getStuNo(){return this.stuNo;}
+    public String getStuName(){return this.stuName;}
+    public String getGender(){return this.gender;}
+    public int getTotalScore(){return this.totalScore;}
+    
+    //setter
+    public void setStuNo(String stuNo){this.stuNo=stuNo;}
+    public void setStuname(String stuName){this.stuName=stuName;}
+    public void setGender(String gender){this.gender=gender;}
+    public void setTotalScore(int totalScore){this.totalScore=totalScore;}
+}
+
+
+---------------------
+(2-3) DBUtil.java
+---------------------
+package myapplication;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.CallableStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.*;
+
+public class DBUtil {
+    //--------------------------------------------------------
+    public static ArrayList  getStudent(int lowBound){       
+        Connection con;          //宣告資料庫連結物件
+        CallableStatement cs;    //宣告呼叫預存程序物件
+        ResultSet rs;            //宣告儲存執行結果物件     	
+        ArrayList arrayList=new ArrayList();  //宣告儲存回傳資料物件        
+        
+        //載入資料庫驅動程式及連結資料庫
+        con=getConnection();
+        if(con==null){
+            return null;     //資料庫連結錯誤
+        }        
+        
+        //呼叫Stored Procedure, 取出資料庫資料
+        try{
+            cs = con.prepareCall("{call highScoreStudentsWithLowBound(?)}"); 
+            cs.setInt(1, lowBound);
+            rs=cs.executeQuery();
+            
+            if(!rs.next()){
+                return null;   //找不到資料
+            }
+ 	         
+            do{
+                String stuNo=rs.getString("stuNo");        	 
+                String stuName=rs.getString("stuName");
+                String gender=rs.getString("gender");
+                int totalScore=rs.getInt("totalScore");
+                
+                //將每筆記錄建立成Student物件, 並加入arrayList中
+                arrayList.add(new Student(stuNo, stuName, gender, totalScore));
+            }while(rs.next());		
+        }catch(SQLException e){
+            e.printStackTrace();
+            return null;   //SQL執行錯誤
+        }
+         
+        //關閉資料庫連線
+        try{
+            rs.close();    
+            cs.close();
+            con.close();
+        }catch(SQLException e){}
+        
+        return arrayList;  //回傳資料庫取出之資料
+    }
+    //--------------------------------------------------------
+    
+    
+    //建立並回傳連結物件
+    //--------------------------------------------------------
+    private static Connection getConnection(){           
+        try{     	
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "mysql"); 
+            return con;
+        }catch(ClassNotFoundException | SQLException e){
+            return null;
+        }     
+    }
+    //--------------------------------------------------------
+}
+
+
+---------------------
+(2-4) Main.java
+---------------------
+package myapplication;
+
+import java.util.*;
+
+//一個測試類別
+public class Main{
+    public static void main(String args[]){    
+        //取回總分350分以上的資料
+        ArrayList students = DBUtil.getStudent(350);
+        
+        //如果回傳空值
+        if(students==null){
+            System.out.println("找不到學生資料");
+            return;
+        }
+        
+        //列印學生資料
+        for(int i=0; i<students.size(); i++){
+            Student stu = (Student)students.get(i);
+            
+            String stuNo=stu.getStuNo();       	 
+            String stuName=stu.getStuName();
+            String gender=stu.getGender();
+            int totalScore=stu.getTotalScore();
+                
+            System.out.println("學號:" + stuNo); 
+            System.out.println("姓名:" + stuName); 
+            System.out.println("性別:" + gender); 
+            System.out.println("總分:" + totalScore);
+            System.out.println("----------------------");        
+        }
+    }  
+}
