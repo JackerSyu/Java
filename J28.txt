@@ -97,7 +97,7 @@ public class Main{
         }
         
         
-        //執行SQL命令, 印出取出之資料庫資料
+        //執行SQL命令, 印出資料
         try{
             stmt = con.prepareStatement("select * from student where gender=?");
             stmt.setString(1, "M");   //將SQL命令的(第1個?)填入("M")
@@ -164,7 +164,7 @@ public class Main{
         }
         
         
-        //執行SQL命令, 印出取出之資料庫資料
+        //執行SQL命令, 印出資料
         try{
             stmt = con.prepareStatement("select a.stuNo, a.stuName, a.schNo, b.school from student a, school b where a.schNo=b.schNo order by a.stuNo");
             rs=stmt.executeQuery();
@@ -275,7 +275,7 @@ public class DBUtil {
             return null;     //資料庫連結錯誤
         }        
         
-        //執行SQL命令, 取出之資料庫資料
+        //執行SQL命令, 取出資料
         try{
             stmt = con.prepareStatement("select a.stuNo, a.stuName, a.schNo, b.school from student a, school b where a.schNo=b.schNo order by a.stuNo");
             rs=stmt.executeQuery();
