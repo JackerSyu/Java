@@ -14,7 +14,7 @@ JDBC jar版本: 5.1
 (1-1) Stored Procedure: highScoreStudents
 -----------------------------------------------
 BEGIN
-	    /* 刪除暫存檔 */
+    /* 刪除暫存檔 */
     DROP TEMPORARY TABLE IF EXISTS tempTable;
 
     /* 建立暫存檔 */
@@ -41,7 +41,7 @@ public class Student {
     private String stuNo;      //學號
     private String stuName;    //姓名
     private String gender;     //性別
-    private int totalScore;    //總成績
+    private int totalScore;    //總分
 
     //建構元(1)    
     public Student(String stuNo, String stuName, String gender, int totalScore){
