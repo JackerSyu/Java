@@ -88,9 +88,9 @@ import java.util.*;
 public class DBUtil {
     //--------------------------------------------------------
     public static ArrayList  getStudent(){       
-        Connection con;          //宣告資料庫連結物件
-        CallableStatement cs;    //宣告呼叫預存程序物件
-        ResultSet rs;            //宣告儲存執行結果物件     	
+        Connection con;                       //宣告資料庫連結物件
+        CallableStatement cs;                 //宣告呼叫預存程序物件
+        ResultSet rs;                         //宣告儲存執行結果物件           	
         ArrayList arrayList=new ArrayList();  //宣告儲存回傳資料物件        
         
         //載入資料庫驅動程式及連結資料庫
