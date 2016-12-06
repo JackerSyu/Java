@@ -209,12 +209,11 @@ public class MyFrame extends JFrame implements ActionListener{
             try{
                 k=Integer.parseInt(jtf.getText());
             }catch(NumberFormatException ex){
-                k=-1;                
+                jl2.setText("輸入錯誤"); 
+	        return;	                
             }    
             
-            if(k==-1){
-                s="輸入錯誤";
-            }else if((k%2)==0){
+            if((k%2)==0){
                 s="偶數";
             }else{
                 s="奇數";
@@ -347,15 +346,14 @@ public class MyFrame extends JFrame implements ActionListener, WindowListener{
             try{
                 k=Integer.parseInt(jtf.getText());
             }catch(NumberFormatException ex){
-                k=-1;                
+                jl2.setText("輸入錯誤"); 
+	        return;	
             }    
             
-            if(k==-1){
-                s="輸入錯誤";
-            }else if((k%2)==0){
-           	    s="偶數";
+            if((k%2)==0){
+                s="偶數";
             }else{
-           	    s="奇數";
+                s="奇數";
             }    
             
             jl2.setText(s);
