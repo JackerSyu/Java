@@ -318,10 +318,10 @@ public class URLData {
 
         //印出JsonArray陣列內容
         for (JsonValue jsonValue : jsonArray) {
-            JsonObject jsonObject=(JsonObject)jsonValue;
-            
-            String name=jsonObject.getString("Name");
-            String add=jsonObject.getString("Add");
+            JsonObject jsonObject=(JsonObject)jsonValue;
+                                   
+            String name=jsonObject.getString("Name");    
+            String add=jsonObject.getString("Add");
             String tel=jsonObject.getString("Tel");
             String description=jsonObject.getString("Description");
             
