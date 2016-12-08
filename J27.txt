@@ -137,6 +137,7 @@ package myapplication;
 
 import java.net.*;
 import java.io.*;
+import javax.json.*;
 
 //一個測試類別
 public class Main{
@@ -168,9 +169,34 @@ public class Main{
             while ((line = br.readLine()) != null) {
                 System.out.println(line);
                 s=s.concat(line);                               
-            }
-            
+            }            
             connection.disconnect();
+            
+            //------------------------
+            //將讀入的字串轉成JSON物件
+            //------------------------            
+            JsonReader jsonReader;  //宣告讀取JSON物件             
+            JsonArray jsonArray;    //宣告JSON陣列物件
+        
+            try{            
+                jsonReader = Json.createReader(new StringReader(s));  //建立讀取JSON物件
+                jsonArray = jsonReader.readArray();                   //讀取並產生JSON陣列物件            
+            }catch(Exception e){
+                System.out.println("資料讀取錯誤");
+                return;
+            }         
+
+            //印出JsonArray陣列內容
+            for (JsonValue jsonValue : jsonArray) {
+                JsonObject jsonObject=(JsonObject)jsonValue;
+                System.out.println(jsonObject.getString("name"));
+                System.out.println(jsonObject.getString("address"));
+                System.out.println(jsonObject.getString("tel"));
+                System.out.println("--------------------");
+            }
+        
+            //結束JSON
+            jsonReader.close();   
         } catch (IOException ex) {
             System.out.println("資料讀取錯誤");        
         } 
