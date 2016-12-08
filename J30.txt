@@ -1,0 +1,134 @@
+=================================
+J30
+=================================
+
+
+(本練習屬於Node.js伺服器端的index.js檔案)
+
+
+
+======================================================================================================
+-----------------------------------------------
+(1) index.js
+-----------------------------------------------
+var express = require('express');
+var router = express.Router();
+ 
+/* GET home page. */
+router.get('/', function(req, res, next) {
+    //建立空陣列
+	var data=[];	
+	
+	//加入資料
+	var book={};
+	book.title="職業駭客的告白II部曲";
+	book.author="秋聲";
+	book.shortDesc="冒著被駭客圈封殺的風險，也要揭開這業界的秘辛  全台灣第一本由駭客親手寫的程式語言，只有秋聲才能超越秋聲。";
+	data.push(book);
+
+	book.title="字型設計必修課";
+	book.author="吳劍";
+	book.shortDesc="各種設計作品都無法逃開「字型設計」。完美的字型設計可以是主角，也可以是稱職的配角。它能讓你的設計作品變得更有重點，更能發揮你百分百的創意。";
+	data.push(book);
+
+	book.title="HTML5 與 CSS3 響應式網頁設計";
+	book.author="Ben Frain";
+	book.shortDesc="打造能滿足現代網路用戶需求且不會過時的響應式網我們存取全球資訊網的方式不斷改變，需要考量的螢幕尺寸與使用者經驗，變動的幅度前所未見。";
+	data.push(book);	
+	
+	book.title="建構微服務";
+	book.author="Sam Newman";
+	book.shortDesc="「微服務架構具有諸多迷人特質，然而，通往它的路途滿布荊棘與陷阱，必須謹慎提防。這本書將協助你釐清這條道路是否適合你，以及如何避開旅途上那些惱人的圈套。」";
+	data.push(book);	
+
+	book.title="Docker錦囊妙計";
+	book.author="Bastien Goasguen";
+	book.shortDesc="本書提供開發者、維運者和IT專業人員超過130個Docker的使用訣竅，幫助您是公司內部或是在雲端環境部署應用程式。";
+	data.push(book);	
+
+	book.title="這樣WORK才WORK！";
+	book.author="東尼．史瓦茲";
+	book.shortDesc="想當人才，也要培養休息的能力！正確的休息，是一種需要培養的能力！學會滿足４大核心需求，專注力就上身，生產力自然上升！";
+	data.push(book);	
+
+	book.title="Python 程式設計入門指南";
+	book.author="Y. Daniel Liang";
+	book.shortDesc="作者以實際教學經驗，列舉豐富的範例進行解說，讓您學會Python程式設計的完整知識，從入門邁向專業！";
+	data.push(book);	
+
+	book.title="Python x Arduino物聯網整合開發實戰";
+	book.author="Pratik Desai";
+	book.shortDesc="使用Pyhton搭配開發版進入物聯網 未來是物聯網的時代。需要實體元件能與網路層級的應用程式進行通訊。Arduino結合Python，就能用來開發物聯網專題，以及搭配圖形化使用者介面與連結網際網路的應用程式。";
+	data.push(book);	
+
+	book.title="Nikon自動對焦系統";
+	book.author="Mike Hagen";
+	book.shortDesc="現今有了先進科技的幫助，要讓照片主角準焦似乎是一件理所當然的事情，但許多攝影師都知道這件事情其實並沒有那麼簡單，尤其是在拍攝移動中主體或其他具有挑戰性環境時。";
+	data.push(book);	
+
+	book.title="Maker終極創客";
+	book.author="無線電編輯部";
+	book.shortDesc="創客的絕佳創意 動手實作精彩範例 從易到難 從硬體到軟體 內容豐富 零門檻";
+	data.push(book);	
+
+	book.title="說明力和解決力";
+	book.author="知的習慣探求舎";
+	book.shortDesc="快速學會工作能幹的人 必定擁有的兩大技巧！你是否曾有過以下的想法呢？1.希望更精準地傳達自己的意思。2.想要快速學會有助於解決問題的思考方法。";
+	data.push(book);	
+
+	book.title="3ds Max 2016室內設計速繪";
+	book.author="邱聰倚";
+	book.shortDesc="從基礎到案例實踐，全面感受超擬真的設計表現！現今室內設計案例常需3D視覺化的呈現，3ds Max就成為首選的工具，再透過V-Ray的彩現後，效果圖更直逼真實場景，大幅提升視覺質感";
+	data.push(book);	
+
+	book.title="動手動腦玩 EV3";
+	book.author="鄭劍春";
+	book.shortDesc="EV3的問世，讓機器人教育進入一個令人激動的時代，機器人今後不僅會替代家用電腦的大部分功能，而且會聽、會看、有觸覺，可以感受溫度的變化和周圍的物體，記錄周圍環境的變化，與電腦相比，互動效能更強。";
+	data.push(book);	
+
+	book.title="Unity實戰教學";
+	book.author="張右緯";
+	book.shortDesc="由於Unity非常易於學習，它是全球最多人使用的遊戲引擎，它內建許多強大的工具，使得遊戲開發者可以只專注於遊戲邏輯這部份，它強大跨平台的特性，在遊戲主機、個人電腦、智慧型手機（Android、iOS…等）、網頁瀏覽器…等都有以Unity引擎開發的遊戲，其中手遊大約85%皆以Unity引擎開發。";
+	data.push(book);	
+
+	book.title="圖解網站建置與開發";
+	book.author="松村慎";
+	book.shortDesc="從整體的工作流程到開發環境、實際測試、運作管理的Know How一應俱全 一起掌握可於瞬息萬變的開發現場長期應用的知識吧！";
+	data.push(book);	
+
+	book.title="Google地圖與Android應用程式開發";
+	book.author="Raj Amal W";
+	book.shortDesc="Google 地圖（Google Maps）是由 Google 公司所提供的強大地圖服務，而本書將指引你藉此建立出具豐富地圖功能、令人目不暇給的應用程式，讓你可以善加運用在交通運輸、倉儲物流及市場營銷等領域。";
+	data.push(book);	
+
+	book.title="大數據的另一章！";
+	book.author="Bill Franks";
+	book.shortDesc="亞馬遜網路書店5顆星評價 資料分析革命！驅動企業前進的新動力。全方位解讀大數據的實戰應用，你絕對需要的一本書！如何具備後大數據時代精準決策分析3.0思維，是你能看透大數據商機以及超越競爭對手的關鍵。";
+	data.push(book);	
+
+	book.title="Photoshop平面廣告設計";
+	book.author="Art Eyes設計工作室";
+	book.shortDesc="Photoshop設計素人一本闖天下！老闆&客戶都說讚，設計Case接不完！";
+	data.push(book);	
+
+	book.title="手機跨界開發高手";
+	book.author="關東升";
+	book.description="Cocos2d-x 自發佈第一個版本以來，如今使用者已遍佈全球，數不清的採用Cocos 引擎開發的遊戲橫掃各個暢銷榜單。";
+	data.push(book);	
+
+	book.title="透視數據下的商機";
+	book.author="Brian Clifton";
+	book.description="精通Google Analytics數據背後的意義，才能真正產生數據的價值！從數據中過濾雜訊，在流量報表中專注什麼、採取什麼流程、避免什麼陷阱，立起分析人員與管理層的溝通平台，把數據運用得淋漓盡致。";
+	data.push(book);	
+
+	book.title="視覺機器學習理論";
+	book.author="謝劍斌";
+	book.description="本書是12位博士多年研究視覺機器學習的基礎理論、核心演算法、關鍵技術和應用實作的科學結晶，是作者們多年相關科學研究實作的心得體會和系統歸納。";
+	data.push(book);		
+
+	//將陣列內容轉成JSON字串, 並回傳給使用者	
+    res.send(JSON.stringify(data));
+});
+ 
+module.exports = router;
+======================================================================================================
