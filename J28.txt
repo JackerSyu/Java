@@ -79,12 +79,13 @@ public class Main{
 package myapplication;
 
 import java.sql.*;
+import java.util.Scanner;
 
 //一個測試類別
 public class Main{
     public static void main(String args[]){       
         Connection con;          //宣告資料庫連結物件
-        PreparedStatement stmt;  //宣告SQL命令物件
+        Statement stmt;  //宣告SQL命令物件
         ResultSet rs;            //宣告儲存執行結果物件     	
         
         //載入資料庫驅動程式及連結資料庫
@@ -96,12 +97,17 @@ public class Main{
             return;
         }
         
+        //輸入學號
+        Scanner scanner=new Scanner(System.in);
+        System.out.print("請輸入學號:");
+        String sno = scanner.nextLine();
+        System.out.println("----------------------");
         
-        //執行SQL命令, 印出資料
+        //執行SQL命令, 印出取出之資料庫資料
         try{
-            stmt = con.prepareStatement("select * from student where gender=?");
-            stmt.setString(1, "M");   //將SQL命令的(第1個?)填入("M")
-            rs=stmt.executeQuery();
+            stmt=con.createStatement();
+            //用字串相加組成完整的SQL命令, 不能阻止SQL injection攻擊
+            rs=stmt.executeQuery("select * from student where stuNo='" + sno + "'");
  	         
             if(!rs.next()){
                 System.out.println("找不到資料");
@@ -166,6 +172,72 @@ public class Main{
         
         //執行SQL命令, 印出資料
         try{
+            stmt = con.prepareStatement("select * from student where gender=?");
+            stmt.setString(1, "M");   //將SQL命令的(第1個?)填入("M")
+            rs=stmt.executeQuery();
+ 	         
+            if(!rs.next()){
+                System.out.println("找不到資料");
+                return;
+            }
+ 	         
+            do{
+                String stuNo=rs.getString("stuNo");        	 
+                String stuName=rs.getString("stuName");
+                String gender=rs.getString("gender");
+                
+                System.out.println("學號:" + stuNo); 
+                System.out.println("姓名:" + stuName); 
+                System.out.println("性別:" + gender); 
+                System.out.println("----------------------");
+            }while(rs.next());		
+        }catch(SQLException e){
+            System.out.println("SQL執行錯誤");
+            return;
+        }
+         
+        //關閉資料庫連線
+        try{
+            rs.close();    
+            stmt.close();
+            con.close();
+        }catch(SQLException e){
+            System.out.println("關閉錯誤");
+        }
+    }  
+}
+
+
+
+
+
+
+======================================================================================================
+---------------------
+(4) Main.java
+---------------------
+package myapplication;
+
+import java.sql.*;
+
+//一個測試類別
+public class Main{
+    public static void main(String args[]){       
+        Connection con;          //宣告資料庫連結物件
+        PreparedStatement stmt;  //宣告SQL命令物件
+        ResultSet rs;            //宣告儲存執行結果物件     	
+        
+        //載入資料庫驅動程式及連結資料庫
+        try{     	
+            Class.forName("com.mysql.jdbc.Driver");
+            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "mysql"); 
+        }catch(ClassNotFoundException | SQLException e){
+            System.out.println("資料庫驅動程式載入錯誤");
+            return;
+        }        
+        
+        //執行SQL命令, 印出資料
+        try{
             stmt = con.prepareStatement("select a.stuNo, a.stuName, a.schNo, b.school from student a, school b where a.schNo=b.schNo order by a.stuNo");
             rs=stmt.executeQuery();
  	         
@@ -209,7 +281,7 @@ public class Main{
 
 ======================================================================================================
 ---------------------
-(4-1) Student.java
+(5-1) Student.java
 ---------------------
 package myapplication;
 
@@ -250,7 +322,7 @@ public class Student {
 
 
 ---------------------
-(4-2) DBUtil.java
+(5-2) DBUtil.java
 ---------------------
 package myapplication;
 
@@ -325,7 +397,7 @@ public class DBUtil {
 
 
 ---------------------
-(4-3) Main.java
+(5-3) Main.java
 ---------------------
 package myapplication;
 
