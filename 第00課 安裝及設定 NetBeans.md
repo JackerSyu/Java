@@ -8,6 +8,8 @@ Java Development Kits(JDK, java開發套件) 可以在 http://www.oracle.com/tec
 ![GitHub Logo](/images/java-01.png)
 
 
+點選 DOWNLOAD圖示後, 進入以下畫面. 點選 Accept License Agreement 及 JDK版本即可下載, 完成後點擊安裝.<p>
+![GitHub Logo](/images/java-02.png)
 
 ## 下載 NetBeans
 
