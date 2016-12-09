@@ -52,6 +52,72 @@ public class Main{
 =====================
 package myapplication;
 
+import java.sql.*;
+
+//一個測試類別
+public class Main{
+    public static void main(String args[]){       
+        Connection con;          //宣告資料庫連結物件
+        PreparedStatement stmt;  //宣告SQL命令物件
+        ResultSet rs;            //宣告儲存執行結果物件     	
+        
+        //載入資料庫驅動程式及連結資料庫
+        try{     	
+            Class.forName("com.mysql.jdbc.Driver");
+            con=DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "mysql"); 
+        }catch(ClassNotFoundException | SQLException e){
+            System.out.println("資料庫驅動程式載入錯誤");
+            return;
+        }
+        
+        
+        //執行SQL命令, 印出取出之資料庫資料
+        try{
+            stmt=con.prepareStatement("select * from student where stuNo='120001'");
+            rs=stmt.executeQuery();
+ 	         
+            if(!rs.next()){
+                System.out.println("找不到資料");
+                return;
+            }
+ 	         
+            do{
+                String stuNo=rs.getString("stuNo");        	 
+                String stuName=rs.getString("stuName");
+                String gender=rs.getString("gender");
+                
+                System.out.println("學號:" + stuNo); 
+                System.out.println("姓名:" + stuName); 
+                System.out.println("性別:" + gender); 
+                System.out.println("----------------------");
+            }while(rs.next());		
+        }catch(SQLException e){
+            System.out.println("SQL執行錯誤");
+            return;
+        }
+         
+        //關閉資料庫連線
+        try{
+            rs.close();    
+            stmt.close();
+            con.close();
+        }catch(SQLException e){
+            System.out.println("關閉錯誤");
+        }
+    }  
+}
+
+
+
+
+
+
+###############################################################################################
+=====================
+(3) Main.java
+=====================
+package myapplication;
+
 import java.io.StringReader;
 import javax.json.*;
 
