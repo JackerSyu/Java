@@ -35,7 +35,7 @@ public class Main{
             in.close();    //關閉輸入串流
             out.close();   //關閉輸出串流
         }catch(IOException e){
-             System.out.println("資料讀取錯誤");
+            System.out.println("資料讀取錯誤");
         }
     }
 }
@@ -303,12 +303,13 @@ public class URLData {
             return null;     
         }        
         
-        //**** 將s轉成ArrayList ****
+        //**** 將字串s轉成一個ArrayList ****
         JsonReader jsonReader;  //宣告讀取JSON物件             
         JsonArray jsonArray;    //宣告JSON陣列物件
         
-        try{            
-            //建立讀取JSON物件
+        //將字串s轉成JSON陣列
+        try{
+            //建立讀取JSON物件
             jsonReader = Json.createReader(new StringReader(s)); 
             //讀取並產生JSON陣列物件 
             jsonArray = jsonReader.readArray();                              
@@ -316,8 +317,8 @@ public class URLData {
             return null;  
         }         
 
-        //印出JsonArray陣列內容
-        for (JsonValue jsonValue : jsonArray) {
+        //將JSON陣列轉成儲存多個Shop物件的ArrayList
+        for (JsonValue jsonValue : jsonArray) {
             JsonObject jsonObject=(JsonObject)jsonValue;
                                    
             String name=jsonObject.getString("Name");    
@@ -332,8 +333,8 @@ public class URLData {
         //結束JSON
         jsonReader.close();               
         
-        //回傳結果
-        return arrayList;
+        //回傳ArrayList物件
+        return arrayList;
     }
     //-------------------------------------------------------
 }
@@ -348,13 +349,15 @@ import java.util.*;
 
 //一個測試類別
 public class Main{
-    public static void main(String args[]){       
-        ArrayList shops = URLData.getShops();
+    public static void main(String args[]){  
+        //取得ArrayList物件
+        ArrayList shops = URLData.getShops();
 
-        //印出ArrayList內容
-        for (int i=0; i<shops.size(); i++) {
-            Shop shop=(Shop)shops.get(i);
-            System.out.println(shop.getName());
+        //印出ArrayList中的店家內容
+        for (int i=0; i<shops.size(); i++) {
+            Shop shop=(Shop)shops.get(i);  //取出第i個Shop物件
+             
+            System.out.println(shop.getName());
             System.out.println(shop.getAdd());
             System.out.println(shop.getTel());
             System.out.println(shop.getDescription());
