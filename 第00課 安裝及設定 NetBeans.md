@@ -1,6 +1,14 @@
 # 工欲善其事, 必先利其器
 
 
+## 下載 JDK
+
+Java Development Kits(JDK, java開發套件) 可以在 http://www.oracle.com/technetwork/java/javase/downloads/  免費下載安裝, 如下:<p>
+
+![GitHub Logo](/images/java-01.png)
+
+
+
 ## 下載 NetBeans
 
 NetBeans 可以在 https://netbeans.org/downloads/  免費下載安裝, 如下:<p>
