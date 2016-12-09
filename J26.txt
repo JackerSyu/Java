@@ -232,6 +232,11 @@ public class Main{
         
         //呼叫DataTransfer類別的jsonToArrayList()方法
         ArrayList libraries = DataTransfer.jsonToArrayList(s);
+        
+        if(libraries==null){
+            System.out.println("無資料");
+            return;
+        }    
 
         //印出ArrayList內容
         for (int i=0; i<libraries.size(); i++) {
