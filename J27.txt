@@ -182,7 +182,7 @@ public class Main{
                 jsonReader = Json.createReader(new StringReader(s));  //建立讀取JSON物件
                 jsonArray = jsonReader.readArray();                   //讀取並產生JSON陣列物件            
             }catch(Exception e){
-                System.out.println("資料讀取錯誤");
+                System.out.println("JSON資料轉換錯誤");
                 return;
             }         
 
@@ -352,7 +352,12 @@ public class Main{
     public static void main(String args[]){  
         //取得ArrayList物件
         ArrayList shops = URLData.getShops();
-
+        
+        if(shops==null){
+            System.out.println("無資料");
+            return;
+        }        
+        
         //印出ArrayList中的店家內容
         for (int i=0; i<shops.size(); i++) {
             Shop shop=(Shop)shops.get(i);  //取出第i個Shop物件
