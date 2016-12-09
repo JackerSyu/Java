@@ -328,34 +328,57 @@ public class Student {
 
 
 ---------------------
-(5-2) DBUtil.java
+(5-2) DBConn.java
 ---------------------
 package myapplication;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class DBConn {    
+    //建立並回傳連結物件
+    public static Connection getConnection(){           
+        try{     	
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "mysql"); 
+            return con;
+        }catch(ClassNotFoundException | SQLException e){
+            return null;
+        }     
+    }    
+}
+
+
+---------------------
+(5-3) DBUtil.java
+---------------------
+package myapplication;
+
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
 public class DBUtil {
-    //--------------------------------------------------------
-    public static ArrayList  getStudent(){       
-        Connection con;          //宣告資料庫連結物件
-        PreparedStatement stmt;  //宣告SQL命令物件
-        ResultSet rs;            //宣告儲存執行結果物件     	
-        ArrayList arrayList=new ArrayList();  //宣告儲存回傳資料物件        
-        
-        //載入資料庫驅動程式及連結資料庫
-        con=getConnection();
+    //----------------------------------------------------------------------    
+    //取回所有學生資料
+    //----------------------------------------------------------------------
+    public static ArrayList getAllStudents(){ 
+        //連結資料庫
+        Connection con=DBConn.getConnection();   //宣告資料庫連結物件
         if(con==null){
             return null;     //資料庫連結錯誤
-        }        
+        }  
+        
+        PreparedStatement stmt;  //宣告SQL命令物件
+        ResultSet rs;            //宣告儲存執行結果物件     	
+        ArrayList arrayList=new ArrayList();  //宣告儲存回傳資料物件
         
         //執行SQL命令, 取出資料
         try{
-            stmt = con.prepareStatement("select a.stuNo, a.stuName, a.schNo, b.school from student a, school b where a.schNo=b.schNo order by a.stuNo");
+            stmt = con.prepareStatement("select a.stuNo, a.stuName, a.schNo, b.school from student a, school b where a.schNo=b.schNo order by a.stuNo");
             rs=stmt.executeQuery();
  	         
             if(!rs.next()){
@@ -384,26 +407,13 @@ public class DBUtil {
         
         return arrayList;  //回傳資料庫取出之資料
     }
-    //--------------------------------------------------------
-    
-    
-    //建立並回傳連結物件
-    //--------------------------------------------------------
-    private static Connection getConnection(){           
-        try{     	
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "mysql"); 
-            return con;
-        }catch(ClassNotFoundException | SQLException e){
-            return null;
-        }     
-    }
-    //--------------------------------------------------------
+    //---------------------------------------------------------------------- 
 }
 
 
+
 ---------------------
-(5-3) Main.java
+(5-4) Main.java
 ---------------------
 package myapplication;
 
@@ -412,8 +422,8 @@ import java.util.*;
 //一個測試類別
 public class Main{
     public static void main(String args[]){    
-        //呼叫取回學生資料
-        ArrayList students = DBUtil.getStudent();
+        //取回學生資料
+        ArrayList students = DBUtil.getAllStudents();
         
         //如果回傳空值
         if(students==null){
@@ -424,16 +434,11 @@ public class Main{
         //列印學生資料
         for(int i=0; i<students.size(); i++){
             Student stu = (Student)students.get(i);
-            
-            String stuNo=stu.getStuNo();       	 
-            String stuName=stu.getStuName();
-            String schNo=stu.getSchNo();
-            String school=stu.getSchool();
-                
-            System.out.println("學號:" + stuNo); 
-            System.out.println("姓名:" + stuName); 
-            System.out.println("學校代號:" + schNo); 
-            System.out.println("畢業學校:" + school);
+               
+            System.out.println("學號:" + stu.getStuNo()); 
+            System.out.println("姓名:" + stu.getStuName()); 
+            System.out.println("學校代號:" + stu.getSchNo()); 
+            System.out.println("畢業學校:" + stu.getSchool());
             System.out.println("----------------------");        
         }
     }  
