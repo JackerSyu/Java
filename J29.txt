@@ -87,7 +87,7 @@ import java.util.*;
 
 public class DBUtil {
     //--------------------------------------------------------
-    public static ArrayList  getStudent(){       
+    public static ArrayList getStudents(){       
         Connection con;                       //宣告資料庫連結物件
         CallableStatement cs;                 //宣告呼叫預存程序物件
         ResultSet rs;                         //宣告儲存執行結果物件           	
@@ -160,7 +160,7 @@ import java.util.*;
 public class Main{
     public static void main(String args[]){    
         //呼叫取回學生資料
-        ArrayList students = DBUtil.getStudent();
+        ArrayList students = DBUtil.getStudents();
         
         //如果回傳空值
         if(students==null){
@@ -271,7 +271,7 @@ import java.util.*;
 
 public class DBUtil {
     //--------------------------------------------------------
-    public static ArrayList  getStudent(int lowBound){       
+    public static ArrayList getStudents(int lowBound){       
         Connection con;          //宣告資料庫連結物件
         CallableStatement cs;    //宣告呼叫預存程序物件
         ResultSet rs;            //宣告儲存執行結果物件     	
@@ -345,7 +345,7 @@ import java.util.*;
 public class Main{
     public static void main(String args[]){    
         //取回總分350分以上的資料
-        ArrayList students = DBUtil.getStudent(350);
+        ArrayList students = DBUtil.getStudents(350);
         
         //如果回傳空值
         if(students==null){
