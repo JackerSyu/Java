@@ -1,0 +1,591 @@
+=================================
+J31
+=================================
+
+
+(本練習以NetBeans實作, 需加入 MySQL驅動程式的JAR檔)
+
+
+======================================================================================================
+查詢學生資料
+======================================================================================================
+---------------------
+(1-1) Student.java
+---------------------
+package myapplication;
+
+public class Student {
+    private String stuNo;     //學號
+    private String stuName;   //姓名
+    private String schNo;     //學校代號
+    private String school;    //畢業學校
+
+    //建構元(1)    
+    public Student(String stuNo, String stuName, String schNo, String school){
+        this.stuNo=stuNo;
+        this.stuName=stuName;
+        this.schNo=schNo;
+        this.school=school;
+    }
+    
+    //建構元(2)
+    public Student(){
+        this.stuNo=null;
+        this.stuName=null;
+        this.schNo=null;
+        this.school=null;
+    }   
+         
+    //getter
+    public String getStuNo(){return this.stuNo;}
+    public String getStuName(){return this.stuName;}
+    public String getSchNo(){return this.schNo;}
+    public String getSchool(){return this.school;}
+    
+    //setter
+    public void setStuNo(String stuNo){this.stuNo=stuNo;}
+    public void setStuname(String stuName){this.stuName=stuName;}
+    public void setSchNo(String schNo){this.schNo=schNo;}
+    public void setSchool(String school){this.school=school;}
+}
+
+
+
+
+
+
+---------------------
+(1-2) DBConn.java
+---------------------
+package myapplication;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class DBConn {    
+    //建立並回傳連結物件
+    public static Connection getConnection(){           
+        try{     	
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "mysql"); 
+            return con;
+        }catch(ClassNotFoundException | SQLException e){
+            return null;
+        }     
+    }    
+}
+
+
+
+
+
+---------------------
+(1-3) DBUtil.java
+---------------------
+package myapplication;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.*;
+
+public class DBUtil { 
+    //........................................................  
+    //查詢學生資料
+    //........................................................  
+    public static ArrayList getOneStudent(String sno){ 
+        //連結資料庫
+        Connection con=DBConn.getConnection();   //宣告資料庫連結物件
+        
+        if(con==null){
+            return null;     //資料庫連結錯誤            
+        }  
+        
+        PreparedStatement stmt;  //宣告SQL命令物件
+        ResultSet rs;            //宣告儲存執行結果物件     	
+        ArrayList arrayList=new ArrayList();  //宣告儲存回傳資料物件
+        
+        try{
+            stmt = con.prepareStatement("select a.stuNo, a.stuName, a.schNo, b.school from student a, school b where a.schNo=b.schNo and a.stuNo = ?");
+            stmt.setString(1, sno);   //將SQL命令的(第1個?)填入(sno內容)
+            rs=stmt.executeQuery();   //執行SQL命令
+ 	         
+            if(!rs.next()){
+                return null;   //找不到資料                
+            }
+ 	    
+            do{
+                String stuNo=rs.getString("stuNo");        	 
+                String stuName=rs.getString("stuName");
+                String schNo=rs.getString("schNo");
+                String school=rs.getString("school");
+                
+                //將查詢結果建立成Student物件, 並加入arrayList中
+                arrayList.add(new Student(stuNo, stuName, schNo, school));                 
+            }while(rs.next());
+        }catch(SQLException e){
+            return null;   //SQL執行錯誤
+        }
+         
+        //關閉資料庫連線
+        try{
+            rs.close();    
+            stmt.close();
+            con.close();
+        }catch(SQLException e){}
+        
+        return arrayList;  //回傳資料
+    }
+    //........................................................     
+}
+
+
+
+
+
+
+---------------------
+(1-4) Main.java
+---------------------
+package myapplication;
+
+import java.util.*;
+
+//一個測試類別
+public class Main{
+    public static void main(String args[]){   
+        System.out.println("查詢");
+        System.out.println("------------------------------------");
+		
+        //輸入學號
+        Scanner scanner=new Scanner(System.in);
+        System.out.print("請輸入學號:");
+        String sno = scanner.nextLine();
+        System.out.println("------------------------------------");
+        
+        //取回查詢資料
+        ArrayList students = DBUtil.getOneStudent(sno);
+        
+        //如果回傳空值
+        if(students==null){
+            System.out.println("找不到學生資料");
+            return;
+        }
+        
+        //列印學生資料
+        for(int i=0; i<students.size(); i++){
+            Student stu = (Student)students.get(i);
+               
+            System.out.println("學號:" + stu.getStuNo()); 
+            System.out.println("姓名:" + stu.getStuName()); 
+            System.out.println("學校代號:" + stu.getSchNo()); 
+            System.out.println("畢業學校:" + stu.getSchool());
+            System.out.println("------------------------------------");       
+        }
+    }  
+}
+
+
+
+
+
+
+======================================================================================================
+新增學生資料
+======================================================================================================
+---------------------
+(2-1) DBConn.java
+---------------------
+package myapplication;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class DBConn {    
+    //建立並回傳連結物件
+    public static Connection getConnection(){           
+        try{     	
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "mysql"); 
+            return con;
+        }catch(ClassNotFoundException | SQLException e){
+            return null;
+        }     
+    }    
+}
+
+
+
+
+
+---------------------
+(2-2) DBUtil.java
+---------------------
+package myapplication;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+
+public class DBUtil { 
+    //........................................................  
+    //新增一個學生
+    //........................................................  
+    public static int addOneStudent(String sNo, String sName, String sGender, String sDate){ 
+        //連結資料庫
+        Connection con=DBConn.getConnection();   //宣告資料庫連結物件
+        
+        if(con==null){
+            return -1;     //資料庫連結錯誤            
+        }  
+        
+        PreparedStatement stmt;  //宣告SQL命令物件
+                
+        int r;  //增加記錄筆數
+        
+        try{
+            stmt = con.prepareStatement("insert into student (stuNo, stuName, gender, birthday) values (?, ?, ?, ?)");
+            stmt.setString(1, sNo);   
+            stmt.setString(2, sName);  
+            stmt.setString(3, sGender);  
+            
+            //將字串日期轉成資料庫的日期型態
+            try{
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                Date parsedDate = format.parse(sDate);
+                java.sql.Date sqlDate = new java.sql.Date(parsedDate.getTime());
+                stmt.setDate(4, sqlDate);
+            }catch(ParseException e){
+                return -2; //日期轉換錯誤
+            }
+            
+            r=stmt.executeUpdate();   //執行SQL命令                 
+        }catch(SQLException e){
+            return -3;   //SQL執行錯誤
+        }
+         
+        //關閉資料庫連線
+        try{  
+            stmt.close();
+            con.close();
+        }catch(SQLException e){}
+        
+        return r;  //回傳新增記錄筆數
+    }
+    //........................................................ 
+}
+
+
+
+
+
+
+---------------------
+(2-4) Main.java
+---------------------
+package myapplication;
+
+import java.util.*;
+
+//一個測試類別
+public class Main{
+    public static void main(String args[]){           
+        Scanner scanner=new Scanner(System.in);
+        
+        System.out.println("新增");
+        System.out.println("---------------------------------------------");
+        
+        System.out.print("請輸入學號:");
+        String sNo = scanner.nextLine();
+        
+        System.out.print("請輸入姓名:");
+        String sName = scanner.nextLine();
+        
+        System.out.print("請輸入性別:");
+        String sGender = scanner.nextLine();
+        
+        System.out.print("請輸入生日(yyyy-MM-dd):");
+        String sDate = scanner.nextLine();
+        
+        System.out.println("---------------------------------------------");
+        
+        //新增學生資料
+        int r = DBUtil.addOneStudent(sNo, sName, sGender, sDate);
+        
+        //判斷回傳值
+        if(r<=0){
+            System.out.println("新增失敗, 回傳值=" + r);
+        }else{
+            System.out.println("已新增" + r + "筆記錄");
+        }
+    }  
+}
+
+
+
+
+
+
+======================================================================================================
+更改學生資料
+======================================================================================================
+---------------------
+(3-1) DBConn.java
+---------------------
+package myapplication;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class DBConn {    
+    //建立並回傳連結物件
+    public static Connection getConnection(){           
+        try{     	
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "mysql"); 
+            return con;
+        }catch(ClassNotFoundException | SQLException e){
+            return null;
+        }     
+    }    
+}
+
+
+
+
+
+---------------------
+(3-2) DBUtil.java
+---------------------
+package myapplication;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+
+public class DBUtil {
+    //........................................................  
+    //更改一個學生
+    //........................................................  
+    public static int updateOneStudent(String sNo, String sName, String sGender, String sDate){ 
+        //連結資料庫
+        Connection con=DBConn.getConnection();   //宣告資料庫連結物件
+        
+        if(con==null){
+            return -1;     //資料庫連結錯誤            
+        }  
+        
+        PreparedStatement stmt;  
+                
+        int r;  //更改記錄筆數
+        
+        try{
+            stmt = con.prepareStatement("update student set stuName=?, gender=?, birthday=? where stuNo=?");
+            stmt.setString(4, sNo);   
+            stmt.setString(1, sName);  
+            stmt.setString(2, sGender);  
+            
+            //將字串日期轉成資料庫的日期型態
+            try{
+                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                Date parsedDate = format.parse(sDate);
+                java.sql.Date sqlDate = new java.sql.Date(parsedDate.getTime());
+                stmt.setDate(3, sqlDate);
+            }catch(ParseException e){
+                return -2; //日期轉換錯誤
+            }
+            
+            r=stmt.executeUpdate();   //執行SQL命令              
+        }catch(SQLException e){
+            return -3;   //SQL執行錯誤
+        }
+         
+        //關閉資料庫連線
+        try{  
+            stmt.close();
+            con.close();
+        }catch(SQLException e){}
+        
+        return r;  //回傳更改記錄筆數
+    }
+    //........................................................     
+}
+
+
+
+
+
+
+---------------------
+(3-4) Main.java
+---------------------
+package myapplication;
+
+import java.util.*;
+
+//一個測試類別
+public class Main{
+    public static void main(String args[]){           
+        Scanner scanner=new Scanner(System.in);
+        
+        System.out.println("更改");
+        System.out.println("---------------------------------------------");
+        
+        System.out.print("請輸入學號:");
+        String sNo = scanner.nextLine();
+        
+        System.out.print("請輸入姓名:");
+        String sName = scanner.nextLine();
+        
+        System.out.print("請輸入性別:");
+        String sGender = scanner.nextLine();
+        
+        System.out.print("請輸入生日(yyyy-MM-dd):");
+        String sDate = scanner.nextLine();
+        
+        System.out.println("---------------------------------------------");
+        
+        //更改學生資料
+        int r = DBUtil.updateOneStudent(sNo, sName, sGender, sDate);
+        
+        //判斷回傳值
+        if(r<=0){
+            System.out.println("更改失敗, 回傳值=" + r);
+        }else{
+            System.out.println("已更改" + r + "筆記錄");
+        }
+    }  
+}
+
+
+
+
+
+======================================================================================================
+刪除學生資料
+======================================================================================================
+---------------------
+(4-1) DBConn.java
+---------------------
+package myapplication;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class DBConn {    
+    //建立並回傳連結物件
+    public static Connection getConnection(){           
+        try{     	
+            Class.forName("com.mysql.jdbc.Driver");
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "mysql"); 
+            return con;
+        }catch(ClassNotFoundException | SQLException e){
+            return null;
+        }     
+    }    
+}
+
+
+
+
+
+---------------------
+(4-2) DBUtil.java
+---------------------
+package myapplication;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+
+public class DBUtil {
+    //........................................................  
+    //刪除一個學生
+    //........................................................  
+    public static int deleteOneStudent(String sNo){ 
+        //連結資料庫
+        Connection con=DBConn.getConnection();   //宣告資料庫連結物件
+        
+        if(con==null){
+            return -1;     //資料庫連結錯誤            
+        }  
+        
+        PreparedStatement stmt;  //宣告SQL命令物件
+                
+        int r;  //刪除記錄筆數
+        
+        try{
+            stmt = con.prepareStatement("delete from student where stuNo=?");
+            stmt.setString(1, sNo);   
+                        
+            r=stmt.executeUpdate();   //執行SQL命令              
+        }catch(SQLException e){
+            return -2;   //SQL執行錯誤
+        }
+         
+        //關閉資料庫連線
+        try{  
+            stmt.close();
+            con.close();
+        }catch(SQLException e){}
+        
+        return r;  //回傳刪除記錄筆數
+    }
+    //........................................................        
+}
+
+
+
+
+
+
+---------------------
+(4-3) Main.java
+---------------------
+package myapplication;
+
+import java.util.*;
+
+//一個測試類別
+public class Main{
+    public static void main(String args[]){           
+        Scanner scanner=new Scanner(System.in);
+        
+        System.out.println("刪除");
+        System.out.println("---------------------------------------------");
+        
+        System.out.print("請輸入學號:");
+        String sNo = scanner.nextLine();       
+               
+        System.out.println("---------------------------------------------");
+        
+        //刪除學生資料
+        int r = DBUtil.deleteOneStudent(sNo);
+        
+        //判斷回傳值
+        if(r<=0){
+            System.out.println("刪除失敗, 回傳值=" + r);
+        }else{
+            System.out.println("已刪除" + r + "筆記錄");
+        }
+    }  
+}
