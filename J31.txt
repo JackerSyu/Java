@@ -288,7 +288,7 @@ public class DBUtil {
 
 
 ---------------------
-(2-4) Main.java
+(2-3) Main.java
 ---------------------
 package myapplication;
 
@@ -429,7 +429,7 @@ public class DBUtil {
 
 
 ---------------------
-(3-4) Main.java
+(3-3) Main.java
 ---------------------
 package myapplication;
 
