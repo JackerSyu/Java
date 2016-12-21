@@ -68,7 +68,7 @@ public class DBConn {
     public static Connection getConnection(){           
         try{     	
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "mysql"); 
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/student?useUnicode=true&characterEncoding=utf8", "root", "mysql"); 
             return con;
         }catch(ClassNotFoundException | SQLException e){
             return null;
@@ -209,7 +209,7 @@ public class DBConn {
     public static Connection getConnection(){           
         try{     	
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "mysql"); 
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/student?useUnicode=true&characterEncoding=utf8", "root", "mysql"); 
             return con;
         }catch(ClassNotFoundException | SQLException e){
             return null;
@@ -350,7 +350,7 @@ public class DBConn {
     public static Connection getConnection(){           
         try{     	
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "mysql"); 
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/student?useUnicode=true&characterEncoding=utf8", "root", "mysql"); 
             return con;
         }catch(ClassNotFoundException | SQLException e){
             return null;
@@ -490,7 +490,7 @@ public class DBConn {
     public static Connection getConnection(){           
         try{     	
             Class.forName("com.mysql.jdbc.Driver");
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "mysql"); 
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/student?useUnicode=true&characterEncoding=utf8", "root", "mysql"); 
             return con;
         }catch(ClassNotFoundException | SQLException e){
             return null;
