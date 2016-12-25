@@ -34,16 +34,16 @@ import java.util.*;
 //-----------------------------------------------
 class Menu{
     public static String item01 = "紅燒獅子頭";
-	public static int price01 = 140;
+    public static int price01 = 140;
 	
     public static String item02 = "宮保雞丁";
-	public static int price02 = 110;
+    public static int price02 = 110;
 	
     public static String item03 = "雪菜肉絲";
-	public static int price03 = 90;
+    public static int price03 = 90;
 
     public static String item04 = "炒高麗菜";
-	public static int price04 = 70;
+    public static int price04 = 70;
 }
 
 
@@ -67,7 +67,7 @@ class Order implements Printable{
     private int foodAmt03;  //第3道菜訂購份數 
     private int foodAmt04;  //第4道菜訂購份數 	
 	
-	//建構元(1)
+    //建構元(1)
     public Order(String tel, String name, int foodAmt01, int foodAmt02, int foodAmt03, int foodAmt04){
         this.tel=tel;
         this.name=name;
@@ -78,16 +78,16 @@ class Order implements Printable{
     }
 
     //建構元(2)    
-	public Order(){
-		this.tel=null;
-		this.name=null;
-		this.foodAmt01=0;
-		this.foodAmt02=0;
-		this.foodAmt03=0;
-		this.foodAmt04=0;		
-	}
+    public Order(){
+        this.tel=null;
+        this.name=null;
+        this.foodAmt01=0;
+        this.foodAmt02=0;
+        this.foodAmt03=0;
+        this.foodAmt04=0;		
+    }
 	
-	//setter
+    //setter
     public void setTel(String tel){this.tel=tel;}
     public void setName(String name){this.name=name;}
     public void setFoodAmt01(int foodAmt01){this.foodAmt01=foodAmt01;}
@@ -95,7 +95,7 @@ class Order implements Printable{
     public void setFoodAmt03(int foodAmt03){this.foodAmt03=foodAmt03;}
     public void setFoodAmt04(int foodAmt04){this.foodAmt04=foodAmt04;}
     
-	//getter
+    //getter
     public String getTel(){return this.tel;}
     public String getName(){return this.name;}
     public int getFoodAmt01(){return this.foodAmt01;}
@@ -103,9 +103,8 @@ class Order implements Printable{
     public int getFoodAmt03(){return this.foodAmt03;}
     public int getFoodAmt04(){return this.foodAmt04;}
     
-	//印出訂單(請自行完成內容)
-    public void printOrder(){
-        System.out.println(getName());
+    //印出訂單(請自行完成內容)
+    public void printOrder(){}
     }
 }
 
@@ -117,14 +116,14 @@ class SpecialOrder extends Order implements printable{
     private double size;    //菜餚份量: 可選小份0.8; 加大1.5; 及最大2.0
     private boolean spicy;  //可加辣true; 不加辣false
 	
-	//建構元(1)
+    //建構元(1)
     //建構元(2)    
 	
-	//setter
-	//getter
+    //setter
+    //getter
     
-	//印出訂單
-	public void printOrder(){}
+    //印出訂單
+    public void printOrder(){}
 }
 
 
