@@ -71,59 +71,57 @@ interface Printable{
 
 
 //-----------------------------------------------
-// 一般訂單類別
+// 一般訂單類別(***未完成***)
 //-----------------------------------------------
 class Order implements Printable{
     private String tel;     //客戶電話
     private String name;    //客戶姓名
     private int[] foodAmt;  //陣列, 代表4樣菜色的預訂數量, 如[1, 0, 2, 1]表示第1及4道菜訂1份, 第3道菜訂2份. 
 	
-	//建構元(1)
+    //建構元(1)
     public Order(String tel, String name, int[] foodAmt){
         this.tel=tel;
         this.name=name;
         this.foodAmt=foodAmt;
     }
 
-    //建構元(2)    
-	public Order(){
-		this.tel=null;
-		this.name=null;
-		this.foodAmt=null;
-	}
+    //建構元(2)    
+    public Order(){
+        this.tel=null;
+        this.name=null;
+        this.foodAmt=null;
+    }
 	
-	//setter
+    //setter
     public void setTel(String tel){this.tel=tel;}
     public void setName(String name){this.name=name;}
     public void setFoodAmt(int[] foodAmt){this.foodAmt=foodAmt;}
-    
-	//getter
+    
+    //getter
     public String getTel(){return this.tel;}
     public String getName(){return this.name;}
     public int getFoodAmt(int i){return this.foodAmt[i];}
-    
-	//印出訂單(請自行完成內容)
-    public void printOrder(){
-        System.out.println(getName());
-    }
+    
+    //印出訂單((***未完成***)
+    public void printOrder(){}
 }
 
 
 //-----------------------------------------------
-// 特別訂單類別(請自行完成內容)
+// 特別訂單類別(***未完成***)
 //-----------------------------------------------
 class SpecialOrder extends Order implements printable{
     private double size;    //菜餚份量: 可選小份0.8; 加大1.5; 及最大2.0
     private boolean spicy;  //可加辣true; 不加辣false
 	
-	//建構元(1)
+    //建構元(1)
     //建構元(2)    
 	
-	//setter
-	//getter
-    
-	//印出訂單
-	public void printOrder(){}
+    //setter
+    //getter
+    
+    //印出訂單
+    public void printOrder(){}
 }
 
 
@@ -137,9 +135,9 @@ class Main {
         //-------------------------          
         Order order=new Order("0911-111-111", "王小明", new int[]{1, 2, 3, 4});
         
-        System.out.println("-----------------------");
-		System.out.println("一個獨立的使用測試");
-		System.out.println("-----------------------");
+        System.out.println("-----------------------");
+        System.out.println("一個獨立的使用測試");
+        System.out.println("-----------------------");
         System.out.println("電話:" + order.getTel());        
         System.out.println("姓名:" + order.getName());
         
@@ -149,15 +147,15 @@ class Main {
             System.out.println("數量:" + order.getFoodAmt(i));
         }
 		
-        System.out.println("-----------------------");
-		System.out.println();
-		System.out.println();
+        System.out.println("-----------------------");
+        System.out.println();
+        System.out.println();
 		
 		
         //建立一個可存放多個物件的串列清單
         ArrayList <Printable>arrayList = new ArrayList();
         
-        //將多個「訂單」物件加入串列清單中
+        //將多個「一般訂單」物件加入串列清單中
         arrayList.add(new Order("0911-111-111", "陳小昱", new int[]{1, 2, 3, 4}));
         arrayList.add(new Order("0911-222-222", "李小閱", new int[]{1, 1, 0, 1}));
         arrayList.add(new Order("0911-333-333", "廖小昂", new int[]{2, 1, 2, 2}));
