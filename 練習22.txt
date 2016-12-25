@@ -32,17 +32,26 @@ import java.util.*;
 // 菜色類別(已完成)
 //--------------------
 class Food{
-    String food;
-    int price;
-
-    public Food(String food, int price){
+    String food;  //菜名
+    int price;    //單價
+    
+    //建構元(1)
+    public Food(String food, int price){
         this.food=food;
         this.price=price;
     }
     
+    //建構元(2)
+    public Food(){
+        this.food=null;
+        this.price=0;
+    }
+    
+    //setter
     public void setFood(String food){this.food=food;}
     public void setPrice(int price){this.price=price;}
     
+    //getter
     public String getFood(){return this.food;}
     public int getPrice(){return this.price;}
 }
