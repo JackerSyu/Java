@@ -18,12 +18,12 @@
 假日時, 你的廚房工作室變成廚藝教室, 教有興趣的粉絲也可以自行烹飪好吃的料理.
 人人為我, 我為人人; 多替粉絲著想, 粉絲才會變成鐵粉啊.
 
-你算了一下, 如果每天可以賣出20份訂單, 每份訂單平均獲利150元, 一個工作天可獲利3,000元, 
+你算了一下, 如果每天可以賣出20份訂單, 每份訂單平均獲利180元, 一個工作天可獲利3,600元, 
 扣除房租及水電, 月收入好像可以比上班更好, 而且每天都在做自己喜歡的事.
 
 為了省錢, 「預訂菜餚」的程式開發也要自己來.
  
-所有應修改的程式包括「預訂菜餚(Order)」及「特別預定(SpecailOrder)」兩者:
+所有應修改的程式包括「一般訂單(Order)」及「特別訂單(SpecailOrder)」兩者:
 
 //------------------------------------------------------------------------------------------
 import java.util.*;
@@ -110,7 +110,7 @@ class Order implements Printable{
 //-----------------------------------------------
 // 特別訂單類別(***未完成***)
 //-----------------------------------------------
-class SpecialOrder extends Order implements printable{
+class SpecialOrder extends Order implements Printable{
     private double size;    //菜餚份量: 可選小份0.8; 加大1.5; 及最大2.0
     private boolean spicy;  //可加辣true; 不加辣false
 	
@@ -159,15 +159,15 @@ class Main {
         arrayList.add(new Order("0911-111-111", "陳小昱", new int[]{1, 2, 3, 4}));
         arrayList.add(new Order("0911-222-222", "李小閱", new int[]{1, 1, 0, 1}));
         arrayList.add(new Order("0911-333-333", "廖小昂", new int[]{2, 1, 2, 2}));
-        arrayList.add(new Order("0911-444-444", "謝小齊", new int[]{0, 0, 1, 1}));
-        arrayList.add(new Order("0911-555-555", "藍小謙", new int[]{1, 2, 0, 0}));		
+        arrayList.add(new Order("0911-444-444", "謝小齊", new int[]{0, 1, 1, 1}));
+        arrayList.add(new Order("0911-555-555", "藍小謙", new int[]{1, 2, 1, 0}));		
    
         //將多個「特別訂單」物件加入串列清單中
         arrayList.add(new SpecialOrder("0922-111-111", "王小宇", new int[]{1, 2, 3, 4}, 0.8, true));
-        arrayList.add(new SpecialOrder("0922-222-222", "侯小庭", new int[]{2, 0, 0, 1}, 1, false));
-        arrayList.add(new SpecialOrder("0922-333-333", "許小蘭", new int[]{1, 2, 0, 0}, 1.5, false));
+        arrayList.add(new SpecialOrder("0922-222-222", "侯小庭", new int[]{2, 0, 1, 1}, 1, false));
+        arrayList.add(new SpecialOrder("0922-333-333", "許小蘭", new int[]{1, 2, 0, 1}, 1.5, false));
         arrayList.add(new SpecialOrder("0922-444-444", "石小夫", new int[]{2, 2, 1, 0}, 2, false));
-        arrayList.add(new SpecialOrder("0922-555-555", "陳小瑞", new int[]{1, 1, 2, 1}, 2, true));        
+        arrayList.add(new SpecialOrder("0922-555-555", "陳小瑞", new int[]{0, 1, 2, 1}, 2, true));        
 		
         //列印「訂單」及「特別訂單」	
         for(int i=0; i<arrayList.size(); i++){            	
