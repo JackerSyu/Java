@@ -165,18 +165,18 @@ class Main {
         ArrayList <Printable>arrayList = new ArrayList();
         
         //將多個「一般訂單」物件加入串列清單中
-        arrayList.add(new Order("0911-111-111", "陳小昱", new int[]{1, 2, 3, 4}));
-        arrayList.add(new Order("0911-222-222", "李小閱", new int[]{1, 1, 0, 1}));
-        arrayList.add(new Order("0911-333-333", "廖小昂", new int[]{2, 1, 2, 2}));
-        arrayList.add(new Order("0911-444-444", "謝小齊", new int[]{0, 1, 1, 1}));
-        arrayList.add(new Order("0911-555-555", "藍小謙", new int[]{1, 2, 1, 0}));		
+        arrayList.add(new Order("0911-111-111", "朱小靜", new int[]{1, 2, 3, 4}));
+        arrayList.add(new Order("0911-222-222", "陳小諼", new int[]{1, 1, 0, 1}));
+        arrayList.add(new Order("0911-333-333", "蕭小齡", new int[]{2, 1, 2, 2}));
+        arrayList.add(new Order("0911-444-444", "陳小妏", new int[]{0, 1, 1, 1}));
+        arrayList.add(new Order("0911-555-555", "李小銨", new int[]{1, 2, 1, 0}));		
    
         //將多個「特別訂單」物件加入串列清單中
-        arrayList.add(new SpecialOrder("0922-111-111", "王小宇", new int[]{1, 2, 3, 4}, 0.8, true));
-        arrayList.add(new SpecialOrder("0922-222-222", "侯小庭", new int[]{2, 0, 1, 1}, 1, false));
-        arrayList.add(new SpecialOrder("0922-333-333", "許小蘭", new int[]{1, 2, 0, 1}, 1.5, false));
-        arrayList.add(new SpecialOrder("0922-444-444", "石小夫", new int[]{2, 2, 1, 0}, 2, false));
-        arrayList.add(new SpecialOrder("0922-555-555", "陳小瑞", new int[]{0, 1, 2, 1}, 2, true));        
+        arrayList.add(new SpecialOrder("0922-111-111", "陳小婷", new int[]{1, 2, 3, 4}, 0.8, true));
+        arrayList.add(new SpecialOrder("0922-222-222", "陳小融", new int[]{2, 0, 1, 1}, 1, false));
+        arrayList.add(new SpecialOrder("0922-333-333", "陳小容", new int[]{1, 2, 0, 1}, 1.5, false));
+        arrayList.add(new SpecialOrder("0922-444-444", "張小潔", new int[]{2, 2, 1, 0}, 2, false));
+        arrayList.add(new SpecialOrder("0922-555-555", "李小娟", new int[]{0, 1, 2, 1}, 2, true));        
 		
         //列印「訂單」及「特別訂單」	
         for(int i=0; i<arrayList.size(); i++){            	
@@ -194,7 +194,7 @@ class Main {
 一般訂單
 -------------------------
 電話: 0911-111-111
-姓名: 陳小昱
+姓名: 朱小靜
 -------------------------
 菜餚:紅燒獅子頭
 單價:140
@@ -232,7 +232,7 @@ p.s.
 特別訂單
 -------------------------
 電話: 0911-111-111
-姓名: 王小宇
+姓名: 陳小婷
 -------------------------
 份量:0.8
 可加辣
