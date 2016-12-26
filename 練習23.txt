@@ -136,18 +136,18 @@ class Main {
         ArrayList <Printable>arrayList = new ArrayList();
         
         //將多個「訂單」物件加入串列清單中
-        arrayList.add(new Order("0911-111-111", "陳小昱", 1, 2, 3, 4));
-        arrayList.add(new Order("0911-222-222", "李小閱", 1, 1, 0, 1));
-        arrayList.add(new Order("0911-333-333", "廖小昂", 2, 1, 2, 2));
-        arrayList.add(new Order("0911-444-444", "謝小齊", 0, 0, 1, 1));
-        arrayList.add(new Order("0911-555-555", "藍小謙", 1, 2, 0, 0));		
+        arrayList.add(new Order("0911-111-111", "李小璇", 1, 2, 3, 4));
+        arrayList.add(new Order("0911-222-222", "湯小婷", 1, 1, 0, 1));
+        arrayList.add(new Order("0911-333-333", "李小和", 2, 1, 2, 2));
+        arrayList.add(new Order("0911-444-444", "黃小瑄", 0, 0, 1, 1));
+        arrayList.add(new Order("0911-555-555", "周小德", 1, 2, 0, 0));		
    
         //將多個「特別訂單」物件加入串列清單中
-        arrayList.add(new SpecialOrder("0922-111-111", "王小宇", 1, 2, 3, 4, 0.8, true));
-        arrayList.add(new SpecialOrder("0922-222-222", "侯小庭", 2, 0, 0, 1, 1, false));
-        arrayList.add(new SpecialOrder("0922-333-333", "許小蘭", 1, 2, 0, 0, 1.5, false));
-        arrayList.add(new SpecialOrder("0922-444-444", "石小夫", 2, 2, 1, 0, 2, false));
-        arrayList.add(new SpecialOrder("0922-555-555", "陳小瑞", 1, 1, 2, 1, 2, true));        
+        arrayList.add(new SpecialOrder("0922-111-111", "張小源", 1, 2, 3, 4, 0.8, true));
+        arrayList.add(new SpecialOrder("0922-222-222", "莊小豪", 2, 0, 0, 1, 1, false));
+        arrayList.add(new SpecialOrder("0922-333-333", "郭小穎", 1, 2, 0, 0, 1.5, false));
+        arrayList.add(new SpecialOrder("0922-444-444", "鄭小芳", 2, 2, 1, 0, 2, false));
+        arrayList.add(new SpecialOrder("0922-555-555", "曾小鈞", 1, 1, 2, 1, 2, true));        
 		
         //列印「訂單」及「特別訂單」	
         for(int i=0; i<arrayList.size(); i++){            	
@@ -165,7 +165,7 @@ class Main {
 一般訂單
 -------------------------
 電話: 0911-111-111
-姓名: 陳小昱
+姓名: 李小璇
 -------------------------
 菜餚:紅燒獅子頭
 單價:140
@@ -203,7 +203,7 @@ p.s.
 特別訂單
 -------------------------
 電話: 0911-111-111
-姓名: 王小宇
+姓名: 張小源
 -------------------------
 份量:0.8
 可加辣
