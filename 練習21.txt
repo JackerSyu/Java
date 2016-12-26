@@ -89,11 +89,11 @@ class Main{
         ArrayList arrayList1 = new ArrayList();
         
         //將多個「會員帳單」物件加入串列清單中
-        arrayList1.add(new MemberBill("0911-111-111", "陳小昱", true, 1, 2, 3));
-        arrayList1.add(new MemberBill("0911-222-222", "李小閱", false, 0, 2, 2));
-        arrayList1.add(new MemberBill("0911-333-333", "廖小昂", true, 3, 5, 3));
-        arrayList1.add(new MemberBill("0911-444-444", "謝小齊", false, 4, 8, 2));
-        arrayList1.add(new MemberBill("0911-555-555", "藍小謙", true, 0, 2, 0));        
+        arrayList1.add(new MemberBill("0911-111-111", "郭小伶", true, 1, 2, 3));
+        arrayList1.add(new MemberBill("0911-222-222", "蔡小昱", false, 0, 2, 2));
+        arrayList1.add(new MemberBill("0911-333-333", "楊小婷", true, 3, 5, 3));
+        arrayList1.add(new MemberBill("0911-444-444", "林小佑", false, 4, 8, 2));
+        arrayList1.add(new MemberBill("0911-555-555", "林小瑜", true, 0, 2, 0));        
 		
         //列印會員帳單			
         for(int i=0; i<arrayList1.size(); i++){            
@@ -109,11 +109,11 @@ class Main{
         ArrayList arrayList2 = new ArrayList();
         
         //將多個「非會員帳單」物件加入串列清單中
-        arrayList2.add(new NonMemberBill("0922-111-111", "王小宇", false, 1, 2));
-        arrayList2.add(new NonMemberBill("0922-222-222", "侯小庭", true, 0, 3));
-        arrayList2.add(new NonMemberBill("0922-333-333", "許小蘭", false, 3, 0));
-        arrayList2.add(new NonMemberBill("0922-444-444", "石小夫", true, 1, 5));
-        arrayList2.add(new NonMemberBill("0922-555-555", "陳小瑞", false, 7, 6));        
+        arrayList2.add(new NonMemberBill("0922-111-111", "林小彤", false, 1, 2));
+        arrayList2.add(new NonMemberBill("0922-222-222", "黃小翎", true, 0, 3));
+        arrayList2.add(new NonMemberBill("0922-333-333", "李小璋", false, 3, 0));
+        arrayList2.add(new NonMemberBill("0922-444-444", "吳小庭", true, 1, 5));
+        arrayList2.add(new NonMemberBill("0922-555-555", "林小瑾", false, 7, 6));        
 		
         //列印非會員帳單	
         for(int i=0; i<arrayList2.size(); i++){            	
@@ -133,7 +133,7 @@ class Main{
 會員帳單
 -------------------------
 電話: 0911-111-111
-姓名: 陳小昱
+姓名: 郭小伶
 -------------------------
 洗鞋子總金額: 350 
 洗靴子總金額: 900 
@@ -158,7 +158,7 @@ p.s.
 非會員帳單
 -------------------------
 電話: 0922-111-111
-姓名: 王小宇
+姓名: 林小彤
 -------------------------
 洗鞋子總金額: 350
 洗靴子總金額: 900
