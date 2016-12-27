@@ -112,6 +112,7 @@ class Order implements Printable{
     public int getFoodAmt(int i){return this.foodAmt[i];}
     
     //印出訂單((***未完成***)
+    @Override
     public void printOrder(){}
 }
 
@@ -130,6 +131,7 @@ class SpecialOrder extends Order implements Printable{
     //getter
     
     //印出訂單
+    @Override    
     public void printOrder(){}
 }
 
