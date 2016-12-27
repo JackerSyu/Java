@@ -112,7 +112,7 @@ class Order implements Printable{
 //-----------------------------------------------
 // 特別訂單類別(請自行完成內容)
 //-----------------------------------------------
-class SpecialOrder extends Order implements printable{
+class SpecialOrder extends Order implements Printable{
     private double size;    //菜餚份量: 可選小份0.8; 加大1.5; 及最大2.0
     private boolean spicy;  //可加辣true; 不加辣false
 	
