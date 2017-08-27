@@ -127,7 +127,7 @@ public class Main{
         String s="[{\"name\":\"王小明\"}, {\"name\":\"陳小華\"}]";
                 
         JsonReader jsonReader;  //宣告讀取JSON物件             
-        JsonArray jsonArray;    //宣告JJSON陣列
+        JsonArray jsonArray;    //宣告JSON陣列
         
         try{
             //建立讀取JSON物件        
