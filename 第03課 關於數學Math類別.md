@@ -34,3 +34,11 @@ static double PI
 System.out.println(10*10*Math.PI);
 ```
 因為PI在Math類別中也被宣告為static靜態的, 因此我們也可以直接使用它, 不必先產生物件.
+
+
+## 視頻教學
+```
+(1)J03_01 Math.sqrt()靜態方法      http://www.youtube.com/watch?v=Ht8_f83IP88
+(2)J03_02 Math.PI靜態成員          http://www.youtube.com/watch?v=9N7RIO5nqak
+(3)J03_03 Math.pow()靜態方法       http://www.youtube.com/watch?v=R7uST8Udtp0
+```
