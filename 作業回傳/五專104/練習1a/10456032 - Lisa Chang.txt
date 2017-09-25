@@ -1,0 +1,11 @@
+===============================
+應該是誤傳吧? 請重傳.
+===============================
+class Main {
+    public static void main(String[] args) {
+        String s="Hello";
+        System.out.println(s.substring(s.length()-1,s.length()));
+    }
+}
+
+
