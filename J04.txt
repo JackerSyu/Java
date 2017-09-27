@@ -37,9 +37,10 @@ class Main {
         int age=18;
         String status="學生";
     
-        if(age<20 || status.equals("學生"))
+        if(age<20 || status.equals("學生")){
             price=(int)(price*0.8);
-    	
+    	}
+	
         System.out.println(price);
     }
 }
@@ -51,10 +52,11 @@ class Main {
         int age=18;
         String status="學生";
 		
-        if(age<20)
+        if(age<20){
             price=(int)(price*0.8);
-        else if(status.equals("學生"))
+        }else if(status.equals("學生")){
             price=(int)(price*0.8);
+	}    
 			
         System.out.println(price);
     }
