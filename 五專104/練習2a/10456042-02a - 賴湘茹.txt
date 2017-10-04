@@ -1,0 +1,533 @@
+(1)
+字串的長度是至少為2.
+例如:
+a5322121a  (正確)
+a          (不正確)
+
+class Main {
+    public static void main(String[] args) {
+        String s="a5322121a";
+        
+        if(s.length()>=2){
+			System.out.println("正確");
+        }else{
+			System.out.println("不正確");
+        }
+    }
+}
+//正確
+=======================================================================================
+*(1)沒有問題, 是一個好程式.
+(2)程式執行結果有誤.
+(3)程式可以執行, 但請注意以下的問題.
+   (3-1)程式格式有誤: 沒有階層式內縮, 內縮距離不足, 內縮距離不一致, 或無意義的空行.
+   (3-2)不容易閱讀: 具有特定意義的程式段落缺少分隔或註解, 或是同一行中擠進太多內容.                     
+   (3-3)變數命名不適合: 未給予具有特別意義的變數符合其意義的名稱.     
+   (3-4)誤用常數: 程式中重覆出現特定數值, 或使用的常數與其他變數過度相依.
+   (3-5)過於複雜的設計: 很明顯有更簡單的設計方式可以取代現有設計.
+   (3-6)重覆或過於相似的程式段落: 程式中存在多個相同或相似段落, 明顯可整合但未整合.
+   (3-7)沒有意義的指令: 存在不影響程式執行結果, 但又會被執行的程式敘述.
+   (3-8)程式撰寫其他建議.
+=======================================================================================
+
+
+class Main {
+    public static void main(String[] args) {
+        String s="a";
+        
+        if(s.length()>=2){
+			System.out.println("正確");
+        }else{
+			System.out.println("不正確");
+        }
+    }
+}
+//不正確
+
+(2)
+字串的長度是至少為2, 而且(第1碼)與(最後1碼)相同.
+例如:
+a5322121a  (正確)
+a12321b    (不正確)
+
+class Main {
+    public static void main(String[] args) {
+        String s="a5322121a";
+        String s2="a12321b";
+ 
+ //s       
+        if(s.length()>=2){
+          if(s.charAt(0)==s.charAt(s.length()-1)){
+            System.out.println("正確");
+          }else{
+            System.out.println("不正確");
+          }
+        }else{
+          System.out.println("不正確");
+        }
+ 
+//s2 
+        if(s2.length()>=2){
+          if(s2.charAt(0)==s2.charAt(s2.length()-1)){
+            System.out.println("正確");
+          }else{
+            System.out.println("不正確");
+          }
+        }else{
+          System.out.println("不正確");
+        }
+    }
+}
+=======================================================================================
+(1)沒有問題, 是一個好程式.
+(2)程式執行結果有誤.
+*(3)程式可以執行, 但請注意以下的問題.
+   *(3-1)程式格式有誤: 沒有階層式內縮, 內縮距離不足, 內縮距離不一致, 或無意義的空行.
+   (3-2)不容易閱讀: 具有特定意義的程式段落缺少分隔或註解, 或是同一行中擠進太多內容.                     
+   (3-3)變數命名不適合: 未給予具有特別意義的變數符合其意義的名稱.     
+   (3-4)誤用常數: 程式中重覆出現特定數值, 或使用的常數與其他變數過度相依.
+   (3-5)過於複雜的設計: 很明顯有更簡單的設計方式可以取代現有設計.
+   (3-6)重覆或過於相似的程式段落: 程式中存在多個相同或相似段落, 明顯可整合但未整合.
+   (3-7)沒有意義的指令: 存在不影響程式執行結果, 但又會被執行的程式敘述.
+   *(3-8)程式撰寫其他建議.
+   
+ class Main {
+    public static void main(String[] args) {
+        String s="a5322121a";
+    
+        if(s.length()>=2){
+          if(s.charAt(0)==s.charAt(s.length()-1)){
+            System.out.println("正確");
+          }else{
+            System.out.println("不正確");
+          }
+        }else{
+          System.out.println("不正確");
+        }
+    }
+}  
+
+=> 執行後, 再改s的內容, 再執行下個資料測試.
+=======================================================================================
+
+
+(3)
+字串的長度是5~10位, 而且每一碼都相同.
+例如:
+aaaaaa  (正確)
+cccccc (正確)
+111     (不正確)
+123123  (不正確)
+
+class Main {
+    public static void main(String[] args) {
+        String s1="aaaaaa";
+        String s2="ccccccc";
+        String s3="111";
+        String s4="123123c";
+        int flag=0;
+        int point=0;
+//flag和point其實是同一個東西，但是如果把同時放入1和2執行出來是不對的，所以我又訂了point這個名子
+
+//s1       
+        if(s1.length()>=5&&s1.length()<=10){
+          for(int i=1;i<s1.length();i++){
+            if(s1.charAt(i-1)==s1.charAt(i)){
+              flag=flag+1;
+            }
+          }
+          if(flag==5){
+            System.out.println("正確");
+          }else{
+            System.out.println("不正確");
+          }
+        }else{
+          System.out.println("不正確");
+        }
+        
+//s2
+        if(s2.length()>=5&&s2.length()<=10){
+          for(int i=1;i<s2.length();i++){
+            if(s2.charAt(i-1)==s2.charAt(i)){
+              point=point+1;
+            }
+          }
+          if(point==6){
+            System.out.println("正確");
+          }else{
+            System.out.println("不正確");
+          }
+        }else{
+          System.out.println("不正確");
+        }
+        
+//s3
+        if(s3.length()>=5&&s3.length()<=10){
+          for(int i=1;i<s3.length();i++){
+            if(s3.charAt(i-1)==s3.charAt(i)){
+              flag=flag+1;
+            }
+          }
+          if(flag==2){
+            System.out.println("正確");
+          }else{
+            System.out.println("不正確");
+          }
+        }else{
+          System.out.println("不正確");
+        }
+//s4
+      if(s4.length()>=5&&s4.length()<=10){
+          for(int i=1;i<s4.length();i++){
+            if(s4.charAt(i-1)==s4.charAt(i)){
+              flag=flag+1;
+            }
+          }
+          if(flag==3){
+            System.out.println("正確");
+          }else{
+            System.out.println("不正確");
+          }
+        }else{
+          System.out.println("不正確");
+        }
+    }
+}
+=======================================================================================
+(1)沒有問題, 是一個好程式.
+(2)程式執行結果有誤.
+*(3)程式可以執行, 但請注意以下的問題.
+   *(3-1)程式格式有誤: 沒有階層式內縮, 內縮距離不足, 內縮距離不一致, 或無意義的空行.
+   (3-2)不容易閱讀: 具有特定意義的程式段落缺少分隔或註解, 或是同一行中擠進太多內容.                     
+   (3-3)變數命名不適合: 未給予具有特別意義的變數符合其意義的名稱.     
+   *(3-4)誤用常數: 程式中重覆出現特定數值, 或使用的常數與其他變數過度相依.
+   if(flag==5){
+   (3-5)過於複雜的設計: 很明顯有更簡單的設計方式可以取代現有設計.
+   (3-6)重覆或過於相似的程式段落: 程式中存在多個相同或相似段落, 明顯可整合但未整合.
+   (3-7)沒有意義的指令: 存在不影響程式執行結果, 但又會被執行的程式敘述.
+   *(3-8)程式撰寫其他建議.
+=> 執行後, 再改s的內容, 再執行下個資料測試.
+   
+=======================================================================================
+
+
+(4)
+字串長度為奇數, 內容只能有數字.
+例如:
+54345   (正確)
+42*a2   (不正確)
+1234    (不正確)
+1421    (不正確)
+
+class Main {
+     public static void main(String[] args) {
+        String s= "54345";
+        if(s.length()%2==1){
+          for(int i=1;i<=s.length();i++){
+              if(s.charAt(i-1)>='0' && s.charAt(i-1)<='9'){
+                  if(i==s.length()){
+                      System.out.println("正確");
+                  }
+                  continue;
+              }else{
+                  System.out.println("不正確");
+                  break;
+              }
+          }
+        }else{
+          System.out.println("不正確");
+        }
+    }
+}
+//正確
+
+class Main {
+     public static void main(String[] args) {
+        String s= "42*a2";
+        if(s.length()%2==1){
+          for(int i=1;i<=s.length();i++){
+              if(s.charAt(i-1)>='0' && s.charAt(i-1)<='9'){
+                  if(i==s.length()){
+                      System.out.println("正確");
+                  }
+                  continue;
+              }else{
+                  System.out.println("不正確");
+                  break;
+              }
+          }
+        }else{
+          System.out.println("不正確");
+        }
+    }
+}
+//不正確
+
+class Main {
+     public static void main(String[] args) {
+        String s= "1234";
+        if(s.length()%2==1){
+          for(int i=1;i<=s.length();i++){
+              if(s.charAt(i-1)>='0' && s.charAt(i-1)<='9'){
+                  if(i==s.length()){
+                      System.out.println("正確");
+                  }
+                  continue;
+              }else{
+                  System.out.println("不正確");
+                  break;
+              }
+          }
+        }else{
+          System.out.println("不正確");
+        }
+    }
+}
+//不正確
+
+class Main {
+     public static void main(String[] args) {
+        String s= "1421";
+        if(s.length()%2==1){
+          for(int i=1;i<=s.length();i++){
+              if(s.charAt(i-1)>='0' && s.charAt(i-1)<='9'){
+                  if(i==s.length()){
+                      System.out.println("正確");
+                  }
+                  continue;
+              }else{
+                  System.out.println("不正確");
+                  break;
+              }
+          }
+        }else{
+          System.out.println("不正確");
+        }
+    }
+}
+//不正確
+=======================================================================================
+(1)沒有問題, 是一個好程式.
+(2)程式執行結果有誤.
+*(3)程式可以執行, 但請注意以下的問題.
+   *(3-1)程式格式有誤: 沒有階層式內縮, 內縮距離不足, 內縮距離不一致, 或無意義的空行.
+   (3-2)不容易閱讀: 具有特定意義的程式段落缺少分隔或註解, 或是同一行中擠進太多內容.                     
+   (3-3)變數命名不適合: 未給予具有特別意義的變數符合其意義的名稱.     
+   (3-4)誤用常數: 程式中重覆出現特定數值, 或使用的常數與其他變數過度相依.
+   (3-5)過於複雜的設計: 很明顯有更簡單的設計方式可以取代現有設計.
+   (3-6)重覆或過於相似的程式段落: 程式中存在多個相同或相似段落, 明顯可整合但未整合.
+   *(3-7)沒有意義的指令: 存在不影響程式執行結果, 但又會被執行的程式敘述.
+   continue;
+   (3-8)程式撰寫其他建議.
+=======================================================================================
+
+
+(5)
+字串長度至少為5, 內容只能有數字及小數點.
+字串內容可以沒有小數點, 但如果內容有小數點, 只能有1個, 而且小數點之後一定要有其他數字.
+例如:
+54221     (正確)
+543.1     (正確)
+5321.     (不正確)
+5.3.1     (不正確)
+
+class Main {
+    public static void main(String[] args) {
+        String s= "54221";
+        int checkdot=0;
+        for(int i=1;i<=s.length()-1;i++){
+            if(s.charAt(i-1)=='.'){
+                checkdot++;
+            }
+            if(s.charAt(s.length()-1)=='.'){
+                System.out.println("錯誤");
+                System.exit(0);
+            }
+        }
+
+        if(checkdot<=1){
+          if(s.length()>=5){
+              for(int i=1;i<=s.length()-1;i++){
+                switch(s.charAt(i)){
+                    case '1':
+                    case '2':
+                    case '3':
+                    case '4':
+                    case '5':
+                    case '6':
+                    case '7':
+                    case '8':
+                    case '9':
+                    case '0':
+                    case '.':
+                        if(i==s.length()-1){
+                            System.out.println("正確");
+                        }
+                        break;
+                    default:
+                        System.out.println("錯誤");
+                }
+              }
+          }else{
+              System.out.println("錯誤");
+          }
+        }else{
+          System.out.println("錯誤");
+        } 
+    }
+}
+//正確
+
+class Main {
+    public static void main(String[] args) {
+        String s= "543.1";
+        int checkdot=0;
+        for(int i=1;i<=s.length()-1;i++){
+            if(s.charAt(i-1)=='.'){
+                checkdot++;
+            }
+            if(s.charAt(s.length()-1)=='.'){
+                System.out.println("錯誤");
+                System.exit(0);
+            }
+        }
+
+        if(checkdot<=1){
+          if(s.length()>=5){
+              for(int i=1;i<=s.length()-1;i++){
+                switch(s.charAt(i)){
+                    case '1':
+                    case '2':
+                    case '3':
+                    case '4':
+                    case '5':
+                    case '6':
+                    case '7':
+                    case '8':
+                    case '9':
+                    case '0':
+                    case '.':
+                        if(i==s.length()-1){
+                            System.out.println("正確");
+                        }
+                        break;
+                    default:
+                        System.out.println("錯誤");
+                }
+              }
+          }else{
+              System.out.println("錯誤");
+          }
+        }else{
+          System.out.println("錯誤");
+        } 
+    }
+}
+//正確
+
+class Main {
+    public static void main(String[] args) {
+        String s= "5321.";
+        int checkdot=0;
+        for(int i=1;i<=s.length()-1;i++){
+            if(s.charAt(i-1)=='.'){
+                checkdot++;
+            }
+            if(s.charAt(s.length()-1)=='.'){
+                System.out.println("錯誤");
+                System.exit(0);
+            }
+        }
+
+        if(checkdot<=1){
+          if(s.length()>=5){
+              for(int i=1;i<=s.length()-1;i++){
+                switch(s.charAt(i)){
+                    case '1':
+                    case '2':
+                    case '3':
+                    case '4':
+                    case '5':
+                    case '6':
+                    case '7':
+                    case '8':
+                    case '9':
+                    case '0':
+                    case '.':
+                        if(i==s.length()-1){
+                            System.out.println("正確");
+                        }
+                        break;
+                    default:
+                        System.out.println("錯誤");
+                }
+              }
+          }else{
+              System.out.println("錯誤");
+          }
+        }else{
+          System.out.println("錯誤");
+        } 
+    }
+}
+//錯誤
+
+class Main {
+    public static void main(String[] args) {
+        String s= "5.3.1";
+        int checkdot=0;
+        for(int i=1;i<=s.length()-1;i++){
+            if(s.charAt(i-1)=='.'){
+                checkdot++;
+            }
+            if(s.charAt(s.length()-1)=='.'){
+                System.out.println("錯誤");
+                System.exit(0);
+            }
+        }
+
+        if(checkdot<=1){
+          if(s.length()>=5){
+              for(int i=1;i<=s.length()-1;i++){
+                switch(s.charAt(i)){
+                    case '1':
+                    case '2':
+                    case '3':
+                    case '4':
+                    case '5':
+                    case '6':
+                    case '7':
+                    case '8':
+                    case '9':
+                    case '0':
+                    case '.':
+                        if(i==s.length()-1){
+                            System.out.println("正確");
+                        }
+                        break;
+                    default:
+                        System.out.println("錯誤");
+                }
+              }
+          }else{
+              System.out.println("錯誤");
+          }
+        }else{
+          System.out.println("錯誤");
+        } 
+    }
+}
+//錯誤
+=======================================================================================
+(1)沒有問題, 是一個好程式.
+(2)程式執行結果有誤.
+*(3)程式可以執行, 但請注意以下的問題.
+   *(3-1)程式格式有誤: 沒有階層式內縮, 內縮距離不足, 內縮距離不一致, 或無意義的空行.
+   (3-2)不容易閱讀: 具有特定意義的程式段落缺少分隔或註解, 或是同一行中擠進太多內容.                     
+   (3-3)變數命名不適合: 未給予具有特別意義的變數符合其意義的名稱.     
+   (3-4)誤用常數: 程式中重覆出現特定數值, 或使用的常數與其他變數過度相依.
+   *(3-5)過於複雜的設計: 很明顯有更簡單的設計方式可以取代現有設計.
+   (3-6)重覆或過於相似的程式段落: 程式中存在多個相同或相似段落, 明顯可整合但未整合.
+   (3-7)沒有意義的指令: 存在不影響程式執行結果, 但又會被執行的程式敘述.
+   (3-8)程式撰寫其他建議.
+=======================================================================================

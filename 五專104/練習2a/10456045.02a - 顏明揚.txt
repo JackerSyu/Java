@@ -1,0 +1,84 @@
+================================================
+過來說明
+================================================
+
+(1)
+class Main {
+    public static void main(String[] args) {
+        String s="a5322121a";
+        int i=s.length();
+        boolean flag=true;
+        
+        if(i<=2){
+          flag=false;
+        }
+        System.out.println(flag);
+    }
+}
+(2)
+class Main {
+    public static void main(String[] args) {
+        String s="a5322121a";
+        int i=s.length();
+        char first=s.charAt(0);
+        char last=s.charAt(8);
+        boolean flag=true;
+        
+        if(i<=2||first!=last){
+          flag=false;
+        }
+        System.out.println(flag);
+    }
+}
+(3)
+class Main {
+    public static void main(String[] args) {
+        String s="aaaaa";
+        int cnt=s.length();
+        boolean flag=true;
+        
+        for(int i=0;i<s.length()-1;i++){
+          char c1=s.charAt(i);
+          char c2=s.charAt(i+1);
+          
+          if(cnt<5||cnt>10||c1!=c2){
+            flag=false;
+          }
+        }
+        System.out.println(flag);
+    }
+}
+(4)
+class Main {
+    public static void main(String[] args) {
+        String s="54345";
+        int s1=s.length()%2;
+        boolean flag=true;
+        
+        for(int i=0;i<s.length()-1;i++){
+          char c=s.charAt(i);
+          
+          if(s1!=1||c>'9'||c<'0'){
+            flag=false;
+          }
+        }
+        System.out.println(flag);
+    }
+}
+(5)
+class Main {
+    public static void main(String[] args) {
+        String s="54221";
+        int cnt=s.length();
+        boolean flag=true;
+        
+        for(int i=0;i<s.length()-1;i++){
+          char c=s.charAt(i);
+          
+          if(cnt<5||c>'9'||c<'0'){
+            flag=false;
+          }
+        }
+        System.out.println(flag);
+    }
+}
