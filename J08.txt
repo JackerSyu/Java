@@ -9,11 +9,13 @@ class Main {
         k[0]=1;
         k[1]=1;
 				
-        for(int i=2; i<k.length; i++) 
+        for(int i=2; i<k.length; i++){ 
             k[i]=k[i-1]+k[i-2];
+        }	    
 				
-        for(int i=0; i<k.length; i++)
+        for(int i=0; i<k.length; i++){
             System.out.printf("%d\t", k[i]);
+        }	    
     }
 }
 
@@ -23,8 +25,9 @@ class Main {
         int scores[]={67, 84, 76, 89, 40, 60, 65, 80, 96, 82, 63};
 		
         double total=0;
-        for(int s:scores)
+        for(int s:scores){
             total+=s;
+        }	    
 			
         System.out.printf("average=%6.2f",total/scores.length);
     }
@@ -39,8 +42,9 @@ class Main {
 		
         Arrays.sort(scores);
 			
-        for(int s:scores)
+        for(int s:scores){
             System.out.println(s);
+        }	    
     }
 }
 
