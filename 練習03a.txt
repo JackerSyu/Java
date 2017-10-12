@@ -40,5 +40,7 @@ class Main {
 (3)將文章反向輸出, 如 .si noitacitsemod .... eht morF
 
 (4)文章中, 總共有多少個英文字? 如 "From the red fox" 共有4個英文字, 重覆出現請重覆累計.
+   (也許使用 String 的 replace()及split()方法)
 
 (5)文章中, 總共有多少個英文字? 如 "From the red fox, this fox" 共有5個英文字, 重覆出現只累計1次.
+   (也許使用 java.util 中的 HashSet 物件)
