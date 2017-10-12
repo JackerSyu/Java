@@ -60,3 +60,22 @@ class Main {
         System.out.println(i);
     }
 }
+
+
+(5)
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        ArrayList arrayList=new ArrayList();
+		
+        for(int i=0; i<100; i++){
+            arrayList.add((int)(Math.random()*100));        
+        }
+		
+        for(int i=0; i<arrayList.size(); i++){
+            System.out.print(arrayList.get(i));
+            System.out.print(" ");
+        }
+    }
+}
