@@ -23,7 +23,7 @@ class Main {
         while(true){
             int i=(int)(Math.random()*100);
             System.out.println(i);
-            if(i==50) break;
+            if(i==50){break;}
         }
     }
 }
@@ -34,7 +34,7 @@ class Main {
         do{
             int i=(int)(Math.random()*100);
             System.out.println(i);
-            if(i==50) break;
+            if(i==50){break;}
         }while(true);
     }
 }
