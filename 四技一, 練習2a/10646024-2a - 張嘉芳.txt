@@ -1,0 +1,146 @@
+=======================================================================================
+請按規定格式回傳, 改好後再上傳.
+=======================================================================================
+class Main {
+    public static void main(String[] args) {
+        String s="123456";
+        boolean result=false;
+        int total=s.length();
+        if(total>=2){
+          result=true;
+        }else{
+          result=false;
+        }
+        if(result==true){
+        System.out.println("正確");
+        }else{
+        System.out.println("不正確");
+        }
+    }
+}
+
+
+class Main {
+    public static void main(String[] args) {
+        String s="123456";
+        boolean result=false;
+        int total=s.length();
+        if(total>=2){
+          if(s.charAt(0)==s.charAt(total-1)){
+            result=true;
+          }else{
+            result=false;
+          }
+        }else{
+          result=false;
+        }
+        if(result==true){
+        System.out.println("正確");
+        }else{
+        System.out.println("不正確");
+        }
+    }
+}
+
+
+class Main {
+    public static void main(String[] args) {
+        String s="55555";
+        boolean result=false;
+        int total=s.length();
+        int cnt=0;
+        if(total>=5&&total<=10){
+          for(int i=0;i<(total-1);i++){
+            if(s.charAt(i)==s.charAt(i+1)){
+              cnt++;
+            }
+          }
+          if(cnt==(total-1)){
+            result=true;
+          }else{
+            result=false;
+          }
+        }else{
+          result=false;
+        }
+        if(result==true){
+        System.out.println("正確");
+        }else{
+        System.out.println("不正確");
+        }
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        String s="55555";
+        boolean result=false;
+        int total=s.length();
+        int cnt=0;
+        if(total%2==1){
+          for(int i=0;i<total;i++){
+            if(s.charAt(i)>='0'&&s.charAt(i)<='9'){
+              cnt++;
+            }
+          }
+          if(cnt==total){
+            result=true;
+          }else{
+            result=false;
+          }
+        }else{
+          result=false;
+        }
+        if(result==true){
+        System.out.println("正確");
+        }else{
+        System.out.println("不正確");
+        }
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        String s="55555";
+        boolean result=true;
+        int total=s.length();
+        int pointsite=total;//不跟字首位置衝突
+        int pointcnt=0;
+        int stringcnt=0;
+        if(total>=5){
+          for(int i=0;i<total;i++){
+            if(s.charAt(i)=='.'){
+              pointcnt++;
+              pointsite=1;
+          }
+          if(s.charAt(i)>='0'&&s.charAt(i)<='9'){
+            stringcnt++;
+        }
+      }
+      if(stringcnt==(total-pointcnt)){
+            if(pointcnt>1){
+            result=false;
+            }else{
+              if(pointsite==0){
+                result=false;
+             }else if(pointsite==(total-1)){
+               result=false;
+             }else{
+               result=true;
+              }
+            }
+      }else{
+        result=false;
+      }
+        }else{
+          result=false;
+        }
+      
+      
+        if(result==true){
+          System.out.println("正確");
+        }else {
+          System.out.println("不正確");
+        }
+    }
+}
