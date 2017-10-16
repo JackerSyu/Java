@@ -7,101 +7,146 @@ import java.util.*;
 
 class Main{
     public static void main(String args[]){
+        //產生一個鍵盤輸入物件
         Scanner scanner=new Scanner(System.in);
 		
-        System.out.print("請輸入身份證號:");
-        String id = scanner.next();
-        String gender=id.substring(1,2);
-		
-        if(gender.equals("1")){
-            System.out.println("男");
-        }else if(gender.equals("2")){
-            System.out.println("女");
-        }else{
-            System.out.println("輸入錯誤");
-        }
+        //輸入身高及體重(字串)
+        System.out.print("請輸入身高(公分):");
+        String h = scanner.next();
+        
+        System.out.print("請輸入體重(公斤):");
+        String w = scanner.next();
+
+        //將身高及體重的String轉double        
+        double height=Double.parseDouble(h);
+        double weight=Double.parseDouble(w);
+        
+        //計算bmi        
+        double bmi=weight/Math.pow(height/100, 2);
+
+        //印出bmi		
+        System.out.printf("BMI=%5.2f \n", bmi);
     }
 }
+
 
 (2)
 import java.util.*;
 
-class Main {
-    public static void main(String[] args) {
+class Main{
+    public static void main(String args[]){
+        //產生一個鍵盤輸入物件
         Scanner scanner=new Scanner(System.in);
-	
-        System.out.print("請輸入身份證號:");
-        String id = scanner.next();
-	
-        try{	
-            String gender=id.substring(1,2);
-				
-            if(gender.equals("1")){
-                System.out.println("男");
-            }else if(gender.equals("2")){
-                System.out.println("女");
-            }else{
-                System.out.println("輸入錯誤");
-            }
-        }catch(StringIndexOutOfBoundsException e){
-            System.out.println("輸入資料長度不足");
-            return;
-        }	
+		
+        //輸入身高及體重(字串)
+        System.out.print("請輸入身高(公分):");
+        String h = scanner.next();
+        
+        System.out.print("請輸入體重(公斤):");
+        String w = scanner.next();
+
+        //身高及體重的double 
+        double height, weight;
+        
+        try{        
+            //將身高及體重的String轉double        
+            height=Double.parseDouble(h);
+            weight=Double.parseDouble(w);
+        }catch(Exception e){
+            System.out.println("身高及體重請輸入數字");
+            return;            
+        }            
+        
+        //計算bmi        
+        double bmi=weight/Math.pow(height/100, 2);
+
+        //印出bmi		
+        System.out.printf("BMI=%5.2f \n", bmi);
     }
 }
+
 
 (3)
 import java.util.*;
 
-class Main {
-    public static void main(String[] args) {
+class Main{
+    public static void main(String args[]){
+        //產生一個鍵盤輸入物件
         Scanner scanner=new Scanner(System.in);
-
-        System.out.print("請輸入身份證號:");
-        String id = scanner.next();
 		
-        try{	
-            String gender=id.substring(1,2);
-            int k=Integer.parseInt(gender);
-					
-            if(k==1){
-                System.out.println("男");
-            }else if(k==2){
-                System.out.println("女");
-            }else{
-                System.out.println("輸入錯誤");
+        //輸入身高及體重(字串)
+        System.out.print("請輸入身高(公分):");
+        String h = scanner.next();
+        
+        System.out.print("請輸入體重(公斤):");
+        String w = scanner.next();
+
+        //身高及體重的double 
+        double height, weight;
+        
+        try{        
+            //將身高及體重的String轉double        
+            height=Double.parseDouble(h);
+            weight=Double.parseDouble(w);
+
+            //如果分母為0, 產生一個例外
+            if(height == 0){ 
+                throw new ArithmeticException(); 
             }
+            
+            //計算bmi        
+            double bmi=weight/Math.pow(height/100, 2);
+
+            //印出bmi		
+            System.out.printf("BMI=%5.2f \n", bmi);            
         }catch(Exception e){
-            System.out.println("輸入資料長度應足夠且身份證第二碼應是數字");
-            return;		
-        }	
+            System.out.println("(1)身高及體重請輸入數字, 或(2)分母為0");
+            return;            
+        }            
     }
 }
 
 (4)
 import java.util.*;
 
-class Main {
-    public static void main(String[] args) {
+class Main{
+    public static void main(String args[]){
+        //產生一個鍵盤輸入物件
         Scanner scanner=new Scanner(System.in);
-        String id = scanner.next();
+		
+        //輸入身高及體重(字串)
+        System.out.print("請輸入身高(公分):");
+        String h = scanner.next();
+        
+        System.out.print("請輸入體重(公斤):");
+        String w = scanner.next();
+
+        //身高及體重的double 
+        double height, weight;
         String msg=null;
-	
-        try{	
-            String gender=id.substring(1,2);
-            int k=Integer.parseInt(gender);
-				
-            if(k==1){
-                msg="男";
-            }else if(k==2){
-                msg="女";
-            }else{
-                msg="輸入錯誤";
+        
+        try{
+            //將身高及體重的String轉double        
+            height=Double.parseDouble(h);
+            weight=Double.parseDouble(w);
+
+            //如果分母為0, 產生一個例外
+            if(height == 0){ 
+                throw new ArithmeticException(); 
             }
-        }catch(Exception e){
-            msg="輸入資料長度應足夠且身份證第二碼應是數字";		
+            
+            //計算bmi        
+            double bmi=weight/Math.pow(height/100, 2);
+
+            //印出bmi		
+            System.out.printf("BMI=%5.2f \n", bmi);
+            msg="多運動, 注重飲食, 維持健康";
+        }catch(NumberFormatException e1){
+            msg="身高及體重請輸入數字";                        
+        }catch(ArithmeticException e2){
+            msg="分母為0, 無法計算";                        
         }finally{
-            System.out.println(msg);
-        }	
+            System.out.println(msg);            
+        }
     }
 }
