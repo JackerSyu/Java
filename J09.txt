@@ -9,6 +9,7 @@ class Main{
     public static void main(String args[]){
         Scanner scanner=new Scanner(System.in);
 		
+        System.out.print("請輸入身份證號:");
         String id = scanner.next();
         String gender=id.substring(1,2);
 		
@@ -28,6 +29,8 @@ import java.util.*;
 class Main {
     public static void main(String[] args) {
         Scanner scanner=new Scanner(System.in);
+	
+        System.out.print("請輸入身份證號:");
         String id = scanner.next();
 	
         try{	
@@ -53,6 +56,8 @@ import java.util.*;
 class Main {
     public static void main(String[] args) {
         Scanner scanner=new Scanner(System.in);
+
+        System.out.print("請輸入身份證號:");
         String id = scanner.next();
 		
         try{	
