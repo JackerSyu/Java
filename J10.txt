@@ -87,6 +87,52 @@ class Student {
     public Student(String stuNo, String stuName, char gender){
         this.stuNo=stuNo;
         this.stuName=stuName;
+        this.gender=gender;
+    }
+    
+    //建構元
+    public Student(){
+        this.stuNo=null;
+        this.stuName=null;
+        this.gender='\u0000';
+    } 
+    
+    //getters
+    public String getStuNo(){
+        return this.stuNo;
+    }
+    
+    public String getStuName(){
+        return this.stuName;
+    }
+    
+    public char getGender(){
+        return this.gender;
+    }    
+}
+
+class Main{
+    public static void main(String args[]){
+        Student s=new Student("10556001", "王小明", 'M');
+		
+        System.out.println(s.getStuNo()); 
+        System.out.println(s.getStuName());
+        System.out.println(s.getGender());
+    }
+}
+
+
+
+(5)
+class Student {
+    private String stuNo;
+    private String stuName;
+    private char gender;
+
+    //建構元
+    public Student(String stuNo, String stuName, char gender){
+        this.stuNo=stuNo;
+        this.stuName=stuName;
         if(gender!='M' && gender!='F'){
             this.gender='\u0000';
         }else{
@@ -110,7 +156,7 @@ class Main{
 }
 
 
-(5)
+(6)
 class Student {
     private String stuNo;
     private String stuName;
@@ -177,7 +223,7 @@ class Main{
 
 
 
-(6)
+(7)
 class Student {
     private String stuNo;
     private String stuName;
@@ -240,7 +286,7 @@ class Main{
 
 
 
-(7)
+(8)
 class Student {
     private String stuNo;
     private String stuName;
