@@ -67,7 +67,7 @@ class Main{
             //取出串列清單中的第i個物件		
             ElectricityBill c = (ElectricityBill)arrayList.get(i);                       
 			
-            //呼叫取出物件的print()方法			
+            //呼叫物件的方法, 印出物件資訊			
             System.out.println(c.getCusName());
             System.out.println(c.getIsBusiness());
             System.out.println(c.getIsSummer());
