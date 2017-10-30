@@ -9,14 +9,27 @@ class MyMath{
     public static double max(double a, double b, double c){
         return Math.max(Math.max(a, b), c);
     }
-    
-    
+
+    //回傳一個數值array的加總    
+    public static double total(double[] data){
+        double tot=0;
+        
+        for(int i=0; i<data.length; i++){
+            tot+=data[i];
+        }
+        
+        return tot;
+    }
 }
+
+
 
 class Main {
     public static void main(String[] args) {
         System.out.println(MyMath.max(10, 3, 9));
-        System.out.println(MyMath.max(10.5, 20.4, 15.3));
+        
+        double[] data={10, 18.5, 10.3, 16, 21, 17.4, 22, 12, 15, 12, 13.4, 16.8, 11.9};
+        System.out.println(MyMath.total(data));
     }
 }
 
