@@ -146,6 +146,12 @@ class Main{
             System.out.println("未過:" + c.notPass());				
             System.out.println("--------------------");
         }
-    }
+
+        //印出全班平均分數(某科目全班總分/全班人數)
+        System.out.println("全班國文平均:");
+        System.out.println("全班英文平均:");
+        System.out.println("全班數學平均:");
+        System.out.println("--------------------");	
+    }
 }
 -----------------------------------------------------------------------------------
