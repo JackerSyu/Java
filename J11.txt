@@ -1,16 +1,16 @@
-﻿=================================
+=================================
 J11  (靜態方法, static methods)
 =================================
 
 (1)
+//自行定義的類別
 class MyMath{
+    //回傳3個數中最大值的靜態方法
     public static double max(double a, double b, double c){
         return Math.max(Math.max(a, b), c);
     }
-	
-    public static int max(int a, int b, int c){
-        return Math.max(Math.max(a, b), c);
-    }
+    
+    
 }
 
 class Main {
