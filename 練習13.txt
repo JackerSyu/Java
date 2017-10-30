@@ -6,7 +6,7 @@
 (1)
 完成一個「學生功能」(StudentFunction)類別,
 有一個靜態方法:
-  public static String deptName(String stuNo)方法, 傳入學號, 回傳科系名稱
+  public static String department(String stuNo)方法, 傳入學號, 回傳科系名稱
   
 方法說明:  
   科系名稱由學號判斷:
@@ -29,18 +29,18 @@
 class Main{
     public static void main(String args[]){
         //印出以下學號的科系名稱	
-        System.out.println(StudentFunction.deptName("10551001")); 
-        System.out.println(StudentFunction.deptName("10552001")); 
-        System.out.println(StudentFunction.deptName("10553001")); 
-        System.out.println(StudentFunction.deptName("10554001")); 
-        System.out.println(StudentFunction.deptName("10555001")); 
-        System.out.println(StudentFunction.deptName("10556001")); 
-        System.out.println(StudentFunction.deptName("10557001")); 
-        System.out.println(StudentFunction.deptName("1055A001")); 
-        System.out.println(StudentFunction.deptName("1055B001")); 
-        System.out.println(StudentFunction.deptName("1055C001")); 
-        System.out.println(StudentFunction.deptName("105560012")); 
-        System.out.println(StudentFunction.deptName("1055D001")); 		
+        System.out.println(StudentFunction.department("10551001")); 
+        System.out.println(StudentFunction.department("10552001")); 
+        System.out.println(StudentFunction.department("10553001")); 
+        System.out.println(StudentFunction.department("10554001")); 
+        System.out.println(StudentFunction.department("10555001")); 
+        System.out.println(StudentFunction.department("10556001")); 
+        System.out.println(StudentFunction.department("10557001")); 
+        System.out.println(StudentFunction.department("1055A001")); 
+        System.out.println(StudentFunction.department("1055B001")); 
+        System.out.println(StudentFunction.department("1055C001")); 
+        System.out.println(StudentFunction.department("105560012")); 
+        System.out.println(StudentFunction.department("1055D001")); 		
     }
 }
   
