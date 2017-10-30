@@ -12,15 +12,23 @@ class Main {
 
 
 (2)
+//-----------------------------------------------------------------
+//將一些專案中多個程式會使用的變數寫成靜態變數, 提供其他程式共用.
+//-----------------------------------------------------------------
 class Common{
     public static String connection="140.131.114.10/myDB";
-    public static String user="test";
-    public static String password="testPW";
+    public static String user="110001";
+    public static String password="abc123";
 }
+
 
 
 class Main {
     public static void main(String[] args) {
+        //如果有多個程式使用連線位址及帳號/密碼連上資料庫,
+        //不需每個程式都寫一份連線內容, 只要取用靜態成員即可. 
+        //靜態成員在系統中只有一份, 以後要改連其他主機資料庫, 
+        //也只要改唯一一份的靜態成員.
         System.out.println(Common.connection);  
         System.out.println(Common.user); 
         System.out.println(Common.password); 
