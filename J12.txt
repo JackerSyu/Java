@@ -35,3 +35,28 @@ class Main {
     }
 }
 
+
+
+
+(3)
+//-----------------------------------------------------------------
+//被final修飾的變數一旦設定值之後, 就不可再更改.
+//-----------------------------------------------------------------
+class NTUB{
+    public static final String department[]={"會資系", "財稅系", "財金系", "商務系", "企管系", "資管系", "應外系"};
+}
+
+
+
+class Main {
+    public static void main(String[] args) {
+        String stuNo="10556001";
+        
+        try{
+            int d=stuNo.charAt(4) - '0' - 1;
+            System.out.println(NTUB.department[d]);
+        }catch(Exception e){
+            System.out.println("學號有誤");
+        }
+    }
+}
