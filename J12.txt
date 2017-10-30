@@ -1,5 +1,5 @@
 =================================
-J12
+J12 (靜能成員, static members)
 =================================
 
 (1)
@@ -9,6 +9,8 @@ class Main {
     }
 }
 
+
+
 (2)
 class Common{
     public static String connection="140.131.114.10/myDB";
@@ -16,7 +18,6 @@ class Common{
     public static String password="testPW";
 }
 
-//---------------------------
 
 class Main {
     public static void main(String[] args) {
@@ -26,36 +27,3 @@ class Main {
     }
 }
 
-(3)
-class Common{
-    public static int commission(char rank, int total){
-        int commission;
-
-        switch(rank){
-            case 'A':
-                commission=(int)(total*0.15);
-                break;
-            case 'B':
-                commission=(int)(total*0.12);
-                break;
-            case 'C':
-                commission=(int)(total*0.08);
-                break;
-            default:
-                commission=(int)(total*0.05);
-        }
-
-        return commission;
-    }
-}
-
-//---------------------------
-
-class Main {
-    public static void main(String[] args) {
-        System.out.println(Common.commission('A', 350000));  
-        System.out.println(Common.commission('B', 350000));  
-        System.out.println(Common.commission('C', 350000));  
-        System.out.println(Common.commission('D', 350000));  
-    }
-}
