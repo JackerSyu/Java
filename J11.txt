@@ -20,6 +20,9 @@ class Main {
     }
 }
 
+
+
+
 (2)
 class EmployeeFunction{
     //正職員工的薪水計算
@@ -45,6 +48,43 @@ class Main {
     public static void main(String[] args) {
         System.out.println(EmployeeEmployeeFunction.computeSalary('A', 20));
         System.out.println(EmployeeEmployeeFunction.computeSalary(180));
+    }
+}
+
+
+
+
+(3)
+class Common{
+    public static int commission(char rank, int total){
+        int commission;
+
+        switch(rank){
+            case 'A':
+                commission=(int)(total*0.15);
+                break;
+            case 'B':
+                commission=(int)(total*0.12);
+                break;
+            case 'C':
+                commission=(int)(total*0.08);
+                break;
+            default:
+                commission=(int)(total*0.05);
+        }
+
+        return commission;
+    }
+}
+
+//---------------------------
+
+class Main {
+    public static void main(String[] args) {
+        System.out.println(Common.commission('A', 350000));  
+        System.out.println(Common.commission('B', 350000));  
+        System.out.println(Common.commission('C', 350000));  
+        System.out.println(Common.commission('D', 350000));  
     }
 }
 
