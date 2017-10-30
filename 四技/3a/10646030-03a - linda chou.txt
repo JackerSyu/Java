@@ -1,0 +1,293 @@
+(1)請輸出以下:
+(a)文章共有多少字母, 標點符號及空白(全部總和)?
+class Main {
+	public static void main(String[] args) {
+        //小s的內容是一篇文章
+    	String s= "From the red fox to the fennec fox, foxes look adorable. Because of this, people are sometimes tempted to keep them as pets. However, those who have tried have struggled. Unlike dogs and cats, the different species of fox have not been domesticated. Domestication only happens over a long period of time through selective breeding. Cats and dogs were domesticated by humans thousands of years ago to be pets and companions. Sheep, goats and other animals were domesticated for food. But there may be more to it than that. People who have tried to simply tame individual foxes often speak of a stubborn wildness that is impossible to get rid of. This suggests that foxes harder to tame than other animals. However, one extraordinary experiment has found a way to domesticate foxes. This one study could help us understand how our ancestors domesticated other animals, and indeed what domestication is.";
+
+        System.out.println(s);	
+        System.out.println();
+		
+        //---------------------------
+        // 你的程式加在以下的區間中
+        //---------------------------
+				System.out.println(s.length());
+        //---------------------------
+    }
+}
+=======================================================================================
+*(1)程式沒有明顯問題.
+(2)程式執行結果有誤.
+(3)程式需要自行測試, 請注意以下的問題.
+   (3-1)程式格式有誤: 沒有階層式內縮, 內縮距離不足, 內縮距離不一致, 或無意義的空行.
+   (3-2)不容易閱讀: 具有特定意義的程式段落缺少分隔或註解, 或是同一行中擠進太多內容.                     
+   (3-3)變數命名不適合: 未給予具有特別意義的變數符合其意義的名稱.
+   (3-4)誤用常數: 程式中重覆出現特定數值, 或使用的常數與其他變數過度相依.
+   (3-5)過於複雜的設計: 很明顯有更簡單的設計方式可以取代現有設計.
+   (3-6)重覆或過於相似的程式段落: 程式中存在多個相同或相似段落, 明顯可整合但未整合.
+   (3-7)沒有意義的指令: 存在不影響程式執行結果, 但又會被執行的程式敘述.
+   *(3-8)程式撰寫其他建議.
+  => 請多注意內縮對齊.   
+=======================================================================================
+
+
+(b)內容都轉成大寫.
+class Main {
+	public static void main(String[] args) {
+        //小s的內容是一篇文章
+    	String s= "From the red fox to the fennec fox, foxes look adorable. Because of this, people are sometimes tempted to keep them as pets. However, those who have tried have struggled. Unlike dogs and cats, the different species of fox have not been domesticated. Domestication only happens over a long period of time through selective breeding. Cats and dogs were domesticated by humans thousands of years ago to be pets and companions. Sheep, goats and other animals were domesticated for food. But there may be more to it than that. People who have tried to simply tame individual foxes often speak of a stubborn wildness that is impossible to get rid of. This suggests that foxes harder to tame than other animals. However, one extraordinary experiment has found a way to domesticate foxes. This one study could help us understand how our ancestors domesticated other animals, and indeed what domestication is.";
+
+        System.out.println(s);	
+        System.out.println();
+		
+        //---------------------------
+        // 你的程式加在以下的區間中
+        //---------------------------
+				String i=s.toUpperCase();
+				System.out.println(i);
+        //---------------------------
+    }
+}
+=======================================================================================
+*(1)程式沒有明顯問題.
+(2)程式執行結果有誤.
+(3)程式需要自行測試, 請注意以下的問題.
+   (3-1)程式格式有誤: 沒有階層式內縮, 內縮距離不足, 內縮距離不一致, 或無意義的空行.
+   (3-2)不容易閱讀: 具有特定意義的程式段落缺少分隔或註解, 或是同一行中擠進太多內容.                     
+   (3-3)變數命名不適合: 未給予具有特別意義的變數符合其意義的名稱.
+   (3-4)誤用常數: 程式中重覆出現特定數值, 或使用的常數與其他變數過度相依.
+   (3-5)過於複雜的設計: 很明顯有更簡單的設計方式可以取代現有設計.
+   (3-6)重覆或過於相似的程式段落: 程式中存在多個相同或相似段落, 明顯可整合但未整合.
+   (3-7)沒有意義的指令: 存在不影響程式執行結果, 但又會被執行的程式敘述.
+   (3-8)程式撰寫其他建議.
+	String i=s.toUpperCase();
+	System.out.println(i);
+=>
+	System.out.println(s.toUpperCase());				
+	
+=>  請多注意內縮對齊.   
+=======================================================================================
+
+
+(c)內容都轉成小寫.
+class Main {
+	public static void main(String[] args) {
+        //小s的內容是一篇文章
+    	String s= "From the red fox to the fennec fox, foxes look adorable. Because of this, people are sometimes tempted to keep them as pets. However, those who have tried have struggled. Unlike dogs and cats, the different species of fox have not been domesticated. Domestication only happens over a long period of time through selective breeding. Cats and dogs were domesticated by humans thousands of years ago to be pets and companions. Sheep, goats and other animals were domesticated for food. But there may be more to it than that. People who have tried to simply tame individual foxes often speak of a stubborn wildness that is impossible to get rid of. This suggests that foxes harder to tame than other animals. However, one extraordinary experiment has found a way to domesticate foxes. This one study could help us understand how our ancestors domesticated other animals, and indeed what domestication is.";
+
+        System.out.println(s);	
+        System.out.println();
+		
+        //---------------------------
+        // 你的程式加在以下的區間中
+        //---------------------------
+				String i=s.toLowerCase();
+				System.out.println(i);
+        //---------------------------
+    }
+}
+=======================================================================================
+*(1)程式沒有明顯問題.
+(2)程式執行結果有誤.
+(3)程式需要自行測試, 請注意以下的問題.
+   (3-1)程式格式有誤: 沒有階層式內縮, 內縮距離不足, 內縮距離不一致, 或無意義的空行.
+   (3-2)不容易閱讀: 具有特定意義的程式段落缺少分隔或註解, 或是同一行中擠進太多內容.                     
+   (3-3)變數命名不適合: 未給予具有特別意義的變數符合其意義的名稱.
+   (3-4)誤用常數: 程式中重覆出現特定數值, 或使用的常數與其他變數過度相依.
+   (3-5)過於複雜的設計: 很明顯有更簡單的設計方式可以取代現有設計.
+   (3-6)重覆或過於相似的程式段落: 程式中存在多個相同或相似段落, 明顯可整合但未整合.
+   (3-7)沒有意義的指令: 存在不影響程式執行結果, 但又會被執行的程式敘述.
+   *(3-8)程式撰寫其他建議.
+	String i=s.toLowerCase();
+	System.out.println(i);   
+=>
+    System.out.println(s.toLowerCase());   
+
+=>  請多注意內縮對齊.  	
+=======================================================================================
+
+  
+(2)請輸出以下:
+(a)文章中共有多少個空白?
+class Main {
+	public static void main(String[] args) {
+        //小s的內容是一篇文章
+    	String s= "From the red fox to the fennec fox, foxes look adorable. Because of this, people are sometimes tempted to keep them as pets. However, those who have tried have struggled. Unlike dogs and cats, the different species of fox have not been domesticated. Domestication only happens over a long period of time through selective breeding. Cats and dogs were domesticated by humans thousands of years ago to be pets and companions. Sheep, goats and other animals were domesticated for food. But there may be more to it than that. People who have tried to simply tame individual foxes often speak of a stubborn wildness that is impossible to get rid of. This suggests that foxes harder to tame than other animals. However, one extraordinary experiment has found a way to domesticate foxes. This one study could help us understand how our ancestors domesticated other animals, and indeed what domestication is.";
+
+        System.out.println(s);	
+        System.out.println();
+		
+        //---------------------------
+        // 你的程式加在以下的區間中
+        //---------------------------
+        int i=s.length();
+        s=s.replaceAll(" ","");
+        System.out.println(s.length());
+        System.out.println(i-s.length());
+        //---------------------------
+    }
+}
+149 
+=======================================================================================
+*(1)程式沒有明顯問題.
+(2)程式執行結果有誤.
+(3)程式需要自行測試, 請注意以下的問題.
+   (3-1)程式格式有誤: 沒有階層式內縮, 內縮距離不足, 內縮距離不一致, 或無意義的空行.
+   (3-2)不容易閱讀: 具有特定意義的程式段落缺少分隔或註解, 或是同一行中擠進太多內容.                     
+   (3-3)變數命名不適合: 未給予具有特別意義的變數符合其意義的名稱.
+   (3-4)誤用常數: 程式中重覆出現特定數值, 或使用的常數與其他變數過度相依.
+   (3-5)過於複雜的設計: 很明顯有更簡單的設計方式可以取代現有設計.
+   (3-6)重覆或過於相似的程式段落: 程式中存在多個相同或相似段落, 明顯可整合但未整合.
+   (3-7)沒有意義的指令: 存在不影響程式執行結果, 但又會被執行的程式敘述.
+   (3-8)程式撰寫其他建議.
+=======================================================================================
+
+
+(b)文章中共有多少個標點符號?
+class Main {
+	public static void main(String[] args) {
+        //小s的內容是一篇文章
+    	String s= "From the red fox to the fennec fox, foxes look adorable. Because of this, people are sometimes tempted to keep them as pets. However, those who have tried have struggled. Unlike dogs and cats, the different species of fox have not been domesticated. Domestication only happens over a long period of time through selective breeding. Cats and dogs were domesticated by humans thousands of years ago to be pets and companions. Sheep, goats and other animals were domesticated for food. But there may be more to it than that. People who have tried to simply tame individual foxes often speak of a stubborn wildness that is impossible to get rid of. This suggests that foxes harder to tame than other animals. However, one extraordinary experiment has found a way to domesticate foxes. This one study could help us understand how our ancestors domesticated other animals, and indeed what domestication is.";
+
+        System.out.println(s);	
+        System.out.println();
+		
+        //---------------------------
+        // 你的程式加在以下的區間中
+        //---------------------------
+        int i=s.length();
+        s=s.replaceAll("[,.;!?]","");
+        System.out.println(s.length());
+        System.out.println(i-s.length());
+        //---------------------------
+    }
+}
+=======================================================================================
+*(1)程式沒有明顯問題.
+(2)程式執行結果有誤.
+(3)程式需要自行測試, 請注意以下的問題.
+   (3-1)程式格式有誤: 沒有階層式內縮, 內縮距離不足, 內縮距離不一致, 或無意義的空行.
+   (3-2)不容易閱讀: 具有特定意義的程式段落缺少分隔或註解, 或是同一行中擠進太多內容.                     
+   (3-3)變數命名不適合: 未給予具有特別意義的變數符合其意義的名稱.
+   (3-4)誤用常數: 程式中重覆出現特定數值, 或使用的常數與其他變數過度相依.
+   (3-5)過於複雜的設計: 很明顯有更簡單的設計方式可以取代現有設計.
+   (3-6)重覆或過於相似的程式段落: 程式中存在多個相同或相似段落, 明顯可整合但未整合.
+   (3-7)沒有意義的指令: 存在不影響程式執行結果, 但又會被執行的程式敘述.
+   (3-8)程式撰寫其他建議.
+=======================================================================================
+
+   
+(3)將文章反向輸出, 如 .si noitacitsemod .... eht morF
+class Main {
+	public static void main(String[] args) {
+        //小s的內容是一篇文章
+    	String s= "From the red fox to the fennec fox, foxes look adorable. Because of this, people are sometimes tempted to keep them as pets. However, those who have tried have struggled. Unlike dogs and cats, the different species of fox have not been domesticated. Domestication only happens over a long period of time through selective breeding. Cats and dogs were domesticated by humans thousands of years ago to be pets and companions. Sheep, goats and other animals were domesticated for food. But there may be more to it than that. People who have tried to simply tame individual foxes often speak of a stubborn wildness that is impossible to get rid of. This suggests that foxes harder to tame than other animals. However, one extraordinary experiment has found a way to domesticate foxes. This one study could help us understand how our ancestors domesticated other animals, and indeed what domestication is.";
+
+        System.out.println(s);	
+        System.out.println();
+		
+        //---------------------------
+        // 你的程式加在以下的區間中
+        //---------------------------
+        StringBuffer i= new StringBuffer(s);
+				System.out.println(i.reverse());
+        //---------------------------
+    }
+}
+19
+=======================================================================================
+*(1)程式沒有明顯問題.
+(2)程式執行結果有誤.
+(3)程式需要自行測試, 請注意以下的問題.
+   (3-1)程式格式有誤: 沒有階層式內縮, 內縮距離不足, 內縮距離不一致, 或無意義的空行.
+   (3-2)不容易閱讀: 具有特定意義的程式段落缺少分隔或註解, 或是同一行中擠進太多內容.                     
+   (3-3)變數命名不適合: 未給予具有特別意義的變數符合其意義的名稱.
+   (3-4)誤用常數: 程式中重覆出現特定數值, 或使用的常數與其他變數過度相依.
+   (3-5)過於複雜的設計: 很明顯有更簡單的設計方式可以取代現有設計.
+   (3-6)重覆或過於相似的程式段落: 程式中存在多個相同或相似段落, 明顯可整合但未整合.
+   (3-7)沒有意義的指令: 存在不影響程式執行結果, 但又會被執行的程式敘述.
+   *(3-8)程式撰寫其他建議.
+=>  請多注意內縮對齊.    
+=======================================================================================
+
+
+(4)文章中, 總共有多少個英文字? 如 "From the red fox" 共有4個英文字, 重覆出現請重覆累計.
+   (也許使用 String 的 replace()及split()方法)
+class Main {
+	public static void main(String[] args) {
+        //小s的內容是一篇文章
+    	String s= "From the red fox to the fennec fox, foxes look adorable. Because of this, people are sometimes tempted to keep them as pets. However, those who have tried have struggled. Unlike dogs and cats, the different species of fox have not been domesticated. Domestication only happens over a long period of time through selective breeding. Cats and dogs were domesticated by humans thousands of years ago to be pets and companions. Sheep, goats and other animals were domesticated for food. But there may be more to it than that. People who have tried to simply tame individual foxes often speak of a stubborn wildness that is impossible to get rid of. This suggests that foxes harder to tame than other animals. However, one extraordinary experiment has found a way to domesticate foxes. This one study could help us understand how our ancestors domesticated other animals, and indeed what domestication is.";
+
+        System.out.println(s);	
+        System.out.println();
+		
+        //---------------------------
+        // 你的程式加在以下的區間中
+        //---------------------------
+        s=s.replaceAll("[,.;!?]","");
+        s=s.replace(" ","");
+        System.out.println(s.length());
+        //---------------------------
+    }
+}
+732
+=======================================================================================
+(1)程式沒有明顯問題.
+*(2)程式執行結果有誤.
+=> 是計算"英文單字", 不是"英文字母"
+(3)程式需要自行測試, 請注意以下的問題.
+   (3-1)程式格式有誤: 沒有階層式內縮, 內縮距離不足, 內縮距離不一致, 或無意義的空行.
+   (3-2)不容易閱讀: 具有特定意義的程式段落缺少分隔或註解, 或是同一行中擠進太多內容.                     
+   (3-3)變數命名不適合: 未給予具有特別意義的變數符合其意義的名稱.
+   (3-4)誤用常數: 程式中重覆出現特定數值, 或使用的常數與其他變數過度相依.
+   (3-5)過於複雜的設計: 很明顯有更簡單的設計方式可以取代現有設計.
+   (3-6)重覆或過於相似的程式段落: 程式中存在多個相同或相似段落, 明顯可整合但未整合.
+   (3-7)沒有意義的指令: 存在不影響程式執行結果, 但又會被執行的程式敘述.
+   (3-8)程式撰寫其他建議.
+=======================================================================================
+
+
+(5)文章中, 總共有多少個英文字? 如 "From the red fox, this fox" 共有5個英文字, 重覆出現只累計1次.
+   (也許使用 java.util 中的 HashSet 物件)
+import java.util.*;
+class Main {
+	public static void main(String[] args) {
+        //小s的內容是一篇文章
+    	String s= "From the red fox to the fennec fox, foxes look adorable. Because of this, people are sometimes tempted to keep them as pets. However, those who have tried have struggled. Unlike dogs and cats, the different species of fox have not been domesticated. Domestication only happens over a long period of time through selective breeding. Cats and dogs were domesticated by humans thousands of years ago to be pets and companions. Sheep, goats and other animals were domesticated for food. But there may be more to it than that. People who have tried to simply tame individual foxes often speak of a stubborn wildness that is impossible to get rid of. This suggests that foxes harder to tame than other animals. However, one extraordinary experiment has found a way to domesticate foxes. This one study could help us understand how our ancestors domesticated other animals, and indeed what domestication is.";
+
+        System.out.println(s);	
+        System.out.println();
+		
+        //---------------------------
+        // 你的程式加在以下的區間中
+        //---------------------------
+        s=s.replaceAll("[,.;!?]","");
+        String k[]=s.split("\\s+");
+        //---------------------------
+        HashSet hs=new HashSet();
+        for(int i=0; i<k.length; i++){
+          hs.add(k[i]);
+        }
+        Iterator a=hs.iterator();
+        while(a.hasNext()){
+          System.out.println(a.next());
+        }
+        System.out.println();
+        System.out.println(hs.size());
+        //---------------------------
+    }
+}
+101
+=======================================================================================
+*(1)程式沒有明顯問題.
+(2)程式執行結果有誤.
+(3)程式需要自行測試, 請注意以下的問題.
+   (3-1)程式格式有誤: 沒有階層式內縮, 內縮距離不足, 內縮距離不一致, 或無意義的空行.
+   (3-2)不容易閱讀: 具有特定意義的程式段落缺少分隔或註解, 或是同一行中擠進太多內容.                     
+   (3-3)變數命名不適合: 未給予具有特別意義的變數符合其意義的名稱.
+   (3-4)誤用常數: 程式中重覆出現特定數值, 或使用的常數與其他變數過度相依.
+   (3-5)過於複雜的設計: 很明顯有更簡單的設計方式可以取代現有設計.
+   (3-6)重覆或過於相似的程式段落: 程式中存在多個相同或相似段落, 明顯可整合但未整合.
+   (3-7)沒有意義的指令: 存在不影響程式執行結果, 但又會被執行的程式敘述.
+   (3-8)程式撰寫其他建議.
+=======================================================================================
