@@ -37,6 +37,7 @@ class Main {
 
 
 (2)
+//員工相關的類別
 class EmployeeFunction{
     //正職員工的薪水計算
     public static int salary(char rank, int overHours){
@@ -55,20 +56,8 @@ class EmployeeFunction{
     public static int salary(int hours){
         return 125*hours;  //兼職薪水=每小時125元
     }
-}
-
-class Main {
-    public static void main(String[] args) {
-        System.out.println(EmployeeEmployeeFunction.computeSalary('A', 20));
-        System.out.println(EmployeeEmployeeFunction.computeSalary(180));
-    }
-}
-
-
-
-
-(3)
-class Common{
+    
+    //正職員工的傭金計算    
     public static int commission(char rank, int total){
         int commission;
 
@@ -87,17 +76,21 @@ class Common{
         }
 
         return commission;
-    }
+    }    
 }
 
-//---------------------------
+
 
 class Main {
     public static void main(String[] args) {
-        System.out.println(Common.commission('A', 350000));  
-        System.out.println(Common.commission('B', 350000));  
-        System.out.println(Common.commission('C', 350000));  
-        System.out.println(Common.commission('D', 350000));  
+        //薪水
+        System.out.println(EmployeeFunction.salary('A', 20));
+        System.out.println(EmployeeFunction.salary(180));
+        System.out.println("----------");
+        
+        //傭金
+        int commission=EmployeeFunction.commission('A', 180000);
+        System.out.println(commission);
+        System.out.println("----------");        
     }
 }
-
