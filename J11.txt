@@ -39,8 +39,10 @@ class Main {
 (2)
 //員工相關的類別
 class EmployeeFunction{
-    //正職員工的薪水計算
-    public static int salary(char rank, int overHours){
+    //正職員工的薪水計算
+    //傳入:職等, 加班時數. 
+    //傳回:薪水
+    public static int salary(char rank, int overHours){
         int baseSalary;
 		
         if(rank=='A'){
@@ -51,14 +53,20 @@ class EmployeeFunction{
 			
         return baseSalary + 150*overHours;	//正職月薪=底薪+每小時150元加班費
     }
-	
+
+
     //兼職員工的薪水計算
+    //傳入:上班時數. 
+    //傳回:薪水    
     public static int salary(int hours){
         return 125*hours;  //兼職薪水=每小時125元
     }
     
-    //正職員工的傭金計算    
-    public static int commission(char rank, int total){
+    
+    //正職員工的傭金計算 
+    //傳入:職等, 銷售總金額. 
+    //傳回:傭金
+    public static int commission(char rank, int total){
         int commission;
 
         switch(rank){
