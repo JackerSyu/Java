@@ -96,13 +96,16 @@ class EmployeeFunction{
 class Main {
     public static void main(String[] args) {
         //薪水
-        System.out.println(EmployeeFunction.salary('A', 20));
-        System.out.println(EmployeeFunction.salary(180));
+        System.out.println("薪水:" + EmployeeFunction.salary('A', 20));
+        System.out.println("薪水:" + EmployeeFunction.salary('B', 8));	
+        System.out.println("薪水:" + EmployeeFunction.salary(180));
         System.out.println("----------");
         
-        //傭金
-        int commission=EmployeeFunction.commission('A', 180000);
-        System.out.println(commission);
+        //傭金        
+        System.out.println("傭金:" + EmployeeFunction.commission('A', 180000));
+        System.out.println("傭金:" + EmployeeFunction.commission('B', 150000));	
+        System.out.println("傭金:" + EmployeeFunction.commission('C', 195000)); 
+        System.out.println("傭金:" + EmployeeFunction.commission('D', 215000)); 	
         System.out.println("----------");        
     }
 }
