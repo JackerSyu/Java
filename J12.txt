@@ -40,15 +40,12 @@ class Main {
 
 
 (3)
-
 class NTUB{
     //----------------------------------------------------------------    
     //靜態成員
     //----------------------------------------------------------------
-    public static final String school="國立臺北商業大學";
-    
-    public static final String department[]={"會資系", "財稅系", "財金系", "商務系", "企管系", "資管系", "應外系"};
-    
+    public static final String school="國立臺北商業大學";    
+    public static final String department[]={"會資系", "財稅系", "財金系", "商務系", "企管系", "資管系", "應外系"};    
     public static final String departmentFull[]={"會計資訊系", "財政稅務系", "財務金融系", "國際商務系", "企業管理系", "資訊管理系", "應用外語系"};
     //----------------------------------------------------------------
     
@@ -63,7 +60,8 @@ class NTUB{
             if(!(stuNo.length()==8 && stuNo.charAt(0)=='1') && !(stuNo.length()==9 && stuNo.charAt(0)=='N')){
                 throw new Exception();
             }
-            
+
+            //回傳科系名稱
             if(stuNo.length()==8){
                 return NTUB.department[stuNo.charAt(4) - '0' - 1];
             }else{
