@@ -4,18 +4,12 @@ J11  (靜態方法, static methods)
 
 (1)
 //自行定義的類別
-class MyMath{
-    //回傳3個數中最大值的靜態方法
-    //傳入:3個待比較數字. 
-    //傳回:最大者.
-    public static double max(double a, double b, double c){
-        return Math.max(Math.max(a, b), c);
-    }
-
-    //回傳一個數值array的加總
-    //傳入:1個數字陣列. 
-    //傳回:陣列中的數字總和.
-    public static double total(double[] data){
+class Statistics{
+    //(1)數值array的加總
+    //   傳入:1個數字陣列. 
+    //   傳回:陣列中的數字總和.
+    //---------------------------------------------- 
+    public static double total(double[] data){
         double tot=0;
         
         for(int i=0; i<data.length; i++){
@@ -24,16 +18,18 @@ class MyMath{
         
         return tot;
     }
+    //---------------------------------------------- 
 }
 
 
 
 class Main {
-    public static void main(String[] args) {
-        System.out.println(MyMath.max(10, 3, 9));
-        
-        double[] data={10, 18.5, 10.3, 16, 21, 17.4, 22, 12, 15, 12, 13.4, 16.8, 11.9};
-        System.out.println(MyMath.total(data));
+    public static void main(String[] args) {       
+        double[] data1={10, 18.5, 10.3, 16, 21, 17.4, 22, 12, 15, 12, 13.4, 16.8, 11.9};
+        double[] data2={10, 18.5, 10.3, 16, 21, 17.4, 22, 12, 15, 12, 13.4, 16.8, 11.9, 18};	
+	
+        System.out.println("總和:" + Statistics.total(data1));
+        System.out.println("總和:" + Statistics.total(data2));
     }
 }
 
@@ -43,10 +39,11 @@ class Main {
 (2)
 //員工相關的類別
 class EmployeeFunction{
-    //正職員工的薪水計算
-    //傳入:職等, 加班時數. 
-    //傳回:薪水
-    public static int salary(char rank, int overHours){
+    //(1)正職員工的薪水計算
+    //   傳入:職等, 加班時數. 
+    //   傳回:薪水
+    //---------------------------------------------------
+    public static int salary(char rank, int overHours){
         int baseSalary;
 		
         if(rank=='A'){
@@ -57,21 +54,25 @@ class EmployeeFunction{
 			
         return baseSalary + 150*overHours;	//正職月薪=底薪+每小時150元加班費
     }
+    //---------------------------------------------------
+    
 
-
-    //兼職員工的薪水計算
-    //傳入:上班時數. 
-    //傳回:薪水    
+    //(2)兼職員工的薪水計算
+    //   傳入:上班時數. 
+    //   傳回:薪水    
+    //---------------------------------------------------    
     public static int salary(int hours){
         return 125*hours;  //兼職薪水=每小時125元
     }
+    //---------------------------------------------------
     
     
-    //正職員工的傭金計算 
-    //傳入:職等, 銷售總金額. 
-    //傳回:傭金
-    public static int commission(char rank, int total){
-        int commission;
+    //(3)正職員工的傭金計算 
+    //   傳入:職等, 銷售總金額. 
+    //   傳回:傭金
+    //---------------------------------------------------    
+    public static int commission(char rank, int total){
+        int commission=0;
 
         switch(rank){
             case 'A':
@@ -88,7 +89,8 @@ class EmployeeFunction{
         }
 
         return commission;
-    }    
+    }
+    //---------------------------------------------------    
 }
 
 
