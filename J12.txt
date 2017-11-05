@@ -77,9 +77,7 @@ class NTUB{
 
 
 class Main {
-    public static void main(String[] args) {
-        String stuNo="10556001";
-        
+    public static void main(String[] args) {      
         System.out.println("科系:" + NTUB.departmentFromStuNo("10556001"));
         System.out.println("科系:" + NTUB.departmentFromStuNo("10553001"));
         System.out.println("科系:" + NTUB.departmentFromStuNo("N10545001"));
