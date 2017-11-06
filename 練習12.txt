@@ -85,9 +85,9 @@ public static String department(String stuNo)
 「5」:「企管系」
 「6」:「資管系」
 「7」:「應外系」
-「A」:「商設系」
-「B」:「商創系」
-「C」:「數媒系」	
+「A」:「商設系」 (僅日間部)
+「B」:「商創系」 (僅日間部)
+「C」:「數媒系」 (僅日間部)	
 
 錯誤學號傳回「null」	 				   
   
@@ -101,7 +101,7 @@ public static String department(String stuNo)
 pubic static String division(String stuNo)
 傳入學號, 傳回學制名稱
 其中, 
-學號第1碼是「1」, 學制名稱為「日間部」;「2」是「夜間部」.
+學號第1碼是「1」, 學制名稱為「日間部」;「N」是「夜間部」.
 
 修改Main程式, 加印每位同學的「學制名稱」.
 
