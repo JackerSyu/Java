@@ -21,8 +21,6 @@ class Promotion{
 }
 
 
-
-
 (1-2)
 //---------------------
 //產品類別
@@ -57,7 +55,6 @@ class Product{
     public int getPrice(){return this.price;}
     public int getSpecialPrice(){return this.specialPrice;}
 }
-
 
 
 (1-3)
@@ -100,7 +97,7 @@ class Main{
 完成「訂貨項目」(Order)類別, 如下:
 成員:
   (1)「產品名稱」    (name, String)
-  (2)「金額小計」    (subtotal, int)
+  (2)「小計金額」    (subtotal, int)
 方法:
   (1) 建構元(傳入2個參數)
   (2) 建構元(不傳參數)
@@ -146,14 +143,14 @@ class Main{
 
 其一:
 public static int shipping(int total)
-傳入訂貨金額, 傳回運費
+傳入訂貨金額, 傳回運費(無條件進位)
 超過50,000免運費; 
 20,000~50,000, 收3%運費;
 不足20,000, 收4.5%運費.
 
 其二:
 public static int tax(int total)
-傳入訂貨金額, 傳回稅金
+傳入訂貨金額, 傳回稅金(四捨五入)
 所有交易收6.5%稅金.
 
 
