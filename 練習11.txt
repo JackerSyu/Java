@@ -1,64 +1,96 @@
 =================================
-練習11
+練習11 (靜態方法, static methods)
 =================================
 
 
-(1)
-完成一個「產品」(Product)類別,
-有以下成員:
-  (a)「產品名稱」(name)
-  (b)「單價(元)」(price)
-  (c)「折扣(元)」(discount)   
-有以下方法:
-  (a) 建構元(傳入3個參數, 分別給3個成員)
-  (b) 建構元(無傳入參數)
-  (c) 三個setter方法, 分別設定三個成員值.
-  (d) 三個getter方法, 分別取出三個成員值.
-  
-測試:
-  建立二個產品類別的物件, 完成後分別取出及印出成員內容:
-  (a)「72色粉蠟筆」、「1200」、「250」
-  (b)「杯緣子」、「599」、「100」 
-  
-註: 第1個物件由建構元設定成員值, 第2個物件由setter設定成員值.
-  
-  
-(2)
-完成一個「經銷商」(Dealer)類別,
-有以下成員:
-  (a)「經銷商名稱」(name) 
-  (b)「負責人」(principal)
-  (c)「地址」(address)   
-  (d)「電話」(tel) 
-有以下方法:
-  (a) 建構元(傳入4個參數, 分別給4個成員)
-  (b) 建構元(無傳入參數)
-  (c) 四個setter方法, 分別設定四個成員值.  
-  (b) 四個getter方法, 分別取出四個成員值.
-  
-測試:
-  建立二個經銷商類別的物件, 完成後分別取出及印出成員內容:
-  (a)「天空文具股份有限公司」、「陳大天」、「台北市忠孝東路一段10號」、「0911-111-111」
-  (b)「七彩圖書有限公司」、「黃小惠」、「台北市北平東路二段32巷10號3樓」、「0922-222-222」
+1. 請完成以下(1-1)的promotionPrice()方法.
 
-註: 第1個物件由建構元設定成員值, 第2個物件由setter設定成員值.
-  
 
-(3)
-完成一個「促銷活動」(Promotion)類別,
-有以下成員:
-  (a)「名稱」(title)
-  (b)「期間」(period)
-  (c)「內容」(content) 
-有以下方法:
-  (a) 建構元(傳入3個參數, 分別給4個成員)
-  (b) 建構元(無傳入參數)
-  (c) 三個setter方法, 分別設定三個成員值.  
-  (b) 三個getter方法, 分別取出三個成員值.
-  
-測試:
-  建立二個促銷活動類別的物件, 完成後分別取出及印出成員內容:
-  (a)「新生文具準備週」、「2016-8-20至2016-9-1」、「憑錄取通知文具一律6折」
-  (b)「秋天讀好書」、「2016-10-1至2016-10-25」、「購書滿500元可享8折優惠」
-  
-註: 第1個物件由建構元設定成員值, 第2個物件由setter設定成員值.  
+(1-1)
+//---------------------
+//促銷類別
+//---------------------
+class Promotion{
+    public static final double discount=0.15;
+
+    //促銷價格, 傳入價格減去discount折讓比例後的價格.(無條件捨去)
+    //----------------------------------------------------------    
+    public static int promotionPrice(int price){
+        
+    }
+    //----------------------------------------------------------
+}
+
+
+
+
+(1-2)
+//---------------------
+//產品類別
+//---------------------
+class Product{
+    //成員
+    private String name;       //名稱
+    private int price;         //定價
+    private int specialPrice;  //特價
+    
+    //建構元
+    public Product(String name, int price, int specialPrice){
+        this.name=name;
+        this.price=price;
+        this.specialPrice=specialPrice;        
+    }
+    
+    //建構元
+    public Product(){
+        this.name=null;
+        this.price=0;
+        this.specialPrice=0;   
+    }
+    
+    //setters
+    public void setName(String name){this.name=name;}
+    public void setPrice(int price){this.price=price;}
+    public void setSpecialPrice(int specialPrice){this.specialPrice=specialPrice;}
+
+    //getters
+    public String getName(){return this.name;}
+    public int getPrice(){return this.price;}
+    public int getSpecialPrice(){return this.specialPrice;}
+}
+
+
+
+(1-3)
+//---------------------
+//主程式類別
+//---------------------
+import java.util.*;
+
+class Main{
+    public static void main(String args[]){
+        //建立一個可存放多個物件的串列清單
+        ArrayList arrayList = new ArrayList();
+        
+        //將多個「產品」物件加入串列清單中
+        arrayList.add(new Product("擦手紙", 85, 69));
+        arrayList.add(new Product("洗手乳", 180, 159));
+        arrayList.add(new Product("衛生紙", 210, 199));
+        arrayList.add(new Product("面紙", 140, 129));
+        arrayList.add(new Product("餐巾紙/廚房紙巾", 165, 149));        
+		
+        //逐一列印產品資料			
+        for(int i=0; i<arrayList.size(); i++){
+            //取出串列清單中的第i個物件		
+            Product c = (Product)arrayList.get(i);                       
+			
+            //呼叫物件的方法, 印出物件資訊			
+            System.out.println("名稱:" + c.getName());
+            System.out.println("定價:" + c.getPrice());
+            System.out.println("特價:" + c.getSpecialPrice());
+            System.out.println("促銷:" + Promotion.promotionPrice(c.getSpecialPrice()));            
+            System.out.println("--------------------");
+        }
+    }
+}
+
