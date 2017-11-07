@@ -151,7 +151,7 @@ public static int shipping(int total)
 其二:
 public static int tax(int total)
 傳入訂貨金額, 傳回稅金(四捨五入)
-所有交易收6.5%稅金.
+所有交易收 6.5% 稅金.
 
 
 上題的測試程式在印出所有訂貨項目後, 加印:
