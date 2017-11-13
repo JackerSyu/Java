@@ -80,7 +80,7 @@ class Main{
             System.out.println("性別:" + c.getGender());
             System.out.println("身高:" + c.getHeight());
             System.out.println("體重:" + c.getWeight());
-			System.out.println("bmi:"  + c.bmi());
+            System.out.println("bmi:"  + c.bmi());
             System.out.println("--------------------");
         }
     }
@@ -126,7 +126,7 @@ class Main{
             System.out.println("性別:" + c.getGender());
             System.out.println("身高:" + c.getHeight());
             System.out.println("體重:" + c.getWeight());
-			System.out.println("評估:" + c.evaluation());
+            System.out.println("評估:" + c.evaluation());
             System.out.println("--------------------");
         }
     }
