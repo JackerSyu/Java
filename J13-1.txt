@@ -28,6 +28,7 @@ public class Main {
 }
 
 
+
 (2-2)
 //宣告這個類別所屬的套件名稱
 package com.abc;
@@ -88,6 +89,7 @@ public class MyFrame extends JFrame {
         this.setVisible(true);        
     }
 }
+
 
 
 (3-2)
@@ -183,10 +185,7 @@ public class MyFrame extends JFrame {
 
 
 
-
-
 (4-2)
-
 import com.abc.*;
 
 public class Main {
@@ -314,8 +313,6 @@ public class MyFrame extends JFrame implements ActionListener{
         }            
     }
 }
-
-
 
 
 
@@ -665,8 +662,6 @@ public class MyFrame extends JFrame implements ActionListener, WindowListener{
 
 
 
-
-
 (7-2)
 package com.abc;
 
@@ -677,8 +672,6 @@ public class BMI {
         return bmi; 
     }
 }
-
-
 
 
 
