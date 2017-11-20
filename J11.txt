@@ -37,7 +37,7 @@ class Main {
 
 
 
-(2)
+(2-1)
 //員工相關的類別
 class EmployeeFunction{
     //---------------------------------------------- 
@@ -98,20 +98,59 @@ class EmployeeFunction{
 }
 
 
+(2-2)
+class Employee{
+    private char rank;
+    private int overHours;
+    private int salesAmt;
+    
+    //建構元
+    public Employee(char rank, int overHours, int salesAmt){
+        this.rank=rank;
+        this.overHours=overHours;
+        this.salesAmt=salesAmt;
+    }
 
+    //建構元    
+    public Employee(){}
+
+    //getters    
+    public char getRank(){return this.rank;}
+    public int getOverHours(){return this.overHours;}
+    public int getSalesAmt(){return this.salesAmt;}
+
+    //setters    
+    public void setRank(char rank){this.rank=rank;}
+    public void setOverHours(int overHours){this.overHours=overHours;}
+    public void setSalesAmt(int salesAmt){this.salesAmt=salesAmt;}
+}
+
+
+
+(2-3)
 class Main {
     public static void main(String[] args) {
-        //薪水
-        System.out.println("薪水:" + EmployeeFunction.salary('A', 20));
-        System.out.println("薪水:" + EmployeeFunction.salary('B', 8));	
-        System.out.println("薪水:" + EmployeeFunction.salary(180));
-        System.out.println("----------");
+        //生成一個ArrayList的物件, 稱為employees
+        ArrayList employees = new ArrayList();
+
+        //將幾個員工資料加入employees中        
+        employees.add(new Employee('A', 20, 180000));
+        employees.add(new Employee('A', 10, 250000));
+        employees.add(new Employee('A', 15, 120000));
+        employees.add(new Employee('B', 20, 180000));
+        employees.add(new Employee('B', 10, 250000));
+        employees.add(new Employee('B', 15, 120000));
         
-        //傭金        
-        System.out.println("傭金:" + EmployeeFunction.commission('A', 180000));
-        System.out.println("傭金:" + EmployeeFunction.commission('B', 150000));	
-        System.out.println("傭金:" + EmployeeFunction.commission('C', 195000)); 
-        System.out.println("傭金:" + EmployeeFunction.commission('D', 215000)); 	
-        System.out.println("----------");        
+        //逐一列印員工資料			
+        for(int i=0; i<employees.size(); i++){
+            //取出串列清單中的第i個物件		
+            Employee c = (Employee)employees.get(i);                       
+			
+            //呼叫物件的方法, 印出物件資訊			
+            System.out.println("薪水:" + EmployeeFunction.salary(c.getRank(), c.getOverHours()));
+            System.out.println("傭金:" + EmployeeFunction.commission(c.getRank(), c.getSalesAmt()));
+            
+            System.out.println("--------------------");
+        }    
     }
 }
