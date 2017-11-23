@@ -664,7 +664,7 @@ public class MyFrame extends JFrame implements ActionListener, WindowListener{
 
 
 (7-2)
-package com.abc.ui;
+package com.abc;
 
 public class BMI {
     public static double compute(double height, double weight){
@@ -677,7 +677,7 @@ public class BMI {
 
 
 (7-3)
-import com.abc.*;
+import com.abc.ui.*;
 
 public class Main {
     public static void main(String[] args) {
