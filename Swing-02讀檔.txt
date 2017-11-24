@@ -4,9 +4,9 @@
 -----------------------------------------
 <Form MyJFrame>
      |
-	 |__ Other Components
+     |__ Other Components
      |     |__ fileChooser[JFileChooser]
-	 |
+     |
      |__ <JFrame>
            |__ jMenuBar[JMenuBar]
            |        |__ openMenu[JMenu]
