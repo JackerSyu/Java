@@ -43,6 +43,11 @@ if (returnVal == JFileChooser.APPROVE_OPTION) {
 
         //將讀入資料轉成字串
         String str = new String(data, "UTF-8");
+ 
+        //刪除最後一個\n				
+        if(str.lastIndexOf("\n")>0) {
+            str=str.substring(0, str.lastIndexOf("\n"));
+        }   
                 
         //將讀入資料放到TextArea物件中
         textArea.append(str);
