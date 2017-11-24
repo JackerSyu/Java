@@ -1,7 +1,8 @@
 (1)
------------------------------------------
-在NetBeans的Navigator視窗中
------------------------------------------
+--------------------------------------------------
+在NetBeans的Navigator視窗中:
+有一個MenuBar, 其內有2個Menu內容, Open及Exit
+--------------------------------------------------
 <Form MyJFrame>
      |
      |__ Other Components
@@ -15,6 +16,9 @@
            |__ jScrollPane[JScrollPane]	 
                     |__ textArea[JTextArea]		   
 
+
+
+(1)一次讀整個檔, 加入TextArea中
 //---------------------------------------------
 //在MenuBar中的Open被點擊時	
 //--------------------------------------------- 
@@ -26,7 +30,7 @@ if (returnVal == JFileChooser.APPROVE_OPTION) {
     //設定檔案物件
     File file = fileChooser.getSelectedFile();
 	
-    //讀取檔案內容, 填內TextArea中
+	//讀取檔案內容, 填內TextArea中
     try {
         textArea.read( new FileReader( file.getAbsolutePath() ), null );
     } catch (IOException ex) {
@@ -38,3 +42,49 @@ if (returnVal == JFileChooser.APPROVE_OPTION) {
 //---------------------------------------------
 
 
+
+
+
+(2)逐筆讀取檔案內容, 加入TextArea中
+//---------------------------------------------
+//在MenuBar中的Open被點擊時	
+//--------------------------------------------- 
+//開啟FileChooser物件
+int returnVal = fileChooser.showOpenDialog(this);
+
+//如果有選擇檔案        
+if (returnVal == JFileChooser.APPROVE_OPTION) {
+    //設定檔案物件
+    File file = fileChooser.getSelectedFile();
+    
+    //逐筆讀取檔案內容	
+    try {
+        //產生一個BufferedReader物件, 用來逐筆讀取檔案	
+        BufferedReader b = new BufferedReader(new FileReader(file));
+
+        //存放當次讀入的單行內容		
+        String readLine = null; 
+
+        //存放將放到TextArea中的內容  		
+        String data="";
+                
+        //逐筆讀取檔案內容, 可進行某些處理				
+        while ((readLine = b.readLine()) != null) {
+            data+=readLine;
+            data+="\n";
+        }  
+                
+        //刪除最後一個\n				
+        if(data.lastIndexOf("\n")>0) {
+            data=data.substring(0, data.lastIndexOf("\n"));
+        }               
+
+        //將data內容放到TextArea物件中 		
+        textArea.append(data);              
+    } catch (IOException ex) {
+        System.out.println("讀取" + file.getAbsolutePath() + "發生錯誤!");
+    }
+} else {
+    System.out.println("取消檔案讀取");
+}         
+//---------------------------------------------
