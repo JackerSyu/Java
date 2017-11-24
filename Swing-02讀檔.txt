@@ -26,21 +26,33 @@
 int returnVal = fileChooser.showOpenDialog(this);
 
 //如果有選擇檔案
-if (returnVal == JFileChooser.APPROVE_OPTION) {
-    //設定檔案物件
-    File file = fileChooser.getSelectedFile();
-	
-	//讀取檔案內容, 填內TextArea中
+if (returnVal == JFileChooser.APPROVE_OPTION) {                        
     try {
-        textArea.read( new FileReader( file.getAbsolutePath() ), null );
+        //設定檔案物件
+        File file = fileChooser.getSelectedFile();                    
+               
+        //設定檔案輸入串流
+        FileInputStream fis = new FileInputStream(file);                
+                
+        //設定讀入資料的存放空間
+        byte data[] = new byte[(int) file.length()];
+                
+        //讀入資料
+        fis.read(data);
+        fis.close();
+
+        //將讀入資料轉成字串
+        String str = new String(data, "UTF-8");
+                
+        //將讀入資料放到TextArea物件中
+        textArea.append(str);
     } catch (IOException ex) {
-        System.out.println("讀取" + file.getAbsolutePath() + "發生錯誤!");
-    }
+        JOptionPane.showMessageDialog(this, "讀檔時發生錯誤!");
+    }            
 } else {    
     System.out.println("取消檔案讀取");
 }  
-//---------------------------------------------
-
+//--------------------------------------------- 
 
 
 
@@ -82,7 +94,7 @@ if (returnVal == JFileChooser.APPROVE_OPTION) {
         //將data內容放到TextArea物件中 		
         textArea.append(data);              
     } catch (IOException ex) {
-        System.out.println("讀取" + file.getAbsolutePath() + "發生錯誤!");
+        JOptionPane.showMessageDialog(this, "讀檔時發生錯誤!");
     }
 } else {
     System.out.println("取消檔案讀取");
