@@ -20,9 +20,9 @@ public void windowClosing(WindowEvent e){
 (2)
 <Application>
      |
-	 |__ <res>
+     |__ <res>
      |     |__ icon.jpg (建立一個資料夾, 存入圖示檔案)
-	 |
+     |
      |__ <src>
            |__ ...原始程式...	 
 		   
