@@ -46,3 +46,28 @@ myJFrame.setVisible(true);
 //---------------------------------------------
 
 
+
+
+(3)
+<Application>
+     |
+     |__ MyJFrame (內有一個public void setLabel(String)方法)
+           |     
+           |__ MyJPanel (內有一個按鈕, 按下後呼叫MyJFrame中的 setLabel()方法, 改變MyJFrame物件中的標籤值)
+      
+	 
+		   
+
+//---------------------------------------------
+//myJPanel中的方法	
+//--------------------------------------------- 
+private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                         
+    //取得myJPanel的父親物件
+    MyJFrame parent = (MyJFrame)SwingUtilities.getWindowAncestor(this);
+    
+    //呼叫父親的方法
+    parent.setLabel("Hello");
+}
+//---------------------------------------------
+
+
