@@ -54,9 +54,6 @@ myJFrame.setVisible(true);
      |__ MyJFrame (內有一個public void setLabel(String)方法)
            |     
            |__ MyJPanel (內有一個按鈕, 按下後呼叫MyJFrame中的 setLabel()方法, 改變MyJFrame物件中的標籤值)
-      
-	 
-		   
 
 //---------------------------------------------
 //myJPanel中的方法	
