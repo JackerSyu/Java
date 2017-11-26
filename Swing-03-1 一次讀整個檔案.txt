@@ -1,0 +1,55 @@
+--------------------------------------------------
+在NetBeans的Navigator視窗中:
+有一個MenuBar, 其內有2個Menu內容, Open及Exit
+--------------------------------------------------
+     |
+     |__ <JFrame>
+           |__ jMenuBar[JMenuBar]
+           |        |__ openMenu[JMenu]
+           |        |__ exitMenu[JMenu]					
+           |       	 
+           |__ jScrollPane[JScrollPane]	 
+                    |__ textArea[JTextArea]		   
+
+
+
+(1)一次讀入整個檔案, 不適合太大的檔案.
+//---------------------------------------------
+//在MenuBar中的Open被點擊時	
+//---------------------------------------------     
+//開啟FileChooser物件
+JFileChooser jFileChooser = new JFileChooser();
+jFileChooser.setDialogTitle("開啟檔案");
+    
+int returnVal = jFileChooser.showOpenDialog(this);
+
+//如果有選擇檔案        
+if (returnVal == JFileChooser.APPROVE_OPTION) {
+    try {
+        //設定檔案物件
+        File file = jFileChooser.getSelectedFile();                    
+
+        //設定檔案輸入串流
+        FileInputStream fis = new FileInputStream(file);                
+
+        //設定讀入資料的存放空間
+        byte data[] = new byte[(int) file.length()];
+
+        //讀入資料
+        fis.read(data);
+        fis.close();
+
+        //將讀入資料轉成字串
+        String str = new String(data, "UTF-8");
+
+        //將讀入資料放到TextArea物件中
+        jTextArea.setText(str);           
+    } catch (IOException ex) {
+        JOptionPane.showMessageDialog(this, "讀檔時發生錯誤!");
+    }
+} else {
+    System.out.println("取消檔案讀取");
+}           
+//---------------------------------------------   
+
+
