@@ -11,7 +11,7 @@
 --------------------------------------------------------
 (1) MyFrame.java
 --------------------------------------------------------
-package com.abc;
+package com.abc.ui;
 
 import javax.swing.*;
 import java.awt.*;
