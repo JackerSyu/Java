@@ -1,0 +1,65 @@
+--------------------------------------------------
+在NetBeans的Navigator視窗中:
+有一個MenuBar, 其內有2個Menu內容, Open及Exit
+--------------------------------------------------
+     |
+     |__ <JFrame>
+           |__ jMenuBar[JMenuBar]
+           |        |__ openMenu[JMenu]
+           |        |__ exitMenu[JMenu]					
+           |       	 
+           |__ jScrollPane[JScrollPane]	 
+                    |__ textArea[JTextArea]		   
+
+
+
+(1)一次讀入一行
+//---------------------------------------------
+//在MenuBar中的Open被點擊時	
+//---------------------------------------------     
+//開啟FileChooser物件
+JFileChooser jFileChooser = new JFileChooser();
+jFileChooser.setDialogTitle("開啟檔案");
+
+//是否第一行
+boolean firstLine=true;
+    
+//如果有選擇檔案  
+int returnVal = jFileChooser.showOpenDialog(this);
+if (returnVal == JFileChooser.APPROVE_OPTION) {
+    try {
+        //設定檔案物件
+        File file = jFileChooser.getSelectedFile();                    
+
+        //產生一個BufferedReader物件, 用來逐筆讀取檔案	
+        BufferedReader b = new BufferedReader(new FileReader(file));
+
+        //存放當次讀入的單行內容		
+        String data = null; 
+               
+        //逐筆讀取檔案內容			
+        while ((data = b.readLine()) != null) {
+            //---------------------
+            //可對data進行某些處理	
+            //---------------------        
+            
+            
+            
+            //如果不是第一行, 先跳行
+            if(firstLine){
+                firstLine=false;
+            }else{
+                jTextArea.append("\n");
+            }
+            
+            //將data內容放到TextArea物件中 	
+            jTextArea.append(data);
+        }             
+    } catch (IOException ex) {
+        JOptionPane.showMessageDialog(this, "讀檔時發生錯誤!");
+    }
+} else {
+    System.out.println("取消檔案讀取");
+}         
+//---------------------------------------------     
+
