@@ -9,7 +9,7 @@
            |        |__ exitMenu[JMenu]					
            |       	 
            |__ jScrollPane[JScrollPane]	 
-                    |__ textArea[JTextArea]		   
+                    |__ jTextArea[JTextArea]		   
 
 
 
