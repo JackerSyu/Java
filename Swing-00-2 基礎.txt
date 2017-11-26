@@ -1,12 +1,11 @@
 (共有2個檔, Main.java 及 MyFrame.java, 如下:)
 
-   |__ Main.java
-   |
+   |__ Main.java (主程式)
+   |
    |__ <com>
          |__ <abc>
                |__ <ui>
-                     |__ MyFrame.java
-
+                     |__ MyFrame.java (視窗程式)
 
 
 
