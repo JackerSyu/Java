@@ -23,7 +23,7 @@
 
 
 ---------------------------------------------------------
-測試的JSON檔案如下:
+測試的JSON檔案如下:(內容是JSON物件的陣列)
 ---------------------------------------------------------
 [{
      "name":"新竹市消防博物館",
@@ -93,11 +93,11 @@ if (returnVal == JFileChooser.APPROVE_OPTION) {
         //產生一個JSON解析物件	
         JSONParser parser = new JSONParser();
         
-        //將檔案內容解析成JSON物件
-        Object jsonObject  = parser.parse(new FileReader(file));        
+        //將檔案內容解析成JSON物件(可能是JSONArray或JSONObject)
+        Object obj = parser.parse(new FileReader(file));        
            
-        //將JSON物件轉成JSON陣列物件   
-        JSONArray items = (JSONArray) jsonObject;
+        //將obj轉成JSONArray陣列物件   
+        JSONArray items = (JSONArray)obj;
          
         //將JSON陣列物件逐個取出   
         for(Object item : items) {
