@@ -2,7 +2,7 @@
 在NetBeans的Navigator視窗中:
 有一個MenuBar, 其內有2個Menu內容, Open及Exit
 --------------------------------------------------
-<Form MyJFrame>
+     |
      |__ <JFrame>
            |__ jMenuBar[JMenuBar]
            |        |__ openMenu[JMenu]
