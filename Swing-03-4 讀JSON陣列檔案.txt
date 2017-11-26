@@ -83,7 +83,7 @@ import org.json.simple.parser.ParseException;
 //開啟FileChooser物件
 JFileChooser jFileChooser = new JFileChooser();
 jFileChooser.setDialogTitle("開啟檔案");
-  
+
 //如果有選擇檔案  
 int returnVal = jFileChooser.showOpenDialog(this);
 if (returnVal == JFileChooser.APPROVE_OPTION) {
@@ -93,23 +93,36 @@ if (returnVal == JFileChooser.APPROVE_OPTION) {
 
         //產生一個JSON解析物件	
         JSONParser parser = new JSONParser();
-        
+
         //將檔案內容解析成JSON物件(可能是JSONArray或JSONObject)
         Object obj = parser.parse(new FileReader(file));        
-           
+
         //將obj轉成JSONArray陣列物件   
         JSONArray items = (JSONArray)obj;
-         
+
+        //是否是第一行 
+        boolean firstLine=true;                
+                
         //將JSON陣列物件逐個取出   
         for(Object item : items) {
             //每個取出物件轉成JSON物件
             JSONObject jsonItem = (JSONObject) item;
-            
+
+            //=========================================
+            //進行某些讀入資料的處理
+            //=========================================                    
             //取出JSON物件中的name值
             String name = (String) jsonItem.get("name");
 
             //將name值放到TextArea物件中 	
+            if(firstLine){
+                firstLine=false;
+            }else{
+                jTextArea.append("\n");
+            }                    
+                    
             jTextArea.append(name);
+            //=========================================                        
         }          
     }catch(IOException ex) {
         JOptionPane.showMessageDialog(this, "讀檔時發生錯誤!");
