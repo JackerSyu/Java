@@ -1,0 +1,34 @@
+(1) 加入icon圖檔, 如下:
+
+<Application>
+     |
+     |__ <res>
+     |     |__ icon.jpg (建立一個資料夾, 存入圖示檔案)
+     |
+     |__ <src>
+           |__ ...原始程式...	 
+		   
+       
+       
+
+(2) 在主程式的main()方法中加入(請更改圖檔名稱):
+
+//---------------------------------------------
+//改變JFrame的圖示及背景顏色	
+//--------------------------------------------- 
+MyJFrame myJFrame = new MyJFrame();
+
+//改圖示
+try {
+    myJFrame.setIconImage(ImageIO.read(new File("res/圖檔名稱")));
+} catch (IOException exc) {
+    exc.printStackTrace();
+}
+
+//改背景顏色
+myJFrame.getContentPane().setBackground(new Color(170, 30, 30));
+
+myJFrame.setVisible(true);
+//---------------------------------------------
+
+
