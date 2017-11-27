@@ -1,0 +1,133 @@
+--------------------------------------------------
+在NetBeans的Navigator視窗中:
+JFrame中有一個JScrollPane物件, 內有一個JTable物件.
+--------------------------------------------------
+     |
+     |__ <JFrame>	 	 
+           |__ jScrollPane[JScrollPane]	 
+                    |__ jTextArea[JTextArea]		   
+
+
+----------------------------------------------------------------------------------------
+在Libraries中, 除了原有的JDK 1.8外,
+再加入 MySQL JDBC Driver - mysql-connector....jar (在Libraries上按右鍵, 選擇加入)
+----------------------------------------------------------------------------------------
+     |
+     |__ <Libraries>
+           |__ MySQL JDBC Driver - mysql-connector....jar
+           |__ JDK 1.8(Default)
+
+
+
+
+---------------------------------------------------------
+測試的資料庫在本網頁<db>中可下載
+---------------------------------------------------------
+student(資料庫)
+   |
+   |__ student(資料表)
+          |__ stuNo
+          |__ stuName
+          |__ gender
+          |__ ...          
+
+
+
+
+---------------------------------------------------------
+測試的資料庫在本網頁<db>中可下載
+---------------------------------------------------------
+     |
+     |__ Main.java  (主程式)
+     |
+     |__ <com.abc>
+     |      |__ DBservice.java  (負責取回資料庫資料的類別)
+     |
+     |__ <com.abc.ui>
+            |__ MyJFrame.java  (畫面)
+
+
+
+
+(1)增加到 MyJFrame 的建構元中.
+//--------------------------------------------- 
+//取得資料庫中資料
+//--------------------------------------------- 
+try{   	
+    //呼叫DBservice的靜態方法, 取得資料
+    ResultSet rs = DBservice.getStudents();
+            
+    //如果回傳空資料集        
+    if(!rs.next()){
+        JOptionPane.showMessageDialog(this, "無符合資料!");
+        return;
+    }
+ 	         
+    //將資料集中的內容一筆一筆取出       
+    do{
+        //取出某些欄位
+        String stuNo=rs.getString("stuNo");  
+        String stuName=rs.getString("stuName");
+        String gender=rs.getString("gender");               
+
+        //將取出的檔位產生一個陣列
+        Object[] row = { stuNo, stuName, gender};
+        
+        //取得表格中的資料物件
+        DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+      
+        //將產生的陣列加入表格的資料物件中
+        model.addRow(row);                
+    }while(rs.next());	
+}catch(SQLException e){
+    JOptionPane.showMessageDialog(this, "資料取得失敗!");
+}
+
+
+
+
+
+(2)DBservice.java, 負責取回資料庫資料
+
+package com.abc;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+
+//===============================================================
+//一個與資料庫有關的類別
+//===============================================================
+public class DBservice {
+    //-----------------------------------------------------
+    //取出並回傳學生資料
+    //-----------------------------------------------------    
+    public static ResultSet getStudents(){
+        try{   
+            //載入mysql驅動程式
+            Class.forName("com.mysql.jdbc.Driver");
+            
+            //產生一個連到資料庫的連結物件
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "mysql"); 
+            
+            //產生一個SQL命令
+            PreparedStatement stmt=con.prepareStatement("select * from student");
+            
+            //執行SQL命令, 取出資料
+            ResultSet rs=stmt.executeQuery();
+            
+            //將資料回傳給呼叫者
+            return rs;
+        }catch(ClassNotFoundException | SQLException e){  
+            //回傳空值
+            return null;
+        }
+    }
+    //-----------------------------------------------------    
+} 
+//===============================================================
+
+
