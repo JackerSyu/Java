@@ -1,0 +1,383 @@
+=========================================================================
+(1)用System.out.println()顯示資料
+=========================================================================
+
+  <專案>
+    |
+    |__ <default package>
+	|         |__ Main.java (主程式)
+	|
+	|__ <com.abc.ui>
+	          |__ MyJFrame.java (畫面)
+
+
+			  
+  [JFrame] (畫面)
+    |
+    |__ jMenuBar[JMenuBar]  (選單)
+	|         |__ openMenu[JMenu] (開檔)
+	|         |__ exitMenu[JMenu] (離開)	
+	|
+	|__ jScrollPane[JScrollPane] (有捲動功能的面板)
+	          |__ jTextArea[JTextArea]  (文字區塊)
+			  
+=========================================================================
+
+//---------------------------------------------
+//在MenuBar中的Open被點擊時	
+//---------------------------------------------     
+//開啟FileChooser物件
+JFileChooser jFileChooser = new JFileChooser();
+jFileChooser.setDialogTitle("開啟檔案");
+
+//如果有選擇檔案   
+int returnVal = jFileChooser.showOpenDialog(this);
+if (returnVal == JFileChooser.APPROVE_OPTION) {
+    //設定檔案物件
+    File file = jFileChooser.getSelectedFile();
+
+    //逐筆讀取檔案內容	
+    try {
+        //產生一個BufferedReader物件, 用來逐筆讀取檔案	
+        BufferedReader b = new BufferedReader(new FileReader(file));
+
+        //存放每次讀入的單行內容		
+        String readLine = null; 
+
+        //逐筆讀取檔案內容, 可進行某些處理	 
+        int cnt=0; 
+                
+        while ((readLine = b.readLine()) != null) {
+            //累加記錄筆數        
+            cnt++;
+
+            //切割以逗號分隔的項目(-1:全部項目均要分割; n表示只分割前n個)
+            String items[]=readLine.split(",", -1);
+
+            //分別取出學號, 性別, 國文, 英文, 數學, 社會, 自然, 作文成績.
+            String stuNo = items[0];
+            String gender = items[1];
+            int chi = Integer.parseInt(items[2]);
+            int eng = Integer.parseInt(items[3]);
+            int mat = Integer.parseInt(items[4]);
+            int soc = Integer.parseInt(items[5]);
+            int nat = Integer.parseInt(items[6]);
+            int lec = Integer.parseInt(items[7]);                    
+                   
+            //印出資訊
+            System.out.println("第" + cnt + "筆記錄. ");
+            System.out.println(stuNo);
+            System.out.println(gender);
+            System.out.println(chi);
+            System.out.println(eng);
+            System.out.println(mat);
+            System.out.println(soc);
+            System.out.println(nat);
+            System.out.println(lec);
+            System.out.println("----------------");
+        }  
+    } catch (IOException ex) {
+        JOptionPane.showMessageDialog(this, "讀檔時發生錯誤!");
+    }
+} else {
+    System.out.println("取消檔案讀取");
+}         
+//--------------------------------------------- 
+
+
+
+
+
+
+
+=========================================================================
+(2)用JTextArea顯示資料, (JTextArea物件名稱為jTextArea)
+=========================================================================
+
+  <專案>
+    |
+    |__ <default package>
+	|         |__ Main.java (主程式)
+	|
+	|__ <com.abc.ui>
+	          |__ MyJFrame.java (畫面)
+
+
+			  
+  [JFrame] (畫面)
+    |
+    |__ jMenuBar[JMenuBar]  (選單)
+	|         |__ openMenu[JMenu] (開檔)
+	|         |__ exitMenu[JMenu] (離開)	
+	|
+	|__ jScrollPane[JScrollPane] (有捲動功能的面板)
+	          |__ jTextArea[JTextArea]  (文字區塊)
+			  
+=========================================================================
+
+//---------------------------------------------
+//在MenuBar中的Open被點擊時	
+//---------------------------------------------     
+//開啟FileChooser物件
+JFileChooser jFileChooser = new JFileChooser();
+jFileChooser.setDialogTitle("開啟檔案");
+
+//如果有選擇檔案   
+int returnVal = jFileChooser.showOpenDialog(this);
+if (returnVal == JFileChooser.APPROVE_OPTION) {
+    //設定檔案物件
+    File file = jFileChooser.getSelectedFile();
+
+    //逐筆讀取檔案內容	
+    try {
+        //產生一個BufferedReader物件, 用來逐筆讀取檔案	
+        BufferedReader b = new BufferedReader(new FileReader(file));
+
+        //存放每次讀入的單行內容		
+        String readLine = null; 
+
+        //逐筆讀取檔案內容, 可進行某些處理	 
+        int cnt=0; 
+        
+        //是否第一行
+        boolean firstLine=true;                
+        
+        while ((readLine = b.readLine()) != null) {
+            //累加記錄筆數        
+            cnt++;
+
+            //切割以逗號分隔的項目(-1:全部項目均要分割; n表示只分割前n個)
+            String items[]=readLine.split(",", -1);
+
+            //分別取出學號, 性別, 國文, 英文, 數學, 社會, 自然, 作文成績.
+            String stuNo = items[0];
+            String gender = items[1];
+            int chi = Integer.parseInt(items[2]);
+            int eng = Integer.parseInt(items[3]);
+            int mat = Integer.parseInt(items[4]);
+            int soc = Integer.parseInt(items[5]);
+            int nat = Integer.parseInt(items[6]);
+            int lec = Integer.parseInt(items[7]);                    
+                   
+            //如果不是第一行, 先跳行
+            if(firstLine){
+                firstLine=false;
+            }else{
+                jTextArea.append("\n");
+            }
+            
+            //將資料放到JTextArea物件中 	
+            jTextArea.append(stuNo + " " + gender + " " + chi);
+        }  
+    } catch (IOException ex) {
+        JOptionPane.showMessageDialog(this, "讀檔時發生錯誤!");
+    }
+} else {
+    System.out.println("取消檔案讀取");
+}         
+//---------------------------------------------  
+
+
+
+
+
+
+
+=====================================================================================
+(3)用JTable顯示資料, (JTable物件名稱為jTable, 內容有學號, 性別, 國文, 英文. 共4項)
+=====================================================================================
+
+  <專案>
+    |
+    |__ <default package>
+	|         |__ Main.java (主程式)
+	|
+	|__ <com.abc.ui>
+	          |__ MyJFrame.java (畫面)
+
+
+			  
+  [JFrame] (畫面)
+    |
+    |__ jMenuBar[JMenuBar]  (選單)
+	|         |__ openMenu[JMenu] (開檔)
+	|         |__ exitMenu[JMenu] (離開)	
+	|
+	|__ jScrollPane[JScrollPane] (有捲動功能的面板)
+	          |__ jTable[JTable] (表格)
+			  
+=========================================================================
+//---------------------------------------------
+//在MenuBar中的Open被點擊時	
+//---------------------------------------------     
+//開啟FileChooser物件
+JFileChooser jFileChooser = new JFileChooser();
+jFileChooser.setDialogTitle("開啟檔案");
+
+//如果有選擇檔案   
+int returnVal = jFileChooser.showOpenDialog(this);
+if (returnVal == JFileChooser.APPROVE_OPTION) {
+    //設定檔案物件
+    File file = jFileChooser.getSelectedFile();
+
+    //逐筆讀取檔案內容	
+    try {
+        //產生一個BufferedReader物件, 用來逐筆讀取檔案	
+        BufferedReader b = new BufferedReader(new FileReader(file));
+
+        //存放每次讀入的單行內容		
+        String readLine = null; 
+
+        //逐筆讀取檔案內容, 可進行某些處理	 
+        int cnt=0; 
+        
+        //是否第一行
+        boolean firstLine=true;                
+        
+        while ((readLine = b.readLine()) != null) {
+            //累加記錄筆數        
+            cnt++;
+
+            //切割以逗號分隔的項目(-1:全部項目均要分割; n表示只分割前n個)
+            String items[]=readLine.split(",", -1);
+
+            //分別取出學號, 性別, 國文, 英文, 數學, 社會, 自然, 作文成績.
+            String stuNo = items[0];
+            String gender = items[1];
+            int chi = Integer.parseInt(items[2]);
+            int eng = Integer.parseInt(items[3]);
+            int mat = Integer.parseInt(items[4]);
+            int soc = Integer.parseInt(items[5]);
+            int nat = Integer.parseInt(items[6]);
+            int lec = Integer.parseInt(items[7]);                    
+                   
+            //將取出的檔位產生一個陣列
+            Object[] row = { stuNo, gender, chi, eng};
+        
+            //取得表格中的資料物件
+            DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+      
+            //將產生的陣列加入表格的資料物件中
+            model.addRow(row);
+        }  
+    } catch (IOException ex) {
+        JOptionPane.showMessageDialog(this, "讀檔時發生錯誤!");
+    }
+} else {
+    System.out.println("取消檔案讀取");
+}         
+//---------------------------------------------   
+
+
+
+
+
+
+=====================================================================================
+(4)用JTable顯示資料, (JTable物件名稱為jTable, 內容有學號, 性別, 總分. 共3項)
+=====================================================================================
+
+  <專案>
+    |
+    |__ <default package>
+	|         |__ Main.java (主程式)
+	|
+	|__ <com.abc>
+	          |__ Score.java (計算成績, 被重覆使用的邏輯)	
+	|
+	|__ <com.abc.ui>
+	          |__ MyJFrame.java (畫面)
+
+
+			  
+  [JFrame] (畫面)
+    |
+    |__ jMenuBar[JMenuBar]  (選單)
+	|         |__ openMenu[JMenu] (開檔)
+	|         |__ exitMenu[JMenu] (離開)	
+	|
+	|__ jScrollPane[JScrollPane] (有捲動功能的面板)
+	          |__ jTable[JTable] (表格)
+			  
+=========================================================================
+
+(4-1) Score.java
+
+package com.abc;
+
+public class Score {
+    //----------------------------------------    
+    //計算總分的靜態方法
+    //----------------------------------------
+    public static double total(int chi, int eng, int mat, int soc, int nat, int lec){
+        return chi*2.5 + eng*1.5 + mat*1 + soc*0.5 + nat*0.5 + lec*3;
+    }    
+    //----------------------------------------    
+}
+
+
+
+(4-2)
+//---------------------------------------------
+//在MenuBar中的Open被點擊時	
+//---------------------------------------------     
+//開啟FileChooser物件
+JFileChooser jFileChooser = new JFileChooser();
+jFileChooser.setDialogTitle("開啟檔案");
+
+//如果有選擇檔案   
+int returnVal = jFileChooser.showOpenDialog(this);
+if (returnVal == JFileChooser.APPROVE_OPTION) {
+    //設定檔案物件
+    File file = jFileChooser.getSelectedFile();
+
+    //逐筆讀取檔案內容	
+    try {
+        //產生一個BufferedReader物件, 用來逐筆讀取檔案	
+        BufferedReader b = new BufferedReader(new FileReader(file));
+
+        //存放每次讀入的單行內容		
+        String readLine = null; 
+
+        //逐筆讀取檔案內容, 可進行某些處理	 
+        int cnt=0; 
+        
+        //是否第一行
+        boolean firstLine=true;                
+        
+        while ((readLine = b.readLine()) != null) {
+            //累加記錄筆數        
+            cnt++;
+
+            //切割以逗號分隔的項目(-1:全部項目均要分割; n表示只分割前n個)
+            String items[]=readLine.split(",", -1);
+
+            //分別取出學號, 性別, 國文, 英文, 數學, 社會, 自然, 作文成績.
+            String stuNo = items[0];
+            String gender = items[1];
+            int chi = Integer.parseInt(items[2]);
+            int eng = Integer.parseInt(items[3]);
+            int mat = Integer.parseInt(items[4]);
+            int soc = Integer.parseInt(items[5]);
+            int nat = Integer.parseInt(items[6]);
+            int lec = Integer.parseInt(items[7]);   
+			
+            //呼叫Score類別的靜態方法total(), 計算總分
+            double total = Score.total(chi, eng, mat, soc, nat, lec);                 
+			
+            //將取出的檔位產生一個陣列
+            Object[] row = { stuNo, gender, total};
+        
+            //取得表格中的資料物件
+            DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+      
+            //將產生的陣列加入表格的資料物件中
+            model.addRow(row);
+        }  
+    } catch (IOException ex) {
+        JOptionPane.showMessageDialog(this, "讀檔時發生錯誤!");
+    }
+} else {
+    System.out.println("取消檔案讀取");
+}         
+//---------------------------------------------   
