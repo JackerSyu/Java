@@ -198,7 +198,7 @@ public class Main{
 有一個傳入參數, IN, lowBound, int
 
 BEGIN
-	    /* 刪除暫存檔 */
+    /* 刪除暫存檔 */
     DROP TEMPORARY TABLE IF EXISTS tempTable;
 
     /* 建立暫存檔 */
