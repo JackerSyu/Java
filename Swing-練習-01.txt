@@ -283,7 +283,7 @@ if (returnVal == JFileChooser.APPROVE_OPTION) {
 	|         |__ Main.java (主程式)
 	|
 	|__ <com.abc>
-	          |__ Score.java (計算成績, 被重覆使用的邏輯)	
+        |         |__ Score.java (計算成績, 被重覆使用的邏輯)	
 	|
 	|__ <com.abc.ui>
 	          |__ MyJFrame.java (畫面)
