@@ -4,12 +4,12 @@
 
   <專案>
     |
-    |__ <default package>
-	  |         |__ Main.java (主程式)
-	  |
-	  |__ <com.abc.ui>
-              |__ MyJFrame.java (畫面)
-              |__ MyJPanel.java (放每一筆記錄)
+    |__ <default package>
+    |         |__ Main.java (主程式)
+    |
+    |__ <com.abc.ui>
+              |__ MyJFrame.java (畫面, 尺寸:500*600)
+              |__ MyJPanel.java (單筆資料面版, 放每一筆記錄)
 
 
 
@@ -21,7 +21,7 @@
     |         |__ exitMenu[JMenu] (離開)	
     |
     |__ jScrollPane[JScrollPane] (有捲動功能的面板)
-	          |__ jPanel[JPanel]   (子面版, 用來放各個MyJPanel物件)
+              |__ jPanel[JPanel]   (子面版, 用來放多個單筆資料面版物件)
             
             
            
