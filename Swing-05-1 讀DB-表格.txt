@@ -7,13 +7,13 @@
      |__ <Source Packages>
      |         |  
      |         |__ <default package>
-	|         |         |__ Main.java (主程式)
+     |         |         |__ Main.java (主程式)
      |         |
      |         |__ <com.abc>
      |         |         |__ DBservice.java (負責取回資料庫內容)
      |         |
-	|         |__ <com.abc.ui>
-	|                   |__ MyJFrame.java (畫面)
+     |         |__ <com.abc.ui>
+     |                   |__ MyJFrame.java (畫面)
      |
      |
      |__ <Libraries>
