@@ -17,7 +17,7 @@
      |
      |
      |__ <Libraries>
-           |__ MySQL JDBC Driver - mysql-connector....jar  (在Libraries上按右鍵, 選擇此資料庫驅動程式, 加入其中)
+           |__ MySQL JDBC Driver - mysql-connector....jar  (在Libraries上按右鍵, 選擇此jar檔, 加入其中)
            |__ JDK 1.8(Default)  (原有)
 
 	
