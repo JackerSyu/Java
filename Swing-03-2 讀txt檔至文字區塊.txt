@@ -1,21 +1,30 @@
---------------------------------------------------
-在NetBeans的Navigator視窗中:
-有一個MenuBar, 其內有2個Menu內容, Open及Exit
---------------------------------------------------
-     |
-     |__ <JFrame>
-           |__ jMenuBar[JMenuBar]
-           |        |__ openMenu[JMenu]
-           |        |__ exitMenu[JMenu]					
-           |       	 
-           |__ jScrollPane[JScrollPane]	 
-                    |__ jTextArea[JTextArea]		   
+=========================================================================
+逐行讀入本文檔, 每行資料不分割, 顯示在JTextArea物件中.
+=========================================================================
+
+  <專案>
+    |
+    |__ <default package>
+	|         |__ Main.java (主程式)
+	|
+	|__ <com.abc.ui>
+	          |__ MyJFrame.java (畫面)
 
 
+			  
+  [JFrame] (畫面)
+    |
+    |__ jMenuBar[JMenuBar]  (選單)
+	|         |__ openMenu[JMenu] (開檔)
+	|         |__ exitMenu[JMenu] (離開)	
+	|
+	|__ jScrollPane[JScrollPane] (有捲動功能的面板)
+	          |__ jTextArea[JTextArea]  (文字區塊)
+			  
+=========================================================================
 
-(1)一次讀入一行
 //---------------------------------------------
-//在MenuBar中的Open被點擊時	
+//MenuBar中的[開檔]選項被點擊時	
 //---------------------------------------------     
 //開啟FileChooser物件
 JFileChooser jFileChooser = new JFileChooser();
