@@ -1,22 +1,37 @@
---------------------------------------------------
-在NetBeans的Navigator視窗中:
-JFrame中有一個JScrollPane物件, 內有一個JTable物件.
---------------------------------------------------
+=========================================================================
+讀入JSONObject格式資料, 解析內容後, 逐個加入JTextArea物件中.
+=========================================================================
+
+   <專案>
      |
-     |__ <JFrame>	 	 
-           |__ jScrollPane[JScrollPane]	 
-                    |__ jTextArea[JTextArea]		   
-
-
-----------------------------------------------------------------------------------------
-在Libraries中, 除了原有的JDK 1.8外,
-再加入 MySQL JDBC Driver - mysql-connector....jar (在Libraries上按右鍵, 選擇加入)
-----------------------------------------------------------------------------------------
+     |__ <Source Packages>
+     |         |  
+     |         |__ <default package>
+	|         |         |__ Main.java (主程式)
+     |         |
+     |         |__ <com.abc>
+     |         |         |__ DBservice.java (負責取回資料庫內容)
+     |         |
+	|         |__ <com.abc.ui>
+	|                   |__ MyJFrame.java (畫面)
+     |
      |
      |__ <Libraries>
-           |__ MySQL JDBC Driver - mysql-connector....jar
-           |__ JDK 1.8(Default)
+           |__ MySQL JDBC Driver - mysql-connector....jar  (在Libraries上按右鍵, 選擇此資料庫驅動程式, 加入其中)
+           |__ JDK 1.8(Default)  (原有)
 
+	
+     
+  [JFrame] (畫面)
+    |
+    |__ jMenuBar[JMenuBar]  (選單)
+    |          |__ openMenu[JMenu] (開檔)
+    |          |__ exitMenu[JMenu] (離開)	
+    |
+    |__ jScrollPane[JScrollPane] (有捲動功能的面板)
+               |__ jTable[JTable]  (表格)
+			  
+========================================================================= 
 
 
 
@@ -31,25 +46,58 @@ student(資料庫)
           |__ gender
           |__ ...          
 
-
-
-
 ---------------------------------------------------------
-測試的資料庫在本網頁<db>中可下載
----------------------------------------------------------
-     |
-     |__ Main.java  (主程式)
-     |
-     |__ <com.abc>
-     |      |__ DBservice.java  (負責取回資料庫資料的類別)
-     |
-     |__ <com.abc.ui>
-            |__ MyJFrame.java  (畫面)
 
 
 
 
-(1)增加到 MyJFrame 的建構元中.
+//===============================================================
+(1)DBservice.java, 負責取回資料庫資料
+//===============================================================
+package com.abc;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class DBservice {
+    //-----------------------------------------------------
+    //取出並回傳學生資料
+    //-----------------------------------------------------    
+    public static ResultSet getStudents(){
+        try{   
+            //載入mysql驅動程式
+            Class.forName("com.mysql.jdbc.Driver");
+            
+            //產生一個連到資料庫的連結物件
+            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "mysql"); 
+            
+            //產生一個SQL命令
+            PreparedStatement stmt=con.prepareStatement("select * from student");
+            
+            //執行SQL命令, 取出資料
+            ResultSet rs=stmt.executeQuery();
+            
+            //將資料回傳給呼叫者
+            return rs;
+        }catch(ClassNotFoundException | SQLException e){  
+            //回傳空值
+            return null;
+        }
+    }
+    //-----------------------------------------------------    
+} 
+
+
+
+
+
+========================================================================= 
+(2)在MenuBar中的Open被點擊時	
+========================================================================= 
+
 //--------------------------------------------- 
 //取得資料庫中資料
 //--------------------------------------------- 
@@ -82,52 +130,4 @@ try{
 }catch(SQLException e){
     JOptionPane.showMessageDialog(this, "資料取得失敗!");
 }
-
-
-
-
-
-(2)DBservice.java, 負責取回資料庫資料
-
-package com.abc;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-
-//===============================================================
-//一個與資料庫有關的類別
-//===============================================================
-public class DBservice {
-    //-----------------------------------------------------
-    //取出並回傳學生資料
-    //-----------------------------------------------------    
-    public static ResultSet getStudents(){
-        try{   
-            //載入mysql驅動程式
-            Class.forName("com.mysql.jdbc.Driver");
-            
-            //產生一個連到資料庫的連結物件
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "mysql"); 
-            
-            //產生一個SQL命令
-            PreparedStatement stmt=con.prepareStatement("select * from student");
-            
-            //執行SQL命令, 取出資料
-            ResultSet rs=stmt.executeQuery();
-            
-            //將資料回傳給呼叫者
-            return rs;
-        }catch(ClassNotFoundException | SQLException e){  
-            //回傳空值
-            return null;
-        }
-    }
-    //-----------------------------------------------------    
-} 
-//===============================================================
-
 
