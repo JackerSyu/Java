@@ -1,22 +1,32 @@
---------------------------------------------------
-在NetBeans的Navigator視窗中:
-有一個MenuBar, 其內有2個Menu內容, Write及Exit
---------------------------------------------------
-     |
-     |__ <JFrame>
-           |__ jMenuBar[JMenuBar]
-           |        |__ writeMenu[JMenu]
-           |        |__ exitMenu[JMenu]					
-           |       	 
-           |__ jScrollPane[JScrollPane]	 
-                    |__ jTextArea[JTextArea]		   
+=========================================================================
+將JTextArea物件內容逐行寫到輸出檔.
+=========================================================================
+
+  <專案>
+    |
+    |__ <default package>
+|         |__ Main.java (主程式)
+	|
+	|__ <com.abc.ui>
+	          |__ MyJFrame.java (畫面)
+
+
+			  
+  [JFrame] (畫面)
+    |
+    |__ jMenuBar[JMenuBar]  (選單)
+	|         |__ writeMenu[JMenu] (寫檔)
+	|         |__ exitMenu[JMenu]  (離開)	
+	|
+	|__ jScrollPane[JScrollPane] (有捲動功能的面板)
+	          |__ jTextArea[JTextArea]  (文字區塊)	   
 
 
 
 
-(1)將jTextArea內容寫到檔案中.
+
 //---------------------------------------------
-//在MenuBar中的Write被點擊時	
+//MenuBar中的[寫檔]被點擊時	
 //--------------------------------------------- 
 //開啟FileChooser物件
 JFileChooser fileChooser = new JFileChooser();
