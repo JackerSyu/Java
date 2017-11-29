@@ -1,5 +1,5 @@
 =========================================================================
-將JTextArea物件內容逐行寫到輸出檔.
+將JTable物件內容逐行寫到輸出檔.
 =========================================================================
 
   <專案>
@@ -14,12 +14,12 @@
 			  
   [JFrame] (畫面)
      |
-    |__ jMenuBar[JMenuBar]  (選單)
-	|         |__ writeMenu[JMenu] (寫檔)
-	|         |__ exitMenu[JMenu]  (離開)	
-	|
-	|__ jScrollPane[JScrollPane] (有捲動功能的面板)
-	          |__ jTextArea[JTextArea]  (文字區塊)	   
+     |__ jMenuBar[JMenuBar]  
+     |         |__ writeMenu[JMenu] (寫檔)
+     |         |__ exitMenu[JMenu]  (離開)	
+     |
+     |__ jScrollPane[JScrollPane] 
+               |__ jTable[JTable]   (表格, 內容有學號, 性別, 國文, 英文)	   
 
 
 
@@ -60,8 +60,8 @@ if (userSelection == JFileChooser.APPROVE_OPTION) {
             String chi = model.getValueAt(i, 2).toString();
             String eng = model.getValueAt(i, 3).toString();
             
-            //產生一行輸出資料
-            String line = stuNo + "," + gender + "," + chi + "," + eng;
+            //產生一行輸出資料(CSV格式, 用逗號隔開各項目)
+            String line = stuNo + "," + gender + "," + chi + "," + eng;
             
             //除了第一行, 其他資料輸出前先跳行
             if(firstLine){
