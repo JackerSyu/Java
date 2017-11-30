@@ -10,8 +10,8 @@
     |         |__ Main.java (主程式)
     |
     |__ <com.abc>
-    |         |__ Score.java (計算成績, 重覆使用的邏輯)	
-	  |
+    |         |__ Score.java (計算成績, 重覆使用的邏輯)	
+    |
     |__ <com.abc.ui>
               |__ MyJFrame.java (畫面)
 
@@ -19,8 +19,8 @@
 			  
   [JFrame] (畫面)
     |
-    |__ jMenuBar[JMenuBar]  (選單)
- 	  |         |__ openMenu[JMenu] (開檔)
+    |__ jMenuBar[JMenuBar]  (選單)
+    |         |__ openMenu[JMenu] (開檔)
     |         |__ exitMenu[JMenu] (離開)	
     |
     |__ jScrollPane[JScrollPane] (有捲動功能的面板)
