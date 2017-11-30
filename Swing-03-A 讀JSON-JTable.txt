@@ -1,5 +1,13 @@
 =====================================================================================
 讀入JSON檔, 用JTable顯示資料, (JTable欄位有名稱, 型態, 緯度, 經度. 共4項)
+在JSON檔中, 資料內容是以String表示, 如下:
+[{
+     "name":"新竹市消防博物館",
+     "type":"主題館與綜合類",
+     "address":"中山路4號",
+     "longitude":"120.968076",
+     "latitude":"24.806486",
+... 
 =====================================================================================
 
   <專案>
@@ -119,14 +127,22 @@ if (returnVal == JFileChooser.APPROVE_OPTION) {
             //每個取出物件轉成JSON物件
             JSONObject jsonItem = (JSONObject) item;
 
-            //================================================
-            //取出JSON物件中的資料(名稱, 型態, 緯度, 經度)
-            //================================================                    
-            String name = (String) jsonItem.get("name");
+            //====================================================================
+	    // 取出JSON物件中的資料(名稱, 型態, 緯度, 經度)
+            // 名稱, 型態, 緯度, 經度在JSON檔中均以字串表示, 因此轉成String, 如下:
+	    // String lat = (String) jsonItem.get("latitude");
+            //
+	    // 如以整數表示, 轉成:
+	    // Integer lat = (Integer) jsonItem.get("lat");
+	    //
+	    // 如以浮點數表示, 轉成:
+	    // Double lat = (Double) jsonItem.get("latitude");	    
+            //====================================================================                    
+            String name = (String) jsonItem.get("name");
             String type = (String) jsonItem.get("type");
-            String lat = (String) jsonItem.get("latitude");
-            String lng = (String) jsonItem.get("longitude");
-            //================================================ 
+            String lat  = (String) jsonItem.get("latitude");
+            String lng  = (String) jsonItem.get("longitude");
+            //====================================================================
             
             //將取出的檔位產生一個陣列
             Object[] row = {name, type, lat, lng};        
