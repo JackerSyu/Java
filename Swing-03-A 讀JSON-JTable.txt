@@ -5,11 +5,11 @@
   <專案>
     |
     |__ <Source Packages>
-    |         |__ <default package>
-	  |         |        |__ Main.java (主程式)
-	  |         |
-	  |         |__ <com.abc.ui>
-	  |                  |__ MyJFrame.java (畫面)
+    |         |__ <default package>
+    |         |        |__ Main.java (主程式)
+    |         |
+    |         |__ <com.abc.ui>
+    |                  |__ MyJFrame.java (畫面)
     |
     |__ <Libraries>
               |__ json-simple-1.1.jar (增加. 先在本頁面<jar>資料夾中下載, 再在Libraries上按右鍵, 加入Jar)
