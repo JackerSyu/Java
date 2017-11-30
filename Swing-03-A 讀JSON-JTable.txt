@@ -133,10 +133,10 @@ if (returnVal == JFileChooser.APPROVE_OPTION) {
 	    // String lat = (String) jsonItem.get("latitude");
             //
 	    // 如以整數表示, 轉成:
-	    // Integer lat = (Integer) jsonItem.get("lat");
+	    // Integer lat = (int) jsonItem.get("lat");
 	    //
 	    // 如以浮點數表示, 轉成:
-	    // Double lat = (Double) jsonItem.get("latitude");	    
+	    // Double lat = (double) jsonItem.get("latitude");	    
             //====================================================================                    
             String name = (String) jsonItem.get("name");
             String type = (String) jsonItem.get("type");
