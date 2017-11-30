@@ -49,20 +49,11 @@ if (returnVal == JFileChooser.APPROVE_OPTION) {
         //存放每次讀入的單行內容		
         String readLine = null; 
 
-        //逐筆讀取檔案內容, 可進行某些處理	 
-        int cnt=0; 
-
         //清除原有資料
         DefaultTableModel model = (DefaultTableModel) jTable.getModel();
-        model.setRowCount(0);    
-	
-        //是否第一行
-        boolean firstLine=true;                
+        model.setRowCount(0);
         
         while ((readLine = b.readLine()) != null) {
-            //累加記錄筆數        
-            cnt++;
-
             //切割以逗號分隔的項目(-1:全部項目均要分割; n表示只分割前n個)
             String items[]=readLine.split(",", -1);
 
