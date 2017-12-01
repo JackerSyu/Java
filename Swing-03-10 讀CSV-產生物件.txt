@@ -118,6 +118,17 @@ if (returnVal == JFileChooser.APPROVE_OPTION) {
         //存放每次讀入的單行內容		
         String readLine = null; 
 
+        //設定表格資料置中                
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
+        //分欄設定置中
+        //jTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+        //jTable.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+        //jTable.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
+
+        //全部設定置中
+        jTable.setDefaultRenderer(Object.class, centerRenderer);
+		
         //清除原有資料
         DefaultTableModel model = (DefaultTableModel) jTable.getModel();
         model.setRowCount(0); 
