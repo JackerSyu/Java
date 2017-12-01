@@ -39,7 +39,7 @@ public class Score {
     //計算總分的靜態方法
     //----------------------------------------
     public static double total(int chi, int eng, int mat, int soc, int nat, int lec){
-        return chi*2.5 + eng*1.5 + mat*1 + soc*0.5 + nat*0.5 + lec*3;
+        return chi*2.5 + eng*2 + mat*1.5 + soc*0.5 + nat*0.5 + lec*3;
     }    
     //----------------------------------------    
 }
