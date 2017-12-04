@@ -17,7 +17,7 @@
     |         |        |__ Main.java (主程式)
     |         |
     |         |__ <com.abc>
-    |         |        |__ GeoLocation.java (儲存靜態方法的類別)    
+    |         |        |__ Location.java (儲存靜態方法的類別)    
     |         |
     |         |__ <com.abc.ui>
     |                  |__ MyJFrame.java (畫面)
@@ -83,11 +83,11 @@
 
 
 ========================================================================= 
-(1) 程式, GeoLocation.java
+(1) 程式, Location.java
 ========================================================================= 
 package com.abc;
 
-public class GeoLocation{
+public class Location{
     public static double distanceBetweenTwoLocations(Double sourceLat, Double sourceLon, Double destLat, Double destLon){
         double R = 6371; // 地球半徑(公里)
 
@@ -158,13 +158,13 @@ if (returnVal == JFileChooser.APPROVE_OPTION) {
             //====================================================================
             // 取出JSON物件中的資料(名稱, 型態, 緯度, 經度)
             // 名稱, 型態, 緯度, 經度在JSON檔中均以字串表示, 因此轉成String, 如下:
-	          // String lat = (String) jsonItem.get("latitude");
+            // String lat = (String) jsonItem.get("latitude");
             //
-	          // 如以整數表示, 轉成:
-	          // Integer lat = (int) jsonItem.get("lat");
-	          //
-	          // 如以浮點數表示, 轉成:
-	          // Double lat = (double) jsonItem.get("latitude");	    
+            // 如以整數表示, 轉成:
+            // Integer lat = (int) jsonItem.get("lat");
+            //
+            // 如以浮點數表示, 轉成:
+            // Double lat = (double) jsonItem.get("latitude");	    
             //====================================================================                    
             String name = (String) jsonItem.get("name");
             String type = (String) jsonItem.get("type");
@@ -176,7 +176,7 @@ if (returnVal == JFileChooser.APPROVE_OPTION) {
             double longitude = Double.valueOf(lng);
             
             //計算目標與北商的距離
-            double dist = GeoLocation.distanceBetweenTwoLocations(latitute, longitude, 25.041920, 121.525596);      
+            double dist = Location.distanceBetweenTwoLocations(latitute, longitude, 25.041920, 121.525596);      
             
             //將取出的檔位產生一個陣列
             Object[] row = {name, type, lat, lng, dist};        
