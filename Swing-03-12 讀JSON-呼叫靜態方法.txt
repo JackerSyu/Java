@@ -88,7 +88,11 @@
 package com.abc;
 
 public class Location{
-    public static double distanceBetweenTwoLocations(Double sourceLat, Double sourceLon, Double destLat, Double destLon){
+    //---------------------------------------------------------------------------------------------------------------------
+    //傳入: (1)起點緯度 (2)起點經度 (3)終點緯度 (4)終點經度
+    //傳回: 兩點間的距離(公里)
+    //---------------------------------------------------------------------------------------------------------------------
+    public static double distanceBetweenTwoLocations(Double sourceLat, Double sourceLon, Double destLat, Double destLon){
         double R = 6371; // 地球半徑(公里)
 
         double dLat = (destLat-sourceLat)*Math.PI/180;
@@ -99,7 +103,8 @@ public class Location{
         double d = (int)(R * c * 1000) / 1000.0; //兩點間距離(公里)
 
         return d;
-    }
+    }
+    //---------------------------------------------------------------------------------------------------------------------    
 }
 
 
