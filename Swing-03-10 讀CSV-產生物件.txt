@@ -116,32 +116,21 @@ if (returnVal == JFileChooser.APPROVE_OPTION) {
         BufferedReader b = new BufferedReader(new FileReader(file));
 
         //存放每次讀入的單行內容		
-        String readLine = null; 
+        String data; 
 
-        //設定表格資料置中                
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment( JLabel.CENTER );
-        //分欄設定置中
-        //jTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
-        //jTable.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
-        //jTable.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
-
-        //全部設定置中
-        jTable.setDefaultRenderer(Object.class, centerRenderer);
-		
         //清除原有資料
         DefaultTableModel model = (DefaultTableModel) jTable.getModel();
         model.setRowCount(0); 
-        
+
         //===================================================
         //(1)建立一個存放所有學生物件的arrayList
         //===================================================
         ArrayList<Student> arrayList = new ArrayList();
         //===================================================
-        
-        while ((readLine = b.readLine()) != null) {
+
+        while ((data = b.readLine()) != null) {
             //切割以逗號分隔的項目(-1:全部項目均要分割; n表示只分割前n個)
-            String items[]=readLine.split(",", -1);
+            String items[]=data.split(",", -1);
 
             //分別取出學號, 性別, 國文, 英文, 數學, 社會, 自然, 作文成績.
             String stuNo = items[0];
@@ -152,27 +141,25 @@ if (returnVal == JFileChooser.APPROVE_OPTION) {
             int soc = Integer.parseInt(items[5]);
             int nat = Integer.parseInt(items[6]);
             int lec = Integer.parseInt(items[7]);   
-			
+
             //=======================================================================
-            //(2)產生一個Student物件, 稱為s, 將它加入arrayList中
+            //(2)產生一個Student物件, 將它加入arrayList中
             //=======================================================================
-            Student s = new Student(stuNo, gender, chi, eng, mat, soc, nat, lec);
-            
-            arrayList.add(s);
+            arrayList.add(new Student(stuNo, gender, chi, eng, mat, soc, nat, lec));
             //=======================================================================
         }  
-        
-        
+
+
         //=====================================================================
         //(3)逐個取出arrayList中的資料, 加入表格中顯示
         //=====================================================================
         for(int i=0; i<arrayList.size(); i++){
             //取出arrayList中的第i個Student物件
             Student s = arrayList.get(i);
-            			
+
             //將取出的檔位產生一個陣列
             Object[] row = {s.getStuNo(), s.getGender(), s.total()};
-      
+
             //將產生的陣列加入表格的資料物件中
             model.addRow(row);
         }
