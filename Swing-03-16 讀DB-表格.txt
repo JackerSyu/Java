@@ -1,5 +1,5 @@
 =========================================================================
-讀入JSONObject格式資料, 解析內容後, 逐個加入JTextArea物件中.
+讀入MySQL資料庫中資料, 逐一加入JTextArea物件中.
 =========================================================================
 
    <專案>
@@ -7,13 +7,13 @@
      |__ <Source Packages>
      |         |  
      |         |__ <default package>
-     |         |         |__ Main.java (主程式)
+     |         |       |__ Main.java (主程式)
      |         |
      |         |__ <com.abc>
-     |         |         |__ DBservice.java (負責取回資料庫內容)
+     |         |       |__ DBservice.java (負責取回資料庫內容)
      |         |
      |         |__ <com.abc.ui>
-     |                   |__ MyJFrame.java (畫面)
+     |                 |__ MyJFrame.java (畫面)
      |
      |
      |__ <Libraries>
@@ -24,12 +24,12 @@
      
   [JFrame] (畫面)
     |
-    |__ jMenuBar[JMenuBar]  (選單)
+    |__ jMenuBar[JMenuBar]  
     |          |__ openMenu[JMenu] (開檔)
-    |          |__ exitMenu[JMenu] (離開)	
+    |          |__ exitMenu[JMenu] 
     |
-    |__ jScrollPane[JScrollPane] (有捲動功能的面板)
-               |__ jTable[JTable]  (表格)
+    |__ jScrollPane[JScrollPane] 
+               |__ jTable[JTable] (表格)
 			  
 ========================================================================= 
 
