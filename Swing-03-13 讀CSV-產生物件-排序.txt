@@ -1,7 +1,7 @@
 =====================================================================================
 讀入CSV檔, 用JTable顯示資料, (JTable欄位有學號, 性別, 總分. 共3項)
 產生Student類別的物件, 加入ArrayList物件中.
-資料完全讀入後, 由總分由大至小排序, 排序後再逐筆輸出.
+資料完全讀入後, 由總分排序, 排序後再逐筆輸出.
 =====================================================================================
 
 
@@ -91,7 +91,7 @@ public class Student implements Comparable<Student>{
     
     @Override
     public int compareTo(Student stu){        
-        return (int)(stu.total()*10 - this.total()*10);  //由小到大
+        return (int)(this.total()*10 - stu.total()*10);  //由小到大
     }
 }
 
