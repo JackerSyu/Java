@@ -1,0 +1,260 @@
+=====================================================================================
+有一個抽象的父親類別 Employee.java, 
+有2個繼承它的兒子 FullTimeEmployee.java 及 PartTimeEmployee.java
+
+讀入 FullTimeEmployee.CSV 檔, 用JTable顯示資料, (JTable欄位有編號, 姓名, 薪水)
+產生讀入FullTimeEmployee類別的物件, 加入ArrayList物件中.
+資料完全讀入後, 再逐筆輸出.
+=====================================================================================
+
+
+  <專案>
+    |
+    |__ <default package>
+    |         |__ Main.java (主程式)
+    |
+    |__ <com.abc>
+    |         |__ Employee.java (父親, 員工, 抽象類別)	
+    |         |__ FullTimeEmployee.java (兒子, 全職員工類別)	
+    |         |__ PartTimeEmployee.java (兒子, 兼職員工類別)	    
+    |
+    |__ <com.abc.ui>
+              |__ MyJFrame.java (畫面)
+
+
+			  
+  [JFrame] (畫面)
+    |
+    |__ jMenuBar[JMenuBar] 
+    |         |__ openMenu[JMenu] (開檔)
+    |         |__ exitMenu[JMenu] 
+    |
+    |__ jScrollPane[JScrollPane] 
+              |__ jTable[JTable] (表格)
+			  
+ 
+ 
+  
+=========================================================================
+(1)程式, Employee.java (父親, 員工, 抽象類別)
+=========================================================================
+package com.abc;
+
+//-------------------------------------------
+// 有一個未完成的方法, 因此宣告為 abstract
+//-------------------------------------------
+public abstract class Employee{
+    private String empNo;    //員工編號
+    private String empName;  //姓名
+    private char rank;       //職級
+	
+    //建構元(1)
+    public Employee(String empNo, String empName, char rank){
+        this.empNo=empNo;
+        this.empName=empName;
+        this.rank=rank;
+    }
+	
+    //建構元(2)
+    public Employee(){}		
+	
+    //設定成員值, setter
+    public void setEmpNo(String empNo){this.empNo=empNo;}
+    public void setEmpName(String empName){this.empName=empName;}
+    public void setRank(char rank){this.rank=rank;}
+	
+    //取出成員值, getter
+    public String getEmpNo(){return empNo;}
+    public String getEmpName(){return empName;}
+    public char getRank(){return rank;}
+
+    //----------------------------------   
+    //抽象方法
+    //未撰寫內容的方法, 由它的兒子完成
+    //----------------------------------       
+    abstract public int salary();
+    //----------------------------------       
+}
+
+
+
+
+
+=========================================================================
+(2)程式, FullTimeEmployee.java  (兒子, 全職員工類別)
+=========================================================================
+package com.abc;
+
+//------------------------------------------------------
+//「全職員工」繼承「員工」, 因此宣告 extends 父親類別
+//------------------------------------------------------
+public class FullTimeEmployee extends Employee{
+    private int saleTotal;  //月銷售額
+	
+    //建構元(1)	
+    public FullTimeEmployee(String empNo, String empName, char rank, int saleTotal){
+        super(empNo, empName, rank); //呼叫父親的建構元
+        this.saleTotal=saleTotal;
+    }
+	
+    //建構元(2)
+    public FullTimeEmployee(){}
+	
+    //設定成員值, setter
+    public void setSaleTotal(int saleTotal){this.saleTotal=saleTotal;}
+	
+    //取出成員值, getter
+    public int getSaleTotal(){return saleTotal;}
+	
+    //-------------------------------------------
+    //全職員工計算薪水的方法, 實作父親的抽象方法
+    //-------------------------------------------
+    @Override    
+    public int salary(){
+        int base;         //底薪
+        int commission;   //傭金
+		
+        switch(super.getRank()){
+            case 'A':
+                base=40000;
+                commission=(int)(saleTotal*0.05);
+                break;
+            case 'B':
+                base=35000;
+                commission=(int)(saleTotal*0.04);
+                break;
+            case 'C':
+                base=30000;
+                commission=(int)(saleTotal*0.03);
+                break;
+            default:
+                base=25000;
+                commission=(int)(saleTotal*0.02);
+        }
+		
+        return (base + commission);
+    }
+    //-------------------------------------------------------------    
+}
+
+
+
+
+
+=========================================================================
+(3)程式, PartTimeEmployee.java  (兒子, 兼職員工類別)
+=========================================================================
+package com.abc;
+
+//------------------------------------------------------
+//「兼職員工」繼承「員工」, 因此宣告 extends 父親類別
+//------------------------------------------------------
+class PartTimeEmployee extends Employee{
+    private int hours;  //兼職時數
+	
+    //建構元(1)	
+    public PartTimeEmployee(String empNo, String empName, char rank, int hours){
+        super(empNo, empName, rank);  //呼叫父親的建構元
+        this.hours=hours;
+    }
+	
+    //建構元(2)
+    public PartTimeEmployee(){}
+	
+    //設定成員值, setter
+    public void setHours(int hours){this.hours=hours;}
+	
+    //取出成員值, getter
+    public int getHours(){return hours;}
+	
+    //------------------------------------------------
+    //全職員工計算薪水的方法, 實作父親的抽象方法
+    //------------------------------------------------    
+    @Override    
+    public int salary(){		
+        return (hours*200);
+    }
+    //------------------------------------------------    
+}
+
+
+
+
+
+=========================================================================
+(4)程式, 在MenuBar中的Open被點擊時	
+=========================================================================
+//---------------------------------------------
+//在MenuBar中的Open被點擊時	
+//---------------------------------------------     
+//開啟FileChooser物件
+JFileChooser jFileChooser = new JFileChooser();
+jFileChooser.setDialogTitle("開啟檔案");
+
+//如果有選擇檔案   
+int returnVal = jFileChooser.showOpenDialog(this);
+if (returnVal == JFileChooser.APPROVE_OPTION) {
+    //設定檔案物件
+    File file = jFileChooser.getSelectedFile();
+
+    //逐筆讀取檔案內容	
+    try {
+        //產生一個BufferedReader物件, 用來逐筆讀取檔案	
+        BufferedReader b = new BufferedReader(new FileReader(file));
+
+        //存放每次讀入的單行內容		
+        String data; 
+
+        //清除原有資料
+        DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+        model.setRowCount(0); 
+
+        //=======================================================
+        //(1)建立一個存放所有全職員工物件的arrayList
+        //=======================================================
+        ArrayList<FullTimeEmployee> arrayList = new ArrayList();
+        //=======================================================
+
+        while ((data = b.readLine()) != null) {
+            //切割以逗號分隔的項目(-1:全部項目均要分割; n表示只分割前n個)
+            String items[]=data.split(",", -1);
+            
+            //======================================================================
+            //(2)產生一個全職員工物件, 將它加入arrayList中
+            //======================================================================
+            //分別取出員工編號(String), 姓名(String), 職等(char), 銷售金額(int).
+            String empNo = items[0];
+            String empName = items[1];
+            char rank = items[2].charAt(0);
+            int salesTotal = Integer.parseInt(items[3]);
+
+            //加入陣列中
+            arrayList.add(new FullTimeEmployee(empNo, empName, rank, salesTotal));          
+            //======================================================================
+        }  
+
+
+        //=====================================================================
+        //(3)逐個取出arrayList中的資料, 加入表格中顯示
+        //=====================================================================
+        for(int i=0; i<arrayList.size(); i++){
+            //取出arrayList中的第i個物件
+            FullTimeEmployee s = arrayList.get(i);
+
+            //將取出的檔位產生一個陣列
+            Object[] row = {s.getEmpNo(), s.getEmpName(), s.salary()};
+
+            //將產生的陣列加入表格的資料物件中
+            model.addRow(row);
+        }
+        //=====================================================================        
+    } catch (IOException ex) {
+        JOptionPane.showMessageDialog(this, "讀檔時發生錯誤!");
+    }
+} else {
+    System.out.println("取消檔案讀取");
+}         
+//---------------------------------------------  
+             
+        
+        
