@@ -234,7 +234,7 @@ class PartTimeEmployee extends Employee{
     //取出成員值, getter
     public int getHours(){return hours;}
 	
-    //全職員工計算薪水的方法
+    //兼職員工計算薪水的方法
     public int salary(){		
         return (hours*200);
     }
