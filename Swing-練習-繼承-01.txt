@@ -1,0 +1,169 @@
+========================
+1. 專案架構
+========================
+
+  <專案>
+    |
+    |__ <default package>
+    |         |__ Main.java (主程式)
+    |
+    |__ <com.abc>
+    |         |__ Student.java        (父親, 一般考生類別)
+    |         |__ GEPTstudent.java    (兒子, 加考全民英檢考生類別)      
+    |
+    |__ <com.abc.ui>
+              |__ MyJFrame.java (畫面)
+
+
+			  
+  [JFrame] (畫面)
+    |
+    |__ jMenuBar[JMenuBar]
+    |         |__ openMenu[JMenu] (開檔)
+    |         |__ exitMenu[JMenu]
+    |
+    |__ jScrollPane[JScrollPane]
+              |__ jTable[JTable] (表格)
+              
+              
+              
+
+======================================
+2. 輸入檔: GEPTstudent.CSV
+輸入檔位依序為:
+(1)准考證號
+(2)性別
+(3)國文
+(4)英文
+(5)數學
+(6)社會
+(7)自然
+(8)作文
+(9)全民英檢成績
+======================================
+
+
+
+=====================
+3. 輸出:
+=====================
+--------------------------------------------------------------
+准考證號       性別         全民英檢成績      總成績
+--------------------------------------------------------------
+1              男          初級             455
+.              .            .                . 
+.              .            .                . 
+.              .            .                . 
+--------------------------------------------------------------  
+
+
+
+=====================
+4-1. 程式 (已完成)
+=====================
+//------------------------------------------------------
+// Student (父親, 一般考生類別)
+//------------------------------------------------------
+package com.abc;
+
+public class Student{
+    //成員
+    private String stuNo;
+    private String gender;
+    private int chi;
+    private int eng;
+    private int mat;
+    private int soc;
+    private int nat;
+    private int lec;
+    
+    //建構元(1)
+    public Student(String stuNo, String gender, int chi, int eng, int mat, int soc, int nat, int lec){
+        this.stuNo=stuNo;
+        this.gender=gender;
+        this.chi=chi;
+        this.eng=eng;
+        this.mat=mat;
+        this.soc=soc;
+        this.nat=nat;
+        this.lec=lec;
+    }
+    
+    //建構元(2)
+    public Student(){}
+    
+    //setters
+    public void setStuNo(String stuNo){this.stuNo=stuNo;}
+    public void setGender(String gender){this.gender=gender;}
+    public void setChi(int chi){this.chi=chi;}
+    public void setEng(int eng){this.eng=eng;}
+    public void setMat(int mat){this.mat=mat;}
+    public void setSoc(int soc){this.soc=soc;}
+    public void setNat(int nat){this.nat=nat;}
+    public void setLec(int lec){this.lec=lec;}
+    
+    //getters
+    public String getStuNo(){return this.stuNo;}
+    public String getGender(){return this.gender;}
+    public int getChi(){return this.chi;}
+    public int getEng(){return this.eng;}
+    public int getMat(){return this.mat;}
+    public int getSoc(){return this.soc;}
+    public int getNat(){return this.nat;}
+    public int getLec(){return this.lec;}
+    
+    //------------------------------------------------------------------
+    //計算總分
+    //------------------------------------------------------------------
+    public double total(){
+        return chi*2.5 + eng*2 + mat*1.5 + soc*0.5 + nat*0.5 + lec*3;        
+    }
+    //------------------------------------------------------------------ 
+}
+
+
+
+=====================
+4-2. 程式 (未完成)
+=====================
+//------------------------------------------------------
+// GEPTstudent (兒子, 加考全民英檢考生類別)
+//------------------------------------------------------
+package com.abc;
+
+public class GEPTstudent extends Student{
+    //成員
+    private String gept;   //全民英檢級數
+    
+    //建構元(1)
+    //建構元(2)    
+    //setters
+    //getters    
+
+    //計算總分
+}
+
+
+
+
+
+===============================
+5. 說明:
+===============================
+請完成「加考全民英檢考生」類別. 
+總分計算方式如下:
+
+國文 2.5倍
+英文 2倍
+數學 1.5倍 
+社會 0.5倍
+自然 0.5倍 
+作文 3倍
+(以上與一般考生完全相同)
+
+另全民英檢:
+中高級, 加計100分
+中級,   加計80分
+初級,   加計60分.
+
+
