@@ -149,7 +149,7 @@ package com.abc;
 //------------------------------------------------------
 //「兼職員工」繼承「員工」, 因此宣告 extends 父親類別
 //------------------------------------------------------
-class PartTimeEmployee extends Employee{
+public class PartTimeEmployee extends Employee{
     private int hours;  //兼職時數
 	
     //建構元(1)	
