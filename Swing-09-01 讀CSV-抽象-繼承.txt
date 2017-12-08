@@ -168,7 +168,7 @@ class PartTimeEmployee extends Employee{
     public int getHours(){return hours;}
 	
     //------------------------------------------------
-    //全職員工計算薪水的方法, 實作父親的抽象方法
+    //兼職員工計算薪水的方法, 實作父親的抽象方法
     //------------------------------------------------    
     @Override    
     public int salary(){		
