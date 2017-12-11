@@ -11,7 +11,7 @@
     |         |__ Main.java (主程式)
     |
     |__ <com.abc>
-    |         |__ Student.java (學生類別)	
+    |         |__ Student.java (學生成績類別)	
     |
     |__ <com.abc.ui>
               |__ MyJFrame.java (畫面)
