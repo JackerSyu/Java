@@ -100,7 +100,7 @@ public abstract class Transcript{
     //----------------------------------
     //備註
     //----------------------------------    
-    abstract public void remark();
+    abstract public String remark();
 }
 
 
@@ -144,5 +144,6 @@ class TranscriptWithUnpass extends Transcript{
 
 
 「有不及格統計成績單類別」的備註: 
-成績小於60分為不及格, 有不及格者輸出不及格科目數; 全及格者輸出空白.
+成績小於60分為不及格.
+有不及格者輸出不及格科目數; 全及格者輸出空白.
 
