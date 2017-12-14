@@ -59,6 +59,8 @@
 //------------------------------------------------------
 // 成績單類別 (父親, 抽象類別, 已完成)
 //------------------------------------------------------
+package com.abc;
+
 public abstract class Transcript{
     //成員
     private String stuNo;
@@ -75,13 +77,7 @@ public abstract class Transcript{
     }
     
     //建構元(2)
-    public Transcript(){
-    	this.stuNo=null;
-    	this.stuName=null;
-    	this.chi=0;
-    	this.eng=0;
-    	this.mat=0;
-    }    
+    public Transcript(){}    
     
     //setters
     public void setStuNo(String stuNo){this.stuNo=stuNo;}
@@ -110,10 +106,19 @@ public abstract class Transcript{
 //------------------------------------------------------
 // 有等第的成績單類別 (兒子, 未完成)
 //------------------------------------------------------
-class TranscriptWithGrade extends Transcript{  
+package com.abc;
+
+public class TranscriptWithGrade extends Transcript{  
     //建構元(1)
     //建構元(2)
+    
+    //----------------------------------
     //備註
+    //---------------------------------- 
+    @Override
+    public String remark(){
+    
+    }
 }
 
 
@@ -123,10 +128,19 @@ class TranscriptWithGrade extends Transcript{
 //------------------------------------------------------
 // 有不及格統計的成績單類別 (兒子, 未完成)
 //------------------------------------------------------
-class TranscriptWithUnpass extends Transcript{
+package com.abc;
+
+public class TranscriptWithUnpass extends Transcript{
     //建構元(1)
     //建構元(2)
+    
+    //----------------------------------
     //備註
+    //---------------------------------- 
+    @Override
+    public String remark(){
+    
+    }
 }
 
 
