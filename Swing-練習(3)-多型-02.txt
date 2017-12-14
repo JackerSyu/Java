@@ -94,9 +94,10 @@ public abstract class Transcript{
     public int getMat(){return this.mat;}
 
     //----------------------------------
-    //備註
-    //----------------------------------    
-    abstract public String remark();
+    //備註, 抽象方法
+    //----------------------------------     
+    abstract public String remark();
+    //----------------------------------      
 }
 
 
@@ -113,12 +114,13 @@ public class TranscriptWithGrade extends Transcript{
     //建構元(2)
     
     //----------------------------------
-    //備註
+    //等第的備註
     //---------------------------------- 
     @Override
     public String remark(){
-    
-    }
+        //內容自行完成
+    }
+    //----------------------------------      
 }
 
 
@@ -135,12 +137,13 @@ public class TranscriptWithUnpass extends Transcript{
     //建構元(2)
     
     //----------------------------------
-    //備註
+    //不及格統計的備註
     //---------------------------------- 
     @Override
-    public String remark(){
-    
-    }
+    public String remark(){
+        //內容自行完成
+    }
+    //----------------------------------    
 }
 
 
