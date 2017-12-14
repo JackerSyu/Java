@@ -59,6 +59,8 @@
 //------------------------------------------------------
 // 客戶 (父親, 抽象類別, 已完成)
 //------------------------------------------------------
+package com.abc;
+
 public abstract class Customer{
     private String phoneNo;     //手機號碼
     private String name;        //姓名
@@ -87,7 +89,7 @@ public abstract class Customer{
     //---------------------------------	
     //通話費, 抽象方法
     //---------------------------------
-    abstract public void fee();
+    abstract public int fee();
 }    
 
 
@@ -97,14 +99,18 @@ public abstract class Customer{
 //------------------------------------------------------
 // 月租型客戶 (兒子, 未完成)
 //------------------------------------------------------
-class MonthlyCustomer extends Customer{
+package com.abc;
+
+public class MonthlyCustomer extends Customer{
     private int baseFee;      //月租費
     private int freeMinutes;  //免費通話分鐘數
     
     //建構元(1)
     //建構元(2)
+    
     //setters
     //getters
+    
     //通話費
 }
 
@@ -115,9 +121,12 @@ class MonthlyCustomer extends Customer{
 //------------------------------------------------------
 // 易付卡型客戶 (兒子, 未完成)
 //------------------------------------------------------
-class MeteredCustomer extends Customer{
+package com.abc;
+
+public class MeteredCustomer extends Customer{
     //建構元(1)
     //建構元(2)
+    
     //通話費
 }
 
