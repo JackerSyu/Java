@@ -1,0 +1,266 @@
+=====================================================================================
+有一個應付款介面 Payable.java, 
+有2個實作它的類別 CarRental.java(租車) 及 RoomRental.java(租房)
+=====================================================================================
+
+
+
+=====================================
+讀入 CarRental.CSV 檔, 欄位:
+(1)車輛CC數
+(2)租用天數
+=====================================
+
+
+
+==============================================
+用JTable顯示資料, 欄位:
+----------------------------------------
+租用車型    租用天數    款項名稱    金額
+----------------------------------------
+2000cc       1         租車費     2100
+  .          .           .         .
+  .          .           .         .
+  .          .           .         .  
+==============================================
+
+
+
+  <專案>
+    |
+    |__ <default package>
+    |         |__ Main.java (主程式)
+    |
+    |__ <com.abc>
+    |         |__ Payable.java    (介面, 應付款)	
+    |         |__ CarRental.java  (類別, 租車類別)	
+    |         |__ RoomRental.java (類別, 租房類別)	    
+    |
+    |__ <com.abc.ui>
+              |__ MyJFrame.java (畫面)
+
+
+			  
+  [JFrame] (畫面)
+    |
+    |__ jMenuBar[JMenuBar] 
+    |         |__ openMenu[JMenu] (開檔)
+    |         |__ exitMenu[JMenu] 
+    |
+    |__ jScrollPane[JScrollPane] 
+              |__ jTable[JTable] (表格)
+			  
+ 
+ 
+  
+=========================================================================
+(1)程式, Payable.java (介面, 應付款)
+=========================================================================
+package com.abc;
+
+//------------------------------------
+// 應付款介面
+//------------------------------------
+public interface Payable{
+    public String item();	
+    public int payment();
+}
+
+
+
+
+=========================================================================
+(2)程式, CarRental.java  (類別, 租車類別)
+=========================================================================
+package com.abc;
+
+//------------------------------------
+// 「租車類別」實作了「應付款介面」
+//------------------------------------
+public class CarRental implements Payable{
+    private String type;    //車型
+    private int rentDays;   //租用天數
+
+    //建構元(1)
+    public CarRental(String type, int rentDays){
+        this.type=type;
+        this.rentDays=rentDays;
+    }
+
+    //建構元(2)
+    public CarRental(){}
+
+    //setter
+    public void setType(String type){this.type=type;}
+    public String getType(){return type;}
+
+    //getter
+    public void setRentDays(int rentDays){this.rentDays=rentDays;}
+    public int getRentDays(){return rentDays;}	
+
+    //-----------------------
+    //實作介面的方法(1)	
+    //-----------------------
+    @Override
+    public String item(){
+        return "租車費";    	
+    }    
+    //-----------------------
+    
+    
+    //-----------------------    
+    //實作介面的方法(2)	
+    //-----------------------    
+    @Override	
+    public int payment(){
+        int price;
+		
+        if(type.equals("3000cc")){
+            price=4000;
+        }else if(type.equals("2400cc")){
+            price=2500;
+        }else if(type.equals("1800cc")){
+            price=2000;
+        }else{
+            price=1500;
+        }
+				
+        return price*rentDays;
+    }
+    //-----------------------    
+}
+
+
+
+
+=========================================================================
+(3)程式, RoomRental.java  (類別, 租房類別)	
+=========================================================================
+package com.abc;
+
+//-------------------------------------------
+//「租房類別」實作了「應付款介面」
+//-------------------------------------------
+class RoomRental implements Payable{
+    private boolean specialDiscount;   //是否折扣房型
+
+    //建構元(1)
+    public RoomRental(boolean specialDiscount){
+        this.specialDiscount=specialDiscount;
+    }    
+
+    //建構元(2)
+    public RoomRental(){}
+	
+    //setter	
+    public void setSpecialDiscount(boolean specialDiscount){
+        this.specialDiscount=specialDiscount;
+    }
+	
+    //getter	
+    public boolean getSpeicalDiscount(){return specialDiscount;}
+
+    //------------------------------
+    //實作介面的方法	
+    //------------------------------    
+    @Override
+    public String item(){
+        return "房租費";    	
+    } 
+    //------------------------------
+    
+
+    //------------------------------
+    //實作介面的方法	
+    //------------------------------    
+    @Override	
+    public int payment(){
+        int price;
+		
+        if(specialDiscount){
+            price=2400;
+        }else{
+            price=3000;
+        }
+				
+        return price;
+    }
+    //------------------------------    
+}
+
+
+
+
+
+=========================================================================
+(4)程式, 在MenuBar中的Open被點擊時	
+=========================================================================
+//---------------------------------------------
+//在MenuBar中的Open被點擊時	
+//---------------------------------------------     
+//開啟FileChooser物件
+JFileChooser jFileChooser = new JFileChooser();
+jFileChooser.setDialogTitle("開啟檔案");
+
+//如果有選擇檔案   
+int returnVal = jFileChooser.showOpenDialog(this);
+if (returnVal == JFileChooser.APPROVE_OPTION) {
+    //設定檔案物件
+    File file = jFileChooser.getSelectedFile();
+
+    //逐筆讀取檔案內容	
+    try {
+        //產生一個BufferedReader物件, 用來逐筆讀取檔案	
+        BufferedReader b = new BufferedReader(new FileReader(file));
+
+        //存放每次讀入的單行內容		
+        String data; 
+
+        //清除原有資料
+        DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+        model.setRowCount(0); 
+
+        //=======================================================
+        //(1)建立一個存放所有物件的arrayList
+        //=======================================================
+        ArrayList<CarRental> arrayList = new ArrayList();
+        //=======================================================
+
+        while ((data = b.readLine()) != null) {
+            //切割以逗號分隔的項目(-1:全部項目均要分割; n表示只分割前n個)
+            String items[]=data.split(",", -1);
+
+            //======================================================================
+            //(2)產生一個物件, 將它加入arrayList中
+            //======================================================================                    
+            String type = items[0];
+            int rentDays = Integer.parseInt(items[1]);
+                    
+    
+            //產生兼職員工物件, 加入陣列中
+            arrayList.add(new CarRental(type, rentDays));                     
+            //======================================================================
+        }  
+
+
+        //=====================================================================
+        //(3)逐個取出arrayList中的物件資料(可能是全職/兼職員工), 加入表格中
+        //=====================================================================
+        for(int i=0; i<arrayList.size(); i++){                    
+            CarRental s = arrayList.get(i);
+
+            //將取出的欄位產生一個陣列
+            Object[] row = {s.getType(), s.getRentDays(), s.item(), s.payment()};
+
+            //將產生的陣列加入表格的資料物件中
+            model.addRow(row);
+        }
+        //=====================================================================        
+    } catch (IOException ex) {
+        JOptionPane.showMessageDialog(this, "讀檔時發生錯誤!");
+    }
+} else {
+    System.out.println("取消檔案讀取");
+}         
+//--------------------------------------------- 
+        
