@@ -113,6 +113,7 @@ public class Menu{
 package com.abc;
 
 public abstract class Order{
+    private String type;    //類型
     private String tel;     //客戶電話
     private String name;    //客戶姓名
     private int foodAmt01;  //第1道菜訂購份數 
@@ -121,7 +122,8 @@ public abstract class Order{
     private int foodAmt04;  //第4道菜訂購份數 	
 	
     //建構元(1)
-    public Order(String tel, String name, int foodAmt01, int foodAmt02, int foodAmt03, int foodAmt04){
+    public Order(String type, String tel, String name, int foodAmt01, int foodAmt02, int foodAmt03, int foodAmt04){
+        this.type=type;    
         this.tel=tel;
         this.name=name;
         this.foodAmt01=foodAmt01;
@@ -134,6 +136,7 @@ public abstract class Order{
     public Order(){}
 	
     //setter
+    public void setType(String type){this.type=type;}    
     public void setTel(String tel){this.tel=tel;}
     public void setName(String name){this.name=name;}
     public void setFoodAmt01(int foodAmt01){this.foodAmt01=foodAmt01;}
@@ -142,6 +145,7 @@ public abstract class Order{
     public void setFoodAmt04(int foodAmt04){this.foodAmt04=foodAmt04;}
     
     //getter
+    public String getType(){return this.type;}    
     public String getTel(){return this.tel;}
     public String getName(){return this.name;}
     public int getFoodAmt01(){return this.foodAmt01;}
@@ -176,7 +180,8 @@ public class RegularOrder extends Order{
     public int totalPrice(){
         //內容自行完成
     }
-    //----------------------------------    
+    //---------------------------------- 
+    
     
     //----------------------------------
     //備註
@@ -213,7 +218,8 @@ public class SpecialOrder extends Order{
     public int totalPrice(){
         //內容自行完成
     }
-    //----------------------------------    
+    //----------------------------------   
+    
     
     //----------------------------------
     //備註
