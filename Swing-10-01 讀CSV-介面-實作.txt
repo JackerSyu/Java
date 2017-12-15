@@ -141,7 +141,7 @@ package com.abc;
 //-------------------------------------------
 //「租房類別」實作了「應付款介面」
 //-------------------------------------------
-class RoomRental implements Payable{
+public class RoomRental implements Payable{
     private boolean specialDiscount;   //是否折扣房型
 
     //建構元(1)
