@@ -235,9 +235,7 @@ if (returnVal == JFileChooser.APPROVE_OPTION) {
             //======================================================================                    
             String type = items[0];
             int rentDays = Integer.parseInt(items[1]);
-                    
-    
-            //產生兼職員工物件, 加入陣列中
+
             arrayList.add(new CarRental(type, rentDays));                     
             //======================================================================
         }  
