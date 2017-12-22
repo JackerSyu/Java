@@ -291,11 +291,11 @@ CREATE TABLE `score` (
 -- Records of score
 -- ----------------------------
 INSERT INTO `score` VALUES ('1', '120001', 'c01', '75');
-INSERT INTO `score` VALUES ('2', '120001', 'c02', '95');
-INSERT INTO `score` VALUES ('3', '120001', 'c03', '95');
-INSERT INTO `score` VALUES ('4', '120001', 'c04', '95');
-INSERT INTO `score` VALUES ('5', '120001', 'c05', '95');
-INSERT INTO `score` VALUES ('6', '120001', 'c06', '95');
+INSERT INTO `score` VALUES ('2', '120001', 'c02', '55');
+INSERT INTO `score` VALUES ('3', '120001', 'c03', '64');
+INSERT INTO `score` VALUES ('4', '120001', 'c04', '70');
+INSERT INTO `score` VALUES ('5', '120001', 'c05', '56');
+INSERT INTO `score` VALUES ('6', '120001', 'c06', '66');
 INSERT INTO `score` VALUES ('7', '120002', 'c01', '35');
 INSERT INTO `score` VALUES ('8', '120002', 'c02', '32');
 INSERT INTO `score` VALUES ('9', '120002', 'c03', '32');
