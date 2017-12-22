@@ -10,7 +10,7 @@
      |         |       |__ Main.java (主程式)
      |         |
      |         |__ <com.abc>
-     |         |       |__ DBservice.java (負責取回資料庫內容)
+     |         |       |__ DB.java   (負責傳回資料庫連線物件)
      |         |
      |         |__ <com.abc.ui>
      |                 |__ MyJFrame.java (畫面)
@@ -52,36 +52,28 @@ student(資料庫)
 
 
 //===============================================================
-(1)DBservice.java, 負責取回資料庫資料
+(1)DB.java, 負責取回資料庫資料
 //===============================================================
 package com.abc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class DBservice {
+public class DB{
     //-----------------------------------------------------
     //取出並回傳學生資料
     //-----------------------------------------------------    
-    public static ResultSet getStudents(){
+    public static Connection getConnection(){
         try{   
             //載入mysql驅動程式
             Class.forName("com.mysql.jdbc.Driver");
             
             //產生一個連到資料庫的連結物件
-            Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "mysql"); 
-            
-            //產生一個SQL命令
-            PreparedStatement stmt=con.prepareStatement("select * from student");
-            
-            //執行SQL命令, 取出資料
-            ResultSet rs=stmt.executeQuery();
-            
-            //將資料回傳給呼叫者
-            return rs;
+            Connection connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "mysql");             
+         
+            //回傳連結物件
+            return connection;
         }catch(ClassNotFoundException | SQLException e){  
             //回傳空值
             return null;
@@ -93,7 +85,6 @@ public class DBservice {
 
 
 
-
 ========================================================================= 
 (2)在MenuBar中的Open被點擊時	
 ========================================================================= 
@@ -101,10 +92,16 @@ public class DBservice {
 //--------------------------------------------- 
 //取得資料庫中資料
 //--------------------------------------------- 
-try{   	
-    //呼叫DBservice的靜態方法, 取得資料
-    ResultSet rs = DBservice.getStudents();
+try{
+    //取得資料庫連線物件
+    Connection connection = DB.getConnection();
+    
+    //產生一個SQL命令
+    PreparedStatement stmt = connection.prepareStatement("select * from student");
             
+    //執行SQL命令, 取出資料
+    ResultSet rs=stmt.executeQuery();       
+           
     //如果回傳空資料集        
     if(!rs.next()){
         JOptionPane.showMessageDialog(this, "無符合資料!");
@@ -131,4 +128,4 @@ try{
 }catch(SQLException e){
     JOptionPane.showMessageDialog(this, "資料取得失敗!");
 }
-
+//------------------------------------------
