@@ -95,8 +95,10 @@ public class DB{
 try{
     //取得資料庫連線物件
     Connection connection = DB.getConnection();
-    
-    //產生一個SQL命令
+
+    //==============================================
+    //(1)產生一個SQL命令
+    //==============================================    
     PreparedStatement stmt = connection.prepareStatement("select * from student");
             
     //執行SQL命令, 取出資料
@@ -113,11 +115,12 @@ try{
     model.setRowCount(0); 
 	
     //將資料集中的內容一筆一筆取出       
-    do{
-        //取出某些欄位
+    do{
+        //==============================================
+        //(2)取出某些欄位
+        //==============================================	
         String stuNo=rs.getString("stuNo");  
-        String stuName=rs.getString("stuName");
-        String gender=rs.getString("gender");               
+        String stuName=rs.getString("stuName");         
 
         //將取出的檔位產生一個陣列
         Object[] row = {stuNo, stuName, gender};        
