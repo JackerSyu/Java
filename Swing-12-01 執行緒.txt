@@ -71,7 +71,6 @@ public class MyThread extends Thread {
 import com.abc.MyThread;
 
 public class Main {
-
     public static void main(String[] argv) {
         //生成執行緒物件
         MyThread t1=new MyThread("小白");
