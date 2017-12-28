@@ -1,0 +1,89 @@
+
+   <專案>
+     |
+     |__ <Source Packages>
+               |  
+               |__ <default package>
+               |       |__ Main.java (主程式)
+               |
+               |__ <com.abc>
+                       |__ MyThread.java (執行緒)
+                       |__ Counter.java  (計數器)                       
+
+
+
+
+
+
+===============================================================
+(1) Counter.java
+===============================================================
+package com.abc;
+
+public class Counter{
+    private  int cnt=0;
+	
+    public void count(){
+        int i;
+		
+        //程式同步區域
+        synchronized(this){
+            i=cnt;
+            i++;
+            cnt=i;
+        }
+		
+        System.out.println("counter=" + i);		
+    }
+}   
+
+
+
+
+===============================================================
+(2) MyThread.java
+===============================================================
+package com.abc;
+
+class MyThread extends Thread {
+    private String name;
+    private Counter counter;
+	
+    public MyThread(String name, Counter counter){
+        this.name=name;
+        this.counter=counter;
+    }	
+    
+    @Override
+    public void run() { 
+        for(int i=0; i<500; i++){
+            System.out.println(name + ":" + i);
+            counter.count();
+        }	
+    }
+}      
+
+
+
+
+========================================================================= 
+(3) Main.java
+========================================================================= 
+import com.abc.MyThread;
+
+public class Main{
+    public static void main(String[] argv) {
+        //產生一個計數器物件   
+    	  Counter counter=new Counter();
+     
+        //兩個執行緒取用同一個counter物件	   
+        MyThread t1=new MyThread("小白", counter);
+        MyThread t2=new MyThread("小黑", counter);		
+        
+        t1.start();
+        t2.start();
+    }
+}
+
+
+
