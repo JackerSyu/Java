@@ -1,0 +1,84 @@
+
+   <專案>
+     |
+     |__ <Source Packages>
+               |  
+               |__ <default package>
+               |       |__ Main.java (主程式)
+               |
+               |__ <com.abc>
+                       |__ MyThread.java (執行緒)
+
+========================================================================= 
+
+
+
+
+
+//===============================================================
+(1)MyThread.java
+//===============================================================
+package com.abc;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.URL;
+
+public class MyThread extends Thread {
+    //成員
+    private String name;
+	
+    //建構元
+    public MyThread(String name){
+        this.name=name;
+    }
+	
+    //改寫執行緒的執行內容
+    @Override
+    public void run() { 
+        try{         
+            System.out.println(name + ":" + "啟動...");
+            
+            //設定連結目的地
+            URL url = new URL("http://www.ntub.edu.tw");  
+            
+            //建立輸入串流
+            InputStream in = url.openStream();                           
+            BufferedReader reader = new BufferedReader(new InputStreamReader(in));            
+            
+            //從串流逐行讀入資料, 顯示在畫面上
+            String data;
+            while((data=reader.readLine()) != null){ 
+                System.out.println(name + ":" +  data);                   
+            }
+          
+            //關閉串流
+            in.close();
+        }catch(IOException e){
+            System.out.println("資料讀取錯誤");
+        }
+    }	   
+}    
+
+
+
+========================================================================= 
+(2)Main.java
+========================================================================= 
+import com.abc.MyThread;
+
+public class Main {
+
+    public static void main(String[] argv) {
+        //生成執行緒物件
+        MyThread t1=new MyThread("小白");
+        MyThread t2=new MyThread("小黑");
+		
+        //啟動執行緒
+        t1.start();
+        t2.start();
+    }
+    
+}
