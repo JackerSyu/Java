@@ -227,3 +227,5 @@ if (returnVal == JFileChooser.APPROVE_OPTION) {
 若銷貨金額>=30000, 打85折;
 若銷貨金額>=20000且不足30000, 打95折;
 其他不打折.
+
+
