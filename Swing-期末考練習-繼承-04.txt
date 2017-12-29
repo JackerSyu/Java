@@ -189,13 +189,13 @@ if (returnVal == JFileChooser.APPROVE_OPTION) {
         // (4)逐個取出銷貨收入物件, 再取出其內資料, 加入表格中顯示
         //==========================================================================
         for(int i=0; i<arrayList.size(); i++){
-            //取出arrayList中的第i個Student物件
+            //取出arrayList中的第i個銷貨收入物件
             SalesIncome s = arrayList.get(i);
 
-            //將取出的檔位產生一個陣列
+            //將取出的欄位產生一個陣列
             Object[] row = {s.getDate(), s.getTitle(), s.getEmpName(), s.total()};
 
-            //將產生的陣列加入表格的資料物件中
+            //將產生的陣列加入表格中
             model.addRow(row);
         }
         //==========================================================================        
@@ -227,5 +227,7 @@ if (returnVal == JFileChooser.APPROVE_OPTION) {
 若銷貨金額>=30000, 打85折;
 若銷貨金額>=20000且不足30000, 打95折;
 其他不打折.
+
+總金額 = 折扣後的銷貨金額.
 
 
