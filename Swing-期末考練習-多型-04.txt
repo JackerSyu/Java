@@ -301,5 +301,5 @@ if (returnVal == JFileChooser.APPROVE_OPTION) {
 
 
 (2)租金收入:
-總金額 = 租金 - 稅金
+總金額 = 租金 - 稅金.
 
