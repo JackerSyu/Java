@@ -94,7 +94,7 @@ public class Price{
 package com.abc;
 
 public class Bill {
-    public static int fee(int shoes, int boots, int bags, boolean fastService)  
+    public static int fee(int shoes, int boots, int bags, boolean fastService){  
         //請自行完成
     }
 }
