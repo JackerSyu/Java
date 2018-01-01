@@ -219,7 +219,7 @@ if (returnVal == JFileChooser.APPROVE_OPTION) {
             //====================================================
             // (2)取出成績單類別, 學號, 姓名, 國文, 英文, 數學
             //====================================================
-            String type = item[0];
+            String type = items[0];
 	    String stuNo = items[1];
             String stuName = items[2];
             int chi = Integer.parseInt(items[3]);
@@ -230,14 +230,14 @@ if (returnVal == JFileChooser.APPROVE_OPTION) {
             // (3-1)產生一個等第成績單物件, 將它加入arrayList中
             //==================================================
             if(type.equals("等第")){
-                arrayList.add(new TranscriptWithGrade(date, title, empName, price, amount));
+                arrayList.add(new TranscriptWithGrade(stuNo, stuName, chi, eng, mat));
             }
             
             //==================================================
             // (3-2)產生一個不及格統計成績單物件, 將它加入arrayList中
             //==================================================
             if(type.equals("不及格數")){
-                arrayList.add(new TranscriptWithUnpass(date, title, empName, price, tax));
+                arrayList.add(new TranscriptWithUnpass(stuNo, stuName, chi, eng, mat));
             } 
         }  
 
@@ -246,8 +246,8 @@ if (returnVal == JFileChooser.APPROVE_OPTION) {
         // (4)逐個取出arrayList中的資料, 加入表格中顯示
         //=====================================================================
         for(int i=0; i<arrayList.size(); i++){
-            //取出arrayList中的第i個收入物件
-            Income s = arrayList.get(i);
+            //取出arrayList中的第i個成績單物件
+            Transcript s = arrayList.get(i);
 
             //將取出的檔位產生一個陣列
             Object[] row = {s.getStuNo(), s.getStuName(), s.getChi(), s.getEng(), s.getMat(), s.remark()};
@@ -262,8 +262,7 @@ if (returnVal == JFileChooser.APPROVE_OPTION) {
 } else {
     System.out.println("取消檔案讀取");
 }         
-//---------------------------------------------  
-
+//---------------------------------------------    
 
 
 
