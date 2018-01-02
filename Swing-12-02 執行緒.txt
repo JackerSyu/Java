@@ -41,8 +41,12 @@ public class MyThread extends Thread {
         try{         
             System.out.println(name + ":" + "啟動...");
             
+	    //----------------------------------------------
             //設定連結目的地
-            URL url = new URL("http://www.ntub.edu.tw");  
+	    // https://www.mobile01.com/
+	    // https://tw.yahoo.com/
+	    //----------------------------------------------
+            URL url = new URL("https://www.mobile01.com/");  
             
             //建立輸入串流
             InputStream in = url.openStream();                           
