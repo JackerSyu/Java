@@ -74,7 +74,7 @@ class MyThread extends Thread {
 ========================================================================= 
 (3) Main.java
 ========================================================================= 
-import com.abc.MyThread;
+import com.abc.*;
 
 public class Main{
     public static void main(String[] argv) {
