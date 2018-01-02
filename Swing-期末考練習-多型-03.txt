@@ -8,9 +8,9 @@
     |         |__ Main.java (主程式)
     |
     |__ <com.abc>
-    |         |__ Income.java       (抽象父親, 收入類別)
-    |         |__ SalesIncome.java  (兒子, 銷貨收入類別)  
-    |         |__ Rentalncome.java  (兒子, 租金收入類別)     
+    |         |__ Income.java        (抽象父親, 收入類別)
+    |         |__ SalesIncome.java   (兒子, 銷貨收入類別)  
+    |         |__ RentalIncome.java  (兒子, 租金收入類別)     
     |
     |__ <com.abc.ui>
               |__ MyJFrame.java (畫面)
