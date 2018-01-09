@@ -51,7 +51,7 @@ public class Counter{
 ===============================================================
 package com.abc;
 
-class MyThread extends Thread {
+public class MyThread extends Thread {
     private String name;
     private Counter counter;
 	
