@@ -1,0 +1,204 @@
+========================
+1. 專案架構
+========================
+
+  <專案>
+    |
+    |__ <default package>
+    |         |__ Main.java (主程式)
+    |
+    |__ <com.abc>
+    |         |__ Staff.java     (父親, 職員類別)
+    |         |__ Teacher.java   (兒子, 教師類別)    
+    |
+    |__ <com.abc.ui>
+              |__ MyJFrame.java (畫面)
+
+
+			  
+  [JFrame] (畫面)
+    |
+    |__ jMenuBar[JMenuBar]
+    |         |__ openMenu[JMenu] (開檔)
+    |         |__ exitMenu[JMenu]
+    |
+    |__ jScrollPane[JScrollPane]
+              |__ jTable[JTable] (表格)
+              
+              
+              
+
+==============================================
+2-1. 輸入檔: teacher.CSV
+==============================================
+T001,高小澤,3250
+T002,杜小瑜,4260
+T003,賴小蓁,2110
+T004,廖小晴,6635
+T005,吳小璇,1640
+
+
+
+
+==============================================
+2-2. 欄位說明:
+==============================================
+(1)編號
+(2)姓名
+(3)分鐘數
+
+
+
+
+=====================
+3. 輸出:
+=====================
+----------------------------------------------
+編號      姓名      分鐘數     薪水  
+----------------------------------------------
+T001     高小澤     3250      XXXXX
+  .        .         .         .           
+  .        .         .         .    
+  .        .         .         .      
+----------------------------------------------
+
+
+
+
+============================================
+4-1. Staff.java (父親, 已完成) 
+============================================
+package com.abc;
+
+// 收入類別
+public class Staff {
+    //成員
+    private String no;
+    private String name;
+    
+    //建構元(1)
+    public Staff(String no, String name){
+        this.no=no;
+        this.name=name;
+    }
+
+    //建構元(2)    
+    public Staff(){}
+    
+    //getter
+    public String getNo(){return this.no;}
+    public String getName(){return this.name;}
+    
+    //setter
+    public void setNo(String no){this.no=no;}
+    public void setName(String name){this.name=name;}
+}
+
+
+
+
+============================================
+4-2. Teacher.java (兒子, 未完成) 
+============================================
+package com.abc;
+
+public class Teacher extends Staff{
+    private int minutes;   //分鐘數
+
+    //建構元(1)
+    //建構元(2)
+    //getters
+    //setters
+
+    //計算薪水(未完成)
+    public int salary(){}    
+}
+
+
+
+
+============================================
+4-3. MyJFrame.java (畫面, 已完成)
+============================================
+//---------------------------------------------
+//在MenuBar中的Open被點擊時	
+//---------------------------------------------     
+//開啟FileChooser物件
+JFileChooser jFileChooser = new JFileChooser();
+jFileChooser.setDialogTitle("開啟檔案");
+
+//如果有選擇檔案   
+int returnVal = jFileChooser.showOpenDialog(this);
+if (returnVal == JFileChooser.APPROVE_OPTION) {
+    //設定檔案物件
+    File file = jFileChooser.getSelectedFile();
+
+    //逐筆讀取檔案內容	
+    try {
+        //產生一個BufferedReader物件, 用來逐筆讀取檔案	
+        BufferedReader b = new BufferedReader(new FileReader(file));
+
+        //存放每次讀入的單行內容		
+        String data; 
+
+        //清除原有資料
+        DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+        model.setRowCount(0); 
+
+        //=======================================================
+        // (1)建立一個存放所有Teacher物件的arrayList
+        //=======================================================
+        ArrayList<Teacher> arrayList = new ArrayList();
+        //=======================================================
+
+        while ((data = b.readLine()) != null) {
+            //切割逗號分隔的項目
+            String items[]=data.split(",", -1);
+
+            //=========================================
+            // (2)取出編號, 姓名, 分鐘數 
+            //=========================================
+            String no = items[0];
+            String name = items[1];
+            int minutes = Integer.parseInt(items[2]);          
+            //=========================================  
+
+            //==================================================================
+            // (3)產生一個Teacher物件, 將它加入arrayList中
+            //==================================================================
+            arrayList.add(new Teacher(no, name, minutes));          
+            //==================================================================
+        }  
+
+
+        //==========================================================================
+        // (4)逐個取出Teacher物件, 再取出其內資料, 加入表格中顯示
+        //==========================================================================
+        for(int i=0; i<arrayList.size(); i++){
+            //取出arrayList中的第i個Teacher物件
+            Teacher s = arrayList.get(i);
+
+            //將取出的欄位產生一個陣列
+            Object[] row = {s.getNo(), s.getName(), s.getMinutes(), s.salary()};
+
+            //將產生的陣列加入表格中
+            model.addRow(row);
+        }
+        //==========================================================================        
+    } catch (IOException ex) {
+        JOptionPane.showMessageDialog(this, "讀檔時發生錯誤!");
+    }
+} else {
+    System.out.println("取消檔案讀取");
+}         
+//---------------------------------------------    
+
+
+
+
+============================================
+4-4. Main.java (主程式, 未完成)
+============================================
+請自行複製MyJFrame.java中的main()方法
+//------------------------------------------
+
