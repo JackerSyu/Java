@@ -9,8 +9,7 @@
     |
     |__ <com.abc>
     |         |__ Student.java (學生類別)
-    |                 |__ public static int fee(String type, int minutes)   
-    |                           
+    |                 |__ public static int fee(String type, int minutes)                         
     |
     |__ <com.abc.ui>
               |__ MyJFrame.java (畫面)
