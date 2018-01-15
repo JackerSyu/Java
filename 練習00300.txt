@@ -208,20 +208,20 @@ if (returnVal == JFileChooser.APPROVE_OPTION) {
             String serNo = items[0];
             String type = items[1];
             String period = items[2];
-            Boolean isDesignated = Boolean.parseBoolean(item[3]);
+            Boolean isDesignated = Boolean.parseBoolean(items[3]);
             
             //==================================================
             // (3-1)產生一個文法課程物件, 將它加入arrayList中
             //==================================================
-            if(title.equals("文法課程")){               
+            if(type.equals("文法課程")){               
                 arrayList.add(new GrammarCourse(serNo, type, period, isDesignated));
             }
             
             //==================================================
             // (3-2)產生一個會話課程物件, 將它加入arrayList中
             //==================================================
-            if(title.equals("會話課程")){
-                Boolean isTextBook = Boolean.parseBoolean(item[4]);                
+            if(type.equals("會話課程")){
+                Boolean isTextBook = Boolean.parseBoolean(items[4]);                
                 arrayList.add(new ConversationCourse(serNo, type, period, isDesignated, isTextBook));
             } 
         }  
@@ -247,7 +247,7 @@ if (returnVal == JFileChooser.APPROVE_OPTION) {
 } else {
     System.out.println("取消檔案讀取");
 }         
-//---------------------------------------------  
+//--------------------------------------------- 
 
 
 
