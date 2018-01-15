@@ -66,11 +66,11 @@ S006,楊小儱,B,360
 
 
 ============================================
-4-1. Student.java (未完成) 
+4-1. Learning.java (未完成) 
 ============================================
 package com.abc;
 
-public class Student {
+public class Learning {
     public static int fee(String type, int minutes){
         //請自行完成
     }
