@@ -54,12 +54,12 @@ T005,吳小璇,1640,5.5
 3. 輸出:
 =====================
 ----------------------------------------------
-編號      姓名      分鐘數     薪水  
+編號      姓名      分鐘數    評比     薪水  
 ----------------------------------------------
-T001     高小澤     3250      XXXXX
-  .        .         .         .           
-  .        .         .         .    
-  .        .         .         .      
+T001     高小澤     3250      9.5    XXXXX
+  .        .         .         .      .      
+  .        .         .         .      .  
+  .        .         .         .      .
 ----------------------------------------------
 
 
@@ -104,7 +104,8 @@ package com.abc;
 
 public class Teacher extends Staff{
     private int minutes;   //分鐘數
-
+    private double rating;   //評比
+    
     //建構元(1)
     //建構元(2)
     //getters
@@ -160,13 +161,14 @@ if (returnVal == JFileChooser.APPROVE_OPTION) {
             //=========================================
             String no = items[0];
             String name = items[1];
-            int minutes = Integer.parseInt(items[2]);          
+            int minutes = Integer.parseInt(items[2]); 
+            double rating = Double.parseDouble(items[3]);        
             //=========================================  
 
             //==================================================================
             // (3)產生一個Teacher物件, 將它加入arrayList中
             //==================================================================
-            arrayList.add(new Teacher(no, name, minutes));          
+            arrayList.add(new Teacher(no, name, minutes, rating));          
             //==================================================================
         }  
 
@@ -179,7 +181,7 @@ if (returnVal == JFileChooser.APPROVE_OPTION) {
             Teacher s = arrayList.get(i);
 
             //將取出的欄位產生一個陣列
-            Object[] row = {s.getNo(), s.getName(), s.getMinutes(), s.salary()};
+            Object[] row = {s.getNo(), s.getName(), s.getMinutes(), s.getRating(), s.salary()};
 
             //將產生的陣列加入表格中
             model.addRow(row);
