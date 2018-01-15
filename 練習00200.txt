@@ -103,8 +103,8 @@ public class Staff {
 package com.abc;
 
 public class Teacher extends Staff{
-    private int minutes;   //分鐘數
-    private double rating;   //評比
+    private int minutes;      //分鐘數
+    private double rating;   //教學評比
     
     //建構元(1)
     //建構元(2)
