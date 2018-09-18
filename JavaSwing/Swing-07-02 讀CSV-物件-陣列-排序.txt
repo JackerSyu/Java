@@ -1,0 +1,201 @@
+=====================================================================================
+讀入 scores.CSV 檔, 用JTable顯示資料, (JTable欄位有學號, 性別, 總分. 共3項)
+產生Student類別的物件, 加入ArrayList物件中.
+資料完全讀入後, 由總分排序, 排序後再逐筆輸出.
+=====================================================================================
+
+
+  <專案>
+    |
+    |__ <default package>
+    |         |__ Main.java (主程式)
+    |
+    |__ <com.abc>
+    |         |__ Student.java (學生成績類別)	
+    |
+    |__ <com.abc.ui>
+              |__ MyJFrame.java (畫面)
+
+
+			  
+  [JFrame] (畫面)
+    |
+    |__ jMenuBar[JMenuBar]  (選單)
+    |         |__ openMenu[JMenu] (開檔)
+    |         |__ exitMenu[JMenu] (離開)	
+    |
+    |__ jScrollPane[JScrollPane] (有捲動功能的面板)
+              |__ jTable[JTable] (表格)
+			  
+ 
+說明: 
+-------------------------------------------------------------------
+Student類別實作了Comparable介面, 
+因此Student生成的實例除了是個Student物件外, 也是一個Comparable物件.
+因為生成的物件都會是Comparable物件, 可用Collections.sort()進行排序.
+-------------------------------------------------------------------
+
+排序方法文件:
+-------------------------------------------------------------------
+Collections.sort(List<T> list)
+T是一個Comparable物件 
+------------------------------------------------------------------- 
+  
+  
+  
+=========================================================================
+(1)程式, Student.java
+=========================================================================
+package com.abc;
+
+public class Student implements Comparable<Student>{
+    //成員
+    private String stuNo;
+    private String gender;
+    private int chi;
+    private int eng;
+    private int mat;
+    private int soc;
+    private int nat;
+    private int lec;
+    
+    //建構元(1)
+    public Student(String stuNo, String gender, int chi, int eng, int mat, int soc, int nat, int lec){
+        this.stuNo=stuNo;
+        this.gender=gender;
+        this.chi=chi;
+        this.eng=eng;
+        this.mat=mat;
+        this.soc=soc;
+        this.nat=nat;
+        this.lec=lec;
+    }
+    
+    //建構元(2)
+    public Student(){}
+    
+    //setters
+    public void setStuNo(String stuNo){this.stuNo=stuNo;}
+    public void setGender(String gender){this.gender=gender;}
+    public void setChi(int chi){this.chi=chi;}
+    public void setEng(int eng){this.eng=eng;}
+    public void setMat(int mat){this.mat=mat;}
+    public void setSoc(int soc){this.soc=soc;}
+    public void setNat(int nat){this.nat=nat;}
+    public void setLec(int lec){this.lec=lec;}
+    
+    //getters
+    public String getStuNo(){return this.stuNo;}
+    public String getGender(){return this.gender;}
+    public int getChi(){return this.chi;}
+    public int getEng(){return this.eng;}
+    public int getMat(){return this.mat;}
+    public int getSoc(){return this.soc;}
+    public int getNat(){return this.nat;}
+    public int getLec(){return this.lec;}
+    
+    //------------------------------------------------------------------
+    //計算總分
+    //------------------------------------------------------------------
+    public double total(){
+        return chi*2.5 + eng*2 + mat*1.5 + soc*0.5 + nat*0.5 + lec*3;        
+    }
+    //------------------------------------------------------------------ 
+
+
+    //--------------------------------------------------------------
+    //實作Comparable介面的方法
+    //--------------------------------------------------------------
+    @Override
+    public int compareTo(Student stu){        
+        return (int)(this.total()*10 - stu.total()*10);  //由小到大
+    }
+    //--------------------------------------------------------------    
+}
+
+
+
+=========================================================================
+(2)程式, 在MenuBar中的Open被點擊時	
+=========================================================================
+//---------------------------------------------
+//在MenuBar中的Open被點擊時	
+//---------------------------------------------     
+//開啟FileChooser物件
+JFileChooser jFileChooser = new JFileChooser();
+jFileChooser.setDialogTitle("開啟檔案");
+
+//如果有選擇檔案   
+int returnVal = jFileChooser.showOpenDialog(this);
+if (returnVal == JFileChooser.APPROVE_OPTION) {
+    //設定檔案物件
+    File file = jFileChooser.getSelectedFile();
+
+    //逐筆讀取檔案內容	
+    try {
+        //產生一個BufferedReader物件, 用來逐筆讀取檔案	
+        BufferedReader b = new BufferedReader(new FileReader(file));
+
+        //存放每次讀入的單行內容		
+        String data; 
+
+        //清除原有資料
+        DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+        model.setRowCount(0); 
+
+        //===================================================
+        //(1)建立一個存放所有學生物件的arrayList
+        //===================================================
+        ArrayList<Student> arrayList = new ArrayList();
+        //===================================================
+
+        while ((data = b.readLine()) != null) {
+            //切割以逗號分隔的項目(-1:全部項目均要分割; n表示只分割前n個)
+            String items[]=data.split(",", -1);
+
+            //分別取出學號, 性別, 國文, 英文, 數學, 社會, 自然, 作文成績.
+            String stuNo = items[0];
+            String gender = items[1];
+            int chi = Integer.parseInt(items[2]);
+            int eng = Integer.parseInt(items[3]);
+            int mat = Integer.parseInt(items[4]);
+            int soc = Integer.parseInt(items[5]);
+            int nat = Integer.parseInt(items[6]);
+            int lec = Integer.parseInt(items[7]);   
+
+            //=======================================================================
+            //(2)產生一個Student物件, 將它加入arrayList中, 
+            //=======================================================================
+            arrayList.add(new Student(stuNo, gender, chi, eng, mat, soc, nat, lec));
+        }
+        
+        
+        //=======================================================================
+        //(3)排序 
+        //=======================================================================
+        Collections.sort(arrayList);
+        //=======================================================================
+        
+
+        //=====================================================================
+        //(4)逐個取出排序後的資料, 加入表格中顯示
+        //=====================================================================
+        for(int i=0; i<arrayList.size(); i++){
+            //取出arrayList中的第i個Student物件
+            Student s = arrayList.get(i);
+
+            //將取出的檔位產生一個陣列
+            Object[] row = {s.getStuNo(), s.getGender(), s.total()};
+
+            //將產生的陣列加入表格的資料物件中
+            model.addRow(row);
+        }
+        //=====================================================================        
+    } catch (IOException ex) {
+        JOptionPane.showMessageDialog(this, "讀檔時發生錯誤!");
+    }
+} else {
+    System.out.println("取消檔案讀取");
+}         
+//--------------------------------------------- 
+

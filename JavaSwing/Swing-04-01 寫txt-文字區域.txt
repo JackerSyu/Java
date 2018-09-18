@@ -1,0 +1,75 @@
+=========================================================================
+將JTextArea物件內容逐行寫到輸出檔.
+=========================================================================
+
+  <專案>
+    |
+    |__ <default package>
+    |         |__ Main.java (主程式)
+    |
+    |__ <com.abc.ui>
+              |__ MyJFrame.java (畫面)
+
+
+			  
+  [JFrame] (畫面)
+    |
+    |__ jMenuBar[JMenuBar]  (選單)
+	|         |__ writeMenu[JMenu] (寫檔)
+	|         |__ exitMenu[JMenu]  (離開)	
+	|
+	|__ jScrollPane[JScrollPane] (有捲動功能的面板)
+	          |__ jTextArea[JTextArea]  (文字區塊)	   
+
+
+
+
+
+=========================================================================
+程式
+=========================================================================
+
+//---------------------------------------------
+//MenuBar中的[寫檔]被點擊時	
+//--------------------------------------------- 
+//開啟FileChooser物件
+JFileChooser fileChooser = new JFileChooser();
+fileChooser.setDialogTitle("儲存檔案");   
+              
+//如果有選擇檔案
+int userSelection = fileChooser.showSaveDialog(this);
+if (userSelection == JFileChooser.APPROVE_OPTION) {
+    //設定檔案物件
+    File file = fileChooser.getSelectedFile();    
+
+    try{
+        //設定檔案輸出writer
+        FileWriter fw = new FileWriter(file);
+
+        //逐行處理jTextArea內的資料
+        boolean firstLine=true;
+        for (String line : jTextArea.getText().split("\\n")){
+            //=========================================
+            //可以進行某些資料處理
+            //=========================================
+            if(firstLine){
+                firstLine=false;                        
+            }else{
+                fw.write("\n");
+            }                        
+                    
+            //將一行資料寫到輸出檔
+            fw.write(line);  
+            //=========================================
+        }
+
+        //關檔
+        fw.close();
+    }catch(IOException e){
+        JOptionPane.showMessageDialog(this, "寫檔時發生錯誤!");
+    } 
+
+    JOptionPane.showMessageDialog(this, "已存檔:"+file.getAbsolutePath());            
+}
+//---------------------------------------------  
+

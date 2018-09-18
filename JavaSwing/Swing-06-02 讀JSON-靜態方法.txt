@@ -1,0 +1,201 @@
+=====================================================================================
+讀入 museum.JSON 檔, 用JTable顯示資料, (JTable欄位有名稱, 型態, 緯度, 經度. 共4項)
+在JSON檔中, 資料內容是以String表示, 如下:
+[{
+     "name":"新竹市消防博物館",
+     "type":"主題館與綜合類",
+     "address":"中山路4號",
+     "longitude":"120.968076",
+     "latitude":"24.806486",
+... 
+=====================================================================================
+
+  <專案>
+    |
+    |__ <Source Packages>
+    |         |__ <default package>
+    |         |        |__ Main.java (主程式)
+    |         |
+    |         |__ <com.abc>
+    |         |        |__ Location.java (儲存靜態方法的類別)    
+    |         |
+    |         |__ <com.abc.ui>
+    |                  |__ MyJFrame.java (畫面)
+    |
+    |__ <Libraries>
+              |__ json-simple-1.1.jar (增加. 先在本頁面<jar>資料夾中下載, 再在Libraries上按右鍵, 加入Jar)
+              |__ JDK 1.8(Default)    (原有)
+
+			  
+  [JFrame] (畫面)
+    |
+    |__ jMenuBar[JMenuBar]  (選單)
+	  |         |__ openMenu[JMenu] (開檔)
+	  |         |__ exitMenu[JMenu] (離開)	
+	  |
+	  |__ jScrollPane[JScrollPane] (有捲動功能的面板)
+	            |__ jTable[JTable] (表格)
+			  
+
+
+
+=====================================================================================
+測試檔案格式如下:(內容是一個 JSONArray 陣列物件)
+=====================================================================================
+[{
+     "name":"新竹市消防博物館",
+     "type":"主題館與綜合類",
+     "address":"中山路4號",
+     "longitude":"120.968076",
+     "latitude":"24.806486",
+     "openTime":"週二~週日，時段為上午九時至十二時、下午十三時至十七時；週六晚上開放至二十一時",
+     "ticketPrice":"全部免費\u003cbr/\u003e",
+     "contact":"吳江龍",
+     "phone":"03-522-2050",
+     "fax":"03-526-2180",
+     "email":"49020@ems.hccg.gov.tw",
+     "website":"http://www.hcfd.gov.tw/museum/default.asp",
+     "srcWebsite":"",
+     "name_eng":"Hsinchu City Fire Museum",
+     "openTime_eng":"Hours: Tuesday-Sunday, 09:00-12:00; 13:00-17:00; Saturday closing at 21:00",
+     "ticketPrice_eng":"Admission Free",
+     "mainTypeName":"博物館",
+     "cityName":"新竹市",
+     "groupTypeName":"博物館",
+     "mainTypePk":"25",
+     "version":"1.0",
+     "hitRate":1851
+},
+{
+      ....第2筆資料....
+},
+
+.
+.
+.
+
+{
+      ....最後一筆資料....
+}]
+---------------------------------------------------------
+
+
+
+
+========================================================================= 
+(1) 程式, Location.java
+========================================================================= 
+package com.abc;
+
+public class Location{
+    //---------------------------------------------------------------------------------------------------------------------
+    //傳入: (1)起點緯度 (2)起點經度 (3)終點緯度 (4)終點經度
+    //傳回: 兩點間的距離(公里)
+    //---------------------------------------------------------------------------------------------------------------------
+    public static double distanceBetweenTwoLocations(Double sourceLat, Double sourceLon, Double destLat, Double destLon){
+        double R = 6371; // 地球半徑(公里)
+
+        double dLat = (destLat-sourceLat)*Math.PI/180;
+        double dLon = (destLon-sourceLon)*Math.PI/180;
+
+        double a = Math.sin(dLat/2) * Math.sin(dLat/2) + Math.cos(sourceLat*Math.PI/180) * Math.cos(destLat*Math.PI/180) * Math.sin(dLon/2) * Math.sin(dLon/2);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
+        double d = (int)(R * c * 1000) / 1000.0; //兩點間距離(公里)
+
+        return d;
+    }
+    //---------------------------------------------------------------------------------------------------------------------    
+}
+
+
+
+
+
+
+========================================================================= 
+(2-1) 程式, MenuBar中的[開檔]被點擊時(增加匯入json套件類別)
+========================================================================= 
+//--------------------------------------------- 
+//引用外部套件
+//--------------------------------------------- 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+
+
+=========================================================================
+(2-2) 程式, MenuBar中的[開檔]被點擊時	
+=========================================================================
+//---------------------------------------------
+//在MenuBar中的[開檔]被點擊時	
+//---------------------------------------------     
+//開啟FileChooser物件
+JFileChooser jFileChooser = new JFileChooser();
+jFileChooser.setDialogTitle("開啟檔案");
+
+//如果有選擇檔案  
+int returnVal = jFileChooser.showOpenDialog(this);
+if (returnVal == JFileChooser.APPROVE_OPTION) {
+    try{
+        //設定檔案物件
+        File file = jFileChooser.getSelectedFile();                    
+
+        //產生一個JSON解析物件	
+        JSONParser parser = new JSONParser();
+
+        //將檔案內容解析成JSON物件(可能是JSONArray或JSONObject)
+        Object obj = parser.parse(new FileReader(file));        
+
+        //將obj轉成JSONArray陣列物件   
+        JSONArray items = (JSONArray)obj;
+
+        //清除原有資料
+        DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+        model.setRowCount(0);             
+                
+        //將JSON陣列物件逐個取出   
+        for(Object item : items) {
+            //每個取出物件轉成JSON物件
+            JSONObject jsonItem = (JSONObject) item;
+
+            //====================================================================
+            // 取出JSON物件中的資料(名稱, 型態, 緯度, 經度)
+            // 名稱, 型態, 緯度, 經度在JSON檔中均以字串表示, 因此轉成String, 如下:
+            // String lat = (String) jsonItem.get("latitude");
+            //
+            // 如以整數表示, 轉成:
+            // Integer lat = (int) jsonItem.get("lat");
+            //
+            // 如以浮點數表示, 轉成:
+            // Double lat = (double) jsonItem.get("latitude");	    
+            //====================================================================                    
+            String name = (String) jsonItem.get("name");
+            String type = (String) jsonItem.get("type");
+            String lat  = (String) jsonItem.get("latitude");
+            String lng  = (String) jsonItem.get("longitude");
+                                    
+            //將lat及lng轉成數字
+            double latitute = Double.valueOf(lat);
+            double longitude = Double.valueOf(lng);
+            
+            //計算目標與北商的距離
+            double dist = Location.distanceBetweenTwoLocations(latitute, longitude, 25.041920, 121.525596);      
+            
+            //將取出的檔位產生一個陣列
+            Object[] row = {name, type, lat, lng, dist};        
+     
+            //將產生的陣列加入表格的資料物件中
+            model.addRow(row);
+            //=========================================                         
+        }          
+    }catch(IOException ex) {
+        JOptionPane.showMessageDialog(this, "讀檔時發生錯誤!");
+    }catch(ParseException ex) {
+        JOptionPane.showMessageDialog(this, "JSON格式解析錯誤!");                
+    }    
+} else {
+    System.out.println("取消檔案讀取");
+}             
+//---------------------------------------------   

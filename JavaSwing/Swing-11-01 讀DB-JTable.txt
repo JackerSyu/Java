@@ -1,0 +1,134 @@
+=========================================================================
+讀入MySQL資料庫中資料, 逐一加入JTable物件中.
+=========================================================================
+
+   <專案>
+     |
+     |__ <Source Packages>
+     |         |  
+     |         |__ <default package>
+     |         |       |__ Main.java (主程式)
+     |         |
+     |         |__ <com.abc>
+     |         |       |__ DB.java   (負責傳回資料庫連線物件)
+     |         |
+     |         |__ <com.abc.ui>
+     |                 |__ MyJFrame.java (畫面)
+     |
+     |
+     |__ <Libraries>
+           |__ MySQL JDBC Driver - mysql-connector....jar  (在Libraries上按右鍵, 選擇此jar檔, 加入其中)
+           |__ JDK 1.8(Default)  (原有)
+
+	
+     
+  [JFrame] (畫面)
+    |
+    |__ jMenuBar[JMenuBar]  
+    |          |__ openMenu[JMenu] (開檔)
+    |          |__ exitMenu[JMenu] 
+    |
+    |__ jScrollPane[JScrollPane] 
+               |__ jTable[JTable] (表格)
+			  
+========================================================================= 
+
+
+
+---------------------------------------------------------
+測試的資料庫在本網頁<db>中可下載
+---------------------------------------------------------
+student(資料庫)
+   |
+   |__ student(資料表)
+          |__ stuNo
+          |__ stuName
+          |__ gender
+          |__ ...          
+
+---------------------------------------------------------
+
+
+
+
+//===============================================================
+(1)DB.java, 負責取回資料庫資料
+//===============================================================
+package com.abc;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+public class DB{
+    //-----------------------------------------------------
+    //取出並回傳學生資料
+    //-----------------------------------------------------    
+    public static Connection getConnection(){
+        try{   
+            //載入mysql驅動程式
+            Class.forName("com.mysql.jdbc.Driver");
+            
+            //產生一個連到資料庫的連結物件
+            Connection connection=DriverManager.getConnection("jdbc:mysql://localhost:3306/student", "root", "mysql");             
+         
+            //回傳連結物件
+            return connection;
+        }catch(ClassNotFoundException | SQLException e){  
+            //回傳空值
+            return null;
+        }
+    }
+    //-----------------------------------------------------    
+} 
+
+
+
+
+========================================================================= 
+(2)在MenuBar中的Open被點擊時	
+========================================================================= 
+
+//--------------------------------------------- 
+//取得資料庫中資料
+//--------------------------------------------- 
+try{
+    //取得資料庫連線物件
+    Connection connection = DB.getConnection();
+
+    //==============================================
+    //(1)產生一個SQL命令
+    //==============================================    
+    PreparedStatement stmt = connection.prepareStatement("select * from student");
+            
+    //執行SQL命令, 取出資料
+    ResultSet rs=stmt.executeQuery();       
+           
+    //如果回傳空資料集        
+    if(!rs.next()){
+        JOptionPane.showMessageDialog(this, "無符合資料!");
+        return;
+    }
+    
+    //清除原有資料
+    DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+    model.setRowCount(0); 
+	
+    //將資料集中的內容一筆一筆取出       
+    do{
+        //==============================================
+        //(2)取出某些欄位
+        //==============================================	
+        String stuNo=rs.getString("stuNo");  
+        String stuName=rs.getString("stuName");         
+
+        //將取出的檔位產生一個陣列
+        Object[] row = {stuNo, stuName};        
+    
+        //將產生的陣列加入表格的資料物件中
+        model.addRow(row);                
+    }while(rs.next());	
+}catch(SQLException e){
+    JOptionPane.showMessageDialog(this, "資料取得失敗!");
+}
+//------------------------------------------

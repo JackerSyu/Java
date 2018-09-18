@@ -1,0 +1,69 @@
+=========================================================================
+一次讀入整個檔案, 存在byte[]陣列中, 再轉成String, 再顯示在JTextArea物件中.
+=========================================================================
+
+  <專案>
+    |
+    |__ <default package>
+	|         |__ Main.java (主程式)
+	|
+	|__ <com.abc.ui>
+	          |__ MyJFrame.java (畫面)
+
+
+			  
+  [JFrame] (畫面)
+    |
+    |__ jMenuBar[JMenuBar]  (選單)
+	|         |__ openMenu[JMenu] (開檔)
+	|         |__ exitMenu[JMenu] (離開)	
+	|
+	|__ jScrollPane[JScrollPane] (有捲動功能的面板)
+	          |__ jTextArea[JTextArea]  (文字區塊)
+	
+	
+	
+	
+========================================================================= 
+程式
+========================================================================= 	   
+
+//---------------------------------------------
+//MenuBar中的[開檔]被點擊時	
+//---------------------------------------------     
+//開啟FileChooser物件
+JFileChooser jFileChooser = new JFileChooser();
+jFileChooser.setDialogTitle("開啟檔案");
+    
+int returnVal = jFileChooser.showOpenDialog(this);
+
+//如果有選擇檔案        
+if (returnVal == JFileChooser.APPROVE_OPTION) {
+    try {
+        //設定檔案物件
+        File file = jFileChooser.getSelectedFile();                    
+
+        //設定檔案輸入串流
+        FileInputStream fis = new FileInputStream(file);                
+
+        //設定讀入資料的存放空間
+        byte data[] = new byte[(int) file.length()];
+
+        //讀入資料
+        fis.read(data);
+        fis.close();
+
+        //將讀入資料轉成字串
+        String str = new String(data, "UTF-8");
+
+        //將讀入資料放到TextArea物件中
+        jTextArea.setText(str);           
+    } catch (IOException ex) {
+        JOptionPane.showMessageDialog(this, "讀檔時發生錯誤!");
+    }
+} else {
+    System.out.println("取消檔案讀取");
+}           
+//---------------------------------------------   
+
+

@@ -1,0 +1,117 @@
+
+   <專案>
+     |
+     |__ <Source Packages>
+               |  
+               |__ <default package>
+               |       |__ Main.java (主程式)
+               |
+               |__ <com.abc>
+                       |__ NervousBox.java (執行緒)                    
+
+
+
+
+
+
+===============================================================
+(1) NervousBox.java
+===============================================================
+
+package com.abc;
+
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import javax.swing.JPanel;
+
+public class NervousBox extends JPanel implements Runnable{
+    //成員
+    private int x, y;
+    private int color;
+
+    //建構元
+    public NervousBox(int color){
+        this.x = 750;
+        this.y = 450;
+        this.color = color;
+    }
+
+    //移動
+    private void moveBox() {
+        this.x = (int)(this.x + Math.random()*4-2);
+        this.y = (int)(this.y + Math.random()*4-2);
+    }
+
+    //繪圖
+    @Override
+    public void paint(Graphics g) {
+        super.paint(g);
+        Graphics2D g2d = (Graphics2D) g;
+        
+        this.setSize(new Dimension(30, 30));
+        g.setColor(new Color(this.color));
+        g2d.fillRect(0, 0, 30, 30);
+        
+        this.setLocation(x, y);
+    }
+
+    //執行緒的執行內容
+    @Override
+    public void run() { 
+        while(true){                
+            this.moveBox();
+            this.repaint();
+            try{
+                Thread.sleep(10);
+            }catch(InterruptedException e){
+                System.out.println("中斷執行");
+                break;
+            }    
+        }	
+    }    
+}
+
+
+
+
+===============================================================
+(2) Main.java
+===============================================================
+import javax.swing.BoxLayout;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import com.abc.NervousBox;
+
+public class Main{
+    public static void main(String[] args) throws InterruptedException {
+        JFrame frame = new JFrame("執行緒測試");  
+                
+        JPanel container = new JPanel();
+        container.setLayout(new BoxLayout(container, BoxLayout.X_AXIS));   
+                
+        //產生2個小方形物件       
+        NervousBox box1 = new NervousBox((int)(Math.random()*16000000));
+        NervousBox box2 = new NervousBox((int)(Math.random()*16000000));               
+
+        //2個小方形物件加入面板
+        container.add(box1);
+        container.add(box2);           
+		
+        //將面板加入畫面中
+        frame.add(container);
+                
+        frame.setSize(800, 500);
+        frame.setVisible(true);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+        //將2個小方形物件包裝成執行緒
+        Thread t1 = new Thread(box1);
+        Thread t2 = new Thread(box2);
+        
+        //啟動執行緒
+        t1.start();
+        t2.start();
+    }
+}

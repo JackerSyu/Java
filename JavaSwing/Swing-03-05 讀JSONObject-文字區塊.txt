@@ -1,0 +1,136 @@
+=========================================================================
+讀入JSONObject格式資料, 解析內容後, 逐個加入JTextArea物件中.
+=========================================================================
+
+  <專案>
+    |
+    |__ <default package>
+	|         |__ Main.java (主程式)
+	|
+	|__ <com.abc.ui>
+	          |__ MyJFrame.java (畫面)
+
+
+			  
+  [JFrame] (畫面)
+    |
+    |__ jMenuBar[JMenuBar]  (選單)
+	|         |__ openMenu[JMenu] (開檔)
+	|         |__ exitMenu[JMenu] (離開)	
+	|
+	|__ jScrollPane[JScrollPane] (有捲動功能的面板)
+	          |__ jTextArea[JTextArea]  (文字區塊)
+			  
+
+---------------------------------------------------------
+在Libraries中, 除了原有的JDK 1.8外,
+再加入 json-simple-1.1.jar (在本頁面<jar>資料夾中可下載)
+---------------------------------------------------------
+     |
+     |__ <Libraries>
+           |__ json-simple-1.1.jar
+           |__ JDK 1.8(Default)
+
+========================================================================= 
+
+
+
+---------------------------------------------------------
+測試檔案格式如下:(內容是一個 JSONArray 陣列物件)
+---------------------------------------------------------
+{
+    "students":[   
+        { "no": "110001", "name": "張小鈞", "gender": "男"},
+        { "no": "110002", "name": "沈小廷", "gender": "男"},
+        { "no": "110003", "name": "劉小宏", "gender": "男"},
+        { "no": "110004", "name": "林小豪", "gender": "男"},
+        { "no": "110005", "name": "劉小安", "gender": "男"},
+        { "no": "110006", "name": "江小萱", "gender": "女"},
+        { "no": "110007", "name": "胡小家", "gender": "女"},
+        { "no": "110008", "name": "陳小儒", "gender": "女"},
+        { "no": "110009", "name": "黃小妤", "gender": "女"},
+        { "no": "110010", "name": "卓小依", "gender": "女"}
+    ]
+}
+---------------------------------------------------------
+
+
+
+
+========================================================================= 
+程式
+========================================================================= 
+
+(1)增加匯入json套件類別
+//--------------------------------------------- 
+//引用外部套件
+//--------------------------------------------- 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+
+
+
+(2)開檔動作
+//---------------------------------------------
+//在MenuBar中的Open被點擊時	
+//---------------------------------------------     
+//開啟FileChooser物件
+JFileChooser jFileChooser = new JFileChooser();
+jFileChooser.setDialogTitle("開啟檔案");
+
+//如果有選擇檔案  
+int returnVal = jFileChooser.showOpenDialog(this);
+if (returnVal == JFileChooser.APPROVE_OPTION) {
+    try{
+        //設定檔案物件
+        File file = jFileChooser.getSelectedFile();                    
+
+        //產生一個JSON解析物件	
+        JSONParser parser = new JSONParser();
+
+        //將檔案內容解析成JSON格式物件(可能是JSONArray或JSONObject)
+        Object obj  = parser.parse(new FileReader(file));        
+
+        //將解析後的JSON格式物件轉成JSONObject物件
+        JSONObject jsonObject = (JSONObject) obj;                
+                
+        //讀入物件中的students內容, 因其為陣列, 讀入後即轉成JSONArray物件   
+        JSONArray items = (JSONArray) jsonObject.get("students");
+
+        //是否是第一行 
+        boolean firstLine=true;
+                
+        //將JSON陣列物件逐個取出   
+        for(Object item : items) {
+            //陣列的每個元素都是JSON物件
+            JSONObject jsonItem = (JSONObject) item;
+
+            //=========================================
+            //進行某些讀入資料的處理
+            //=========================================
+            //取出JSON物件中的name值
+            String name = (String) jsonItem.get("name");
+
+            //將name值放到TextArea物件中 	
+            if(firstLine){
+                firstLine=false;
+            }else{
+                jTextArea.append("\n");
+            }
+                    
+            jTextArea.append(name);
+            //=========================================            
+        }          
+    }catch(IOException ex) {
+        JOptionPane.showMessageDialog(this, "讀檔時發生錯誤!");
+    }catch(ParseException ex2){
+        JOptionPane.showMessageDialog(this, "JSON格式錯誤!");
+    }
+} else {
+    System.out.println("取消檔案讀取");
+}             
+//---------------------------------------------     
+
