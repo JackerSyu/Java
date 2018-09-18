@@ -1,0 +1,292 @@
+=================================
+J11  (靜態方法, static methods)
+=================================
+
+(1)
+//自行定義的類別
+class Statistics{
+    //---------------------------------------------- 
+    //數值array的加總
+    //傳入:1個數字陣列. 
+    //傳回:陣列中的數字總和.
+    //---------------------------------------------- 
+    public static double total(double[] data){
+        double tot=0;
+        
+        for(int i=0; i<data.length; i++){
+            tot+=data[i];
+        }
+        
+        return tot;
+    }
+    //---------------------------------------------- 
+}
+
+
+
+class Main {
+    public static void main(String[] args) {       
+        double[] data1={10, 18.5, 10.3, 16, 21, 17.4, 22, 12, 15, 12, 13.4, 16.8, 11.9};
+        double[] data2={10, 18.5, 10.3, 16, 21, 17.4, 22, 12, 15, 12, 13.4, 16.8, 11.9, 18};	
+	
+        System.out.println("總和:" + Statistics.total(data1));
+        System.out.println("總和:" + Statistics.total(data2));
+    }
+}
+
+
+
+
+(2-1)
+//員工相關的類別
+class EmployeeFunction{
+    //---------------------------------------------- 
+    //(1)正職員工的薪水計算
+    //傳入:職等, 加班時數. 
+    //傳回:薪水
+    //---------------------------------------------------
+    public static int salary(char rank, int overHours){
+        int baseSalary;
+		
+        if(rank=='A'){
+            baseSalary=30000;
+        }else{
+            baseSalary=25000;
+        }	    
+			
+        return baseSalary + 150*overHours;	//正職月薪=底薪+每小時150元加班費
+    }
+    //---------------------------------------------------
+    
+
+    //---------------------------------------------- 
+    //(2)兼職員工的薪水計算
+    //傳入:上班時數. 
+    //傳回:薪水    
+    //---------------------------------------------------    
+    public static int salary(int hours){
+        return 125*hours;  //兼職薪水=每小時125元
+    }
+    //---------------------------------------------------
+    
+
+    //---------------------------------------------- 
+    //(3)正職員工的傭金計算 
+    //傳入:職等, 銷售總金額. 
+    //傳回:傭金
+    //---------------------------------------------------    
+    public static int commission(char rank, int total){
+        int commission=0;
+
+        switch(rank){
+            case 'A':
+                commission=(int)(total*0.15);
+                break;
+            case 'B':
+                commission=(int)(total*0.12);
+                break;
+            case 'C':
+                commission=(int)(total*0.08);
+                break;
+            default:
+                commission=(int)(total*0.05);
+        }
+
+        return commission;
+    }
+    //---------------------------------------------------    
+}
+
+
+(2-2)
+class Employee{
+    private char rank;
+    private int overHours;
+    private int salesAmt;
+    
+    //建構元
+    public Employee(char rank, int overHours, int salesAmt){
+        this.rank=rank;
+        this.overHours=overHours;
+        this.salesAmt=salesAmt;
+    }
+
+    //建構元    
+    public Employee(){}
+
+    //getters    
+    public char getRank(){return this.rank;}
+    public int getOverHours(){return this.overHours;}
+    public int getSalesAmt(){return this.salesAmt;}
+
+    //setters    
+    public void setRank(char rank){this.rank=rank;}
+    public void setOverHours(int overHours){this.overHours=overHours;}
+    public void setSalesAmt(int salesAmt){this.salesAmt=salesAmt;}
+}
+
+
+
+(2-3)
+class Main {
+    public static void main(String[] args) {
+        //生成一個ArrayList的物件, 稱為employees
+        ArrayList employees = new ArrayList();
+
+        //將幾個員工資料加入employees中        
+        employees.add(new Employee('A', 20, 180000));
+        employees.add(new Employee('A', 10, 250000));
+        employees.add(new Employee('A', 15, 120000));
+        employees.add(new Employee('B', 20, 180000));
+        employees.add(new Employee('B', 10, 250000));
+        employees.add(new Employee('B', 15, 120000));
+        
+        //逐一列印員工資料			
+        for(int i=0; i<employees.size(); i++){
+            //取出串列清單中的第i個物件		
+            Employee c = (Employee)employees.get(i);                       
+			
+            //呼叫物件的方法, 印出物件資訊			
+            System.out.println("薪水:" + EmployeeFunction.salary(c.getRank(), c.getOverHours()));
+            System.out.println("傭金:" + EmployeeFunction.commission(c.getRank(), c.getSalesAmt()));
+            
+            System.out.println("--------------------");
+        }    
+    }
+}
+
+
+
+
+================================================================================================================================
+用NetBean製作
+================================================================================================================================
+------------------------------------------------
+(3-1)Main.java
+------------------------------------------------
+import java.util.*;
+import com.abc.*;
+
+class Main {
+    public static void main(String[] args) {
+        //生成一個ArrayList的物件, 稱為employees
+        ArrayList employees = new ArrayList();
+
+        //將幾個員工資料加入employees中        
+        employees.add(new Employee('A', 20, 180000));
+        employees.add(new Employee('A', 10, 250000));
+        employees.add(new Employee('A', 15, 120000));
+        employees.add(new Employee('B', 20, 180000));
+        employees.add(new Employee('B', 10, 250000));
+        employees.add(new Employee('B', 15, 120000));
+        
+        //逐一列印員工資料			
+        for(int i=0; i<employees.size(); i++){
+            //取出串列清單中的第i個物件		
+            Employee c = (Employee)employees.get(i);                       
+			
+            //呼叫物件的方法, 印出物件資訊			
+            System.out.println("薪水:" + EmployeeFunction.salary(c.getRank(), c.getOverHours()));
+            System.out.println("傭金:" + EmployeeFunction.commission(c.getRank(), c.getSalesAmt()));
+            
+            System.out.println("--------------------");
+        }    
+    }
+}
+
+
+
+------------------------------------------------
+(3-2)Employee.java
+------------------------------------------------
+package com.abc;
+
+public class Employee{
+    private char rank;
+    private int overHours;
+    private int salesAmt;
+    
+    //建構元
+    public Employee(char rank, int overHours, int salesAmt){
+        this.rank=rank;
+        this.overHours=overHours;
+        this.salesAmt=salesAmt;
+    }
+
+    //建構元    
+    public Employee(){}
+
+    //getters    
+    public char getRank(){return this.rank;}
+    public int getOverHours(){return this.overHours;}
+    public int getSalesAmt(){return this.salesAmt;}
+
+    //setters    
+    public void setRank(char rank){this.rank=rank;}
+    public void setOverHours(int overHours){this.overHours=overHours;}
+    public void setSalesAmt(int salesAmt){this.salesAmt=salesAmt;}
+}
+
+
+------------------------------------------------
+(3-3)EmployeeFunction.java
+------------------------------------------------
+package com.abc;
+
+public class EmployeeFunction{
+    //---------------------------------------------- 
+    //(1)正職員工的薪水計算
+    //傳入:職等, 加班時數. 
+    //傳回:薪水
+    //---------------------------------------------------
+    public static int salary(char rank, int overHours){
+        int baseSalary;
+		
+        if(rank=='A'){
+            baseSalary=30000;
+        }else{
+            baseSalary=25000;
+        }	    
+			
+        return baseSalary + 150*overHours;	//正職月薪=底薪+每小時150元加班費
+    }
+    //---------------------------------------------------
+    
+
+    //---------------------------------------------- 
+    //(2)兼職員工的薪水計算
+    //傳入:上班時數. 
+    //傳回:薪水    
+    //---------------------------------------------------    
+    public static int salary(int hours){
+        return 125*hours;  //兼職薪水=每小時125元
+    }
+    //---------------------------------------------------
+    
+
+    //---------------------------------------------- 
+    //(3)正職員工的傭金計算 
+    //傳入:職等, 銷售總金額. 
+    //傳回:傭金
+    //---------------------------------------------------    
+    public static int commission(char rank, int total){
+        int commission=0;
+
+        switch(rank){
+            case 'A':
+                commission=(int)(total*0.15);
+                break;
+            case 'B':
+                commission=(int)(total*0.12);
+                break;
+            case 'C':
+                commission=(int)(total*0.08);
+                break;
+            default:
+                commission=(int)(total*0.05);
+        }
+
+        return commission;
+    }
+    //---------------------------------------------------    
+}

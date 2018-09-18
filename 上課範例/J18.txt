@@ -1,0 +1,116 @@
+=================================
+J18
+=================================
+
+(1)
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        //建立一個ArrayList物件
+        ArrayList arrayList = new ArrayList();
+        arrayList.add("Hello");
+        arrayList.add("你好");
+        
+        for(int i=0; i<arrayList.size(); i++){
+            System.out.println(arrayList.get(i));
+        }
+    }
+}
+
+
+(2)
+import java.util.*;
+
+class Student{
+    String stuNo;
+    String stuName;
+	
+    public Student(String stuNo, String stuName){
+        this.stuNo=stuNo;
+        this.stuName=stuName;
+    }
+	
+    public String info(){
+        return "學號:" + stuNo + ", 姓名:" + stuName;
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        ArrayList arrayList = new ArrayList();
+        
+        //加入2個Student物件
+        arrayList.add(new Student("1001", "王小明"));
+        arrayList.add(new Student("1002", "陳小華"));
+        
+        for(int i=0; i<arrayList.size(); i++){
+            //取出物件後, 轉型成Student物件
+            Student s=(Student)arrayList.get(i);
+            System.out.println(s.info());
+        }
+    }
+}
+
+
+(3)
+import java.util.*;
+
+//一個介面
+interface Printable{
+    public String info();
+}
+
+//實作了 Printable 介面的 Student 類別
+class Student implements Printable{
+    String stuNo;
+    String stuName;
+	
+    public Student(String stuNo, String stuName){
+        this.stuNo=stuNo;
+        this.stuName=stuName;
+    }
+	
+    //實作介面的方法
+    @Override
+    public String info(){
+        return "學號:" + stuNo + ", 姓名:" + stuName;
+    }
+}
+
+//實作了 Printable 介面的 Course 類別
+class Course implements Printable{
+    String course;
+    int credit;
+	
+    public Course(String course, int credit){
+        this.course=course;
+        this.credit=credit;
+    }
+	
+    //實作介面的方法
+    @Override
+    public String info(){
+        return "課程:" + course + ", 學分數:" + credit;
+    }
+}
+
+class Main {
+    public static void main(String[] args) {
+        ArrayList arrayList = new ArrayList();
+        
+        //加入2個Student物件
+        arrayList.add(new Student("1001", "王小明"));
+        arrayList.add(new Student("1002", "陳小華"));
+        
+        //再加入2個Course物件
+        arrayList.add(new Course("國文", 3));
+        arrayList.add(new Course("英文", 2));
+        
+        for(int i=0; i<arrayList.size(); i++){
+            //取出物件後, 轉型實作了 Printable 的物件
+            Printable s=(Printable)arrayList.get(i);
+            System.out.println(s.info());
+        }
+    }
+}
