@@ -1,0 +1,235 @@
+你又發現一個商機: 很多雙薪家庭的父母都不太會做菜也沒時間準備晚餐, 但也不想天天吃不健康的食物.
+考慮你自己有烹飪的專業, 也許可以提供健康的菜餚給現代忙碌的家庭.
+
+現實的問題似乎是個阻礙, 沒有店面也沒有資金, 應該如何掌握這個商機, 創造一個獲利模式?
+
+也許我們可以租一個小坪數非店面住宅作為自己的廚房工作室, 並用FB作為開始運作的宣傳工具.
+在每次烹飪後, 你將料理過程的照片作成食譜放在FB, 並邀請大眾試食, 由試吃者給你料理的建議.
+
+理想的狀況是一段時間後可以經營出一小群鐵粉, 你的工作室就是他們的晚餐廚房.
+
+每天你會上傳明天提供的4道菜, 由粉絲預定, 然後你在當天白天採購食材, 料理, 等粉絲下班後來拿預定的菜餚.
+粉絲們也很開心, 他們只要用電鍋煮飯, 加煮一兩樣簡單的菜色, 就可以顧到全家人的營養均衡. 
+ 
+假日時, 你的廚房工作室變成廚藝教室, 教有興趣的粉絲也可以自行烹飪好吃的料理.
+人人為我, 我為人人; 多替粉絲著想, 粉絲才會變成鐵粉啊.
+
+你算了一下, 如果每天可以賣出20份訂單, 每份訂單平均獲利180元, 一個工作天可獲利3,600元, 
+扣除房租及水電, 月收入好像可以比上班更好, 而且每天都在做自己喜歡的事.
+
+為了省錢, 程式開發也要自己來.
+ 
+所有應修改的程式包括「預訂菜餚(Order)」及「特別預定(SpecailOrder)」兩者:
+
+//------------------------------------------------------------------------------------------
+import java.util.*;
+
+
+//-----------------------------------------------
+// 每天提供的菜色及單價, 每天更新內容(已完成)
+//-----------------------------------------------
+class Menu{
+    public static String item01 = "紅燒獅子頭";
+    public static int price01 = 140;
+	
+    public static String item02 = "宮保雞丁";
+    public static int price02 = 110;
+	
+    public static String item03 = "雪菜肉絲";
+    public static int price03 = 90;
+
+    public static String item04 = "炒高麗菜";
+    public static int price04 = 70;
+}
+
+
+
+//-----------------------------------------------
+// 可列印介面(已完成)
+//-----------------------------------------------
+interface Printable{
+    public void printOrder();
+}
+
+
+//-----------------------------------------------
+// 一般訂單類別
+//-----------------------------------------------
+class Order implements Printable{
+    private String tel;     //客戶電話
+    private String name;    //客戶姓名
+    private int foodAmt01;  //第1道菜訂購份數 
+    private int foodAmt02;  //第2道菜訂購份數 
+    private int foodAmt03;  //第3道菜訂購份數 
+    private int foodAmt04;  //第4道菜訂購份數 	
+	
+    //建構元(1)
+    public Order(String tel, String name, int foodAmt01, int foodAmt02, int foodAmt03, int foodAmt04){
+        this.tel=tel;
+        this.name=name;
+        this.foodAmt01=foodAmt01;
+        this.foodAmt02=foodAmt02;
+        this.foodAmt03=foodAmt03;
+        this.foodAmt04=foodAmt04;		
+    }
+
+    //建構元(2)    
+    public Order(){
+        this.tel=null;
+        this.name=null;
+        this.foodAmt01=0;
+        this.foodAmt02=0;
+        this.foodAmt03=0;
+        this.foodAmt04=0;		
+    }
+	
+    //setter
+    public void setTel(String tel){this.tel=tel;}
+    public void setName(String name){this.name=name;}
+    public void setFoodAmt01(int foodAmt01){this.foodAmt01=foodAmt01;}
+    public void setFoodAmt02(int foodAmt02){this.foodAmt02=foodAmt02;}
+    public void setFoodAmt03(int foodAmt03){this.foodAmt03=foodAmt03;}
+    public void setFoodAmt04(int foodAmt04){this.foodAmt04=foodAmt04;}
+    
+    //getter
+    public String getTel(){return this.tel;}
+    public String getName(){return this.name;}
+    public int getFoodAmt01(){return this.foodAmt01;}
+    public int getFoodAmt02(){return this.foodAmt02;}
+    public int getFoodAmt03(){return this.foodAmt03;}
+    public int getFoodAmt04(){return this.foodAmt04;}
+    
+    //印出訂單(請自行完成內容)
+    @Override    
+    public void printOrder(){}    
+}
+
+
+//-----------------------------------------------
+// 特別訂單類別(請自行完成內容)
+//-----------------------------------------------
+class SpecialOrder extends Order implements Printable{
+    private double size;    //菜餚份量: 可選小份0.8; 加大1.5; 及最大2.0
+    private boolean spicy;  //可加辣true; 不加辣false
+	
+    //建構元(1)
+    //建構元(2)    
+	
+    //setter
+    //getter
+    
+    //印出訂單
+    @Override    
+    public void printOrder(){}
+}
+
+
+//-----------------------------------------------
+// 測試類別(已完成)
+//-----------------------------------------------
+class Main {
+    public static void main(String[] args) {    
+        //建立一個可存放多個物件的串列清單
+        ArrayList <Printable>arrayList = new ArrayList();
+        
+        //將多個「訂單」物件加入串列清單中
+        arrayList.add(new Order("0911-111-111", "李小璇", 1, 2, 3, 4));
+        arrayList.add(new Order("0911-222-222", "湯小婷", 1, 1, 0, 1));
+        arrayList.add(new Order("0911-333-333", "李小和", 2, 1, 2, 2));
+        arrayList.add(new Order("0911-444-444", "黃小瑄", 0, 0, 1, 1));
+        arrayList.add(new Order("0911-555-555", "周小德", 1, 2, 0, 0));		
+   
+        //將多個「特別訂單」物件加入串列清單中
+        arrayList.add(new SpecialOrder("0922-111-111", "張小源", 1, 2, 3, 4, 0.8, true));
+        arrayList.add(new SpecialOrder("0922-222-222", "莊小豪", 2, 0, 0, 1, 1, false));
+        arrayList.add(new SpecialOrder("0922-333-333", "郭小穎", 1, 2, 0, 0, 1.5, false));
+        arrayList.add(new SpecialOrder("0922-444-444", "鄭小芳", 2, 2, 1, 0, 2, false));
+        arrayList.add(new SpecialOrder("0922-555-555", "曾小鈞", 1, 1, 2, 1, 2, true));        
+		
+        //列印「訂單」及「特別訂單」	
+        for(int i=0; i<arrayList.size(); i++){            	
+            Printable t = (Printable)arrayList.get(i);             	
+            t.printOrder();
+        } 		        
+    }
+}
+
+
+請修改以上的「一般訂單」類別 及「特別訂單」類別, 列印資訊範例如下:
+
+(以下是一般訂單範例)
+=========================
+一般訂單
+-------------------------
+電話: 0911-111-111
+姓名: 李小璇
+-------------------------
+菜餚:紅燒獅子頭
+單價:140
+數量:1
+金額:140
+.........................
+菜餚:宮保雞丁
+單價:110
+數量:2
+金額:220
+.........................
+菜餚:雪菜肉絲
+單價:90
+數量:3
+金額:270
+.........................
+菜餚:炒高麗菜
+單價:70
+數量:4
+金額:280
+-------------------------
+總金額: 910
+=========================
+p.s. 
+紅燒獅子頭金額 = 140*1 = 140
+宮保雞丁金額 = 110*2 = 220
+雪菜肉絲金額 = 90*3 = 270
+炒高麗菜金額 = 70*4 = 280
+總金額 = 140+220+270+280 = 910
+
+
+
+(以下是特別訂單範例)
+=========================
+特別訂單
+-------------------------
+電話: 0911-111-111
+姓名: 張小源
+-------------------------
+份量:0.8
+可加辣
+-------------------------
+菜餚:紅燒獅子頭
+單價:112
+數量:1
+金額:112
+.........................
+菜餚:宮保雞丁
+單價:88
+數量:2
+金額:176
+.........................
+菜餚:雪菜肉絲
+單價:72
+數量:3
+金額:216
+.........................
+菜餚:炒高麗菜
+單價:56
+數量:4
+金額:224
+-------------------------
+總金額: 728
+=========================
+p.s. 
+紅燒獅子頭單價 = 140*0.8 = 112
+宮保雞丁單價 = 110*0.8 = 88
+雪菜肉絲單價 = 90*0.8 = 72
+炒高麗菜單價 = 70*0.8 = 56
+總金額 = 112+176+216+224 = 728

@@ -1,0 +1,219 @@
+=================================
+練習16
+=================================
+
+(1)
+以下是一個已完成的「成績單」類別, 尚需修改的「列印等第的成績單」類別, 及一個測試類別:
+
+//------------------------------------------------------------------------------------------
+import java.util.ArrayList;
+
+class Transcript{
+    //成員
+    private String stuNo;
+    private String stuName;
+    private int chi, eng, mat;
+
+    //建構元(1)
+    public Transcript(String stuNo, String stuName, int chi, int eng, int mat){
+    	this.stuNo=stuNo;
+    	this.stuName=stuName;
+    	this.chi=chi;
+    	this.eng=eng;
+    	this.mat=mat;
+    }
+    
+    //建構元(2)
+    public Transcript(){
+    	this.stuNo=null;
+    	this.stuName=null;
+    	this.chi=0;
+    	this.eng=0;
+    	this.mat=0;
+    }    
+    
+    //setters
+    public void setStuNo(String stuNo){this.stuNo=stuNo;}
+    public void setStuName(String stuName){this.stuName=stuName;}
+    public void setChi(int chi){this.chi=chi;}
+    public void setEng(int eng){this.eng=eng;}
+    public void setMat(int mat){this.mat=mat;}
+    
+    //getters
+    public String getStuNo(){return this.stuNo;}
+    public String getStuName(){return this.stuName;}
+    public int getChi(){return this.chi;}
+    public int getEng(){return this.eng;}
+    public int getMat(){return this.mat;}
+
+    //列印成績單
+    public void print(){
+        System.out.println("-------------------------");
+        System.out.println("  成  績  單");
+        System.out.println("-------------------------");
+        System.out.println("學號: " + this.stuNo);
+        System.out.println("姓名: " + this.stuName);
+        System.out.println("國文: " + this.chi);
+        System.out.println("英文: " + this.eng);
+        System.out.println("數學: " + this.mat);
+        System.out.println("-------------------------");
+    }
+}
+
+
+//------------------------------------------------------------------------------------------
+class TranscriptWithGrade extends Transcript{
+    //建構元(1)
+    public TranscriptWithGrade(String stuNo, String stuName, int chi, int eng, int mat){
+        super(stuNo, stuName, chi, eng, mat);  //呼叫父親的建構元
+    }
+    
+    //建構元(2)
+    public TranscriptWithGrade(){
+        super();  //呼叫父親的建構元 
+    } 
+    
+	
+    //列印有等第成績單, 請完成內容
+    public void print(){}
+}
+
+
+//------------------------------------------------------------------------------------------
+class Main{
+    public static void main(String args[]){
+        //建立一個可存放多個物件的串列清單
+        ArrayList arrayList = new ArrayList();
+        
+        //將多個「列印等第的成績單」物件加入串列清單中
+        arrayList.add(new TranscriptWithGrade("10556001", "陳小昱", 85, 93, 62));
+        arrayList.add(new TranscriptWithGrade("10556002", "李小閱", 64, 87, 66));
+        arrayList.add(new TranscriptWithGrade("10556003", "廖小昂", 90, 60, 75));
+        arrayList.add(new TranscriptWithGrade("10556004", "謝小齊", 77, 73, 92));
+        arrayList.add(new TranscriptWithGrade("10556005", "藍小謙", 82, 40, 100));
+        arrayList.add(new TranscriptWithGrade("10556006", "王小宇", 50, 90, 94));
+        arrayList.add(new TranscriptWithGrade("10556007", "侯小庭", 96, 70, 84));
+        arrayList.add(new TranscriptWithGrade("10556008", "許小蘭", 95, 63, 60));
+        arrayList.add(new TranscriptWithGrade("10556009", "石小夫", 50, 100, 95));
+        arrayList.add(new TranscriptWithGrade("10556010", "陳小瑞", 85, 60, 93));
+        
+		
+        //逐一列印成績單			
+        for(int i=0; i<arrayList.size(); i++){
+            //取出串列清單中的第i個物件		
+            TranscriptWithGrade t = (TranscriptWithGrade)arrayList.get(i);   
+			
+            //呼叫取出物件的print()方法			
+            t.print();
+        }	
+    }
+}
+
+
+//------------------------------------------------------------------------------------------
+
+
+請修改以上的「列印等第的成績單」類別中的 print() 方法, 增加列印「等第」資訊.
+
+類別名稱:TranscriptWithGrade
+成員:
+  無
+
+方法:
+  (a) 建構元(String, String, int, int, int) (依序傳入「學號」,「姓名」,「國文」,「英文」及「數學」)
+  (b) 建構元()                              (沒有傳入值)
+  (c) public void print()                   (列印有等第的成績單, 輸出成績單範例如下:)  
+      -------------------------
+        成  績  單
+      -------------------------
+      學號: 10556002
+      姓名: 陳小華
+      國文: 85
+      英文: 93
+      數學: 92
+      -------------------------
+      等第: A
+      -------------------------	
+	  
+      其中, 若平均成績大於等於90分, 等第為「A」;
+            若平均成績小於90分且大於等於80分, 等第為「B」;
+            若平均成績小於80分且大於等於70分, 等第為「C」;			
+            若平均成績小於70分且大於等於60分, 等第為「D」;	  
+            若平均成績小於60分, 等第為「E」;			
+
+			
+
+(2)
+增加一個「列印平均及總分的成績單」類別中的 print() 方法, 它也繼承「成績單」類別.
+
+類別名稱:TranscriptWithTotAvg
+成員:
+  無
+
+方法:
+  (a) 建構元(String, String, int, int, int) (依序傳入「學號」,「姓名」,「國文」,「英文」及「數學」)
+  (b) 建構元()                              (沒有傳入值)
+  (c) public void print()                   (列印有等第的成績單, 輸出成績單範例如下:)  
+      -------------------------
+        成  績  單
+      -------------------------
+      學號: 10556002
+      姓名: 陳小華
+      國文: 85
+      英文: 93
+      數學: 92
+      -------------------------
+      總分: 270
+      平均: 90.0
+      -------------------------	
+	  
+      (註:平均成績計算至小數第2位四捨五入.)					
+
+
+
+測試程式如下:
+//------------------------------------------------------------------------------------------
+class Main{
+    public static void main(String args[]){
+        //建立一個可存放多個物件的串列清單
+        ArrayList arrayList = new ArrayList();
+        
+        //將多個「列印等第的成績單」物件加入串列清單中
+        arrayList.add(new TranscriptWithGrade("10556001", "陳小昱", 85, 93, 62));
+        arrayList.add(new TranscriptWithGrade("10556002", "李小閱", 64, 87, 66));
+        arrayList.add(new TranscriptWithGrade("10556003", "廖小昂", 90, 60, 75));
+        arrayList.add(new TranscriptWithGrade("10556004", "謝小齊", 77, 73, 92));
+        arrayList.add(new TranscriptWithGrade("10556005", "藍小謙", 82, 40, 100));        
+		
+        //逐一列印成績單			
+        for(int i=0; i<arrayList.size(); i++){
+            //取出串列清單中的第i個物件		
+            TranscriptWithGrade t = (TranscriptWithGrade)arrayList.get(i);   
+			
+            //呼叫取出物件的print()方法			
+            t.print();
+        }	
+	
+	
+	
+        //建立一個可存放多個物件的串列清單
+        ArrayList arrayList2 = new ArrayList();
+        
+        //將多個「列印平均及總分的成績單」物件加入串列清單中
+        arrayList2.add(new TranscriptWithTotAvg("10556006", "王小宇", 50, 90, 94));
+        arrayList2.add(new TranscriptWithTotAvg("10556007", "侯小庭", 96, 70, 84));
+        arrayList2.add(new TranscriptWithTotAvg("10556008", "許小蘭", 95, 63, 60));
+        arrayList2.add(new TranscriptWithTotAvg("10556009", "石小夫", 50, 100, 95));
+        arrayList2.add(new TranscriptWithTotAvg("10556010", "陳小瑞", 85, 60, 93));        
+		
+        //逐一列印成績單			
+        for(int i=0; i<arrayList2.size(); i++){
+            //取出串列清單中的第i個物件		
+            TranscriptWithTotAvg t = (TranscriptWithTotAvg)arrayList2.get(i);   
+			
+            //呼叫取出物件的print()方法			
+            t.print();
+        }	
+    }
+}
+//------------------------------------------------------------------------------------------	  

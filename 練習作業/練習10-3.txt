@@ -1,0 +1,157 @@
+=================================
+練習10c
+=================================
+
+
+1.
+完成「成績單」(Transcript)類別, 如下:
+成員:
+  (1)「學號」(stuNo)
+  (2)「姓名」(name)
+  (3)「國文」(chi) 
+  (4)「英文」(eng) 
+  (5)「數學」(mat)   
+方法:
+  (1) 建構元(傳入5個參數)
+  (2) 建構元(不傳參數)
+  (3) 5個getter方法, 分別取出成員值.
+  (4) 5個setter方法, 分別設定成員值.
+ 
+----------------------------------------------------------------------------------- 
+測試程式如下:
+-----------------------------------------------------------------------------------  
+import java.util.*;
+
+class Main{
+    public static void main(String args[]){
+        //建立一個可存放多個物件的串列清單
+        ArrayList arrayList = new ArrayList();
+        
+        //將多個「成績單」物件加入串列清單中
+        arrayList.add(new Transcript("1001", "黃小傑", 76, 83, 64));
+        arrayList.add(new Transcript("1002", "王小揚", 45, 90, 75));
+        arrayList.add(new Transcript("1003", "廖小毅", 100, 40, 35));
+        arrayList.add(new Transcript("1004", "張小君", 70, 85, 60));
+        arrayList.add(new Transcript("1005", "陳小臻", 80, 65, 75));        
+		
+        //逐一列印成績單資料			
+        for(int i=0; i<arrayList.size(); i++){
+            //取出串列清單中的第i個物件		
+            Transcript c = (Transcript)arrayList.get(i);                       
+			
+            //呼叫物件的方法, 印出物件資訊			
+            System.out.println("學號:" + c.getStuNo());
+            System.out.println("姓名:" + c.getName());
+            System.out.println("國文:" + c.getChi());
+            System.out.println("英文:" + c.getEng());
+            System.out.println("數學:" + c.getMat());
+            System.out.println("--------------------");
+        }
+    }
+}
+----------------------------------------------------------------------------------- 
+
+
+  
+  
+2.
+修改「成績單」(Transcript)類別, 增加3個方法, 如下:
+增加方法:
+  (1) 計算總分, public int total()
+  (2) 計算平均, public double average()
+      (小數2位, 無條件捨去)
+  (3) 計算不及格科目個數, public int notPass()
+ 
+----------------------------------------------------------------------------------- 
+測試程式如下:
+-----------------------------------------------------------------------------------  
+import java.util.*;
+
+class Main{
+    public static void main(String args[]){
+        //建立一個可存放多個物件的串列清單
+        ArrayList arrayList = new ArrayList();
+        
+        //將多個「成績單」物件加入串列清單中
+        arrayList.add(new Transcript("1006", "江小萱", 66, 73, 84));
+        arrayList.add(new Transcript("1007", "胡小家", 45, 95, 55));
+        arrayList.add(new Transcript("1008", "陳小儒", 85, 55, 90));
+        arrayList.add(new Transcript("1009", "黃小妤", 60, 70, 60));
+        arrayList.add(new Transcript("1010", "卓小依", 60, 100, 45));        
+		
+        //逐一列印成績單資料			
+        for(int i=0; i<arrayList.size(); i++){
+            //取出串列清單中的第i個物件		
+            Transcript c = (Transcript)arrayList.get(i);                       
+			
+            //呼叫物件的方法, 印出物件資訊			
+            System.out.println("學號:" + c.getStuNo());
+            System.out.println("姓名:" + c.getName());
+            System.out.println("國文:" + c.getChi());
+            System.out.println("英文:" + c.getEng());
+            System.out.println("數學:" + c.getMat());
+            System.out.println("總分:" + c.total());		
+            System.out.println("平均:" + c.average());	
+            System.out.println("未過:" + c.notPass());				
+            System.out.println("--------------------");
+        }
+    }
+}
+----------------------------------------------------------------------------------- 
+
+ 
+
+ 
+3.
+再修改「成績單」(Transcript)類別, 增加1個方法, 如下:
+增加方法:
+  (1) 另一種計算平均的方法(加權平均), public double average(double wtChi, double wtEng, double wtMat)
+      ** 傳入的3個參數, 分別是國文, 英文及數學的加權.
+         成績*加權 = 加權分數, 
+         所有科目的加權分數總和/總加權數 = 加權平均.	  
+         計算至小數2位, 無條件捨去.
+
+ 
+----------------------------------------------------------------------------------- 
+測試程式如下(須修改):
+-----------------------------------------------------------------------------------  
+import java.util.*;
+
+class Main{
+    public static void main(String args[]){
+        //建立一個可存放多個物件的串列清單
+        ArrayList arrayList = new ArrayList();
+        
+        //將多個「成績單」物件加入串列清單中
+        arrayList.add(new Transcript("1011", "鄒小明", 65, 43, 92));
+        arrayList.add(new Transcript("1012", "林小倫", 35, 65, 77));
+        arrayList.add(new Transcript("1013", "賴小茹", 85, 65, 60));
+        arrayList.add(new Transcript("1014", "李小澄", 60, 70, 45));
+        arrayList.add(new Transcript("1015", "張小龍", 55, 45, 45));  
+		
+        //逐一列印成績單資料			
+        for(int i=0; i<arrayList.size(); i++){
+            //取出串列清單中的第i個物件		
+            Transcript c = (Transcript)arrayList.get(i);                       
+			
+            //呼叫物件的方法, 印出物件資訊			
+            System.out.println("學號:" + c.getStuNo());
+            System.out.println("姓名:" + c.getName());
+            System.out.println("國文:" + c.getChi());
+            System.out.println("英文:" + c.getEng());
+            System.out.println("數學:" + c.getMat());
+            System.out.println("總分:" + c.total());		
+            System.out.println("平均:" + c.average());	
+            System.out.println("加權:" + c.average(2.5, 2, 1));			
+            System.out.println("未過:" + c.notPass());				
+            System.out.println("--------------------");
+        }
+
+        //印出全班平均分數(某科目全班總分/全班人數)
+        System.out.println("全班國文平均:");
+        System.out.println("全班英文平均:");
+        System.out.println("全班數學平均:");
+        System.out.println("--------------------");	
+    }
+}
+-----------------------------------------------------------------------------------

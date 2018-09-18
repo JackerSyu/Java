@@ -1,0 +1,232 @@
+以下是程式是已完成的「旅遊行程」, 「有導遊的旅遊行程」及「Main」類別.
+
+(1)
+請再增加一個「特惠旅遊行程(SpecialTour)」繼承「旅遊行程」, 
+沒有增加成員, 但要改寫父親的 public int totalPrice(int, int) 方法,
+其計算費用方式: 以父親 Tour 類別「計算參加人員費用」後, 再打對折優惠.
+
+依以下的「特惠旅遊行程」內容, 加印旅遊帳單:
+「林田山懷舊之旅」, 大人每人600元, 小孩每人350元.
+測試:
+2大2小: ________________________
+2大0小: ________________________
+4大4小: ________________________
+4大2小: ________________________
+
+
+
+(2)
+撰寫一個「單車旅遊行程(BikeTour)」, 由它繼承「旅遊行程」.
+增加 2 個成員, 「大人用單車每台租金(int adultBikePrice)」及「小孩用單車每台租金(int childBikePrice)」.
+成員值可由 建構元 或 setter 設定, 也可由 getter 取出.
+
+增加一個 public int totalBike(int adultBike, int childBike) 方法計算「單車費用」
+其傳入「租用大人單車台數」及「租用小孩單車台數」, 回傳「單車費用」,
+「單車費用」= 大人用單車每台租金 * 租用大人單車台數 + 小孩用單車每台租金 * 租用小孩單車台數.
+
+再增加一個 public int totalPrice(int, int, int, int) 方法計算「參加人員及單車合計費用」,
+傳入的參數分別是「大人人數」, 「小孩人數」, 「租用大人單車台數」, 「租用小孩單車台數」.
+「參加人員費用」與父親「計算參加人員費用」相同,
+「單車費用」由呼叫由上述的 int totalBike(int, int)方法計算取得,
+「參加人員及單車合計費用」= 參加人員費用 + 單車費用.
+
+亦增加一個 public void print(int, int, int, int)方法, 參數意義與計算總費用方法相同.
+印出帳單資訊, 帳單範例如下:
+---------------------------------------
+行程名稱:********
+大人費用:*****
+小孩費用:*****
+大人人數:***
+小孩人數:***
+參加人員費用:*****
+
+大人單車每台租金:*****
+小孩單車每台租金:*****
+大人單車數:***
+小孩單車數:***
+單車費用:*****
+
+參加人員及單車合計費用:*******
+---------------------------------------
+
+依以下的「單車旅遊行程」內容, 加印旅遊帳單:
+「池上-關山縱谷單車行」, 大人每人400元, 小孩每人250元, 大人單車每台250元, 小孩單車每台200元.
+測試:
+3大2小, 3大車2小車: ________________________
+2大1小, 2大車0小車: ________________________
+4大4小, 2大車2小車: ________________________
+6大2小, 6大車1小車: ________________________
+
+
+
+(3)
+撰寫一個「住宿旅遊行程(HotelTour)」, 由它繼承「旅遊行程」.
+增加 2 個成員, 「單人房房費(int singleRoomPrice)」及「雙人房房費(int doubleRoomPrice)」.
+成員值可由 建構元 或 setter 設定, 也可由 getter 取出.
+
+增加一個 private int totalHotel(int singleRoom, int doubleRoom, boolean upgrade) 方法計算「房租費用」
+其傳入「單人房間數」,「雙人房間數」及「是否升等豪華房型」, 回傳「房租費用」,
+「房租費用」= 單人房房費 * 單人房間數 + 雙人房房費 * 雙人房間數,
+             但若升等豪華房型, 「房租費用」增加20%.
+
+再增加一個 public int totalPrice(int, int, int, int, boolean) 方法計算「參加人員及房租合計費用」,
+傳入的參數分別是「大人人數」, 「小孩人數」, 「單人房數」, 「雙人房數」及「是否升等豪華房型」.
+「參加人員費用」與父親「計算參加人員費用」相同,
+「房租費用」由呼叫由上述的 int totalHotel(int, int, boolean)方法計算取得,
+「參加人員及房租合計費用」= 參加人員費用 + 房租費用.
+
+亦增加一個 public void print(int, int, int, int, boolean), 參數意義與計算總費用方法相同.
+印出帳單資訊, 帳單範例如下:
+---------------------------------------
+行程名稱:********
+大人費用:*****
+小孩費用:*****
+大人人數:***
+小孩人數:***
+參加人員費用:*****
+
+單人房房費:*****
+雙人房房費:*****
+單人房數:***
+雙人房數:***
+是否升等:*****
+房租費用:*****
+
+參加人員及房租合計費用:*******
+---------------------------------------
+
+依以下的「單車旅遊行程」內容, 加印旅遊帳單:
+「六十石山金針花海行」, 大人每人800元, 小孩每人550元, 單人房房費1250元, 雙人房房費2250元.
+測試:
+3大2小, 1單人2雙人, 升等豪華房型: ________________________
+2大1小, 1單人1雙人, 升等豪華房型: ________________________
+4大4小, 0單人4雙人, 不升等: ________________________
+6大2小, 6單人1雙人, 不升等: ________________________
+
+
+//==========================================================================================
+//旅遊行程
+class Tour{
+    private String title;     //行程名稱
+    private int priceAdult;   //大人費用
+    private int priceChild;   //小孩費用   
+    
+    //建構元(1)
+    public Tour(String title, int priceAdult, int priceChild){
+        setTitle(title);
+        setPriceAdult(priceAdult);
+        setPriceChild(priceChild);
+    }
+    
+    //建構元(2)
+    public Tour(){
+        setTitle(null);
+        setPriceAdult(0);
+        setPriceChild(0);
+    }
+    
+    //setters
+    public void setTitle(String title){this.title=title;}
+    public void setPriceAdult(int priceAdult){this.priceAdult=priceAdult;}
+    public void setPriceChild(int priceChild){this.priceChild=priceChild;}
+    
+    //getters
+    public String getTitle(){return this.title;}
+    public int getPriceAdult(){return this.priceAdult;}
+    public int getPriceChild(){return this.priceChild;}
+	
+    //計算參加人員費用
+    public int totalPrice(int adult, int child){
+        int total=priceAdult*adult + priceChild*child;
+    	
+        if(total>5000){
+            total*=0.8;
+        }else if(total>3000 && total<=5000){
+            total*=0.9;
+        }
+    	
+        return total;
+    }
+    
+    //印出帳單
+    public void print(int adult, int child){
+        System.out.println("行程名稱:" + getTitle());
+        System.out.println("大人費用:" + getPriceAdult());
+        System.out.println("小孩費用:" + getPriceChild());
+        System.out.println("大人人數:" + adult);
+        System.out.println("小孩人數:" + child);
+        System.out.println("參加人員費用:" + totalPrice(adult, child));
+        System.out.println("------------------------");
+    }
+}    
+
+
+//------------------------------------------------------------------------------------------
+//有導遊的旅遊行程
+class TourWithGuide extends Tour{
+    private int guidePrice;   //導遊費用
+    
+    //建構元(1)
+    public TourWithGuide(String title, int priceAdult, int priceChild, int guidePrice){
+        super(title, priceAdult, priceChild);
+        setGuidePrice(guidePrice);
+    }    
+    
+    //建構元(2)
+    public TourWithGuide(){
+        super();
+        setGuidePrice(0);
+    }
+    
+    //setters
+    public void setGuidePrice(int guidePrice){
+        this.guidePrice=guidePrice;
+    }
+
+    //getters
+    public int getGuidePrice(){
+        return this.guidePrice;
+    }
+	
+    //計算參加人員費用
+    @Override
+    public int totalPrice(int adult, int child){
+        int total=super.totalPrice(adult, child) + guidePrice;		
+        return total;
+    }
+    
+    //印出帳單
+    @Override
+    public void print(int adult, int child){
+        System.out.println("行程名稱:" + getTitle());
+        System.out.println("大人費用:" + getPriceAdult());
+        System.out.println("小孩費用:" + getPriceChild());
+        System.out.println("大人人數:" + adult);
+        System.out.println("小孩人數:" + child);
+        System.out.println("導遊費用:" + getGuidePrice());		
+        System.out.println("總金額:" + totalPrice(adult, child));
+        System.out.println("------------------------");
+    }
+}
+
+
+//------------------------------------------------------------------------------------------
+class Main{
+    public static void main(String args[]){
+        //產生一個旅遊行程
+        Tour t1=new Tour("花蓮慕谷慕魚生態一日遊", 1800, 800);
+        
+        t1.print(1, 0);
+        t1.print(2, 1);
+        t1.print(4, 4);
+        
+		
+        //產生一個有導遊的旅遊行程
+        TourWithGuide t2=new TourWithGuide("太魯閣白楊步道導覽", 2200, 1000, 1500);
+        
+        t2.print(2, 0);
+        t2.print(2, 2);
+        t2.print(4, 2);         
+    }
+}
+//==========================================================================================
