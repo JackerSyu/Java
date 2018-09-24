@@ -9,12 +9,12 @@ class Main {
     public static void main(String[] args) throws Exception {
         //建立一個檔案讀取物件      
         File file = new File("scores.txt");
-        FileReader fr=new FileReader(file);
-        BufferedReader br=new BufferedReader(fr);
+        FileReader fr = new FileReader(file);
+        BufferedReader br = new BufferedReader(fr);
 
         //逐行讀入檔案內容
         String line;        
-        while ((line=br.readLine()) != null) {            
+        while ((line = br.readLine()) != null) {            
             System.out.println(line);
         }
     }
@@ -39,7 +39,7 @@ class Main {
 
         //逐行讀入檔案內容
         String line;        
-        while ((line=br.readLine()) != null) {            
+        while ((line = br.readLine()) != null) {            
             //顯示讀入內容          
             System.out.println(line);
 
@@ -53,3 +53,31 @@ class Main {
     }
 } 
 
+
+(3)
+import java.io.*;
+
+class Main {
+    public static void main(String[] args) {
+        //宣告檔案變數      
+        File file;
+        FileReader fr;
+        BufferedReader br;
+
+        try{
+            //建立一個檔案讀取物件      
+            file = new File("scores1.txt");
+            fr = new FileReader(file);
+            br = new BufferedReader(fr);
+
+            //逐行讀入檔案內容
+            String line;        
+            while ((line = br.readLine()) != null) {            
+                System.out.println(line);
+            }
+        }catch(Exception e){
+            System.out.println("發生錯誤, 原因: " + e);
+            return;          
+        }        
+    }
+}
