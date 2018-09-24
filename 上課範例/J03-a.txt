@@ -10,7 +10,7 @@ class Main {
         //(1) 建立一個檔案讀取物件      
         File file = new File("scores.txt");
         FileReader fr = new FileReader(file);
-        BufferedReader br = new BufferedReader(fr);
+        BufferedReader br = new BufferedReader(fr);        
 
         //(2) 逐行讀入檔案內容
         //------------------------------------            
@@ -32,7 +32,7 @@ class Main {
         //(1) 建立一個檔案讀取物件      
         File infile = new File("scores.txt");
         FileReader fr = new FileReader(infile);
-        BufferedReader br = new BufferedReader(fr);
+        BufferedReader br = new BufferedReader(fr);        
 
         //(2) 建立一個檔案寫出物件      
         File outfile = new File("out.txt");
@@ -67,7 +67,7 @@ class Main {
         //(1) 宣告檔案變數      
         File file = null;
         FileReader fr = null;
-        BufferedReader br = null;
+        BufferedReader br = null;        
 
         //(2) 讀入檔案內容 
         //------------------------------------------
@@ -104,8 +104,7 @@ class Main {
 
         File outfile = null;
         FileWriter fw = null;
-        BufferedWriter bw = null;
-
+        BufferedWriter bw = null;        
 
         //(2) 讀入及寫出檔案 
         //------------------------------------------
