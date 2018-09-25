@@ -1,6 +1,13 @@
-﻿=================================
+=================================
 J06
 =================================
+
+```
+Java專案
+   |__ Score.java
+   |__ Main.java
+   |__ scores.csv
+```
 
 (1-1) Score.java
 class Score{
@@ -75,6 +82,12 @@ class Main {
 
 
 
+```
+Java專案
+   |__ Score.java
+   |__ Main.java
+   |__ scores.csv
+```
 
 (2-1) Score.java
 class Score{
