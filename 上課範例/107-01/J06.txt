@@ -1,0 +1,165 @@
+﻿=================================
+J06
+=================================
+
+(1-1) Score.java
+class Score{
+    public String stuNo;
+    public String gender;
+    public int chi;
+    public int eng;
+    public int mat;
+    public int nat;
+    public int soc;
+    public int lec;
+}
+
+
+
+(1-2) Main.java
+import java.io.*;
+
+class Main {
+    public static void main(String[] args) throws Exception {
+        //(1) 建立一個檔案讀取物件      
+        File file = new File("scores.csv");
+        FileReader fr = new FileReader(file);
+        BufferedReader br = new BufferedReader(fr);        
+
+        //(2) 逐行讀入檔案內容
+        //------------------------------------            
+        String line;        
+        while ((line = br.readLine()) != null) { 
+            //切割欄位
+            String items[] = line.split(",");
+
+            String stuNo = items[0].trim();
+            String gender = items[1].trim();
+            int chi = Integer.parseInt(items[2].trim());
+            int eng = Integer.parseInt(items[3].trim());
+            int mat = Integer.parseInt(items[4].trim());
+            int soc = Integer.parseInt(items[5].trim());
+            int nat = Integer.parseInt(items[6].trim());
+            int lec = Integer.parseInt(items[7].trim()); 
+
+            //產生一個Score類別的物件, 稱為score                                 
+            Score score = new Score();
+
+            //將值填入score物件中 
+            score.stuNo = stuNo;
+            score.gender = gender;
+            score.chi = chi;
+            score.eng = eng;
+            score.mat = mat;
+            score.soc = soc;
+            score.nat = nat;
+            score.lec = lec;
+            
+            //印出欄位內容                                     
+            System.out.println(line);
+            System.out.println(score.stuNo);
+            System.out.println(score.gender);
+            System.out.println(score.chi);
+            System.out.println(score.eng);
+            System.out.println(score.mat);            
+            System.out.println(score.soc);
+            System.out.println(score.nat);
+            System.out.println(score.lec);                        
+        }
+        //------------------------------------ 
+
+        //(3) 關閉reader
+        br.close();         
+    }
+} 
+
+
+
+
+(2-1) Score.java
+class Score{
+    //成員
+    public String stuNo;
+    public String gender;
+    public int chi;
+    public int eng;
+    public int mat;
+    public int nat;
+    public int soc;
+    public int lec;
+
+    //方法(1) 建構元
+    public Score(String stuNo, String gender, int chi, int eng, int mat, int nat, int soc, int lec){
+        this.stuNo = stuNo;
+        this.gender = gender;
+        this.chi = chi;
+        this.eng = eng;
+        this.mat = mat;
+        this.nat = nat;
+        this.soc = soc;
+        this.lec = lec;
+    }
+
+    //方法(2) 建構元
+    public Score(){
+        this.stuNo = null;
+        this.gender = null;
+        this.chi = 0;
+        this.eng = 0;
+        this.mat = 0;
+        this.nat = 0;
+        this.soc = 0;
+        this.lec = 0;
+    }    
+}
+
+
+
+(2-2) Main.java
+import java.io.*;
+
+class Main {
+    public static void main(String[] args) throws Exception {
+        //(1) 建立一個檔案讀取物件      
+        File file = new File("scores.csv");
+        FileReader fr = new FileReader(file);
+        BufferedReader br = new BufferedReader(fr);        
+
+        //(2) 逐行讀入檔案內容
+        //------------------------------------            
+        String line;        
+        while ((line = br.readLine()) != null) { 
+            //切割欄位
+            String items[] = line.split(",");
+
+            String stuNo = items[0].trim();
+            String gender = items[1].trim();
+            int chi = Integer.parseInt(items[2].trim());
+            int eng = Integer.parseInt(items[3].trim());
+            int mat = Integer.parseInt(items[4].trim());
+            int soc = Integer.parseInt(items[5].trim());
+            int nat = Integer.parseInt(items[6].trim());
+            int lec = Integer.parseInt(items[7].trim());                                  
+
+            //產生一個Score類別的物件, 稱為score. 使用建構元填值
+            Score score = new Score(stuNo, gender, chi, eng, mat, soc, nat, lec);
+          
+            //印出欄位內容                                     
+            System.out.println(line);
+            System.out.println(score.stuNo);
+            System.out.println(score.gender);
+            System.out.println(score.chi);
+            System.out.println(score.eng);
+            System.out.println(score.mat);            
+            System.out.println(score.soc);
+            System.out.println(score.nat);
+            System.out.println(score.lec);                        
+        }
+        //------------------------------------ 
+
+        //(3) 關閉reader
+        br.close();         
+    }
+} 
+
+
