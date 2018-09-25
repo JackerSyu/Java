@@ -1,0 +1,40 @@
+=================================
+J07
+=================================
+
+(1)
+class Main {
+    public static void main(String[] args) {
+        int i=1;
+        int total=0;
+		
+        while(i<=100){
+            total+=i;
+            i++;
+        }
+		
+        System.out.println(total);
+    }
+}
+
+(2)
+class Main {
+    public static void main(String[] args) {
+        while(true){
+            int i=(int)(Math.random()*100);
+            System.out.println(i);
+            if(i==50){break;}
+        }
+    }
+}
+
+(3)
+class Main {
+    public static void main(String[] args) {
+        do{
+            int i=(int)(Math.random()*100);
+            System.out.println(i);
+            if(i==50){break;}
+        }while(true);
+    }
+}

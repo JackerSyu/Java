@@ -1,0 +1,86 @@
+=================================
+J12 (靜能成員, static members)
+=================================
+
+(1)
+class Main {
+    public static void main(String[] args) {
+        System.out.println(10*10*Math.PI);  
+    }
+}
+
+
+
+(2)
+//-----------------------------------------------------------------
+// 將一些專案中多個程式會使用的變數寫成靜態變數, 提供其他程式共用.
+// 例如:
+// 一個專案中有多個程式都使用同一個連線位址及帳號/密碼連上資料庫,
+// 不需每個程式都寫一份連線位址及帳密內容, 只要取用靜態成員即可. 
+// 因為靜態成員在系統中只有一份, 如果以後要改連其他主機, 
+// 只要改唯一一份的靜態成員內容, 其他的程式都不需修改.
+//-----------------------------------------------------------------
+class Common{
+    public static String connection="140.131.114.10/myDB";
+    public static String user="110001";
+    public static String password="abc123";
+}
+
+
+
+class Main {
+    public static void main(String[] args) {
+        System.out.println(Common.connection);  
+        System.out.println(Common.user); 
+        System.out.println(Common.password); 
+    }
+}
+
+
+
+
+(3)
+class NTUB{
+    //----------------------------------------------------------------    
+    //靜態成員
+    //----------------------------------------------------------------
+    public static final String school="國立臺北商業大學";    
+    public static final String department[]={"會資系", "財稅系", "財金系", "商務系", "企管系", "資管系", "應外系"};    
+    public static final String departmentFull[]={"會計資訊系", "財政稅務系", "財務金融系", "國際商務系", "企業管理系", "資訊管理系", "應用外語系"};
+    //----------------------------------------------------------------
+    
+
+    //----------------------------------------------------------------
+    //靜態方法
+    //----------------------------------------------------------------    
+    public static String departmentFromStuNo(String stuNo){
+        try{
+            //檢查學號
+            if(!(stuNo.length()==8 && stuNo.charAt(0)=='1') && !(stuNo.length()==9 && stuNo.charAt(0)=='N')){
+                throw new Exception();
+            }
+
+            //回傳科系名稱
+            if(stuNo.length()==8){
+                return NTUB.department[stuNo.charAt(4) - '0' - 1];
+            }else{
+                return NTUB.department[stuNo.charAt(5) - '0' - 1];
+            }    
+        }catch(Exception e){
+            return null;
+        }        
+    }    
+    //----------------------------------------------------------------    
+}
+
+
+
+class Main {
+    public static void main(String[] args) {      
+        System.out.println("科系:" + NTUB.departmentFromStuNo("10556001"));
+        System.out.println("科系:" + NTUB.departmentFromStuNo("10553001"));
+        System.out.println("科系:" + NTUB.departmentFromStuNo("N10545001"));
+        System.out.println("科系:" + NTUB.departmentFromStuNo("N1054501"));
+    }
+}
+
