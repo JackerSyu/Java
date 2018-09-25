@@ -8,7 +8,7 @@ Java專案
    |__ scores.txt
 -----------------------
 
-(1)
+(1) Main.java
 import java.io.*;
 
 class Main {
@@ -48,13 +48,14 @@ class Main {
 } 
 
 
+
 -----------------------
 Java專案
    |__ Main.java
    |__ scores.csv
 -----------------------
 
-(2)
+(2) Main.java
 import java.io.*;
 
 class Main {
