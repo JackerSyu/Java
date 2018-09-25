@@ -1,8 +1,14 @@
-﻿=================================
+=================================
 J03
 =================================
 
-(1)
+-----------------------
+Java專案
+   |__ Main.java
+   |__ scores.txt
+-----------------------
+
+(1) Main.java
 import java.io.*;
 
 class Main {
@@ -27,7 +33,14 @@ class Main {
 
 
 
-(2)
+---------------------------------
+Java專案
+   |__ Main.java
+   |__ scores.txt
+   |__ out.txt (輸出檔, 程式產生)    
+---------------------------------
+
+(2) Main.java
 import java.io.*;
 
 class Main {
@@ -63,7 +76,13 @@ class Main {
 
 
 
-(3)
+-----------------------
+Java專案
+   |__ Main.java
+   |__ scores.txt
+-----------------------
+
+(3) Main.java
 import java.io.*;
 
 class Main {
@@ -99,7 +118,14 @@ class Main {
 
 
 
-(4)
+---------------------------------
+Java專案
+   |__ Main.java
+   |__ scores.txt
+   |__ out.txt (輸出檔, 程式產生)    
+---------------------------------
+
+(4) Main.java
 import java.io.*;
 
 class Main {
