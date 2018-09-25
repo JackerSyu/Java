@@ -18,7 +18,10 @@ class Main {
         while ((line = br.readLine()) != null) {            
             System.out.println(line);
         }
-        //------------------------------------          
+        //------------------------------------  
+        
+        //(3) 關閉reader
+        br.close();         
     }
 } 
 
@@ -52,7 +55,8 @@ class Main {
         }
         //------------------------------------          
 
-        //(4) 關閉writer, 強制輸出未寫出的暫存內容
+        //(4) 關閉reader及writer, 強制輸出未寫出的暫存內容
+        br.close();
         bw.close();      
     }
 } 
@@ -86,7 +90,10 @@ class Main {
             System.out.println("發生錯誤, 原因: " + e);
             return;          
         } 
-        //------------------------------------------        
+        //------------------------------------------         
+        
+        //(3) 關閉reader
+        br.close();          
     }
 }
 
@@ -133,6 +140,11 @@ class Main {
             System.out.println("發生錯誤, 原因: " + e);
             return;           
         }finally{
+            //關閉reader
+            if(br != null){
+                br.close(); 
+            } 
+            
             //關閉writer, 強制輸出未寫出的暫存內容
             if(bw != null){
                 bw.close(); 
