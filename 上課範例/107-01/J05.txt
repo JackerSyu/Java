@@ -1,0 +1,85 @@
+﻿=================================
+J05
+=================================
+
+(1)
+import java.io.*;
+
+class Main {
+    public static void main(String[] args) throws Exception {
+        //(1) 建立一個檔案讀取物件      
+        File file = new File("scores.txt");
+        FileReader fr = new FileReader(file);
+        BufferedReader br = new BufferedReader(fr);        
+
+        //(2) 逐行讀入檔案內容
+        //------------------------------------            
+        String line;        
+        while ((line = br.readLine()) != null) { 
+            //切割欄位
+            String stuNo = line.substring(0, 3);
+            String gender = line.substring(3, 4);
+            int chi = Integer.parseInt(line.substring(4, 6));
+            int eng = Integer.parseInt(line.substring(6, 8));
+            int mat = Integer.parseInt(line.substring(8, 10));
+            int soc = Integer.parseInt(line.substring(10, 12));
+            int nat = Integer.parseInt(line.substring(12, 14));
+            int lec = Integer.parseInt(line.substring(14, 16));                                  
+
+            //印出欄位內容                                     
+            System.out.println(line);
+            System.out.println(stuNo);
+            System.out.println(gender);
+            System.out.println(chi);
+            System.out.println(eng);
+            System.out.println(mat);            
+            System.out.println(soc);
+            System.out.println(nat);
+            System.out.println(lec);                        
+        }
+        //------------------------------------          
+    }
+} 
+
+
+
+(2)
+import java.io.*;
+
+class Main {
+    public static void main(String[] args) throws Exception {
+        //(1) 建立一個檔案讀取物件      
+        File file = new File("scores.csv");
+        FileReader fr = new FileReader(file);
+        BufferedReader br = new BufferedReader(fr);        
+
+        //(2) 逐行讀入檔案內容
+        //------------------------------------            
+        String line;        
+        while ((line = br.readLine()) != null) { 
+            //切割欄位
+            String items[] = line.split(",");
+
+            String stuNo = items[0].trim();
+            String gender = items[1].trim();
+            int chi = Integer.parseInt(items[2].trim());
+            int eng = Integer.parseInt(items[3].trim());
+            int mat = Integer.parseInt(items[4].trim());
+            int soc = Integer.parseInt(items[5].trim());
+            int nat = Integer.parseInt(items[6].trim());
+            int lec = Integer.parseInt(items[7].trim());                                  
+
+            //印出欄位內容                                     
+            System.out.println(line);
+            System.out.println(stuNo);
+            System.out.println(gender);
+            System.out.println(chi);
+            System.out.println(eng);
+            System.out.println(mat);            
+            System.out.println(soc);
+            System.out.println(nat);
+            System.out.println(lec);                        
+        }
+        //------------------------------------          
+    }
+} 
