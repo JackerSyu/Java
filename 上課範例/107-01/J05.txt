@@ -14,9 +14,7 @@ import java.io.*;
 class Main {
     public static void main(String[] args) throws Exception {
         //(1) 建立一個檔案讀取物件      
-        File file = new File("scores.txt");
-        FileReader fr = new FileReader(file);
-        BufferedReader br = new BufferedReader(fr);        
+        BufferedReader br = new BufferedReader(new FileReader(new File("scores.txt")));     
 
         //(2) 逐行讀入檔案內容
         //------------------------------------            
@@ -61,9 +59,7 @@ import java.io.*;
 class Main {
     public static void main(String[] args) throws Exception {
         //(1) 建立一個檔案讀取物件      
-        File file = new File("scores.csv");
-        FileReader fr = new FileReader(file);
-        BufferedReader br = new BufferedReader(fr);        
+        BufferedReader br = new BufferedReader(new FileReader(new File("scores.csv")));        
 
         //(2) 逐行讀入檔案內容
         //------------------------------------            
