@@ -57,14 +57,21 @@ class Main {
 
         //(3) 逐行讀入檔案內容
         //------------------------------------              
-        String line;        
+        String line; 
+        boolean firstLine = true;
+        
         while ((line = br.readLine()) != null) {            
             //顯示讀入內容          
             System.out.println(line);
 
             //將內容寫出檔案
-            bw.write(line);
-            bw.write(("\n"));
+            if(firstLine){
+                bw.write(line);
+                firstLine=false;
+            }else{
+                bw.write(("\n"));
+                bw.write(line);                
+            }    
         }
         //------------------------------------          
 
@@ -73,6 +80,7 @@ class Main {
         bw.close();      
     }
 } 
+
 
 
 
@@ -153,14 +161,21 @@ class Main {
             bw = new BufferedWriter(fw);        
 
             //逐行讀入檔案內容
-            String line;        
+            String line; 
+            boolean firstLine = true;                
+            
             while ((line = br.readLine()) != null) {            
                 //顯示讀入內容          
                 System.out.println(line);
 
                 //將內容寫出檔案
-                bw.write(line);
-                bw.write(("\n"));
+                if(firstLine){
+                    bw.write(line);
+                    firstLine=false;
+                }else{
+                    bw.write(("\n"));
+                    bw.write(line);                
+                }  
             }    
         }catch(Exception e){
             System.out.println("發生錯誤, 原因: " + e);
