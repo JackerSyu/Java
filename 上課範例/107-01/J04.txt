@@ -17,7 +17,7 @@ class Main {
         //========================================
         // 一個執行緒
         //========================================
-        Thread one = new Thread(){
+        Thread thread = new Thread(){
             public void run(){
                 //宣告檔案讀取物件      
                 File infile = null;
@@ -71,7 +71,7 @@ class Main {
 
 
         System.out.println("主執行緒-1");
-        one.start();
+        thread.start();
         System.out.println("主執行緒-2");
     }
 } 
