@@ -29,7 +29,7 @@ import java.io.*;
 class Main {
     public static void main(String[] args) throws Exception {
         //(1) 建立一個檔案讀取物件      
-        BufferedReader br = new BufferedReader(new FileReader(new File("d:/scores.csv")));         
+        BufferedReader br = new BufferedReader(new FileReader(new File("scores.csv")));         
 
         //(2) 逐行讀入檔案內容
         //------------------------------------            
@@ -132,7 +132,7 @@ import java.io.*;
 class Main {
     public static void main(String[] args) throws Exception {
         //(1) 建立一個檔案讀取物件      
-        BufferedReader br = new BufferedReader(new FileReader(new File("d:/scores.csv")));    
+        BufferedReader br = new BufferedReader(new FileReader(new File("scores.csv")));    
 
         //(2) 逐行讀入檔案內容
         //------------------------------------            
@@ -245,7 +245,7 @@ import java.io.*;
 class Main {
     public static void main(String[] args) throws Exception {
         //(1) 建立一個檔案讀取物件      
-        BufferedReader br = new BufferedReader(new FileReader(new File("d:/scores.csv")));      
+        BufferedReader br = new BufferedReader(new FileReader(new File("scores.csv")));      
 
         //(2) 逐行讀入檔案內容
         //------------------------------------            
