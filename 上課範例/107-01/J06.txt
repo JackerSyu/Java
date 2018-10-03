@@ -57,8 +57,6 @@ public class Score{
 
 
 (1-2) Main.java
-package p0927_2;
-
 import java.io.*;
 import com.abc.Score;
 
@@ -199,8 +197,6 @@ public class Score{
 
 
 (2-2) Main.java
-package p0927_2;
-
 import java.io.*;
 import com.abc.Score;
 
