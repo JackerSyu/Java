@@ -75,7 +75,7 @@ class Main {
         //------------------------------------------      
         try{   
             //(2) 建立檔案讀取及寫出物件  
-            br = new BufferedReader(new FileReader(new File("scores.csv"))); 
+            br = new BufferedReader(new FileReader(new File("exams.csv"))); 
             bw = new BufferedWriter(new FileWriter(new File("out.csv")));
             
             //(3) 逐行讀入檔案內容
@@ -90,17 +90,19 @@ class Main {
                 String items[] = line.split(",");
                 
                 String stuNo = items[0].trim();
-                String gender = items[1].trim();
-                int chi = Integer.parseInt(items[2].trim());
+                String stuName = items[1].trim();
+                String gender = items[2].trim();
+                int chi = Integer.parseInt(items[3].trim());
                 
                 //顯示欄位內容
                 System.out.println(stuNo);
+                System.out.println(stuName);
                 System.out.println(gender);
                 System.out.println(chi);
                 System.out.println("-------------------------");   
                 
                 //將內容寫出檔案
-                String data = stuNo + "," + gender + "," + chi;
+                String data = stuNo + "," + stuName + "," + gender + "," + chi;
                 
                 if(firstLine){
                     bw.write(data);
