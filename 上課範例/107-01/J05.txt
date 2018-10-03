@@ -49,9 +49,7 @@ class Main {
             boolean firstLine = true;            
             String line;     
             
-            while ((line = br.readLine()) != null) {            
-                System.out.println(line);
-                
+            while ((line = br.readLine()) != null) {                           
                 //切割欄位內容
                 String items[] = line.split(",");
                 
@@ -75,6 +73,7 @@ class Main {
                 score.comp = comp;                
                 
                 //顯示物件中的資料
+                System.out.println(line);                
                 System.out.println(score.stuNo);
                 System.out.println(score.stuName);
                 System.out.println(score.gender);
