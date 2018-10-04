@@ -5,7 +5,7 @@ J04  讀寫csv檔
 ---------------------------------
 Java專案
    |__ Main.java
-   |__ scores.csv (輸入檔) 
+   |__ exams.csv (輸入檔) 
 ---------------------------------
 
 (1) Main.java
@@ -19,7 +19,7 @@ class Main {
         //------------------------------------------      
         try{   
             //(2) 建立檔案讀取物件  
-            br = new BufferedReader(new FileReader(new File("d:/scores.csv")));            
+            br = new BufferedReader(new FileReader(new File("exams.csv")));            
             
             //(3) 逐行讀入檔案內容
             //---------------------            
@@ -31,14 +31,16 @@ class Main {
                 String items[] = line.split(",");
                 
                 String stuNo = items[0].trim();
-                String gender = items[1].trim();
-                int chi = Integer.parseInt(items[2].trim());
+                String stuName = items[1].trim();
+                String gender = items[2].trim();
+                int chi = Integer.parseInt(items[3].trim());
                 
                 //顯示欄位內容
                 System.out.println(stuNo);
+                System.out.println(stuName);
                 System.out.println(gender);
                 System.out.println(chi);
-                System.out.println("-------------------------");                
+                System.out.println("-------------------------");               
             }                   
             //---------------------            
         }catch(IOException e){
@@ -59,7 +61,7 @@ class Main {
 ---------------------------------
 Java專案
    |__ Main.java
-   |__ scores.csv (輸入檔)
+   |__ exams.csv (輸入檔)
    |__ out.csv (輸出檔, 程式產生)   
 ---------------------------------
 
