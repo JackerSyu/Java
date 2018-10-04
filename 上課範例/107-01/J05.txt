@@ -17,7 +17,9 @@ Java專案
 package com.abc;
 
 public class Score{
+    //===================== 
     //成員
+    //=====================     
     public String stuNo;
     public String stuName;    
     public String gender;
@@ -25,6 +27,7 @@ public class Score{
     public int eng;
     public int stat;
     public int comp;  
+    //---------------------    
 }
 
 
@@ -128,7 +131,9 @@ Java專案
 package com.abc;
 
 public class Score{
+    //===================== 
     //成員
+    //=====================      
     public String stuNo;
     public String stuName;    
     public String gender;
@@ -136,11 +141,15 @@ public class Score{
     public int eng;
     public int stat;
     public int comp;  
-
+    //--------------------- 
+    
+    //=====================  
     //方法
+    //=====================    
     public double total(){
         return  chi * 2 + eng * 2 + stat * 1.5 + comp * 2.5;                 
-    }    
+    }  
+    //---------------------      
 }
 
 
