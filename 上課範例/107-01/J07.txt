@@ -249,30 +249,30 @@ public class Score{
     //方法(總分)    
     //=====================    
     public double total(){
-        return  chi * 2 + eng * 2 + stat * 1.5 + comp * 2.5;                 
-    }   
+        return  chi + eng + stat + comp;                 
+    }  
     
     //=====================    
     //方法(平均)    
     //=====================    
     public double average(){
-        return  total() / 8;                 
-    }    
+        return  total() / 4;                 
+    }
     
     //=====================    
-    //方法(不及格科目數)    
+    //方法(加櫂總分)    
     //=====================    
-    public int notPass(){
-        int cnt=0;
-        
-        if(chi < 60){cnt++;}
-        if(eng < 60){cnt++;}
-        if(stat < 60){cnt++;}
-        if(comp < 60){cnt++;}
-
-        return cnt;                 
-    }     
+    public double total(double wChi, double wEng, double wStat, double wComp){
+        return  chi * wChi + eng * wEng + stat * wStat + comp * wComp;                 
+    }       
+    
     //=====================    
+    //方法(加櫂平均)    
+    //=====================    
+    public double average(double wChi, double wEng, double wStat, double wComp){
+        return  total(wChi, wEng, wStat, wComp) / (wChi + wEng + wStat + wComp);                 
+    } 
+    //=====================     
 }
 
 
@@ -322,7 +322,7 @@ class Main {
                 System.out.println("-------------------------");   
                 
                 //將物件內容寫至檔案
-                String data = score.getStuNo() + "," + score.getStuName() + "," + score.getGender() + "," + score.getChi() + "," + score.total() + "," + score.notPass();
+                String data = score.getStuNo() + "," + score.getStuName() + "," + score.getGender() + "," +  "," + score.total(2, 2, 1.5, 2); 
                 
                 if(firstLine){
                     bw.write(data);
