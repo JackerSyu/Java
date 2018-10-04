@@ -27,7 +27,7 @@ public class Score{
     public int eng;
     public int stat;
     public int comp;  
-    //---------------------    
+    //=====================    
 }
 
 
@@ -141,7 +141,6 @@ public class Score{
     public int eng;
     public int stat;
     public int comp;  
-    //--------------------- 
     
     //=====================  
     //方法
@@ -149,7 +148,7 @@ public class Score{
     public double total(){
         return  chi * 2 + eng * 2 + stat * 1.5 + comp * 2.5;                 
     }  
-    //---------------------      
+    //=====================     
 }
 
 
