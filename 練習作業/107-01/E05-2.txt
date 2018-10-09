@@ -1,4 +1,4 @@
-﻿
+
 一. 讀入exams.csv, 由[成績類別]產生[成績物件], 呼叫物件的方法, 寫至out.txt
     1. 參考範例: J05.txt
     2. 輸入檔: exams.csv 
@@ -6,34 +6,35 @@
     4. 輸出說明:
        (1) 輸出所有學生資料
        (2) 輸出欄位: 學號,姓名, 性別, 國文, 英文, 統計, 計概, 總分, 平均
-    5. 物件說明:
-		public class Score{
-			//===================== 
-			//成員
-			//=====================      
-			public String stuNo;
-			public String stuName;    
-			public String gender;
-			public int chi;
-			public int eng;
-			public int stat;
-			public int comp;  
+    5. 類別說明:
+    
+public class Score{
+    //===================== 
+    //成員
+    //=====================      
+    public String stuNo;
+    public String stuName;    
+    public String gender;
+    public int chi;
+    public int eng;
+    public int stat;
+    public int comp;  
 			
-			//=====================  
-			//方法(計算總分)
-			//=====================    
-			public double total(){
-				//自行完成               
-			}  
+    //=====================  
+    //方法(計算總分)
+    //=====================    
+    public double total(){
+        //自行完成               
+    }  
 			
-			//=====================  
-			//方法(計算平均)
-			//=====================    
-			public double average(){
-				//自行完成               
-			}  			
-			//=====================  			
-		}
+    //=====================  
+    //方法(計算平均)
+    //=====================    
+    public double average(){
+        //自行完成               
+    }  			
+    //=====================  			
+}
 		
     6. 方法說明:
        (1) 總分 = 國文 + 英文 + 統計 + 計概	
@@ -48,29 +49,45 @@
     4. 輸出說明:
        (1) 輸出所有學生資料
        (2) 輸出欄位: 學號,姓名, 性別, 國文, 英文, 統計, 計概, 總級分
-    5. 物件說明:
-		public class Score{
-			//===================== 
-			//成員
-			//=====================      
-			public String stuNo;
-			public String stuName;    
-			public String gender;
-			public int chi;
-			public int eng;
-			public int stat;
-			public int comp;  
+    5. 類別說明:
+
+public class Score{
+    //===================== 
+    //成員
+    //=====================      
+    public String stuNo;
+    public String stuName;    
+    public String gender;
+    public int chi;
+    public int eng;
+    public int stat;
+    public int comp;  
 			
-			//=====================  
-			//方法(計算總級分)
-			//=====================    
-			public int rank(){
-				//自行完成               
-			}  			
-		}
+    //=====================  
+    //方法(計算總分)
+    //=====================    
+    public double total(){
+        //自行完成               
+    }  
+			
+    //=====================  
+    //方法(計算平均)
+    //=====================    
+    public double average(){
+        //自行完成               
+    }  
+    
+    //=====================  
+    //方法(計算總級分)
+    //=====================    
+    public int rank(){
+        //自行完成               
+    }     
+    //=====================  			
+}
 		
     6. 總級分說明:
-	   (1) 各科目成績轉換級分規則如下:
+        (1) 各科目成績轉換級分規則如下:
            (a) 成績>=90分, 得5級分; 
            (b) 成績>=80分且<90分, 得4級分;
            (c) 成績>=70分且<80分, 得3級分;
@@ -78,8 +95,4 @@
            (e) 成績<60分, 得1級分;	   
        (2) 總級分 = 國文級分 + 英文級分 + 統計級分 + 計概級分
 
-
-
-
-
-	   
+   
