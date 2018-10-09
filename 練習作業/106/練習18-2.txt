@@ -1,0 +1,136 @@
+(1)
+以下是一個尚需修改的「員工」類別, 「全職員工」類別,「兼職員工」類別及一個已完成的「Main」測試類別:
+
+//------------------------------------------------------------------------------------------
+import java.util.ArrayList;
+
+//員工
+class Employee{
+    private String branch;    //部門
+    private String name;      //姓名
+    private char rank;        //職等   
+    
+    //建構元(1)
+    //建構元(2)
+    //setters
+    //getters
+
+    //列印員工資料
+    public void print(){}
+}
+
+
+//------------------------------------------------------------------------------------------
+//全職員工
+class FullTimeEmployee extends Employee{
+    private int baseSalary;  //底薪
+    private int overHours;   //加班時數
+    
+    //建構元(1)
+    //建構元(2)
+    //setters
+    //getters
+    
+	
+    //列印員工資料及薪水
+    public void print(){}
+}
+
+
+
+//------------------------------------------------------------------------------------------
+//兼職員工
+class PartTimeEmployee extends Employee{
+    private int hours;   //上班時數
+    
+    //建構元(1)
+    //建構元(2)
+    //setters
+    //getters
+    
+	
+    //列印員工資料及薪水
+    public void print(){}
+}
+
+
+//------------------------------------------------------------------------------------------
+class Main{
+    public static void main(String args[]){
+        //建立一個可存放多個物件的串列清單
+        ArrayList arrayList1 = new ArrayList();
+        
+        //將多個「全職員工」物件加入串列清單中
+        arrayList1.add(new FullTimeEmployee("人事部", "陳小昱", 'A', 45000, 12));
+        arrayList1.add(new FullTimeEmployee("人事部", "李小閱", 'A', 48000, 10));
+        arrayList1.add(new FullTimeEmployee("會計部", "廖小昂", 'B', 35000, 14));
+        arrayList1.add(new FullTimeEmployee("會計部", "謝小齊", 'B', 37000, 6));
+        arrayList1.add(new FullTimeEmployee("運輸部", "藍小謙", 'C', 36000, 12));        
+		
+        //逐一列印全職員工資料及薪水			
+        for(int i=0; i<arrayList1.size(); i++){
+            //取出串列清單中的第i個物件		
+            FullTimeEmployee t = (FullTimeEmployee)arrayList1.get(i);                       
+			
+            //呼叫取出物件的print()方法			
+            t.print();
+        }
+        
+		
+        //..........................................
+		
+		
+        //建立一個可存放多個物件的串列清單
+        ArrayList arrayList2 = new ArrayList();
+        
+        //將多個「兼職員工」物件加入串列清單中
+        arrayList2.add(new PartTimeEmployee("人事部", "王小宇", 'A', 120));
+        arrayList2.add(new PartTimeEmployee("會計部", "侯小庭", 'A', 185));
+        arrayList2.add(new PartTimeEmployee("運輸部", "許小蘭", 'A', 90));
+        arrayList2.add(new PartTimeEmployee("運輸部", "石小夫", 'B', 125));
+        arrayList2.add(new PartTimeEmployee("運輸部", "陳小瑞", 'C', 160));        
+		
+        //逐一列印兼職員工資料及薪水		
+        for(int i=0; i<arrayList2.size(); i++){
+            //取出串列清單中的第i個物件		
+            PartTimeEmployee t = (PartTimeEmployee)arrayList2.get(i);  
+			
+            //呼叫取出物件的print()方法			
+            t.print();
+        } 
+    }
+}
+
+
+//------------------------------------------------------------------------------------------
+
+請修改以上的「員工」類別, 「全職員工」類別 及「兼職員工」類別, 列印資訊範例如下:
+
+(以下是全職員工的薪資單)
+-------------------------
+  薪 資 單
+-------------------------
+部門: 人事部
+姓名: 陳小昱
+職等: A
+-------------------------
+底薪: 45000
+加班費: 3000
+薪資: 48000
+-------------------------	
+(其中, A職等每小時加班費250元; B職等200元; 其他150元.)
+
+
+
+(以下是兼職員工的薪資單)
+-------------------------
+  薪 資 單
+-------------------------
+部門: 人事部
+姓名: 王小宇
+職等: A
+-------------------------
+上班時數: 120
+薪資: 21600
+-------------------------
+(其中, A職等每小時薪水180元; B職等150元; 其他120元.)

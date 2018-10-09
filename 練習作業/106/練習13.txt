@@ -1,0 +1,80 @@
+=================================
+練習13 (靜態方法)
+=================================
+
+
+(1)
+完成一個「學生功能」(StudentFunction)類別,
+有一個靜態方法:
+  public static String department(String stuNo)方法, 傳入學號, 回傳科系名稱
+  
+方法說明:  
+  科系名稱由學號判斷:
+      若傳入值為「null」, 傳回「null」 
+      否則若學號長度不為「8」, 傳回空值「null」 
+      否則若學號第5碼為:
+         「1」, 傳回「會資」
+         「2」, 傳回「財金」
+         「3」, 傳回「財稅」
+         「4」, 傳回「商務」
+         「5」, 傳回「企管」
+         「6」, 傳回「資管」
+         「7」, 傳回「應外」
+         「A」, 傳回「商設」
+         「B」, 傳回「商創」
+         「C」, 傳回「數媒」	
+          若非以上代碼, 傳回「null」					   
+			
+測試:
+class Main{
+    public static void main(String args[]){
+        //印出以下學號的科系名稱	
+        System.out.println(StudentFunction.department("10551001")); 
+        System.out.println(StudentFunction.department("10552001")); 
+        System.out.println(StudentFunction.department("10553001")); 
+        System.out.println(StudentFunction.department("10554001")); 
+        System.out.println(StudentFunction.department("10555001")); 
+        System.out.println(StudentFunction.department("10556001")); 
+        System.out.println(StudentFunction.department("10557001")); 
+        System.out.println(StudentFunction.department("1055A001")); 
+        System.out.println(StudentFunction.department("1055B001")); 
+        System.out.println(StudentFunction.department("1055C001")); 
+        System.out.println(StudentFunction.department("105560012")); 
+        System.out.println(StudentFunction.department("1055D001")); 		
+    }
+}
+  
+
+  
+  
+(2)
+完成一個「電費帳單」(ElectricityBill)類別,
+有一個靜態方法:
+public static int fee(int degree)
+傳入用電度數, 回傳電費.
+
+電費計算方式如下(無條件進位):
+---------------------------------
+  「用電度數」    每度（元）
+---------------------------------
+  120度以內       2.10 	 
+  121-330度       3.02 	 
+  331-500度       4.39 	 
+  501-700度       5.44 	 
+  701-1000度      6.16 	 
+  1001度以上      6.71 	  
+---------------------------------
+例如:用電550度, 電費=5.44*550元
+
+
+class Main{
+    public static void main(String args[]){
+        //印出以下用電的電費	
+        System.out.println(ElectricityBill.fee(1200)); 
+        System.out.println(ElectricityBill.fee(750)); 
+        System.out.println(ElectricityBill.fee(650)); 
+        System.out.println(ElectricityBill.fee(450)); 
+        System.out.println(ElectricityBill.fee(250)); 
+        System.out.println(ElectricityBill.fee(110)); 	
+    }
+}

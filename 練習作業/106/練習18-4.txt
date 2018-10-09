@@ -1,0 +1,169 @@
+你發現一個商機: 周圍的每個朋友都有很多雙鞋子, 但是都不知道如何正確的清洗鞋子. 
+你知道正確又專業的皮件清潔方式, 因此你想開一家幫客人洗鞋子的創意小店. 
+你的創意小店除了洗鞋子外, 也洗靴子和包包(僅會員). 來店消費的客人包括「會員」及「非會員」兩類.
+
+你想到自己除了有創意之外, 好像也會寫Java, 因此想要省點錢, 親自進行「帳單列印」程式的開發. 
+所有應修改的程式包括「帳單(Bill)」,「會員帳單(MemberBill)」及「非會員帳單(NonMemberBill)」三者:
+
+//------------------------------------------------------------------------------------------
+import java.util.ArrayList;
+
+
+//---------------------
+//價格表(已完成)
+//---------------------
+class Price{
+    public static int shoesPrice=350;           //洗一雙鞋子價錢
+    public static int bootsPrice=450;           //洗一雙靴子價錢
+    public static int bagPrice=550;             //洗一個包包價錢
+    public static double discount=0.1;          //本月會員優惠折扣
+    public static double fastServicePrice=100;  //快速服務每件加收價錢	
+}
+
+
+//----------------------------
+//帳單(***未完成***)
+//----------------------------
+class Bill{
+    private String tel;           //客戶電話
+    private String customer;      //客戶姓名
+    private boolean fastService;  //是否快速取回服務  
+    
+    //建構元(1)
+    //建構元(2)
+	
+    //setters
+    //getters
+}
+
+
+//----------------------------
+//會員帳單(***未完成***)
+//----------------------------
+class MemberBill extends Bill{
+    private int shoes;        //送洗鞋子數(雙)
+    private int boots;        //送洗靴子數(雙)
+    private int bags;         //送洗包包數(個)         
+	
+    //建構元(1)
+    //建構元(2)
+	
+    //setters
+    //getters    
+	
+    //列印帳單
+    public void printBill(){}
+}
+
+
+
+//-----------------------------
+//非會員帳單(***未完成***)
+//-----------------------------
+class NonMemberBill extends Bill{
+    private int shoes;        //送洗鞋子數(雙)
+    private int boots;        //送洗靴子數(雙)
+    
+    //建構元(1)
+    //建構元(2)
+	
+    //setters
+    //getters    
+	
+    //列印帳單
+    public void printBill(){}
+}
+
+
+
+//----------------------------
+//測試類別(已完成)
+//----------------------------
+class Main{
+    public static void main(String args[]){
+        //建立一個可存放多個物件的串列清單
+        ArrayList arrayList1 = new ArrayList();
+        
+        //將多個「會員帳單」物件加入串列清單中
+        arrayList1.add(new MemberBill("0911-111-111", "郭小伶", true, 1, 2, 3));
+        arrayList1.add(new MemberBill("0911-222-222", "蔡小昱", false, 0, 2, 2));
+        arrayList1.add(new MemberBill("0911-333-333", "楊小婷", true, 3, 5, 3));
+        arrayList1.add(new MemberBill("0911-444-444", "林小佑", false, 4, 8, 2));
+        arrayList1.add(new MemberBill("0911-555-555", "林小瑜", true, 0, 2, 0));        
+		
+        //列印會員帳單			
+        for(int i=0; i<arrayList1.size(); i++){            
+            MemberBill t = (MemberBill)arrayList1.get(i);                                  	
+            t.printBill();
+        }
+        
+		
+        //..........................................
+		
+		
+        //建立一個可存放多個物件的串列清單
+        ArrayList arrayList2 = new ArrayList();
+        
+        //將多個「非會員帳單」物件加入串列清單中
+        arrayList2.add(new NonMemberBill("0922-111-111", "林小彤", false, 1, 2));
+        arrayList2.add(new NonMemberBill("0922-222-222", "黃小翎", true, 0, 3));
+        arrayList2.add(new NonMemberBill("0922-333-333", "李小璋", false, 3, 0));
+        arrayList2.add(new NonMemberBill("0922-444-444", "吳小庭", true, 1, 5));
+        arrayList2.add(new NonMemberBill("0922-555-555", "林小瑾", false, 7, 6));        
+		
+        //列印非會員帳單	
+        for(int i=0; i<arrayList2.size(); i++){            	
+            NonMemberBill t = (NonMemberBill)arrayList2.get(i);             	
+            t.printBill();
+        } 
+    }
+}
+
+
+//------------------------------------------------------------------------------------------
+
+請修改以上的「帳單」類別, 「會員帳單」類別 及「非會員帳單」類別, 列印資訊範例如下:
+
+(以下是會員帳單範例)
+=========================
+會員帳單
+-------------------------
+電話: 0911-111-111
+姓名: 郭小伶
+-------------------------
+洗鞋子總金額: 350 
+洗靴子總金額: 900 
+洗包包總金額: 1650 
+快速取回服務: 600
+會員優惠折扣: 350
+-------------------------	
+總金額: 3150
+=========================
+p.s. 
+洗鞋子總金額 = 350*1 = 350
+洗靴子總金額 = 450*2 = 900
+洗包包總金額 = 550*3 = 1650
+快速取回服務 = 100*6 = 600
+會員優惠折扣 = (350+900+1650+600) * 0.1 = 350
+總金額 = (350+900+1650+600) - 350 = 3150
+
+
+
+(以下是非會員帳單範例)
+=========================
+非會員帳單
+-------------------------
+電話: 0922-111-111
+姓名: 林小彤
+-------------------------
+洗鞋子總金額: 350
+洗靴子總金額: 900
+快速取回服務: 0
+-------------------------	
+總金額: 1250
+=========================
+p.s. 
+洗鞋子總金額 = 350*1 = 350
+洗靴子總金額 = 450*2 = 900
+快速取回服務 = 0
+總金額 = 350 + 900 + 0 = 1250

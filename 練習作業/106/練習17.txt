@@ -1,0 +1,484 @@
+=================================
+練習17
+=================================
+
+(1)
+以下是一個實作介面程式的範例, 尚未完成「人工類別」.
+人工類別有1個成員, int days, 表示人工雇用天數, 每人工資為 1,350元.
+請完成「人工類別」再測試程式.
+
+
+import java.util.ArrayList;
+
+//-------------------------------------------------------
+//一個「應付款介面」
+interface Payable{
+    public String item();	
+    public int payment();
+}
+
+
+//-------------------------------------------------------
+//「租車類別」完成「應付款介面」的功能
+class CarRental implements Payable{
+    private String type;    //車型
+    private int rentDays;   //租用天數
+
+    //建構元(1)
+    public CarRental(String type, int rentDays){
+        this.type=type;
+        this.rentDays=rentDays;
+    }
+
+    //建構元(2)
+    public CarRental(){
+        this.type=null;
+        this.rentDays=0;
+    }
+
+    //setter
+    public void setType(String type){this.type=type;}
+    public String getType(){return type;}
+
+    //getter
+    public void setRentDays(int rentDays){this.rentDays=rentDays;}
+    public int getRentDays(){return rentDays;}	
+    
+    //實作介面的方法	
+    @Override
+    public String item(){
+        return "租車費";    	
+    }    
+    
+    //實作介面的方法	
+    @Override	
+    public int payment(){
+        int price=0;
+		
+        if(type.equals("3000cc")){
+            price=4000;
+        }else if(type.equals("2400cc")){
+            price=2500;
+        }else if(type.equals("1800cc")){
+            price=2000;
+        }else{
+            price=1500;
+        }
+				
+        return price*rentDays;
+    }
+}
+
+
+//-------------------------------------------------------
+//「租房類別」完成「應付款介面」的功能
+class RoomRental implements Payable{
+    private boolean specialDiscount;   //是否折扣房型
+
+    //建構元(1)
+    public RoomRental(boolean specialDiscount){
+        this.specialDiscount=specialDiscount;
+    }    
+
+    //建構元(2)
+    public RoomRental(){
+        this.specialDiscount=false;
+    }
+	
+    //setter	
+    public void setSpecialDiscount(boolean specialDiscount){
+        this.specialDiscount=specialDiscount;
+    }
+	
+    //getter	
+    public boolean getSpeicalDiscount(){return specialDiscount;}
+
+    //實作介面的方法	
+    @Override
+    public String item(){
+        return "房租費";    	
+    }  
+    
+    //實作介面的方法	
+    @Override	
+    public int payment(){
+        int price;
+		
+        if(specialDiscount){
+            price=2400;
+        }else{
+            price=3000;
+        }
+				
+        return price;
+    }
+}
+
+
+//-------------------------------------------------------
+//「人工類別」完成「應付款介面」的功能
+class Labor implements Payable{
+    private int days;   //雇用天數
+
+    //建構元(1)
+    //建構元(2)
+    //setter
+    //getter
+	
+    //實作介面的方法	
+    @Override
+    public String item(){}  
+    
+    //實作介面的方法	
+    @Override	
+    public int payment(){}
+}
+
+
+
+//-------------------------------------------------------
+//主要流程類別
+class Main {
+    private static int total=0;
+	
+    public static void main(String[] args) {
+        //一個可放「應付款物件」的串列清單
+        ArrayList payList = new ArrayList();
+        
+        //將多個「租車物件」物件加入串列清單中
+        payList.add(new CarRental("3000cc", 3));
+        payList.add(new CarRental("2400cc", 2));
+        payList.add(new CarRental("1800cc", 1));
+        payList.add(new CarRental("1500cc", 2));
+
+        //將多個「租房物件」物件加入串列清單中
+        payList.add(new RoomRental(true));
+        payList.add(new RoomRental(false));
+        payList.add(new RoomRental(true));
+		
+        //將多個「人工物件」物件加入串列清單中
+        payList.add(new Labor(1));
+        payList.add(new Labor(2));
+        payList.add(new Labor(3));		
+      
+        
+        //呼叫印出付款明細方法
+        for(int i=0; i<payList.size(); i++){
+            printPayment((Payable)payList.get(i));
+        }            
+        
+        //印出合計金額	
+        System.out.println("合計:" + total + "元");
+        System.out.println("================");
+    }
+	
+    //印出付款明細
+    public static void printPayment(Payable payable){
+        total+=payable.payment(); 	
+        System.out.println(payable.item() + ":" + payable.payment() + "元"); 
+        System.out.println("----------------");        
+    }
+}
+
+
+
+
+
+(2)
+以下是一個實作介面程式的範例, 尚未完成「銷貨收入類別」及「投資收入類別」.
+請完成後再測試程式.
+
+import java.util.ArrayList;
+
+//-------------------------------------------------------
+//一個「收入介面」
+interface Receivable{
+    public String item();	
+    public int revenue();
+}
+
+
+//-------------------------------------------------------
+//「銷貨收入類別」完成「收入介面」的功能
+class SalesRevenue implements Receivable{
+    private String item;     //產品名稱
+    private int price;       //單價    
+    private int amount;      //數量
+    private int discount;    //折扣    
+
+    //建構元(1)
+    public SalesRevenue(String item, int price, int amount, int discount){
+        this.item=item;
+        this.price=price;
+        this.amount=amount;
+        this.discount=discount;
+    }
+
+    //建構元(2)
+    public SalesRevenue(){
+        this.item=null;
+        this.price=0;
+        this.amount=0;
+        this.discount=0;
+    }
+
+    //setter
+    //getter
+
+    //實作介面的方法	
+    @Override
+    public String item(){
+        return "銷貨收入";    	
+    }    
+    
+    //實作介面的方法
+    //回傳值 = 單價 * 數量 - 折扣
+    @Override	
+    public int revenue(){}
+}
+
+
+//-------------------------------------------------------
+//「投資收入類別」完成「收入介面」的功能
+class InvestmentIncome implements Receivable{
+    private String investmentType;   //投資項目
+    private int revenue;             //收入金額
+
+    //建構元(1)
+    //建構元(2)
+
+    //setter	
+    //getter	
+
+    //實作介面的方法	
+    @Override
+    public String item(){
+        return "投資收入";    	
+    }  
+    
+    //實作介面的方法	
+    //回傳收入金額內容	
+    @Override	
+    public int revenue(){}
+}
+
+
+//-------------------------------------------------------
+//主要流程類別
+class Main {
+    private static int total=0;
+	
+    public static void main(String[] args) {
+        //一個可放「收入物件」的串列清單
+        ArrayList receiveList = new ArrayList();
+        
+        //將多個「銷貨收入類別」物件加入串列清單中
+        receiveList.add(new SalesRevenue("森活風格客廳-沙發", 12800, 3, 2500));
+        receiveList.add(new SalesRevenue("森活風格客廳-沙發", 12800, 4, 4500));
+        receiveList.add(new SalesRevenue("樸質風格餐廳-餐桌", 22500, 1, 1800));
+        receiveList.add(new SalesRevenue("北歐風格寢室-雙人床", 36500, 1, 3000));
+
+        //將多個「投資收入類別」物件加入串列清單中
+        receiveList.add(new InvestmentIncome("股利收入", 120000));
+        receiveList.add(new InvestmentIncome("子公司技投資收益", 350000));
+
+        
+        //呼叫印出收入明細方法
+        for(int i=0; i<receiveList.size(); i++){
+            printIncome((Receivable)receiveList.get(i));
+        }            
+        
+        //印出合計金額	
+        System.out.println("合計:" + total + "元");
+        System.out.println("================");
+    }
+	
+    //印出付款明細
+    public static void printIncome(Receivable receivable){
+        total+=receivable.revenue(); 	
+        System.out.println(receivable.item() + ":" + receivable.revenue() + "元"); 
+        System.out.println("----------------");        
+    }
+}
+
+
+
+
+(3)
+以下是一個可執行的實作介面範例.
+其中的「銷貨收入類別」及「投資收入類別」都實作了「收入介面」及「可印列介面」2個介面.
+
+請再增加一個子類別「利息收入類別」(InterestRevenue), 讓它也實作「收入介面」及「可印列介面」2個介面.
+「利息收入類別」有2個成員, 包括:
+  private String bank;    //銀行名額
+  private int interest;   //利息收入
+
+「利息收入類別」有以下方法, 包括:
+  建構元(1)
+  建構元(2)
+  setter	
+  getter	  
+  public String item()    
+  public int revenue()    
+  public void print()
+
+測試時請在 class Main 中, 再增加以下「利息收入物件」:
+"台灣銀行", 30000
+"國泰世華銀行", 80000	
+"玉山銀行", 20000
+
+
+
+//-------------------------------------------------------
+import java.util.ArrayList;
+
+//-------------------------------------------------------
+//一個「收入介面」
+interface Receivable{
+    public String item();	
+    public int revenue();
+}
+
+
+//-------------------------------------------------------
+//一個「可印列介面」
+interface Printable{
+    public void print();
+}
+
+//-------------------------------------------------------
+//「銷貨收入類別」完成「收入介面」及「可印列介面」的功能
+class SalesRevenue implements Receivable, Printable{
+    private String item;     //產品名稱
+    private int price;       //單價    
+    private int amount;      //數量
+    private int discount;    //折扣    
+
+    //建構元(1)
+    public SalesRevenue(String item, int price, int amount, int discount){
+        this.item=item;
+        this.price=price;
+        this.amount=amount;
+        this.discount=discount;
+    }
+
+    //建構元(2)
+    public SalesRevenue(){
+        this.item=null;
+        this.price=0;
+        this.amount=0;
+        this.discount=0;
+    }
+
+    //setter
+    //getter
+    public String getItem(){return this.item;}
+    public int getPrice(){return this.price;}
+    public int getAmount(){return this.amount;}
+    public int getDiscount(){return this.discount;}
+
+    //實作介面的方法	
+    @Override
+    public String item(){
+        return "銷貨收入";    	
+    }    
+    
+    //實作介面的方法	
+    @Override	
+    public int revenue(){
+        return this.price*this.amount - this.discount;      
+    }
+    
+    //實作介面的方法    
+    @Override
+    public void print(){
+        System.out.println("產品名稱:" + this.getItem());
+        System.out.println("單價:" + this.getPrice());
+        System.out.println("數量:" + this.getAmount());
+        System.out.println("折扣:" + this.getDiscount()); 
+        System.out.println("銷貨收入:" + this.revenue()); 
+    }
+}
+
+
+//-------------------------------------------------------
+//「投資收入類別」完成「收入介面」及「可印列介面」的功能
+class InvestmentIncome implements Receivable, Printable{
+    private String investmentType;   //投資項目
+    private int revenue;             //收入金額
+
+    //建構元(1)
+    public InvestmentIncome(String investmentType, int revenue){
+        this.investmentType=investmentType;
+        this.revenue=revenue;
+    }
+
+    //建構元(2)
+    public InvestmentIncome(){
+        this.investmentType=null;
+        this.revenue=0;
+    }
+
+    //setter	
+    //getter	
+    public String getInvestmentType(){return this.investmentType;}
+    public int getRevenue(){return this.revenue;}
+
+    //實作介面的方法	
+    @Override
+    public String item(){
+        return "投資收入";    	
+    }  
+    
+    //實作介面的方法	
+    @Override	
+    public int revenue(){
+        return this.revenue;
+    }
+    
+    //實作介面的方法    
+    @Override
+    public void print(){
+        System.out.println("投資項目:" + this.getInvestmentType());
+        System.out.println("收入金額:" + this.getRevenue());
+    }    
+}
+
+
+//-------------------------------------------------------
+//主要流程類別
+class Main {
+    private static int total=0;
+	
+    public static void main(String[] args) {
+        //一個可放「收入及可列印物件」的串列清單
+        ArrayList arrayList = new ArrayList();
+        
+        //將多個「銷貨收入類別」物件加入串列清單中
+        arrayList.add(new SalesRevenue("森活風格客廳-沙發", 12800, 3, 2500));
+        arrayList.add(new SalesRevenue("森活風格客廳-沙發", 12800, 4, 4500));
+        arrayList.add(new SalesRevenue("樸質風格餐廳-餐桌", 22500, 1, 1800));
+        arrayList.add(new SalesRevenue("北歐風格寢室-雙人床", 36500, 1, 3000));
+
+        //將多個「投資收入類別」物件加入串列清單中
+        arrayList.add(new InvestmentIncome("股利收入", 120000));
+        arrayList.add(new InvestmentIncome("子公司技投資收益", 350000));
+
+        
+        //呼叫印出收入明細方法
+        for(int i=0; i<arrayList.size(); i++){
+            printInfo((Printable)arrayList.get(i));
+        }            
+        
+        //印出合計金額	
+        System.out.println("合計:" + total + "元");
+        System.out.println("=============================");
+    }
+	
+    //印出付款明細
+    public static void printInfo(Printable printable){
+        total+=((Receivable)printable).revenue(); 	
+        printable.print(); 
+        System.out.println("-----------------------------");        
+    }
+}

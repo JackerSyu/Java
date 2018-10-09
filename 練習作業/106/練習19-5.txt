@@ -1,0 +1,289 @@
+=========================================================
+1. 專案架構
+這是一個線上學習平台. 學生上網學習, 與教師即時線上互動,
+學習的主題是英語會話及文法. 學生依平台使用時間付費,
+教師也依照教課時間領取薪水.
+=========================================================
+
+  <專案>
+    |
+    |__ <default package>
+    |         |__ Main.java (主程式)
+    |
+    |__ <com.abc>
+    |         |__ Course.java               (抽象父親, 課程類別)
+    |         |__ GrammarCourse.java        (兒子, 文法課程類別)  
+    |         |__ ConversationCourse.java   (兒子, 會話課程類別)     
+    |
+    |__ <com.abc.ui>
+              |__ MyJFrame.java (畫面)
+
+
+			  
+  [JFrame] (畫面)
+    |
+    |__ jMenuBar[JMenuBar]
+    |         |__ openMenu[JMenu] (開檔)
+    |         |__ exitMenu[JMenu]
+    |
+    |__ jScrollPane[JScrollPane]
+              |__ jTable[JTable] (表格)
+              
+              
+              
+
+==============================================
+2-1. 輸入檔: course.CSV
+==============================================
+C001,文法課程,A,true
+C002,文法課程,A,false
+C003,文法課程,B,true
+C004,文法課程,B,false
+C005,文法課程,C,true
+C006,文法課程,C,false
+C007,會話課程,A,false,true
+C008,會話課程,A,true,false
+C009,會話課程,A,false,false
+C010,會話課程,B,false,true
+C011,會話課程,B,true,false
+C012,會話課程,C,true,false
+C013,會話課程,C,false,true
+
+
+
+==============================================
+2-2. 欄位說明:
+==============================================
+(1)課程序號
+(2)課程分類
+(3)時段
+(4)指定教師
+
+會話課程:
+(5)購買課本
+
+
+
+
+=====================
+3. 輸出:
+=====================
+------------------------------------
+課程序號     課程分類      費用
+------------------------------------
+C001        文法課程      XXXXXX
+  .            .           .               
+  .            .           .    
+  .            .           .     
+C007        會話課程      XXXXXX
+  .            .           .           
+  .            .           .  
+  .            .           .  
+------------------------------------
+
+
+
+
+============================================
+4-1. Course.java (抽象父親, 已完成) 
+============================================
+package com.abc;
+
+// 收入類別
+public abstract class Course {
+    //成員
+    private String serNo;
+    private String type;
+    private String period;
+    private boolean isDesignated;
+    
+    //建構元(1)
+    public Course(String serNo, String type, String period, boolean isDesignated){
+        this.serNo=serNo;
+        this.type=type;
+        this.period=period;
+        this.isDesignated=isDesignated;
+    }
+
+    //建構元(2)    
+    public Course(){}
+    
+    //getter
+    public String getSerNo(){return this.serNo;}
+    public String getType(){return this.type;}
+    public String getPeriod(){return this.period;}
+    public boolean getIsDesignated(){return this.isDesignated;}
+    
+    //setter
+    public void setSerNo(String serNo){this.serNo=serNo;}
+    public void setType(String type){this.type=type;}
+    public void setPeriod(String period){this.period=period;}
+    public void setIsDesignated(boolean isDesignated){this.isDesignated=isDesignated;}
+    
+    //抽象方法
+    public abstract int total();
+}
+
+
+
+
+=====================================================
+4-2. GrammarCourse.java (兒子, 文法課程類別, 未完成) 
+=====================================================
+package com.abc;
+
+public class GrammarCourse extends Course{
+    //建構元(1)
+    //建構元(2)    
+  
+    @Override
+    public int total(){
+       //請自行完成
+    }    
+}
+
+
+
+
+==========================================================
+4-3. ConversationCourse.java (兒子, 會話課程類別, 未完成) 
+==========================================================
+package com.abc;
+
+public class ConversationCourse extends Course{
+    private boolean isTextBook;   //是否購書
+
+    //建構元(1)    
+    //建構元(2)
+    //getters    
+    //setters
+
+    //計算總金額    
+    @Override
+    public int total(){
+       //請自行完成
+    }    
+}
+
+
+
+============================================
+4-4. MyJFrame.java (畫面, 已完成)
+============================================
+//---------------------------------------------
+//在MenuBar中的Open被點擊時	
+//---------------------------------------------     
+//開啟FileChooser物件
+JFileChooser jFileChooser = new JFileChooser();
+jFileChooser.setDialogTitle("開啟檔案");
+
+//如果有選擇檔案   
+int returnVal = jFileChooser.showOpenDialog(this);
+if (returnVal == JFileChooser.APPROVE_OPTION) {
+    //設定檔案物件
+    File file = jFileChooser.getSelectedFile();
+
+    //逐筆讀取檔案內容	
+    try {
+        //產生一個BufferedReader物件, 用來逐筆讀取檔案	
+        BufferedReader b = new BufferedReader(new FileReader(file));
+
+        //存放每次讀入的單行內容		
+        String data; 
+
+        //清除原有資料
+        DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+        model.setRowCount(0); 
+
+        //=======================================================
+        // (1)建立一個存放所有課程物件的arrayList
+        //=======================================================
+        ArrayList<Course> arrayList = new ArrayList();
+        //=======================================================
+
+        while ((data = b.readLine()) != null) {
+            //切割逗號分隔的項目
+            String items[]=data.split(",", -1);
+
+            //=========================================
+            // (2)取出課程序號, 課程分類, 時段, 指定教師
+            //=========================================
+            String serNo = items[0];
+            String type = items[1];
+            String period = items[2];
+            Boolean isDesignated = Boolean.parseBoolean(items[3]);
+            
+            //==================================================
+            // (3-1)產生一個文法課程物件, 將它加入arrayList中
+            //==================================================
+            if(type.equals("文法課程")){               
+                arrayList.add(new GrammarCourse(serNo, type, period, isDesignated));
+            }
+            
+            //==================================================
+            // (3-2)產生一個會話課程物件, 將它加入arrayList中
+            //==================================================
+            if(type.equals("會話課程")){
+                Boolean isTextBook = Boolean.parseBoolean(items[4]);                
+                arrayList.add(new ConversationCourse(serNo, type, period, isDesignated, isTextBook));
+            } 
+        }  
+
+
+        //=====================================================================
+        // (4)逐個取出arrayList中的資料, 加入表格中顯示
+        //=====================================================================
+        for(int i=0; i<arrayList.size(); i++){
+            //取出arrayList中的第i個收入物件
+            Course s = arrayList.get(i);
+
+            //將取出的檔位產生一個陣列
+            Object[] row = {s.getSerNo(), s.getType(), s.total()};
+
+            //將產生的陣列加入表格的資料物件中
+            model.addRow(row);
+        }
+        //=====================================================================        
+    } catch (IOException ex) {
+        JOptionPane.showMessageDialog(this, "讀檔時發生錯誤!");
+    }
+} else {
+    System.out.println("取消檔案讀取");
+}         
+//--------------------------------------------- 
+
+
+
+
+============================================
+4-5. Main.java (主程式, 未完成)
+============================================
+請自行複製MyJFrame.java中的main()方法
+//------------------------------------------
+
+
+
+=====================================================================
+5. 平台推出兩個一對多的同步課程, 包括文法課程及會話課程, 收費方式為:
+=====================================================================
+=====================
+文法課程費用說明:
+=====================
+public class GrammarCourse extends Course{
+    .   
+    .
+    .	
+    @Override
+    public int total(){
+       //請自行完成
+    }    
+}
+
+教師上線教學每分鐘5.2元;
+如教學評等>=9, 每分鐘加薪1.3元;
+如教學評等介於8和9之間, (包括8, 不包括9), 每分鐘加薪0.7元;	
+如教學評等介於6和8之間, (包括6, 不包括8), 每分鐘加薪0.1元;
+如教學評等<6, 每分鐘減薪0.5元;
+
+小數一律捨去.
+

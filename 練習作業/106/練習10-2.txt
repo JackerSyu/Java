@@ -1,0 +1,88 @@
+=================================
+練習10b
+=================================
+
+
+1.
+完成「電費」(ElectricityBill)類別, 如下:
+成員:
+  (1)「用戶名稱」      (cusName)
+  (2)「是否營業用電」  (isBusiness)
+  (3)「是否夏月用電」  (isSummer) 
+  (4)「用電度數」      (degree)   
+方法:
+  (1) 建構元(傳入4個參數)
+  (2) 建構元(不傳參數)
+  (3) 4個getter方法, 分別取出成員值.
+  (4) 4個setter方法, 分別設定成員值.
+  (5) 另有一個方法:
+      public int fee()
+      計算電費(小數捨去), 參考台電電費計算, 如下:
+
+以下是台電電費計算方式 (6/1至9/30稱為夏月):
+---------------------------------------------------------
+「營業用電」     夏月每度（元）   非夏月每度（元）
+---------------------------------------------------------
+330度以下部分       3.76             3.02	 
+331-700度部分       4.62             3.68	 
+701-1500度部分      5.48             4.31	 
+1501度以上部分      6.73             5.31	
+
+---------------------------------------------------------
+「非營業用電」   夏月每度（元）   非夏月每度（元）
+---------------------------------------------------------
+120度以下部分       2.10             2.10	 
+121-330度部分       3.02             3.68	 
+331-500度部分       4.39             3.61	 
+501-700度部分       5.44             4.48	 
+701-1000度部分      6.16             5.03	 
+1001度以上部分      6.71             5.28	  
+---------------------------------------------------------	  
+
+**請注意, 電費的計算是各個用電階段以不同費用計價.
+例如, 「非營業」的「夏月」用電750度, 其電費為:
+2.10*120 + 3.02*210 + 4.39*170 + 5.44*200 + 6.16*50
+= 3028.5
+=> 3028元 (小數捨去)
+
+----------------------------------------------------------------------------------- 
+測試程式如下:
+-----------------------------------------------------------------------------------  
+import java.util.*;
+
+class Main{
+    public static void main(String args[]){
+        //建立一個可存放多個物件的串列清單
+        ArrayList arrayList = new ArrayList();
+        
+        //將多個「電費」物件加入串列清單中
+        arrayList.add(new ElectricityBill("黃小珊", true, true, 200));
+        arrayList.add(new ElectricityBill("葉小彤", true, false, 200));
+        arrayList.add(new ElectricityBill("何小葶", true, true, 450));
+        arrayList.add(new ElectricityBill("劉小君", true, false, 450));
+        arrayList.add(new ElectricityBill("郭小于", true, true, 550));        
+        arrayList.add(new ElectricityBill("張小婷", false, false, 550)); 
+        arrayList.add(new ElectricityBill("鄭小慈", false, true, 750)); 
+        arrayList.add(new ElectricityBill("陳小穎", false, false, 750)); 
+        arrayList.add(new ElectricityBill("林小佑", false, true, 1200)); 
+        arrayList.add(new ElectricityBill("柯小濰", false, false, 1200)); 
+		
+        //逐一列印電費資料			
+        for(int i=0; i<arrayList.size(); i++){
+            //取出串列清單中的第i個物件		
+            ElectricityBill c = (ElectricityBill)arrayList.get(i);                       
+			
+            //呼叫物件的方法, 印出物件資訊			
+            System.out.println(c.getCusName());
+            System.out.println(c.getIsBusiness());
+            System.out.println(c.getIsSummer());
+            System.out.println(c.fee());			
+            System.out.println("--------------------");
+        }
+    }
+}
+----------------------------------------------------------------------------------- 
+
+
+  
+ 

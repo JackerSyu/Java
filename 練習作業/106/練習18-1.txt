@@ -1,0 +1,247 @@
+(1)
+以下是一個已完成的「成績單」類別及使用範例:
+
+//成績單類別
+class Transcript{
+    //成員
+    private String stuNo;
+    private String stuName;
+    private int chi, eng, mat;
+
+    //setters
+    public void setStuNo(String stuNo){this.stuNo=stuNo;}
+    public void setStuName(String stuName){this.stuName=stuName;}
+    public void setChi(int chi){this.chi=chi;}
+    public void setEng(int eng){this.eng=eng;}
+    public void setMat(int mat){this.mat=mat;}
+    
+    //getters
+    public String getStuNo(){return this.stuNo;}
+    public String getStuName(){return this.stuName;}
+    public int getChi(){return this.chi;}
+    public int getEng(){return this.eng;}
+    public int getMat(){return this.mat;}
+
+    //列印成績單
+    public void print(){
+        System.out.println("----------------------------------");
+        System.out.println("  成  績  單");
+        System.out.println("----------------------------------");
+        System.out.println("學號: " + this.stuNo);
+        System.out.println("姓名: " + this.stuName);
+        System.out.println("國文: " + this.chi);
+        System.out.println("英文: " + this.eng);
+        System.out.println("數學: " + this.mat);
+        System.out.println("----------------------------------");
+    }
+}
+
+class Main{
+    public static void main(String args[]){
+        //建立一個成績單物件
+        Transcript t = new Transcript();
+
+        //設定成員值
+        t.setStuNo("10556001");
+        t.setStuName("王小明");
+        t.setChi(80);
+        t.setEng(73);
+        t.setMat(84);
+	
+        //列印成績單	
+        t.print();
+    }
+}
+
+有些升學申請書中的成績單需要加印「等第」, 因此想增加一個「列印等第的成績單」類別.
+由於新類別只增加列印等第, 其他都與原成績單相同, 因此不打算全部重寫, 
+而是讓新類別「繼承」成績單類別, 並只增加新功能即可. 
+「列印等第的成績單」類別的說明如下:
+
+類別名稱:TranscriptWithGrade
+成員:
+  (a)「等第」(grade)
+
+方法:
+  (a) public void setGrade(String grade)  (設定成員值)
+  (b) public String getGrade()            (取出成員值)
+  (c) public void print()                 (列印有等第的成績單, 輸出成績單範例如下:)           
+      ----------------------------------
+        成  績  單
+      ----------------------------------
+      學號: 10556002
+      姓名: 陳小華
+      國文: 85
+      英文: 93
+      數學: 92
+      ----------------------------------
+      等第: A
+      ----------------------------------	
+	  
+			
+測試:
+class Main{
+    public static void main(String args[]){
+        //(1)
+        //....................................
+        //建立一個成績單物件
+        Transcript t1 = new Transcript();	    
+		
+        //設定成員值
+        t1.setStuNo("10556001");  
+        t1.setStuName("王小明");
+        t1.setChi(80);
+        t1.setEng(73);
+        t1.setMat(84);	
+		
+        //列印成績單	
+        t1.print();     
+        //....................................
+		
+		
+        System.out.println();  //印兩行空行
+        System.out.println();	    
+	    
+	   
+        //(2)
+        //......................................................
+        //建立一個有等第的成績單物件
+        TranscriptWithGrade t2 = new TranscriptWithGrade();
+	    
+        //設定成員值
+        t2.setStuNo("10556002");
+        t2.setStuName("陳小華");
+        t2.setChi(85);
+        t2.setEng(93);
+        t2.setMat(92);
+        t2.setGrade("A");
+		
+        //列印成績單
+        t2.print(); 
+        //......................................................	    
+    }
+}
+  
+
+  
+
+(2)
+如果原已完成的「成績單」類別中撰寫了建構元, 如下:
+
+//成績單類別
+class Transcript{
+    //成員
+    private String stuNo;
+    private String stuName;
+    private int chi, eng, mat;
+
+    //建構元(1)
+    public Transcript(String stuNo, String stuName, int chi, int eng, int mat){
+    	this.stuNo=stuNo;
+    	this.stuName=stuName;
+    	this.chi=chi;
+    	this.eng=eng;
+    	this.mat=mat;
+    }
+    
+    //建構元(2)
+    public Transcript(){
+    	this.stuNo=null;
+    	this.stuName=null;
+    	this.chi=0;
+    	this.eng=0;
+    	this.mat=0;
+    }    
+    
+    //setters
+    public void setStuNo(String stuNo){this.stuNo=stuNo;}
+    public void setStuName(String stuName){this.stuName=stuName;}
+    public void setChi(int chi){this.chi=chi;}
+    public void setEng(int eng){this.eng=eng;}
+    public void setMat(int mat){this.mat=mat;}
+    
+    //getters
+    public String getStuNo(){return this.stuNo;}
+    public String getStuName(){return this.stuName;}
+    public int getChi(){return this.chi;}
+    public int getEng(){return this.eng;}
+    public int getMat(){return this.mat;}
+
+    //列印成績單
+    public void print(){
+        System.out.println("----------------------------------");
+        System.out.println("  成  績  單");
+        System.out.println("----------------------------------");
+        System.out.println("學號: " + this.stuNo);
+        System.out.println("姓名: " + this.stuName);
+        System.out.println("國文: " + this.chi);
+        System.out.println("英文: " + this.eng);
+        System.out.println("數學: " + this.mat);
+        System.out.println("----------------------------------");
+    }
+}
+
+
+class Main{
+    public static void main(String args[]){
+        //成績單物件		
+        Transcript t1 = new Transcript("10556001", "王小明", 80, 73, 84);	    
+        t1.print();  //印出成績單	    
+    }
+}
+   
+
+請撰寫一個「列印等第的成績單」類別, 讓它繼承「成績單」類別.
+「列印等第的成績單」類別的說明如下:
+(*提示:由於父親有建構元, 兒子也必須有建構元, 並且在兒子的建構元中呼叫父親的建構元.)
+
+類別名稱:TranscriptWithGrade
+成員:
+  (a)「等第」(grade)
+
+方法:
+  (a) 建構元(String, String, int, int, int, String) (依序傳入「學號」,「姓名」,「國文」,「英文」,「數學」及「等第」)
+  (b) 建構元()                            (沒有傳入值)
+  (c) public void setGrade(String grade)  (設定成員值)
+  (d) public String getGrade()            (取出成員值)
+  (e) public void print()                 (列印有等第的成績單, 輸出成績單範例如下:)  
+      ----------------------------------
+        成  績  單
+      ----------------------------------
+      學號: 10556002
+      姓名: 陳小華
+      國文: 85
+      英文: 93
+      數學: 92
+      ----------------------------------
+      等第: A
+      ----------------------------------	
+	  
+			
+測試:
+class Main{
+    public static void main(String args[]){
+        //(1)
+        //.....................................................................
+        //建立一個成績單物件
+        Transcript t1 = new Transcript("10556001", "王小明", 80, 73, 84);
+		
+        //列印成績單    
+        t1.print(); 
+        //.....................................................................
+	
+	
+        System.out.println();  //印兩行空行
+        System.out.println();	    
+
+	    
+        //(2)
+        //...........................................................................................
+        //建立一個有等第的成績單物件
+        TranscriptWithGrade t2 = new TranscriptWithGrade("10556002", "陳小華", 85, 93, 92, "A");
+		
+        //列印成績單			
+        t2.print(); 
+        //...........................................................................................	    
+    }
+}
