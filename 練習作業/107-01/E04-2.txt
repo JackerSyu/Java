@@ -19,7 +19,7 @@
 
 
 
-三. 讀入mushroom.txt, 篩選內容, 寫至out.txt
+三. 讀入mushroom.txt, 篩選並計算, 寫至out.txt
     1. 參考範例: J04.txt
     2. 輸入檔: mushroom.txt 
     3. 輸出檔: out.txt
@@ -31,7 +31,7 @@
        
        
        
-四. 讀入mushroom.txt, 篩選內容, 寫至out.txt
+四. 讀入mushroom.txt, 篩選並計算, 寫至out.txt
     1. 參考範例: J04.txt
     2. 輸入檔: mushroom.txt 
     3. 輸出檔: out.txt
