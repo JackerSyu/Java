@@ -1,8 +1,8 @@
 
 一. 讀入scores.txt, 計算總分, 寫至out.txt
     1. 參考範例: J04.txt
-    2. 輸入檔: scores.txt 
-    3. 輸出檔: out.txt
+    2. 輸入檔: scores.csv 
+    3. 輸出檔: out.csv
     4. 輸出說明:
        (1) 輸出所有學生資料
        (2) 輸出欄位
@@ -22,8 +22,8 @@
 	   
 二. 讀入scores.txt, 計算總分, 寫至out.txt
     1. 參考範例: J04.txt
-    2. 輸入檔: scores.txt 
-    3. 輸出檔: out.txt
+    2. 輸入檔: scores.csv
+    3. 輸出檔: out.csv
     4. 輸出說明:
        (1) 僅輸出女生資料
        (2) 輸出欄位
@@ -43,8 +43,8 @@
 
 三. 讀入scores.txt, 計算總分, 寫至out.txt
     1. 參考範例: J04.txt
-    2. 輸入檔: scores.txt 
-    3. 輸出檔: out.txt
+    2. 輸入檔: scores.csv
+    3. 輸出檔: out.csv
     4. 輸出說明:
        (1) 僅輸出作文成績12分(滿分)的學生資料
        (2) 輸出欄位
