@@ -1,6 +1,6 @@
 
 一. 讀入mushroom.txt, 篩選內容, 寫至out.txt
-    1. 參考範例: J04.txt
+    1. 參考範例: J03.txt
     2. 輸入檔: mushroom.txt 
     3. 輸出檔: out.txt
     4. 輸出說明:
@@ -10,7 +10,7 @@
 
 	   
 二. 讀入mushroom.txt, 篩選內容, 寫至out.txt
-    1. 參考範例: J04.txt
+    1. 參考範例: J03.txt
     2. 輸入檔: mushroom.txt 
     3. 輸出檔: out.txt
     4. 輸出說明:
@@ -20,7 +20,7 @@
 
 
 三. 讀入mushroom.txt, 篩選並計算, 寫至out.txt
-    1. 參考範例: J04.txt
+    1. 參考範例: J03.txt
     2. 輸入檔: mushroom.txt 
     3. 輸出檔: out.txt
     4. 輸出說明(僅輸出以下4行):
@@ -32,7 +32,7 @@
        
        
 四. 讀入mushroom.txt, 篩選並計算, 寫至out.txt
-    1. 參考範例: J04.txt
+    1. 參考範例: J03.txt
     2. 輸入檔: mushroom.txt 
     3. 輸出檔: out.txt
     4. 輸出說明(僅輸出以下6行):
