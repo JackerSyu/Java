@@ -1,0 +1,89 @@
+一. 讀入exams-2.csv, 由[成績類別]產生[成績物件], 呼叫物件的方法, 寫至out.txt
+    1. 參考範例: J05.txt
+    2. 輸入檔: exams-2.csv 
+    3. 輸出檔: out.csv
+    4. 輸出說明:
+       (1) 輸出所有學生資料
+       (2) 輸出欄位: 學號, 姓名, 性別, 國文, 英文, 統計, 計概, 多益, 加權總分, 備註
+    5. 類別說明:
+    
+        public class ScoreWithToeic{
+            //===================== 
+            //成員
+            //=====================      
+            public String stuNo;
+            public String stuName;    
+            public String gender;
+            public int chi;
+            public int eng;
+            public int stat;
+            public int comp;  
+            public int toeic;              
+			
+            //=====================  
+            //方法(計算加權總分)
+            //=====================    
+            public double total(){
+                //自行完成               
+            }  		
+            
+            //=====================  
+            //方法(備註)
+            //=====================    
+            public String remark(){
+                //自行完成               
+            }  	            
+            //=====================  			
+        }
+		
+    6. 方法說明:
+       (1) 加權總分 = 國文*2 + 英文*2 + 統計*1.5 + 計概*1.5	
+       (2) 若加權總分>=500 且 多益>=500, 備註為"合格"; 否則為"不合格"	
+
+	   
+	   
+二. 讀入exams-2.csv, 由[成績類別]產生[成績物件], 呼叫物件的方法, 寫至out-1.txt及out-2.txt
+    1. 參考範例: J05.txt
+    2. 輸入檔: exams-2.csv 
+    3. 輸出檔: out-1.csv(合格學生)
+            :  out-2.csv(不合格學生)    
+    4. 輸出說明:
+       (1) 輸出所有[合格]學生資料至out-1.txt, [不合格]至out-2.txt
+       (2) 輸出欄位: 學號, 姓名, 性別, 國文, 英文, 統計, 計概, 多益, 加權總分
+    5. 類別說明:
+    
+    
+        public class ScoreWithToeic{
+            //===================== 
+            //成員
+            //=====================      
+            public String stuNo;
+            public String stuName;    
+            public String gender;
+            public int chi;
+            public int eng;
+            public int stat;
+            public int comp;  
+            public int toeic;              
+			
+            //=====================  
+            //方法(計算加權總分)
+            //=====================    
+            public double total(){
+                //自行完成               
+            }  		
+            
+            //=====================  
+            //方法(備註)
+            //=====================    
+            public String remark(){
+                //自行完成               
+            }  	            
+            //=====================  			
+        }		
+	
+    6. 方法說明:
+       (1) 加權總分 = 國文*2 + 英文*2 + 統計*1.5 + 計概*1.5	
+       (2) 若加權總分>=500 且 多益>=500, 備註為"合格"; 否則為"不合格"	
+
+   
