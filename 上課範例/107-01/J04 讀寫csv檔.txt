@@ -13,21 +13,22 @@ import java.io.*;
 
 class Main {
     public static void main(String[] args) throws IOException {
-        //(1) 宣告檔案讀取變數
+        // 宣告檔案讀取變數
         BufferedReader br = null;
         
         //------------------------------------------      
         try{   
-            //(2) 建立檔案讀取物件  
+            // 建立檔案讀取物件  
             br = new BufferedReader(new FileReader(new File("exams.csv")));            
             
-            //(3) 逐行讀入檔案內容
+            // 逐行讀入檔案內容
             //---------------------            
             String line;        
-            while ((line = br.readLine()) != null) {            
+            while ((line = br.readLine()) != null) {  
+                // 顯示讀入的資料           
                 System.out.println(line);
                 
-                //切割欄位內容
+                // 切割欄位內容
                 String items[] = line.split(",");
                 
                 String stuNo = items[0].trim();
@@ -35,7 +36,7 @@ class Main {
                 String gender = items[2].trim();
                 int chi = Integer.parseInt(items[3].trim());
                 
-                //顯示欄位內容
+                // 顯示切割欄位內容
                 System.out.println(stuNo);
                 System.out.println(stuName);
                 System.out.println(gender);
@@ -47,7 +48,7 @@ class Main {
             System.out.println("發生錯誤, 原因: " + e);                     
             return;
         }finally{
-            //(4) 關閉reader
+            // 關閉reader
             if(br != null){
                 br.close();              
             }    
@@ -70,40 +71,34 @@ import java.io.*;
 
 class Main {
     public static void main(String[] args) throws IOException {
-        //(1) 宣告檔案讀取及寫出變數
+        // 宣告檔案讀取及寫出變數
         BufferedReader br = null;
         BufferedWriter bw = null;
         
         //------------------------------------------      
         try{   
-            //(2) 建立檔案讀取及寫出物件  
+            // 建立檔案讀取及寫出物件  
             br = new BufferedReader(new FileReader(new File("exams.csv"))); 
             bw = new BufferedWriter(new FileWriter(new File("out.csv")));
             
-            //(3) 逐行讀入檔案內容
+            // 逐行讀入檔案內容
             //--------------------- 
             boolean firstLine = true;            
             String line;     
             
-            while ((line = br.readLine()) != null) {            
+            while ((line = br.readLine()) != null) { 
+                // 顯示讀入的資料              
                 System.out.println(line);
                 
-                //切割欄位內容
+                // 切割欄位內容
                 String items[] = line.split(",");
                 
                 String stuNo = items[0].trim();
                 String stuName = items[1].trim();
                 String gender = items[2].trim();
-                int chi = Integer.parseInt(items[3].trim());
+                int chi = Integer.parseInt(items[3].trim());  
                 
-                //顯示欄位內容
-                System.out.println(stuNo);
-                System.out.println(stuName);
-                System.out.println(gender);
-                System.out.println(chi);
-                System.out.println("-------------------------");   
-                
-                //將內容寫出檔案
+                // 將內容寫出檔案
                 String data = stuNo + "," + stuName + "," + gender + "," + chi;
                 
                 if(firstLine){
@@ -119,12 +114,12 @@ class Main {
             System.out.println("發生錯誤, 原因: " + e);                     
             return;
         }finally{
-            //(4) 關閉reader
+            // 關閉reader
             if(br != null){
                 br.close();              
             }  
             
-            //(4) 關閉writer
+            // 關閉writer
             if(bw != null){
                 bw.close();              
             }              
