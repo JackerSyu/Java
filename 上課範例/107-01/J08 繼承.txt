@@ -157,12 +157,12 @@ class Main {
             System.out.println("發生錯誤, 原因: " + e);                     
             return;
         }finally{
-            //(4) 關閉reader
+            // 關閉reader
             if(br != null){
                 br.close();              
             }  
             
-            //(4) 關閉writer
+            // 關閉writer
             if(bw != null){
                 bw.close();              
             }              
@@ -388,12 +388,12 @@ class Main {
             System.out.println("發生錯誤, 原因: " + e);                     
             return;
         }finally{
-            //(4) 關閉reader
+            // 關閉reader
             if(br != null){
                 br.close();              
             }  
             
-            //(4) 關閉writer
+            // 關閉writer
             if(bw != null){
                 bw.close();              
             }              
