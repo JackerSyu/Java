@@ -328,9 +328,9 @@ class Main {
                 list, 
                 new Comparator<Score>(){
                     public int compare(Score s1, Score s2){
-                        if(s1.total()!=s2.total()){
+                        if(s1.total() != s2.total()){
                            return -(s1.total() - s2.total());
-                        }else if(s1.getChi()!=s2.getChi()){
+                        }else if(s1.getChi() != s2.getChi()){
                             return -(s1.getChi() - s2.getChi());
                         }else{
                             return -(s1.getEng() - s2.getEng());
