@@ -21,7 +21,7 @@ import java.time.LocalDate;
 
 public class Test {
     //===================== 
-    //成員    
+    // 成員    
     //===================== 
     private LocalDate testDate;
     private String testString;
@@ -31,7 +31,7 @@ public class Test {
     private char testChar;
 
     //=====================     
-    //建構元(1)
+    // 建構元(1)
     //=====================   
     public Test(LocalDate testDate, String testString, int testInt, double testDouble, boolean testBoolean, char testChar){
         this.testDate = testDate;
@@ -43,7 +43,7 @@ public class Test {
     }
 
     //=====================     
-    //建構元(2)
+    // 建構元(2)
     //=====================   
     public Test(){
         this.testDate = null;
@@ -55,7 +55,7 @@ public class Test {
     } 
     
     //=====================     
-    //getter
+    // getter
     //=====================       
     public LocalDate getTestDate(){return this.testDate;}
     public String getTestString(){return this.testString;}
@@ -65,7 +65,7 @@ public class Test {
     public char getTestChar(){return this.testChar;}
     
     //=====================     
-    //setter
+    // setter
     //=====================       
     public void setTestDate(LocalDate testDate){this.testDate = testDate;}
     public void setTestString(String testString){this.testString = testString;}
@@ -86,27 +86,29 @@ import com.abc.Test;
 
 class Main {
     public static void main(String[] args) throws IOException {
-        //(1) 宣告檔案讀取及寫出變數
+        // 宣告檔案讀取及寫出變數
         BufferedReader br = null;
         BufferedWriter bw = null;
         
         //------------------------------------------      
         try{   
-            //(2) 建立檔案讀取及寫出物件  
+            // 建立檔案讀取及寫出物件  
             br = new BufferedReader(new FileReader(new File("d:/test.csv"))); 
             bw = new BufferedWriter(new FileWriter(new File("d:/out.csv")));
             
-            //(3) 逐行讀入檔案內容
-            //--------------------- 
+            // 逐行讀入檔案內容
             boolean firstLine = true;            
             String line;     
             
-            while ((line = br.readLine()) != null) {                            
-                //切割欄位內容
+            while ((line = br.readLine()) != null) {    
+                // 顯示讀入的資料
+                System.out.println(line);  
+                
+                // 切割欄位內容
                 String items[] = line.split(",");
                 
                 //===========================================================                
-                //將讀入字串轉成不同的資料型態
+                // 將讀入[字串]轉成[不同的資料型態]
                 //===========================================================
                 LocalDate testDate = LocalDate.parse(items[0].trim());
                 String testString = items[1].trim();
@@ -116,20 +118,10 @@ class Main {
                 char testChar = items[5].trim().charAt(0);           
                 //===========================================================
                 
-                //將資料透過建構元放入物件
-                Test test = new Test(testDate, testString, testInt, testDouble, testBoolean, testChar);             
+                // 產生測試物件, 將資料透過建構元放入物件中
+                Test test = new Test(testDate, testString, testInt, testDouble, testBoolean, testChar);  
                 
-                //顯示物件中的資料
-                System.out.println(line);                
-                System.out.println(test.getTestDate());
-                System.out.println(test.getTestString());
-                System.out.println(test.getTestInt());
-                System.out.println(test.getTestDouble());
-                System.out.println(test.getTestBoolean());
-                System.out.println(test.getTestChar());                
-                System.out.println("-------------------------");   
-                
-                //將物件內容寫至檔案
+                // 將物件內容寫至檔案
                 String data = test.getTestDate() + "," + test.getTestString() + "," + test.getTestInt() + "," + test.getTestDouble() + "," + test.getTestBoolean() + "," + test.getTestChar();
                 
                 if(firstLine){
