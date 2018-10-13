@@ -12,7 +12,7 @@
             //===========================
             //成員
             //===========================     
-            private String transDate;
+            private LocalDate transDate;
             private String marketName;    
             private String vegeName;
             private double highPrice;
@@ -24,7 +24,7 @@
             //=====================  
             //建構元(1)
             //=====================    
-            public double Vegetable(String transDate, String marketName, String vegeName, double highPrice, double midPrice, double lowPrice, double avgPrice, int amount){
+            public double Vegetable(LocalDate transDate, String marketName, String vegeName, double highPrice, double midPrice, double lowPrice, double avgPrice, int amount){
                 //自行完成                           
             }	
 
@@ -59,7 +59,7 @@
             //===========================
             //成員
             //===========================     
-            private String transDate;
+            private LocalDate transDate;
             private String marketName;    
             private String vegeName;
             private double highPrice;
@@ -71,7 +71,7 @@
             //=====================  
             //建構元(1)
             //=====================    
-            public double Vegetable(String transDate, String marketName, String vegeName, double highPrice, double midPrice, double lowPrice, double avgPrice, int amount){
+            public double Vegetable(LocalDate transDate, String marketName, String vegeName, double highPrice, double midPrice, double lowPrice, double avgPrice, int amount){
                 //自行完成                           
             }	
 
