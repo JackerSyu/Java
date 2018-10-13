@@ -13,7 +13,7 @@
             //===========================
             //成員
             //===========================     
-            public String transDate;
+            public LocalDate transDate;
             public String marketName;    
             public String vegeName;
             public double highPrice;
@@ -50,7 +50,7 @@
             //===========================
             //成員
             //===========================     
-            public String transDate;
+            public LocalDate transDate;
             public String marketName;    
             public String vegeName;
             public double highPrice;
@@ -87,7 +87,7 @@
             //===========================
             //成員
             //===========================     
-            public String transDate;
+            public LocalDate transDate;
             public String marketName;    
             public String vegeName;
             public double highPrice;
@@ -124,7 +124,7 @@
             //===========================
             //成員
             //===========================     
-            public String transDate;
+            public LocalDate transDate;
             public String marketName;    
             public String vegeName;
             public double highPrice;
