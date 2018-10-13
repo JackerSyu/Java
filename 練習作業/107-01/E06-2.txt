@@ -2,23 +2,23 @@
 一. 讀入electricityBill-1.csv, 由[電費單類別]產生[電費單物件], 呼叫物件的方法, 寫至out.csv
     1. 參考範例: J06
     2. 輸入檔:   electricityBill-1.csv
-    3. 輸入說明: 用戶名稱, 是否夏月用電, 用電度數
+    3. 輸入說明: 用戶編號, 是否夏月用電, 用電度數
     4. 輸出檔:   out.csv
-    5. 輸出說明: 用戶名稱, 是否夏月用電, 用電度數, 電費 
+    5. 輸出說明: 用戶編號, 是否夏月用電, 用電度數, 電費 
     6. 類別說明:
     
         public class ElectricityBill{
             //===================== 
             //成員
             //=====================      
-            private String cusName; 
+            private String cusNo; 
             private boolean isSummer;
             private int degree;
            
             //=====================  
             //建構元(1)
             //=====================    
-            public double ElectricityBill(String cusName, boolean isSummer, int degree){
+            public double ElectricityBill(String cusNo, boolean isSummer, int degree){
                 //自行完成                           
             }	
 
@@ -67,16 +67,16 @@
 二. 讀入electricityBill-2.csv, 由[電費單類別]產生[電費單物件], 呼叫物件的方法, 寫至out.csv
     1. 參考範例: J06
     2. 輸入檔:   electricityBill-2.csv
-    3. 輸入說明: 用戶名稱, 是否營業用電, 是否夏月用電, 用電度數
+    3. 輸入說明: 用戶編號, 是否營業用電, 是否夏月用電, 用電度數
     4. 輸出檔:   out.csv
-    5. 輸出說明: 用戶名稱, 是否營業用電, 是否夏月用電, 用電度數, 電費 
+    5. 輸出說明: 用戶編號, 是否營業用電, 是否夏月用電, 用電度數, 電費 
     6. 類別說明:
     
         public class ElectricityBill{
             //===================== 
             //成員
             //=====================      
-            private String cusName;
+            private String cusNo;
             private boolean isBusiness;    
             private boolean isSummer;
             private int degree;
@@ -84,7 +84,7 @@
             //=====================  
             //建構元(1)
             //=====================    
-            public double ElectricityBill(String cusName, boolean isBusiness, boolean isSummer, int degree){
+            public double ElectricityBill(String cusNo, boolean isBusiness, boolean isSummer, int degree){
                 //自行完成                           
             }	
 
