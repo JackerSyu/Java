@@ -18,7 +18,7 @@ package com.abc;
 
 public class Score{
     //=====================
-    //成員    
+    // 成員    
     //=====================    
     private String stuNo;
     private String stuName;    
@@ -29,7 +29,7 @@ public class Score{
     private int comp;  
     
     //=====================    
-    //建構元(1)
+    // 建構元(1)
     //=====================    
     public Score(String stuNo, String stuName, String gender, int chi, int eng, int stat, int comp){
         this.stuNo = stuNo;
@@ -42,7 +42,7 @@ public class Score{
     }
     
     //=====================    
-    //建構元(2)    
+    // 建構元(2)    
     //=====================    
     public Score(){
         this.stuNo = null;
@@ -55,7 +55,7 @@ public class Score{
     }
 
     //=====================
-    //getters
+    // getters
     //=====================    
     public String getStuNo(){return stuNo;}
     public String getStuName(){return stuName;}    
@@ -66,7 +66,7 @@ public class Score{
     public int getComp(){return comp;}
     
     //=====================    
-    //setters
+    // setters
     //=====================    
     public void setStuNo(String stuNo){this.stuNo = stuNo;}
     public void setStuName(String stuName){this.stuName = stuName;}
@@ -77,7 +77,7 @@ public class Score{
     public void setComp(int comp){this.comp = comp;}
     
     //=====================    
-    //方法(總分)    
+    // 方法(總分)    
     //=====================    
     public int total(){
         return  chi + eng + stat + comp;                 
@@ -199,7 +199,7 @@ package com.abc;
 
 public class Score{
     //=====================
-    //成員    
+    // 成員    
     //=====================    
     private String stuNo;
     private String stuName;    
@@ -210,7 +210,7 @@ public class Score{
     private int comp;  
     
     //=====================    
-    //建構元(1)
+    // 建構元(1)
     //=====================    
     public Score(String stuNo, String stuName, String gender, int chi, int eng, int stat, int comp){
         this.stuNo = stuNo;
@@ -223,7 +223,7 @@ public class Score{
     }
     
     //=====================    
-    //建構元(2)    
+    // 建構元(2)    
     //=====================    
     public Score(){
         this.stuNo = null;
@@ -236,7 +236,7 @@ public class Score{
     }
 
     //=====================
-    //getters
+    // getters
     //=====================    
     public String getStuNo(){return stuNo;}
     public String getStuName(){return stuName;}    
@@ -247,7 +247,7 @@ public class Score{
     public int getComp(){return comp;}
     
     //=====================    
-    //setters
+    // setters
     //=====================    
     public void setStuNo(String stuNo){this.stuNo = stuNo;}
     public void setStuName(String stuName){this.stuName = stuName;}
@@ -258,7 +258,7 @@ public class Score{
     public void setComp(int comp){this.comp = comp;}
     
     //=====================    
-    //方法(總分)    
+    // 方法(總分)    
     //=====================    
     public int total(){
         return  chi + eng + stat + comp;                 
