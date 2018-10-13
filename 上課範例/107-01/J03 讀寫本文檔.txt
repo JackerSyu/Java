@@ -13,12 +13,12 @@ import java.io.*;
 
 class Main {
     public static void main(String[] args) throws Exception {
-        //(1) 建立一個檔案讀取物件      
+        // 建立一個檔案讀取物件      
         File file = new File("scores.txt");
         FileReader fr = new FileReader(file);
         BufferedReader br = new BufferedReader(fr);        
 
-        //(2) 逐行讀入檔案內容
+        // 逐行讀入檔案內容
         //------------------------------------            
         String line;        
         while ((line = br.readLine()) != null) {            
@@ -26,7 +26,7 @@ class Main {
         }
         //------------------------------------  
         
-        //(3) 關閉reader
+        // 關閉reader
         br.close();         
     }
 } 
@@ -45,26 +45,26 @@ import java.io.*;
 
 class Main {
     public static void main(String[] args) throws Exception {
-        //(1) 建立一個檔案讀取物件      
+        // 建立一個檔案讀取物件      
         File infile = new File("scores.txt");
         FileReader fr = new FileReader(infile);
         BufferedReader br = new BufferedReader(fr);        
 
-        //(2) 建立一個檔案寫出物件      
+        // 建立一個檔案寫出物件      
         File outfile = new File("out.txt");
         FileWriter fw = new FileWriter(outfile);
         BufferedWriter bw = new BufferedWriter(fw);        
 
-        //(3) 逐行讀入檔案內容
+        // 逐行讀入檔案內容
         //------------------------------------              
         String line; 
         boolean firstLine = true;
         
         while ((line = br.readLine()) != null) {            
-            //顯示讀入內容          
+            // 顯示讀入內容          
             System.out.println(line);
 
-            //將內容寫出檔案
+            // 將內容寫出檔案
             if(firstLine){
                 bw.write(line);
                 firstLine=false;
@@ -75,7 +75,7 @@ class Main {
         }
         //------------------------------------          
 
-        //(4) 關閉reader及writer, 強制輸出未寫出的暫存內容
+        // 關閉reader及writer, 強制輸出未寫出的暫存內容
         br.close();
         bw.close();      
     }
@@ -95,15 +95,15 @@ import java.io.*;
 
 class Main {
     public static void main(String[] args) throws IOException {
-        //(1) 宣告檔案讀取變數
+        // 宣告檔案讀取變數
         BufferedReader br=null;
         
         //------------------------------------------      
         try{   
-            //(2) 建立檔案讀取物件  
+            // 建立檔案讀取物件  
             br = new BufferedReader(new FileReader(new File("scores.txt")));            
             
-            //(3) 逐行讀入檔案內容
+            // 逐行讀入檔案內容
             //---------------------            
             String line;        
             while ((line = br.readLine()) != null) {            
@@ -114,7 +114,7 @@ class Main {
             System.out.println("發生錯誤, 原因: " + e);                     
             return;
         }finally{
-            //(4) 關閉reader
+            // 關閉reader
             if(br != null){
                 br.close();              
             }    
@@ -137,26 +137,26 @@ import java.io.*;
 
 class Main {
     public static void main(String[] args) throws Exception{
-        //(1) 宣告輸入及輸出變數
+        // 宣告輸入及輸出變數
         BufferedReader br = null;
         BufferedWriter bw = null;        
 
         //------------------------------------------
         try{
-            //(2) 建立一個檔案讀取及寫出物件      
+            // 建立一個檔案讀取及寫出物件      
             br = new BufferedReader(new FileReader(new File("scores.txt")));   
             bw = new BufferedWriter(new FileWriter(new File("out.txt")));        
 
-            //(3) 逐行讀入檔案內容
+            // 逐行讀入檔案內容
             //---------------------
             String line; 
             boolean firstLine = true;                
             
             while ((line = br.readLine()) != null) {            
-                //顯示讀入內容          
+                // 顯示讀入內容          
                 System.out.println(line);
 
-                //將內容寫出檔案
+                // 將內容寫出檔案
                 if(firstLine){
                     bw.write(line);
                     firstLine=false;
@@ -170,12 +170,12 @@ class Main {
             System.out.println("發生錯誤, 原因: " + e);
             return;           
         }finally{
-            //(4-1) 關閉reader
+            // 關閉reader
             if(br != null){
                 br.close(); 
             } 
             
-            //(4-2) 關閉writer, 強制輸出未寫出的暫存內容
+            // 關閉writer, 強制輸出未寫出的暫存內容
             if(bw != null){
                 bw.close(); 
             }    
