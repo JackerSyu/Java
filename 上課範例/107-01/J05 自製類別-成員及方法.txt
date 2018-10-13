@@ -18,7 +18,7 @@ package com.abc;
 
 public class Score{
     //===================== 
-    //成員
+    // 成員
     //=====================     
     public String stuNo;
     public String stuName;    
@@ -38,22 +38,25 @@ import com.abc.Score;
 
 class Main {
     public static void main(String[] args) throws IOException {
-        //(1) 宣告檔案讀取及寫出變數
+        // 宣告檔案讀取及寫出變數
         BufferedReader br = null;
         BufferedWriter bw = null;
         
         //------------------------------------------      
         try{   
-            //(2) 建立檔案讀取及寫出物件  
+            // 建立檔案讀取及寫出物件  
             br = new BufferedReader(new FileReader(new File("d:/exams.csv"))); 
             bw = new BufferedWriter(new FileWriter(new File("d:/out.csv")));
             
-            //(3) 逐行讀入檔案內容
+            // 逐行讀入檔案內容
             //--------------------- 
             boolean firstLine = true;            
             String line;     
             
-            while ((line = br.readLine()) != null) {                           
+            while ((line = br.readLine()) != null) {     
+                // 顯示讀入的資料
+                System.out.println(line);  
+                
                 //切割欄位內容
                 String items[] = line.split(",");
                 
@@ -65,26 +68,19 @@ class Main {
                 int stat = Integer.parseInt(items[5].trim());
                 int comp = Integer.parseInt(items[6].trim());                
 
-                //將資料放入物件
+                // 產生成績物件
                 Score score = new Score();
-                
+
+                // 將資料放入成績物件中
                 score.stuNo = stuNo;
                 score.stuName = stuName;
                 score.gender = gender;                
                 score.chi = chi;
                 score.eng = eng;
                 score.stat = stat;
-                score.comp = comp;                
-                
-                //顯示物件中的資料
-                System.out.println(line);                
-                System.out.println(score.stuNo);
-                System.out.println(score.stuName);
-                System.out.println(score.gender);
-                System.out.println(score.chi);
-                System.out.println("-------------------------");   
-                
-                //將物件內容寫至檔案
+                score.comp = comp;                                
+               
+                // 將物件內容寫至檔案
                 String data = score.stuNo + "," + score.stuName + "," + score.gender + "," + score.chi;
                 
                 if(firstLine){
@@ -132,7 +128,7 @@ package com.abc;
 
 public class Score{
     //===================== 
-    //成員
+    // 成員
     //=====================      
     public String stuNo;
     public String stuName;    
@@ -143,7 +139,7 @@ public class Score{
     public int comp;  
     
     //=====================  
-    //方法
+    // 方法
     //=====================    
     public double total(){
         return  chi * 2 + eng * 2 + stat * 1.5 + comp * 2.5;                 
@@ -159,23 +155,26 @@ import com.abc.Score;
 
 class Main {
     public static void main(String[] args) throws IOException {
-        //(1) 宣告檔案讀取及寫出變數
+        // 宣告檔案讀取及寫出變數
         BufferedReader br = null;
         BufferedWriter bw = null;
         
         //------------------------------------------      
         try{   
-            //(2) 建立檔案讀取及寫出物件  
+            // 建立檔案讀取及寫出物件  
             br = new BufferedReader(new FileReader(new File("d:/exams.csv"))); 
             bw = new BufferedWriter(new FileWriter(new File("d:/out.csv")));
             
-            //(3) 逐行讀入檔案內容
+            // 逐行讀入檔案內容
             //--------------------- 
             boolean firstLine = true;            
             String line;     
             
-            while ((line = br.readLine()) != null) {                            
-                //切割欄位內容
+            while ((line = br.readLine()) != null) {   
+                // 顯示讀入的資料
+                System.out.println(line);  
+                
+                // 切割欄位內容
                 String items[] = line.split(",");
                 
                 String stuNo = items[0].trim();
@@ -186,9 +185,10 @@ class Main {
                 int stat = Integer.parseInt(items[5].trim());
                 int comp = Integer.parseInt(items[6].trim());                
 
-                //將資料放入物件
+                // 產生成績物件                
                 Score score = new Score();
-                
+
+                // 將資料放入成績物件中
                 score.stuNo = stuNo;
                 score.stuName = stuName;
                 score.gender = gender;                
@@ -197,15 +197,7 @@ class Main {
                 score.stat = stat;
                 score.comp = comp;                
                 
-                //顯示物件中的資料
-                System.out.println(line);                
-                System.out.println(score.stuNo);
-                System.out.println(score.stuName);
-                System.out.println(score.gender);
-                System.out.println(score.chi);
-                System.out.println("-------------------------");   
-                
-                //將物件內容寫至檔案
+                // 將物件內容寫至檔案
                 String data = score.stuNo + "," + score.stuName + "," + score.gender + "," + score.chi + "," + score.total();
                 
                 if(firstLine){
