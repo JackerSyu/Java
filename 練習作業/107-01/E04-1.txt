@@ -1,6 +1,6 @@
 
-一. 讀入scores.txt, 計算總分, 寫至out.txt
-    1. 參考範例: J04.txt
+一. 讀入scores.csv, 計算總分, 寫至out.csv
+    1. 參考範例: J04
     2. 輸入檔: scores.csv 
     3. 輸出檔: out.csv
     4. 輸出說明:
@@ -13,8 +13,8 @@
 
 
 	   
-二. 讀入scores.txt, 計算總分, 寫至out.txt
-    1. 參考範例: J04.txt
+二. 讀入scores.csv, 計算總分, 寫至out.csv
+    1. 參考範例: J04
     2. 輸入檔: scores.csv
     3. 輸出檔: out.csv
     4. 輸出說明:
@@ -27,8 +27,8 @@
 
 
 
-三. 讀入scores.txt, 計算總分, 寫至out.txt
-    1. 參考範例: J04.txt
+三. 讀入scores.csv, 計算總分, 寫至out.csv
+    1. 參考範例: J04
     2. 輸入檔: scores.csv
     3. 輸出檔: out.csv
     4. 輸出說明:
