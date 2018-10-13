@@ -18,7 +18,7 @@ package com.abc;
 
 public class Score{
     //=====================
-    //成員    
+    // 成員    
     //=====================    
     private String stuNo;
     private String stuName;    
@@ -29,7 +29,7 @@ public class Score{
     private int comp;  
     
     //=====================    
-    //建構元(1)
+    // 建構元(1)
     //=====================    
     public Score(String stuNo, String stuName, String gender, int chi, int eng, int stat, int comp){
         this.stuNo = stuNo;
@@ -42,7 +42,7 @@ public class Score{
     }
     
     //=====================    
-    //建構元(2)    
+    // 建構元(2)    
     //=====================    
     public Score(){
         this.stuNo = null;
@@ -55,7 +55,7 @@ public class Score{
     }
 
     //=====================
-    //getters
+    // getters
     //=====================    
     public String getStuNo(){return stuNo;}
     public String getStuName(){return stuName;}    
@@ -66,7 +66,7 @@ public class Score{
     public int getComp(){return comp;}
     
     //=====================    
-    //setters
+    // setters
     //=====================    
     public void setStuNo(String stuNo){this.stuNo = stuNo;}
     public void setStuName(String stuName){this.stuName = stuName;}
@@ -77,21 +77,21 @@ public class Score{
     public void setComp(int comp){this.comp = comp;}
     
     //=====================    
-    //方法(總分)    
+    // 方法(總分)    
     //=====================    
     public double total(){
         return  chi * 2 + eng * 2 + stat * 1.5 + comp * 2.5;                 
     }   
     
     //=====================    
-    //方法(平均)    
+    // 方法(平均)    
     //=====================    
     public double average(){
         return  total() / 8;                 
     }        
  
     //=====================    
-    //方法(物件轉成字串)    
+    // 方法(物件轉成字串)    
     //=====================     
     @Override    
     public String toString(){
@@ -108,23 +108,26 @@ import com.abc.Score;
 
 class Main {
     public static void main(String[] args) throws IOException {
-        //(1) 宣告檔案讀取及寫出變數
+        // 宣告檔案讀取及寫出變數
         BufferedReader br = null;
         BufferedWriter bw = null;
         
         //------------------------------------------      
         try{   
-            //(2) 建立檔案讀取及寫出物件  
+            // 建立檔案讀取及寫出物件  
             br = new BufferedReader(new FileReader(new File("d:/exams.csv"))); 
             bw = new BufferedWriter(new FileWriter(new File("d:/out.csv")));
             
-            //(3) 逐行讀入檔案內容
+            // 逐行讀入檔案內容
             //--------------------- 
             boolean firstLine = true;            
             String line;     
             
-            while ((line = br.readLine()) != null) {                            
-                //切割欄位內容
+            while ((line = br.readLine()) != null) {  
+                // 顯示讀入的資料
+                System.out.println(line);   
+                
+                // 切割欄位內容
                 String items[] = line.split(",");
                 
                 String stuNo = items[0].trim();
@@ -135,18 +138,10 @@ class Main {
                 int stat = Integer.parseInt(items[5].trim());
                 int comp = Integer.parseInt(items[6].trim());                
 
-                //將資料透過建構元放入物件
-                Score score = new Score(stuNo, stuName, gender, chi, eng, stat, comp);             
+                // 產生一個成績物件並將資料透過建構元放入其中
+                Score score = new Score(stuNo, stuName, gender, chi, eng, stat, comp); 
                 
-                //顯示物件中的資料
-                System.out.println(line);                
-                System.out.println(score.getStuNo());
-                System.out.println(score.getStuName());
-                System.out.println(score.getGender());
-                System.out.println(score.getChi());
-                System.out.println("-------------------------");   
-                
-                //將物件內容寫至檔案
+                // 將物件內容寫至檔案
                 String data = score.toString();
                 
                 if(firstLine){
@@ -198,7 +193,7 @@ package com.abc;
 
 public class Score{
     //=====================
-    //成員    
+    // 成員    
     //=====================    
     private String stuNo;
     private String stuName;    
@@ -209,7 +204,7 @@ public class Score{
     private int comp;  
     
     //=====================    
-    //建構元(1)
+    // 建構元(1)
     //=====================    
     public Score(String stuNo, String stuName, String gender, int chi, int eng, int stat, int comp){
         this.stuNo = stuNo;
@@ -222,7 +217,7 @@ public class Score{
     }
     
     //=====================    
-    //建構元(2)    
+    // 建構元(2)    
     //=====================    
     public Score(){
         this.stuNo = null;
@@ -235,7 +230,7 @@ public class Score{
     }
 
     //=====================
-    //getters
+    // getters
     //=====================    
     public String getStuNo(){return stuNo;}
     public String getStuName(){return stuName;}    
@@ -246,7 +241,7 @@ public class Score{
     public int getComp(){return comp;}
     
     //=====================    
-    //setters
+    // setters
     //=====================    
     public void setStuNo(String stuNo){this.stuNo = stuNo;}
     public void setStuName(String stuName){this.stuName = stuName;}
@@ -257,21 +252,21 @@ public class Score{
     public void setComp(int comp){this.comp = comp;}
     
     //=====================    
-    //方法(總分)    
+    // 方法(總分)    
     //=====================    
     public double total(){
         return  chi * 2 + eng * 2 + stat * 1.5 + comp * 2.5;                 
     }   
     
     //=====================    
-    //方法(平均)    
+    // 方法(平均)    
     //=====================    
     public double average(){
         return  total() / 8;                 
     }        
  
     //=====================    
-    //方法(物件轉成字串)    
+    // 方法(物件轉成字串)    
     //=====================     
     @Override    
     public String toString(){
@@ -287,12 +282,12 @@ package com.abc;
 
 public class ScoreWithTOEIC extends Score{
     //=====================
-    //成員    
+    // 成員    
     //=====================    
     private int toeic;  
     
     //=====================    
-    //建構元(1)
+    // 建構元(1)
     //=====================    
     public ScoreWithTOEIC(String stuNo, String stuName, String gender, int chi, int eng, int stat, int comp, int toeic){
         super(stuNo, stuName, gender, chi, eng, stat, comp);
@@ -300,7 +295,7 @@ public class ScoreWithTOEIC extends Score{
     }
     
     //=====================    
-    //建構元(2)    
+    // 建構元(2)    
     //=====================    
     public ScoreWithTOEIC(){
         super();
@@ -308,17 +303,17 @@ public class ScoreWithTOEIC extends Score{
     }
 
     //=====================
-    //getters
+    // getters
     //=====================    
     public int getTOEIC(){return toeic;}
     
     //=====================    
-    //setters
+    // setters
     //=====================    
     public void setTOEIC(int toeic){this.toeic = toeic;}
     
     //=====================    
-    //方法(總分)    
+    // 方法(總分)    
     //=====================
     @Override    
     public double total(){
@@ -326,7 +321,7 @@ public class ScoreWithTOEIC extends Score{
     }         
  
     //=====================    
-    //方法(物件轉成字串)    
+    // 方法(物件轉成字串)    
     //=====================     
     @Override    
     public String toString(){
@@ -343,23 +338,26 @@ import com.abc.*;
 
 class Main {
     public static void main(String[] args) throws IOException {
-        //(1) 宣告檔案讀取及寫出變數
+        // 宣告檔案讀取及寫出變數
         BufferedReader br = null;
         BufferedWriter bw = null;
         
         //------------------------------------------      
         try{   
-            //(2) 建立檔案讀取及寫出物件  
+            // 建立檔案讀取及寫出物件  
             br = new BufferedReader(new FileReader(new File("d:/exams-2.csv"))); 
             bw = new BufferedWriter(new FileWriter(new File("d:/out.csv")));
             
-            //(3) 逐行讀入檔案內容
+            // 逐行讀入檔案內容
             //--------------------- 
             boolean firstLine = true;            
             String line;     
             
-            while ((line = br.readLine()) != null) {                            
-                //切割欄位內容
+            while ((line = br.readLine()) != null) { 
+                // 顯示讀入的資料
+                System.out.println(line);   
+                
+                // 切割欄位內容
                 String items[] = line.split(",");
                 
                 String stuNo = items[0].trim();
@@ -371,18 +369,10 @@ class Main {
                 int comp = Integer.parseInt(items[6].trim()); 
                 int toeic = Integer.parseInt(items[7].trim()); 
 
-                //將資料透過建構元放入物件
+                // 產生一個包含多益的成績物件並將資料透過建構元放入其中
                 ScoreWithTOEIC scoreWithTOEIC = new ScoreWithTOEIC(stuNo, stuName, gender, chi, eng, stat, comp, toeic);             
-                
-                //顯示物件中的資料
-                System.out.println(line);                
-                System.out.println(scoreWithTOEIC.getStuNo());
-                System.out.println(scoreWithTOEIC.getStuName());
-                System.out.println(scoreWithTOEIC.getGender());
-                System.out.println(scoreWithTOEIC.getChi());
-                System.out.println("-------------------------");   
-                
-                //將物件內容寫至檔案
+   
+                // 將物件內容寫至檔案
                 String data = scoreWithTOEIC.toString();
                 
                 if(firstLine){
