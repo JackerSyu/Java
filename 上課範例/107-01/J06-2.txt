@@ -98,8 +98,11 @@ class Main {
                 int stat = Integer.parseInt(items[5].trim());
                 int comp = Integer.parseInt(items[6].trim());                
 
+                //=======================================================================  
                 //將資料透過建構元放入物件
-                Score score = new Score(stuNo, stuName, gender, chi, eng, stat, comp);             
+                //=======================================================================                
+                Score score = new Score(stuNo, stuName, gender, chi, eng, stat, comp);  
+                //=======================================================================                 
                 
                 //顯示物件中的資料
                 System.out.println(line);                
@@ -107,6 +110,9 @@ class Main {
                 System.out.println(score.stuName);
                 System.out.println(score.gender);
                 System.out.println(score.chi);
+                System.out.println(score.eng);
+                System.out.println(score.stat);
+                System.out.println(score.comp);                
                 System.out.println("-------------------------");   
                 
                 //將物件內容寫至檔案
@@ -249,15 +255,20 @@ class Main {
                 int stat = Integer.parseInt(items[5].trim());
                 int comp = Integer.parseInt(items[6].trim());                
 
+                //=======================================================================  
                 //將資料透過建構元放入物件
-                Score score = new Score(stuNo, stuName, gender, chi, eng, stat, comp);             
+                //=======================================================================                
+                Score score = new Score(stuNo, stuName, gender, chi, eng, stat, comp);  
+                //=======================================================================              
                 
-                //顯示物件中的資料
                 System.out.println(line);                
-                System.out.println(score.getStuNo());
-                System.out.println(score.getStuName());
-                System.out.println(score.getGender());
-                System.out.println(score.getChi());
+                System.out.println(score.stuNo);
+                System.out.println(score.stuName);
+                System.out.println(score.gender);
+                System.out.println(score.chi);
+                System.out.println(score.eng);
+                System.out.println(score.stat);
+                System.out.println(score.comp);                
                 System.out.println("-------------------------");   
                 
                 //將物件內容寫至檔案
