@@ -188,7 +188,7 @@ Java專案
    |__ out.csv   (輸出檔)
 ----------------------------
 
-(1-1) Score.java
+(2-1) Score.java
 package com.abc;
 
 public class Score{
@@ -277,7 +277,7 @@ public class Score{
 
 
 
-(1-2) ScoreWithTOEIC.java
+(2-2) ScoreWithTOEIC.java
 package com.abc;
 
 public class ScoreWithTOEIC extends Score{
@@ -332,7 +332,7 @@ public class ScoreWithTOEIC extends Score{
 
 
 
-(1-3) Main.java
+(2-3) Main.java
 import java.io.*;
 import com.abc.*;
 
