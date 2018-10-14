@@ -42,7 +42,6 @@ public class Exams {
 
 
 
-
 (1-2) Main.java
 import com.abc.Exams;
 
@@ -55,7 +54,6 @@ public class Main {
         System.out.println(totRank);
     }    
 }
-
 
 
 
@@ -96,7 +94,6 @@ public class Exams {
         
         return rank;
     }
-
     
     //---------------------------------------------
     // 由一個陣列的成績計算級數的靜態方法
@@ -111,7 +108,6 @@ public class Exams {
         return rank;
     }  
     
-
     //---------------------------------------------
     // 由一個List的成績計算級數的靜態方法
     //---------------------------------------------    
@@ -129,7 +125,6 @@ public class Exams {
 
 
 
-
 (2-2) Main.java
 import com.abc.Exams;
 
@@ -140,14 +135,12 @@ public class Main {
         //----------------------------------------       
         int totRank = Exams.rankByScore(68) + Exams.rankByScore(72) + Exams.rankByScore(75) + Exams.rankByScore(50);
         System.out.println(totRank);
-
         
         //----------------------------------------        
         // 產生一個陣列, 呼叫靜態方法得到級分
         //----------------------------------------        
         int scores[] = {68, 72, 75, 50};
-        System.out.println(Exams.rankByScores(scores));
-        
+        System.out.println(Exams.rankByScores(scores));       
 
         //----------------------------------------        
         // 產生一個List, 呼叫靜態方法得到級分
