@@ -22,23 +22,22 @@
             private int amount;			
 
             //=====================  
-            //建構元(1)
+            //建構元(1)-傳8個參數
             //=====================    
-            public double Vegetable(LocalDate transDate, String marketName, String vegeName, double highPrice, double midPrice, double lowPrice, double avgPrice, int amount){
-                //自行完成                           
-            }	
+	
+
 
             //=====================  
-            //建構元(2)
+            //建構元(2)-傳0個參數
             //=====================    
-            public double Vegetable(){
-                //自行完成               
-            }
-			
+
+	
+	
             //=====================  
             //getter
             //=====================               
 		
+ 
  
             //=====================  			
         }
@@ -69,18 +68,16 @@
             private int amount;			
 
             //=====================  
-            //建構元(1)
+            //建構元(1))-傳8個參數
             //=====================    
-            public double Vegetable(LocalDate transDate, String marketName, String vegeName, double highPrice, double midPrice, double lowPrice, double avgPrice, int amount){
-                //自行完成                           
-            }	
+
+
 
             //=====================  
-            //建構元(2)
+            //建構元(2))-傳0個參數
             //=====================    
-            public double Vegetable(){
-                //自行完成               
-            }
+
+
 			
             //=====================  
             //getter
