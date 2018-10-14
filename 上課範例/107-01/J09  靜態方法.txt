@@ -18,7 +18,7 @@ package com.abc;
 
 public class Exams {
     //---------------------------------------------
-    // 由成績計算級數的靜態方法
+    // 由成績計算級分的靜態方法
     //---------------------------------------------    
     public static int rankByScore(int score){
         int rank;
@@ -47,11 +47,17 @@ import com.abc.Exams;
 
 public class Main {
     public static void main(String[] args) {
+        //---------------------------------------- 
         // 呼叫靜態方法得到成績對應的級分
-        int totRank = Exams.rankByScore(68) + Exams.rankByScore(72) + Exams.rankByScore(75) + Exams.rankByScore(50);
+        //----------------------------------------       
+        System.out.println(Exams.rankByScore(68));
         
-        // 顯示級分
+        //---------------------------------------- 
+        // 呼叫靜態方法得到成績對應的級分
+        //----------------------------------------       
+        int totRank = Exams.rankByScore(68) + Exams.rankByScore(72) + Exams.rankByScore(75) + Exams.rankByScore(50);
         System.out.println(totRank);
+        //----------------------------------------        
     }    
 }
 
