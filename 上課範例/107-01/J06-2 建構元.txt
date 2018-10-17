@@ -44,15 +44,7 @@ public class Score{
     //=====================     
     // 建構元(2)    
     //=====================     
-    public Score(){
-        this.stuNo = null;
-        this.stuName = null;
-        this.gender = null;
-        this.chi = 0;
-        this.eng = 0;
-        this.stat = 0;
-        this.comp = 0;        
-    }
+    public Score(){}
     
     //=====================     
     // 方法    
@@ -158,13 +150,13 @@ public class Score{
     //=====================
     // 成員    
     //=====================    
-    private String stuNo;
-    private String stuName;    
-    private String gender;
-    private int chi;
-    private int eng;
-    private int stat;
-    private int comp;  
+    public String stuNo;
+    public String stuName;    
+    public String gender;
+    public int chi;
+    public int eng;
+    public int stat;
+    public int comp;  
     
     //=====================    
     // 建構元(1)
@@ -191,18 +183,7 @@ public class Score{
         this.stat = 0;
         this.comp = 0;        
     }
-
-    //=====================
-    // getters
-    //=====================    
-    public String getStuNo(){return stuNo;}
-    public String getStuName(){return stuName;}    
-    public String getGender(){return gender;}
-    public int getChi(){return chi;}
-    public int getEng(){return eng;}
-    public int getStat(){return stat;}
-    public int getComp(){return comp;}
-    
+   
     //=====================    
     // 方法    
     //=====================    
@@ -254,20 +235,10 @@ class Main {
                 // 產生成績物件, 並將資料透過建構元放入物件中
                 //=======================================================================                
                 Score score = new Score(stuNo, stuName, gender, chi, eng, stat, comp);  
-                //=======================================================================              
-                
-                System.out.println(line);                
-                System.out.println(score.stuNo);
-                System.out.println(score.stuName);
-                System.out.println(score.gender);
-                System.out.println(score.chi);
-                System.out.println(score.eng);
-                System.out.println(score.stat);
-                System.out.println(score.comp);                
-                System.out.println("-------------------------");   
+                //=======================================================================                              
                 
                 // 將物件內容寫至檔案
-                String data = score.getStuNo() + "," + score.getStuName() + "," + score.getGender() + "," + score.getChi() + "," + score.total();
+                String data = score.stuNo + "," + score.getName + "," + score.gender + "," + score.chi + "," + score.total();
                 
                 if(firstLine){
                     bw.write(data);
