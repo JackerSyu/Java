@@ -8,18 +8,18 @@
        (2) 輸出欄位: 交易日期, 市場名稱, 作物名稱, 高價, 中價, 下價, 平均價, 交易量
     6. 類別說明:
     
-        public class Vegetable{
+        public class Trans{
             //===========================
             //成員
             //===========================     
-            private LocalDate transDate;
-            private String marketName;    
-            private String vegeName;
-            private double highPrice;
-            private double midPrice;
-            private double lowPrice;
-            private double avgPrice;
-            private int amount;			
+            public LocalDate transDate;
+            public String market;    
+            public String vegetable;
+            public double high;
+            public double middle;
+            public double low;
+            public double avg;
+            public double amount;			
 
             //=====================  
             //建構元(1)-傳8個參數
@@ -29,13 +29,7 @@
 
             //=====================  
             //建構元(2)-傳0個參數
-            //=====================    
-
-	
-	
-            //=====================  
-            //getter
-            //=====================               
+            //=====================            
 		
  
  
@@ -58,14 +52,14 @@
             //===========================
             //成員
             //===========================     
-            private LocalDate transDate;
-            private String marketName;    
-            private String vegeName;
-            private double highPrice;
-            private double midPrice;
-            private double lowPrice;
-            private double avgPrice;
-            private int amount;			
+            public LocalDate transDate;
+            public String market;    
+            public String vegetable;
+            public double high;
+            public double middle;
+            public double low;
+            public double avg;
+            public double amount;		
 
             //=====================  
             //建構元(1))-傳8個參數
@@ -76,12 +70,7 @@
             //=====================  
             //建構元(2))-傳0個參數
             //=====================    
-
-
-			
-            //=====================  
-            //getter
-            //=====================               
+	    
 		
 		
 		
