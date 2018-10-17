@@ -7,31 +7,25 @@
     5. 輸出說明: 用戶編號, 是否夏月用電, 用電度數, 電費 
     6. 類別說明:
     
-        public class ElectricityBill{
+        public class Bill{
             //===================== 
             //成員
             //=====================      
-            private String cusNo; 
-            private boolean isSummer;
-            private int degree;
+            public String cusNo; 
+            public boolean isSummer;
+            public int degree;
            
             //=====================  
-            //建構元(1))-傳3個參數
+            //建構元(1) 傳3個參數
             //=====================    
 
 
 
             //=====================  
-            //建構元(2))-傳0個參數
+            //建構元(2) 傳0個參數
             //=====================    
-
 
 			
-            //=====================  
-            //getter
-            //=====================    
-
-
 			
             //=====================  
             //方法(計算電費)
@@ -71,32 +65,25 @@
     5. 輸出說明: 用戶編號, 是否營業用電, 是否夏月用電, 用電度數, 電費 
     6. 類別說明:
     
-        public class ElectricityBill{
+        public class Bill{
             //===================== 
             //成員
             //=====================      
-            private String cusNo;
-            private boolean isBusiness;    
-            private boolean isSummer;
-            private int degree;
+            public String cusNo;
+            public boolean isBusiness;    
+            public boolean isSummer;
+            public int degree;
            
             //=====================  
-            //建構元(1)
+            //建構元(1) 傳4個參數
             //=====================    
-            public double ElectricityBill(String cusNo, boolean isBusiness, boolean isSummer, int degree){
-                //自行完成                           
-            }	
+
+
 
             //=====================  
-            //建構元(2)
+            //建構元(2) 傳0個參數
             //=====================    
-            public double ElectricityBill(){
-                //自行完成               
-            }
-			
-            //=====================  
-            //getter
-            //=====================    
+	    
 		
 			
             //=====================  
