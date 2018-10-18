@@ -20,7 +20,7 @@ int 整數變數 = Integer.parseInt(字串變數);
 ------------------
 (3) 字串轉double
 ------------------
-double 小數變數 = Double.parseDouble(字串變數);
+double 浮點數變數 = Double.parseDouble(字串變數);
 
 
 ------------------
