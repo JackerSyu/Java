@@ -7,7 +7,7 @@ J06-1-2 計算兩個日期之間的天數
 //----------------
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
-import java.time.temporal.ChronoUnit;
+import java.time.format.DateTimeFormatter;
 
 public class Main {
     public static void main(String[] args) {
