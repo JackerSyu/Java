@@ -2,151 +2,35 @@
 J06-1 型態轉換
 =================================
 
-----------------------------
-Java專案
-   |__ <com.abc>
-   |       |__ Test.java
-   |
-   |__ Main.java
-   |       
-   |__ test.csv (輸入檔)
-   |__ out.csv   (輸出檔)
-----------------------------
-
-(1-1) Test.java
-package com.abc;
-
-package com.abc;
+------------------
+(1) 字串轉日期
+------------------
 import java.time.LocalDate;
-
-public class Test {
-    //===================== 
-    // 成員    
-    //===================== 
-    private LocalDate testDate;
-    private String testString;
-    private int testInt;
-    private double testDouble;
-    private boolean testBoolean;
-    private char testChar;
-
-    //=====================     
-    // 建構元(1)
-    //=====================   
-    public Test(LocalDate testDate, String testString, int testInt, double testDouble, boolean testBoolean, char testChar){
-        this.testDate = testDate;
-        this.testString = testString;
-        this.testInt = testInt;
-        this.testDouble = testDouble;
-        this.testBoolean = testBoolean;
-        this.testChar = testChar;
-    }
-
-    //=====================     
-    // 建構元(2)
-    //=====================   
-    public Test(){
-        this.testDate = null;
-        this.testString = null;
-        this.testInt = 0;
-        this.testDouble = 0;
-        this.testBoolean = false;
-        this.testChar = Character.MIN_VALUE;;
-    } 
-    
-    //=====================     
-    // getter
-    //=====================       
-    public LocalDate getTestDate(){return this.testDate;}
-    public String getTestString(){return this.testString;}
-    public int getTestInt(){return this.testInt;}
-    public double getTestDouble(){return this.testDouble;}
-    public boolean getTestBoolean(){return this.testBoolean;}
-    public char getTestChar(){return this.testChar;}
-    
-    //=====================     
-    // setter
-    //=====================       
-    public void setTestDate(LocalDate testDate){this.testDate = testDate;}
-    public void setTestString(String testString){this.testString = testString;}
-    public void setTestInt(int testInt){this.testInt = testInt;}
-    public void setTestDouble(double testDouble){this.testDouble = testDouble;}
-    public void setTestBoolean(boolean testBoolean){this.testBoolean = testBoolean;}
-    public void setTestDate(char testChar){this.testChar = testChar;}     
-    //=====================           
-}
+     .
+     .
+LocalDate 日期變數 = LocalDate.parse(字串變數);
 
 
+------------------
+(2) 字串轉int
+------------------
+int 整數變數 = Integer.parseInt(字串變數);
 
 
-(1-2) Main.java
-import java.io.*;
-import java.time.LocalDate;
-import com.abc.Test;
+------------------
+(3) 字串轉double
+------------------
+double 小數變數 = Double.parseDouble(字串變數);
 
-class Main {
-    public static void main(String[] args) throws IOException {
-        // 宣告檔案讀取及寫出變數
-        BufferedReader br = null;
-        BufferedWriter bw = null;
-        
-        //------------------------------------------      
-        try{   
-            // 建立檔案讀取及寫出物件  
-            br = new BufferedReader(new FileReader(new File("d:/test.csv"))); 
-            bw = new BufferedWriter(new FileWriter(new File("d:/out.csv")));
-            
-            // 逐行讀入檔案內容
-            boolean firstLine = true;            
-            String line;     
-            
-            while ((line = br.readLine()) != null) {    
-                // 顯示讀入的資料
-                System.out.println(line);  
-                
-                // 切割欄位內容
-                String items[] = line.split(",");
-                
-                //===========================================================                
-                // 將讀入[字串]轉成[不同的資料型態]
-                //===========================================================
-                LocalDate testDate = LocalDate.parse(items[0].trim());
-                String testString = items[1].trim();
-                int testInt = Integer.parseInt(items[2].trim());
-                double testDouble = Double.parseDouble(items[3].trim());
-                boolean testBoolean = Boolean.parseBoolean(items[4].trim());                
-                char testChar = items[5].trim().charAt(0);           
-                //===========================================================
-                
-                // 產生測試物件, 將資料透過建構元放入物件中
-                Test test = new Test(testDate, testString, testInt, testDouble, testBoolean, testChar);  
-                
-                // 將物件內容寫至檔案
-                String data = test.getTestDate() + "," + test.getTestString() + "," + test.getTestInt() + "," + test.getTestDouble() + "," + test.getTestBoolean() + "," + test.getTestChar();
-                
-                if(firstLine){
-                    bw.write(data);
-                    firstLine=false;
-                }else{
-                    bw.write(("\n"));
-                    bw.write(data);                
-                }                
-            }                   
-            //---------------------            
-        }catch(Exception e){
-            System.out.println("發生錯誤, 原因: " + e);                     
-            return;
-        }finally{
-            // 關閉reader
-            if(br != null){
-                br.close();              
-            }  
-            
-            // 關閉writer
-            if(bw != null){
-                bw.close();              
-            }              
-        }  
-        //------------------------------------------         
-    }    
-}
+
+------------------
+(4) 字串轉boolean
+------------------
+double 布林變數 = Boolean.parseBoolean(字串變數);
+
+
+------------------
+(5) 字串轉char
+------------------
+char 字元變數 = 字串變數.trim().charAt(0); 
+
