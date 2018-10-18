@@ -6,9 +6,18 @@ J06-1-1 型態轉換
 (1) 字串轉日期
 ------------------
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
      .
      .
-LocalDate 日期變數 = LocalDate.parse(字串變數);
+//-----------------------
+// 設定日期格式
+//-----------------------
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-d");     
+
+//-----------------------
+// 轉換日期
+//-----------------------
+LocalDate 日期變數 = LocalDate.parse(字串變數, formatter);
 
 
 ------------------
