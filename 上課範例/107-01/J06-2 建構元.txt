@@ -85,7 +85,7 @@ class Main {
                 // 切割欄位內容
                 String items[] = line.split(",");
                 
-                // 將切割後的欄位存入不同型態變數中
+                // 將切割後的欄位(字串)存入不同型態變數中
                 String stuNo = items[0].trim();
                 String stuName = items[1].trim();
                 String gender = items[2].trim();
@@ -241,7 +241,7 @@ class Main {
                 // 切割欄位內容
                 String items[] = line.split(",");
 
-                // 將切割後的欄位存入不同型態變數中
+                // 將切割後的欄位(字串)存入不同型態變數中
                 String stuNo = items[0].trim();
                 String stuName = items[1].trim();
                 String gender = items[2].trim();
