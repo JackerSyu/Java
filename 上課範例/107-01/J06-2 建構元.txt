@@ -85,6 +85,7 @@ class Main {
                 // 切割欄位內容
                 String items[] = line.split(",");
                 
+                // 將切割後的欄位存入不同型態變數中
                 String stuNo = items[0].trim();
                 String stuName = items[1].trim();
                 String gender = items[2].trim();
@@ -94,10 +95,26 @@ class Main {
                 int comp = Integer.parseInt(items[6].trim());                
 
                 //=======================================================================  
-                // 產生成績物件, 並將資料透過建構元放入物件中
+                // (方法1) 產生成績物件, 並將資料透過建構元存入物件的成員中
                 //=======================================================================                
                 Score score = new Score(stuNo, stuName, gender, chi, eng, stat, comp);  
-                //=======================================================================                                 
+                //=======================================================================  
+                
+                //=======================================================================  
+                // (方法2) 產生成績物件, 並將資料分別存入物件的成員中
+                //=======================================================================                
+                /*
+                Score score = new Score();  
+                
+                score.stuNo = stuNo;
+                score.stuName = stuName;
+                score.gender = gender;
+                score.chi = chi;
+                score.eng = eng;
+                score.stat = stat;
+                score.comp = comp;
+                */
+                //=======================================================================                 
                 
                 // 將物件內容寫至檔案
                 String data = score.stuNo + "," + score.stuName + "," + score.gender + "," + score.chi + "," + score.total();
@@ -222,7 +239,8 @@ class Main {
                 
                 // 切割欄位內容
                 String items[] = line.split(",");
-                
+
+                // 將切割後的欄位存入不同型態變數中
                 String stuNo = items[0].trim();
                 String stuName = items[1].trim();
                 String gender = items[2].trim();
@@ -232,10 +250,26 @@ class Main {
                 int comp = Integer.parseInt(items[6].trim());                
 
                 //=======================================================================  
-                // 產生成績物件, 並將資料透過建構元放入物件中
+                // (方法1) 產生成績物件, 並將資料透過建構元存入物件的成員中
                 //=======================================================================                
                 Score score = new Score(stuNo, stuName, gender, chi, eng, stat, comp);  
-                //=======================================================================                              
+                //=======================================================================                               
+ 
+                 //=======================================================================  
+                // (方法2) 產生成績物件, 並將資料分別存入物件的成員中
+                //=======================================================================                
+                /*
+                Score score = new Score();  
+                
+                score.stuNo = stuNo;
+                score.stuName = stuName;
+                score.gender = gender;
+                score.chi = chi;
+                score.eng = eng;
+                score.stat = stat;
+                score.comp = comp;
+                */
+                //======================================================================= 
                 
                 // 將物件內容寫至檔案
                 String data = score.stuNo + "," + score.getName + "," + score.gender + "," + score.chi + "," + score.total();
