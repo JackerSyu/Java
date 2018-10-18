@@ -7,14 +7,20 @@ J06-1-2 計算兩個日期之間的天數
 //----------------
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
+import java.time.temporal.ChronoUnit;
 
 public class Main {
     public static void main(String[] args) {
+        //-----------------------    
+        // 設定日期時間的格式
+        //-----------------------        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-d");
+        
         //-----------------------
         // 設定兩個日期
         //-----------------------        
-        LocalDate d1 = LocalDate.parse("2018-10-18");
-        LocalDate d2 = LocalDate.parse("2018-12-05");
+        LocalDate d1 = LocalDate.parse("2018-5-18", formatter);
+        LocalDate d2 = LocalDate.parse("2018-12-5", formatter);
         
         //-----------------------        
         // 計算兩個日期之間的天數
