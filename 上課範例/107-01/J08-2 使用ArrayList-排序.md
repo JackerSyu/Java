@@ -1,8 +1,8 @@
-==================================================
-J08-2  使用ArrayList - 排序
-==================================================
+## J08-2  使用ArrayList - 排序
 
-----------------------------
+### (1)
+
+```
 Java專案
    |__ <com.abc>
    |       |__ Score.java
@@ -11,9 +11,12 @@ Java專案
    |       
    |__ exams.csv (輸入檔)
    |__ out.csv   (輸出檔)
-----------------------------
+```
 
-(1-1) Score.java
+
+### (1-1) Score.java
+
+```java
 package com.abc;
 
 public class Score{
@@ -84,11 +87,13 @@ public class Score{
     }       
     //=====================    
 }
+```
 
 
 
+### (1-2) Main.java
 
-(1-2) Main.java
+```java
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -186,15 +191,12 @@ class Main {
         }       
     }    
 }
+```
 
 
+## (2)
 
-
-
-
-
-
-----------------------------
+```
 Java專案
    |__ <com.abc>
    |       |__ Score.java
@@ -203,9 +205,11 @@ Java專案
    |       
    |__ exams.csv (輸入檔)
    |__ out.csv   (輸出檔)
-----------------------------
+```
 
-(2-1) Score.java
+### (2-1) Score.java
+
+```java
 package com.abc;
 
 public class Score{
@@ -276,11 +280,13 @@ public class Score{
     }       
     //=====================    
 }
+```
 
 
 
+### (2-2) Main.java
 
-(2-2) Main.java
+```java
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -369,12 +375,14 @@ class Main {
         }       
     }    
 }
+```
 
 
 
 
+### (3)
 
-----------------------------
+```
 Java專案
    |__ <com.abc>
    |       |__ Score.java
@@ -383,9 +391,11 @@ Java專案
    |       
    |__ exams.csv (輸入檔)
    |__ out.csv   (輸出檔)
-----------------------------
+```
 
-(3-1) Score.java
+### (3-1) Score.java
+
+```java
 package com.abc;
 
 public class Score{
@@ -456,11 +466,13 @@ public class Score{
     }       
     //=====================    
 }
+```
 
 
 
+### (3-2) Main.java
 
-(3-2) Main.java
+```java
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -563,3 +575,4 @@ class Main {
         }       
     }    
 }
+```
