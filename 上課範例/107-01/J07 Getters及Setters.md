@@ -1,4 +1,4 @@
-## J07  自製類別 - getters及setters
+## J07 Getters及Setters
 
 
 ### (1)
