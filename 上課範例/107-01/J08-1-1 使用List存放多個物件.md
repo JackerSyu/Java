@@ -12,7 +12,7 @@ public class Main {
     public static void main(String[] args) {
         //---------------------------------    
         // 宣告一個存放String的list,
-        // 而list的實際結構是ArrayList
+        // 這個list的實際結構是ArrayList
         //---------------------------------        
         List<String> list = new ArrayList();
         
