@@ -9,7 +9,7 @@ Java專案
    |__ exams.csv (輸入檔) 
 ```
 
-### (1) Main.java
+### Main.java
 
 ```java
 import java.io.*;
@@ -62,6 +62,8 @@ class Main {
 ```
 
 
+<br/>
+
 ### (2)
 
 ```
@@ -71,7 +73,7 @@ Java專案
    |__ out.csv (輸出檔, 程式產生)   
 ```
 
-### (2) Main.java
+### Main.java
 ```java
 import java.io.*;
 
