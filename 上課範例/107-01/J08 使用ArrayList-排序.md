@@ -151,9 +151,7 @@ class Main {
                 list, 
                 new Comparator<Score>(){
                     public int compare(Score s1, Score s2){
-                        if(s1.total() != s2.total()){
-                            return -(s1.total() - s2.total());
-                        }     
+                        return -(s1.total() - s2.total());                             
                     }    
                 }
             );
