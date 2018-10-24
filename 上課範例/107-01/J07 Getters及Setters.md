@@ -258,20 +258,20 @@ public class Score{
     public double total(){
         return  chi + eng + stat + comp;                 
     }  
-    
-    //=====================    
-    // 方法(平均)    
-    //=====================    
-    public double average(){
-        return  total() / 4;                 
-    }
-    
+  
     //=====================    
     // 方法(加櫂總分)    
     //=====================    
     public double total(double wChi, double wEng, double wStat, double wComp){
         return  chi * wChi + eng * wEng + stat * wStat + comp * wComp;                 
-    }       
+    }      
+  
+    //=====================    
+    // 方法(平均)    
+    //=====================    
+    public double average(){
+        return  total() / 4;                 
+    } 
     
     //=====================    
     // 方法(加櫂平均)    
