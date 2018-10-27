@@ -32,7 +32,11 @@ public class Main {
         
         //----------------------------------------------      
         // 依序取出list中的字串
-        //----------------------------------------------      
+        //---------------------------------------------- 
+        //for(int i = 0; i < list.size(); i++){
+        //    System.out.println(list.get(i));
+        //}
+        
         for(String s : list){
             System.out.println(s);
         }
@@ -75,6 +79,10 @@ public class Main {
         //----------------------------------------------      
         // 依序取出list中的字串
         //----------------------------------------------      
+        //for(int i = 0; i < list.size(); i++){
+        //    System.out.println(list.get(i));
+        //} 
+        
         for(String s : list){
             System.out.println(s);
         }
