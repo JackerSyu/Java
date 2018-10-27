@@ -1,6 +1,6 @@
-## J09  使用List - 排序
+# J09  使用List - 排序
 
-### (1)
+## (1) 產生Comparator物件排序 - 用new命令
 
 ```
 Java專案
@@ -195,7 +195,7 @@ class Main {
 
 <br/>
 
-### (2)
+## (2) 產生Comparator物件排序 - 用lambda命令
 
 ```
 Java專案
@@ -382,7 +382,7 @@ class Main {
 
 <br/>
 
-### (3)
+## (3) 產生Comparator物件排序 - 多個排序欄位
 
 ```
 Java專案
