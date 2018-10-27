@@ -99,7 +99,6 @@ package p36;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Collections;
 import com.abc.Score;
 
 class Main {    
