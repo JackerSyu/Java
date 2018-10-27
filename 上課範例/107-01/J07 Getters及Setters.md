@@ -1,7 +1,7 @@
-## J07 Getters及Setters
+# J07 Getters及Setters
 
 
-### (1)
+## (1) 完成Score的private成員取存方法
 
 ```
 Java專案
@@ -173,7 +173,7 @@ class Main {
 
 <br/>
 
-### (2)
+## (2) Overloading - total()及total(double, double, double, double)
 
 ```
 Java專案
