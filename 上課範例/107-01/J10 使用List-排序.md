@@ -1,4 +1,4 @@
-# J09  使用List - 排序
+# J10  使用List - 排序
 
 ## (1) 產生Comparator物件排序 - 用new命令
 
