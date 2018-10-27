@@ -94,8 +94,6 @@ public class Score{
 ### (1-2) Main.java
 
 ```java
-package p36;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -103,8 +101,15 @@ import com.abc.Score;
 
 class Main {    
     public static void main(String[] args) throws IOException {
-        // 宣告一個ArrayList用來儲存所有成績物件
+        //---------------------------------------- 
+        // 宣告一個ArrayList儲存所有成績物件
+        //----------------------------------------        
         List<Score> list = new ArrayList<>();
+
+        //----------------------------------------          
+        // 宣告一個ArrayList儲存所有國文成績
+        //----------------------------------------          
+        List<Double> chiList = new ArrayList<>();
         
         // 宣告檔案讀取及寫出變數
         BufferedReader br = null;
@@ -117,7 +122,6 @@ class Main {
       
             // 逐行讀入檔案內容, 加入list中          
             String line;                 
-            double totChi = 0;
             int cnt = 0;            
             
             while ((line = br.readLine()) != null) {    
@@ -134,30 +138,34 @@ class Main {
                 int eng = Integer.parseInt(items[4].trim());                
                 int stat = Integer.parseInt(items[5].trim());
                 int comp = Integer.parseInt(items[6].trim());                
-
-                //----------------------
-                // 輸入資料的計算
-                //----------------------               
-                totChi+=chi;
-                cnt++;
-                
+               
                 // 產生一個成績物件並將資料透過建構元放入其中
                 Score score = new Score(stuNo, stuName, gender, chi, eng, stat, comp);
                 
+                //-----------------------------------                
                 // 將成績物件加入ArrayList中
-                list.add(score);                 
+                //-----------------------------------                  
+                list.add(score);                                  
             }                                        
             
             
-            // 將list中的成績物件依條件寫到檔案中
-            boolean firstLine = true;  
-
-            //----------------------   
-            // 計算輸出條件
-            //----------------------                        
-            double avgChi = totChi / cnt;  
+            //--------------------------------------------
+            // 計算國文成績的平均數
+            //--------------------------------------------
+            double tot = 0;
+            double avgChi;        
+           
+            for(Score s : list){
+                tot += s.getChi();
+            }
             
-            System.out.println("國文平均:" + avgChi);
+            avgChi = tot / list.size();
+            System.out.println("國文平均成績:" + avgChi);  
+            //--------------------------------------------
+            
+            
+            // 將list中的成績物件依條件寫到檔案中
+            boolean firstLine = true;                 
             
             for(Score s : list){
                 //---------------------------                
@@ -190,7 +198,7 @@ class Main {
                 bw.close();              
             }              
         }       
-    }    
+    }   
 }
 ```
 
