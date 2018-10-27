@@ -1,7 +1,7 @@
-## J03 讀寫txt檔
+# J03 讀寫txt檔
 
 
-### (1)
+## (1) 讀入一個txt檔
 
 ```
 Java專案
@@ -39,7 +39,7 @@ class Main {
 
 <br/>
 
-### (2)
+## (2) 讀入一個txt檔, 寫出一個txt檔
 ```
 Java專案
    |__ Main.java
@@ -95,7 +95,7 @@ class Main {
 
 <br/>
 
-### (3)
+## (3) 讀入一個txt檔, 用try...catch捕捉錯誤
 ```
 Java專案
    |__ Main.java
@@ -141,7 +141,7 @@ class Main {
 
 <br/>
 
-### (4)
+## (4) 讀入一個txt檔, 寫出一個txt檔, 用try...catch捕捉錯誤
 
 ```
 Java專案
