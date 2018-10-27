@@ -425,7 +425,7 @@ class Main {
 
 <br/>
 
-### (3)
+### (3) 改寫範例(2)
 
 ```
 Java專案
@@ -518,17 +518,24 @@ public class Score{
 ### (3-2) Main.java
 
 ```java
+package p36;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Collections;
-import java.util.Comparator;
 import com.abc.Score;
 
 class Main {    
     public static void main(String[] args) throws IOException {
-        // 宣告一個ArrayList用來儲存所有成績物件
+        //---------------------------------------- 
+        // 宣告一個ArrayList儲存所有成績物件
+        //----------------------------------------        
         List<Score> list = new ArrayList<>();
+
+        //----------------------------------------          
+        // 宣告一個ArrayList儲存所有國文成績
+        //----------------------------------------          
+        List<Double> chiList = new ArrayList<>();
         
         // 宣告檔案讀取及寫出變數
         BufferedReader br = null;
@@ -537,13 +544,11 @@ class Main {
         try{   
             // 建立檔案讀取及寫出物件  
             br = new BufferedReader(new FileReader(new File("d:/exams.csv"))); 
-            bw = new BufferedWriter(new FileWriter(new File("d:/out.csv")));
-            
-            //--------------------------------             
-            // 逐行讀入檔案內容, 加入list中
-            //-------------------------------- 
-            boolean firstLine = true;            
-            String line;     
+            bw = new BufferedWriter(new FileWriter(new File("d:/out.csv")));            
+      
+            // 逐行讀入檔案內容, 加入list中          
+            String line;                 
+            int cnt = 0;            
             
             while ((line = br.readLine()) != null) {    
                 // 顯示輸入資料
@@ -559,48 +564,54 @@ class Main {
                 int eng = Integer.parseInt(items[4].trim());                
                 int stat = Integer.parseInt(items[5].trim());
                 int comp = Integer.parseInt(items[6].trim());                
-
+               
                 // 產生一個成績物件並將資料透過建構元放入其中
                 Score score = new Score(stuNo, stuName, gender, chi, eng, stat, comp);
                 
                 // 將成績物件加入ArrayList中
                 list.add(score);                 
-            }                 
-            //-------------------------------- 
-            
-            
-            //================================================================
-            // 排序, 以[總分]->[國文]->[英文]由大到小排序
-            //================================================================            
-            Collections.sort(
-                list, 
-                new Comparator<Score>(){
-                    public int compare(Score s1, Score s2){
-                        if(s1.total() != s2.total()){
-                            return -(s1.total() - s2.total());
-                        }else if(s1.getChi() != s2.getChi()){
-                            return -(s1.getChi() - s2.getChi());
-                        }else{
-                            return -(s1.getEng() - s2.getEng());
-                        }        
-                    }    
-                }
-            );
-            //================================================================
-            
-            
-            //----------------------------------------------
-            // 將list中的成績物件依序取出, 再寫到檔案中
-            //----------------------------------------------            
-            for(Score s : list){    
-                String data = s.getStuNo() + "," + s.getStuName() + "," + s.getGender() + "," + s.getChi() + "," + s.getEng() + "," + s.getStat() + "," + s.getComp() + "," + s.total();
                 
-                if(firstLine){
-                    bw.write(data);
-                    firstLine=false;
-                }else{
-                    bw.write(("\n"));
-                    bw.write(data);                
+                //-------------------------------------
+                // 將國文成績物件加入ArrayList中
+                //-------------------------------------                
+                chiList.add(new Double(chi));                  
+            }                                        
+            
+            
+            //--------------------------------------------
+            // 計算國文成績的平均數
+            //--------------------------------------------
+            double avgChi = average(chiList);
+            System.out.println("國文平均:" + avgChi);
+            //--------------------------------------------
+
+            
+            //--------------------------------------------
+            // 計算國文成績的標準差
+            //--------------------------------------------
+            double stdChi = standardDev(chiList);
+            System.out.println("國文標準差:" + stdChi);            
+            //--------------------------------------------
+
+            
+            
+            // 將list中的成績物件依條件寫到檔案中
+            boolean firstLine = true;                 
+            
+            for(Score s : list){
+                //---------------------------                
+                // 符合條件的資料再輸出    
+                //---------------------------                
+                if(s.getChi() >= (avgChi + stdChi)){
+                    String data = s.getStuNo() + "," + s.getStuName() + "," + s.getGender() + "," + s.getChi() + "," + s.getEng() + "," + s.getStat() + "," + s.getComp() + "," + s.total();
+                
+                    if(firstLine){
+                        bw.write(data);
+                        firstLine=false;
+                    }else{
+                        bw.write(("\n"));
+                        bw.write(data);                
+                    }                        
                 }   
             }
             //----------------------------------------------           
@@ -618,6 +629,35 @@ class Main {
                 bw.close();              
             }              
         }       
+    } 
+    
+    
+    //======================================================
+    // 計算平均數
+    //======================================================
+    public static double average(List<Double> data){
+        double tot = 0;
+            
+        for(Double d : data){
+            tot += d;
+        }            
+            
+        return tot / data.size(); 
+    }
+        
+    //======================================================
+    // 計算標準差
+    //======================================================
+    public static double standardDev(List<Double> data){
+        double tot = 0;           
+        double avg = average(data);
+        
+        for(Double d : data){
+            tot += Math.pow((d - avg), 2);
+        }            
+            
+        return Math.sqrt(tot / data.size());
     }    
+    //======================================================    
 }
 ```
