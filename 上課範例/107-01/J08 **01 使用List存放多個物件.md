@@ -1,7 +1,7 @@
-## J08 **01  使用List存放多個物件
+# J08 **01  使用List存放多個物件
 
 
-### (1) 用ArrayList實作
+## (1) 用ArrayList實作
 
 ```java
 //----------------
@@ -47,7 +47,7 @@ public class Main {
 
 <br/>
 
-### (2) 用LinkedList實作
+## (2) 用LinkedList實作
 
 ```java
 //----------------
