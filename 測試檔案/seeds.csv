@@ -9,7 +9,7 @@
 (6) 不對稱係數, asyCoef, double
 (7) 麥核槽的長度, grooveLength, double
 (8) 品種, species, int 
-    [註:] 1:Kama, 2:Rosa, 3:Canadian
+    [註] 1:Kama, 2:Rosa, 3:Canadian
 -----------------------------------------------------------
 
 
