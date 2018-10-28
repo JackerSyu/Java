@@ -94,6 +94,8 @@ public class Score{
 ### (1-2) Main.java
 
 ```java
+package p40;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -104,13 +106,8 @@ class Main {
         //---------------------------------------- 
         // 宣告一個ArrayList儲存所有成績物件
         //----------------------------------------        
-        List<Score> list = new ArrayList<>();
-
-        //----------------------------------------          
-        // 宣告一個ArrayList儲存所有國文成績
-        //----------------------------------------          
-        List<Double> chiList = new ArrayList<>();
-        
+        List<Score> data = new ArrayList<>();
+       
         // 宣告檔案讀取及寫出變數
         BufferedReader br = null;
         BufferedWriter bw = null;        
@@ -143,11 +140,10 @@ class Main {
                 Score score = new Score(stuNo, stuName, gender, chi, eng, stat, comp);
                 
                 //-----------------------------------                
-                // 將成績物件加入ArrayList中
+                // 將成績物件加入data中
                 //-----------------------------------                  
-                list.add(score);                                  
+                data.add(score);                                  
             }                                        
-            
             
             //--------------------------------------------
             // 計算國文成績的平均分數(篩選條件)
@@ -155,35 +151,31 @@ class Main {
             double tot = 0;
             double avgChi;        
            
-            for(Score s : list){
+            for(Score s : data){
                 tot += s.getChi();
             }
             
-            avgChi = tot / list.size();
+            avgChi = tot / data.size();
             System.out.println("國文平均成績:" + avgChi);  
-            //--------------------------------------------
             
-            
-            // 將list中的成績物件依條件寫到檔案中
+            //---------------------------------------------- 
+            // 將data中的成績物件依條件寫到檔案中
+            //----------------------------------------------        
             boolean firstLine = true;                 
             
-            for(Score s : list){
-                //---------------------------                
-                // 符合條件的資料再輸出    
-                //---------------------------                
+            for(Score s : data){                  
                 if(s.getChi() >= avgChi){
-                    String data = s.getStuNo() + "," + s.getStuName() + "," + s.getGender() + "," + s.getChi() + "," + s.getEng() + "," + s.getStat() + "," + s.getComp() + "," + s.total();
+                    String str = s.getStuNo() + "," + s.getStuName() + "," + s.getGender() + "," + s.getChi() + "," + s.getEng() + "," + s.getStat() + "," + s.getComp() + "," + s.total();
                 
                     if(firstLine){
-                        bw.write(data);
+                        bw.write(str);
                         firstLine=false;
                     }else{
                         bw.write(("\n"));
-                        bw.write(data);                
+                        bw.write(str);                
                     }                        
                 }   
-            }
-            //----------------------------------------------           
+            }      
         }catch(IOException e){
             System.out.println("發生錯誤, 原因: " + e);                     
             return;
