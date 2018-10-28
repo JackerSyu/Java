@@ -5,6 +5,7 @@
 ```
 Java專案
    |__ <com.abc>
+   |       |__ Utility.java   
    |       |__ Score.java
    |
    |__ Main.java
@@ -12,6 +13,91 @@ Java專案
    |__ exams.csv (輸入檔)
    |__ out.csv   (輸出檔)
 ```
+
+
+### (1-1) Utility.java
+
+```java
+package com.abc;
+
+import java.io.*;
+import java.util.List;
+import java.util.ArrayList;
+
+public class Utility{
+    //============================================================
+    // 從檔案讀入資料, 全部存在List物件中再回傳
+    // 傳入: 檔名, String
+    // 回傳: 檔案內容, List<String>
+    //       失敗時回傳null
+    //============================================================
+    public static List<String> readData(String fileName) throws Exception{  
+        // 存放輸出結果的物件
+        List<String> results = new ArrayList();  
+        
+        //------------------------------------------      
+        try{   
+            // 建立檔案讀取及寫出物件  
+            BufferedReader br = new BufferedReader(new FileReader(new File(fileName))); 
+            
+            // 逐行讀入檔案內容     
+            String line;                 
+            
+            while ((line = br.readLine()) != null) {               
+                // 將讀入資料加入results中
+                results.add(line);
+            }                              
+            
+            br.close();                        
+        }catch(IOException e){ 
+            // 失敗時        
+            results = null;                  
+        }         
+        //------------------------------------------             
+        
+        // 回傳結果
+        return results;
+    } 
+    
+
+    //============================================================
+    // 將List物件寫入檔案, 回傳true表示寫入成功, false表示失敗
+    // 傳入: 檔名(String), 待寫資料(List<String>)
+    // 回傳: boolean
+    //============================================================    
+    public static boolean writeData(String fileName, List<String> list) throws Exception{     
+        boolean result = true;
+        
+        //------------------------------------------      
+        try{   
+            // 建立檔案讀取及寫出物件  
+            BufferedWriter bw = new BufferedWriter(new FileWriter(new File(fileName))); 
+            
+            // 逐行寫出檔案內容  
+            boolean firstLine=true;
+            
+            for(String data : list){
+                if(firstLine){
+                    bw.write(data);
+                    firstLine=false;
+                }else{
+                    bw.write(("\n"));
+                    bw.write(data);                
+                }   
+            }                            
+            
+            bw.close();                        
+        }catch(IOException e){                
+            result = false;                  
+        }         
+        //------------------------------------------             
+        
+        // 回傳結果
+        return result;
+    }     
+}
+```
+
 
 
 ### (1-1) Score.java
@@ -91,103 +177,86 @@ public class Score{
 
 
 
-### (1-2) Main.java
+### (1-3) Main.java
 
 ```java
-import java.io.*;
-import java.util.ArrayList;
+package p40;
+
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import com.abc.Score;
+import com.abc.Utility;
 
-class Main {    
-    public static void main(String[] args) throws IOException {
-        // 宣告一個ArrayList用來儲存所有成績物件
-        List<Score> list = new ArrayList<>();
+class Main {
+    public static void main(String[] args) throws Exception{
+        //========================================================
+        // 呼叫靜態方法讀入的資料, 存在list中
+        //========================================================
+        List<String> lines = Utility.readData("d:/exams.csv");
         
-        // 宣告檔案讀取及寫出變數
-        BufferedReader br = null;
-        BufferedWriter bw = null;        
-   
-        try{   
-            // 建立檔案讀取及寫出物件  
-            br = new BufferedReader(new FileReader(new File("d:/exams.csv"))); 
-            bw = new BufferedWriter(new FileWriter(new File("d:/out.csv")));
+        // 存放待處理物件的List
+        List<Score> data = new ArrayList();
+        
+        // 存放將寫出的資料
+        List<String> output = new ArrayList();     
+        
+        //-------------------------------------------
+        // 逐筆處理讀入的字串
+        //-------------------------------------------
+        for(String line: lines){
+            // 顯示目前處理的資料
+            System.out.println(line);
             
-            //--------------------------------             
-            // 逐行讀入檔案內容, 加入list中
-            //-------------------------------- 
-            boolean firstLine = true;            
-            String line;     
-            
-            while ((line = br.readLine()) != null) {    
-                // 顯示輸入資料
-                System.out.println(line);  
+            //切割欄位            
+            String items[] = line.split(",");
                 
-                // 切割欄位內容
-                String items[] = line.split(",");
-                
-                String stuNo = items[0].trim();
-                String stuName = items[1].trim();
-                String gender = items[2].trim();
-                int chi = Integer.parseInt(items[3].trim());
-                int eng = Integer.parseInt(items[4].trim());                
-                int stat = Integer.parseInt(items[5].trim());
-                int comp = Integer.parseInt(items[6].trim());                
-
-                // 產生一個成績物件並將資料透過建構元放入其中
-                Score score = new Score(stuNo, stuName, gender, chi, eng, stat, comp);
-                
-                // 將成績物件加入ArrayList中
-                list.add(score);                 
-            }                 
-            //-------------------------------- 
+            String stuNo = items[0].trim();
+            String stuName = items[1].trim();
+            String gender = items[2].trim();
+            int chi = Integer.parseInt(items[3].trim());
+            int eng = Integer.parseInt(items[4].trim());                
+            int stat = Integer.parseInt(items[5].trim());
+            int comp = Integer.parseInt(items[6].trim());    
             
-            
-            //==================================================================
-            // 排序, 以[總分]由大到小排序
-            //==================================================================            
-            Collections.sort(
-                list, 
-                new Comparator<Score>(){
-                    public int compare(Score s1, Score s2){
-                        return -(s1.total() - s2.total());                             
-                    }    
-                }
-            );
-            //==================================================================
-            
-            
-            //----------------------------------------------
-            // 將list中的成績物件依序取出, 再寫到檔案中
-            //----------------------------------------------            
-            for(Score s : list){    
-                String data = s.getStuNo() + "," + s.getStuName() + "," + s.getGender() + "," + s.getChi() + "," + s.getEng() + "," + s.getStat() + "," + s.getComp() + "," + s.total();
-                
-                if(firstLine){
-                    bw.write(data);
-                    firstLine=false;
-                }else{
-                    bw.write(("\n"));
-                    bw.write(data);                
-                }   
+            // 產生成績物件, 加入data中
+            data.add(new Score(stuNo, stuName, gender, chi, eng, stat, comp));                       
+        }  
+        
+        //========================================================
+        // 排序data, 以[總分]由大到小排序
+        //========================================================           
+        Collections.sort(
+            data, 
+            new Comparator<Score>(){
+                public int compare(Score s1, Score s2){
+                    return -(s1.total() - s2.total());                             
+                }    
             }
-            //----------------------------------------------           
-        }catch(IOException e){
-            System.out.println("發生錯誤, 原因: " + e);                     
-            return;
-        }finally{
-            // 關閉reader
-            if(br != null){
-                br.close();              
-            }  
+        );
+        
+        //---------------------------------------------- 
+        // 將data中的物件篩選加入output中(本例無篩選)
+        //----------------------------------------------        
+        boolean firstLine = true;                 
             
-            // 關閉writer
-            if(bw != null){
-                bw.close();              
-            }              
-        }       
+        for(Score s : data){                  
+            String str = s.getStuNo() + "," + s.getStuName() + "," + s.getGender() + "," + s.getChi() + "," + s.getEng() + "," + s.getStat() + "," + s.getComp() + "," + s.total(); 
+            output.add(str);
+        }        
+        
+        //========================================================
+        // 呼叫靜態方法, 將output內資料寫到檔案中
+        //========================================================       
+        boolean flag = Utility.writeData("d:/out.csv", output);
+        
+        if(flag){
+            System.out.println("寫檔成功");
+        }else{
+            System.out.println("寫檔失敗");
+        }
+        //========================================================        
     }    
 }
 ```
@@ -200,6 +269,7 @@ class Main {
 ```
 Java專案
    |__ <com.abc>
+   |       |__ Utility.java   
    |       |__ Score.java
    |
    |__ Main.java
@@ -208,7 +278,91 @@ Java專案
    |__ out.csv   (輸出檔)
 ```
 
-### (2-1) Score.java
+### (2-1) Utility.java
+
+```java
+package com.abc;
+
+import java.io.*;
+import java.util.List;
+import java.util.ArrayList;
+
+public class Utility{
+    //============================================================
+    // 從檔案讀入資料, 全部存在List物件中再回傳
+    // 傳入: 檔名, String
+    // 回傳: 檔案內容, List<String>
+    //       失敗時回傳null
+    //============================================================
+    public static List<String> readData(String fileName) throws Exception{  
+        // 存放輸出結果的物件
+        List<String> results = new ArrayList();  
+        
+        //------------------------------------------      
+        try{   
+            // 建立檔案讀取及寫出物件  
+            BufferedReader br = new BufferedReader(new FileReader(new File(fileName))); 
+            
+            // 逐行讀入檔案內容     
+            String line;                 
+            
+            while ((line = br.readLine()) != null) {               
+                // 將讀入資料加入results中
+                results.add(line);
+            }                              
+            
+            br.close();                        
+        }catch(IOException e){ 
+            // 失敗時        
+            results = null;                  
+        }         
+        //------------------------------------------             
+        
+        // 回傳結果
+        return results;
+    } 
+    
+
+    //============================================================
+    // 將List物件寫入檔案, 回傳true表示寫入成功, false表示失敗
+    // 傳入: 檔名(String), 待寫資料(List<String>)
+    // 回傳: boolean
+    //============================================================    
+    public static boolean writeData(String fileName, List<String> list) throws Exception{     
+        boolean result = true;
+        
+        //------------------------------------------      
+        try{   
+            // 建立檔案讀取及寫出物件  
+            BufferedWriter bw = new BufferedWriter(new FileWriter(new File(fileName))); 
+            
+            // 逐行寫出檔案內容  
+            boolean firstLine=true;
+            
+            for(String data : list){
+                if(firstLine){
+                    bw.write(data);
+                    firstLine=false;
+                }else{
+                    bw.write(("\n"));
+                    bw.write(data);                
+                }   
+            }                            
+            
+            bw.close();                        
+        }catch(IOException e){                
+            result = false;                  
+        }         
+        //------------------------------------------             
+        
+        // 回傳結果
+        return result;
+    }     
+}
+```
+
+
+### (2-2) Score.java
 
 ```java
 package com.abc;
@@ -285,97 +439,81 @@ public class Score{
 
 
 
-### (2-2) Main.java
+### (2-3) Main.java
 
 ```java
-import java.io.*;
-import java.util.ArrayList;
+package p40;
+
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import com.abc.Score;
+import com.abc.Utility;
 
-class Main {    
-    public static void main(String[] args) throws IOException {
-        // 宣告一個ArrayList用來儲存所有成績物件
-        List<Score> list = new ArrayList<>();
+class Main {
+    public static void main(String[] args) throws Exception{
+        //========================================================
+        // 呼叫靜態方法讀入的資料, 存在list中
+        //========================================================
+        List<String> lines = Utility.readData("d:/exams.csv");
         
-        // 宣告檔案讀取及寫出變數
-        BufferedReader br = null;
-        BufferedWriter bw = null;        
-   
-        try{   
-            // 建立檔案讀取及寫出物件  
-            br = new BufferedReader(new FileReader(new File("d:/exams.csv"))); 
-            bw = new BufferedWriter(new FileWriter(new File("d:/out.csv")));
+        // 存放待處理物件的List
+        List<Score> data = new ArrayList();
+        
+        // 存放將寫出的資料
+        List<String> output = new ArrayList();     
+        
+        //-------------------------------------------
+        // 逐筆處理讀入的字串
+        //-------------------------------------------
+        for(String line: lines){
+            // 顯示目前處理的資料
+            System.out.println(line);
             
-            //--------------------------------             
-            // 逐行讀入檔案內容, 加入list中
-            //-------------------------------- 
-            boolean firstLine = true;            
-            String line;     
-            
-            while ((line = br.readLine()) != null) {    
-                // 顯示輸入資料
-                System.out.println(line);  
+            //切割欄位            
+            String items[] = line.split(",");
                 
-                // 切割欄位內容
-                String items[] = line.split(",");
-                
-                String stuNo = items[0].trim();
-                String stuName = items[1].trim();
-                String gender = items[2].trim();
-                int chi = Integer.parseInt(items[3].trim());
-                int eng = Integer.parseInt(items[4].trim());                
-                int stat = Integer.parseInt(items[5].trim());
-                int comp = Integer.parseInt(items[6].trim());                
-
-                // 產生一個成績物件並將資料透過建構元放入其中
-                Score score = new Score(stuNo, stuName, gender, chi, eng, stat, comp);
-                
-                // 將成績物件加入ArrayList中
-                list.add(score);                 
-            }                 
-            //-------------------------------- 
+            String stuNo = items[0].trim();
+            String stuName = items[1].trim();
+            String gender = items[2].trim();
+            int chi = Integer.parseInt(items[3].trim());
+            int eng = Integer.parseInt(items[4].trim());                
+            int stat = Integer.parseInt(items[5].trim());
+            int comp = Integer.parseInt(items[6].trim());    
             
+            // 產生成績物件, 加入data中
+            data.add(new Score(stuNo, stuName, gender, chi, eng, stat, comp));                       
+        }  
+        
+        //========================================================
+        // 排序data, 以[總分]由大到小排序
+        //========================================================           
+        Collections.sort(data, (s1, s2) -> -(s1.total() - s2.total()));
+        
+        //---------------------------------------------- 
+        // 將data中的物件篩選加入output中(本例無篩選)
+        //----------------------------------------------        
+        boolean firstLine = true;                 
             
-            //==================================================================
-            // 排序, 以[總分]由大到小排序
-            //==================================================================            
-            Collections.sort(list, (s1, s2) -> -(s1.total() - s2.total()));
-            //==================================================================
-            
-            
-            //----------------------------------------------
-            // 將list中的成績物件依序取出, 再寫到檔案中
-            //----------------------------------------------            
-            for(Score s : list){    
-                String data = s.getStuNo() + "," + s.getStuName() + "," + s.getGender() + "," + s.getChi() + "," + s.getEng() + "," + s.getStat() + "," + s.getComp() + "," + s.total();
-                
-                if(firstLine){
-                    bw.write(data);
-                    firstLine=false;
-                }else{
-                    bw.write(("\n"));
-                    bw.write(data);                
-                }   
-            }
-            //----------------------------------------------           
-        }catch(IOException e){
-            System.out.println("發生錯誤, 原因: " + e);                     
-            return;
-        }finally{
-            // 關閉reader
-            if(br != null){
-                br.close();              
-            }  
-            
-            // 關閉writer
-            if(bw != null){
-                bw.close();              
-            }              
-        }       
+        for(Score s : data){                  
+            String str = s.getStuNo() + "," + s.getStuName() + "," + s.getGender() + "," + s.getChi() + "," + s.getEng() + "," + s.getStat() + "," + s.getComp() + "," + s.total(); 
+            output.add(str);
+        }        
+        
+        //========================================================
+        // 呼叫靜態方法, 將output內資料寫到檔案中
+        //========================================================       
+        boolean flag = Utility.writeData("d:/out.csv", output);
+        
+        if(flag){
+            System.out.println("寫檔成功");
+        }else{
+            System.out.println("寫檔失敗");
+        }
+        //========================================================        
     }    
-}
+}       
 ```
 
 
@@ -395,7 +533,93 @@ Java專案
    |__ out.csv   (輸出檔)
 ```
 
-### (3-1) Score.java
+
+### (3-1) Utility.java
+
+```java
+package com.abc;
+
+import java.io.*;
+import java.util.List;
+import java.util.ArrayList;
+
+public class Utility{
+    //============================================================
+    // 從檔案讀入資料, 全部存在List物件中再回傳
+    // 傳入: 檔名, String
+    // 回傳: 檔案內容, List<String>
+    //       失敗時回傳null
+    //============================================================
+    public static List<String> readData(String fileName) throws Exception{  
+        // 存放輸出結果的物件
+        List<String> results = new ArrayList();  
+        
+        //------------------------------------------      
+        try{   
+            // 建立檔案讀取及寫出物件  
+            BufferedReader br = new BufferedReader(new FileReader(new File(fileName))); 
+            
+            // 逐行讀入檔案內容     
+            String line;                 
+            
+            while ((line = br.readLine()) != null) {               
+                // 將讀入資料加入results中
+                results.add(line);
+            }                              
+            
+            br.close();                        
+        }catch(IOException e){ 
+            // 失敗時        
+            results = null;                  
+        }         
+        //------------------------------------------             
+        
+        // 回傳結果
+        return results;
+    } 
+    
+
+    //============================================================
+    // 將List物件寫入檔案, 回傳true表示寫入成功, false表示失敗
+    // 傳入: 檔名(String), 待寫資料(List<String>)
+    // 回傳: boolean
+    //============================================================    
+    public static boolean writeData(String fileName, List<String> list) throws Exception{     
+        boolean result = true;
+        
+        //------------------------------------------      
+        try{   
+            // 建立檔案讀取及寫出物件  
+            BufferedWriter bw = new BufferedWriter(new FileWriter(new File(fileName))); 
+            
+            // 逐行寫出檔案內容  
+            boolean firstLine=true;
+            
+            for(String data : list){
+                if(firstLine){
+                    bw.write(data);
+                    firstLine=false;
+                }else{
+                    bw.write(("\n"));
+                    bw.write(data);                
+                }   
+            }                            
+            
+            bw.close();                        
+        }catch(IOException e){                
+            result = false;                  
+        }         
+        //------------------------------------------             
+        
+        // 回傳結果
+        return result;
+    }     
+}
+```
+
+
+
+### (3-2) Score.java
 
 ```java
 package com.abc;
@@ -472,109 +696,92 @@ public class Score{
 
 
 
-### (3-2) Main.java
+### (3-3) Main.java
 
 ```java
-import java.io.*;
-import java.util.ArrayList;
+package p40;
+
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import com.abc.Score;
+import com.abc.Utility;
 
-class Main {    
-    public static void main(String[] args) throws IOException {
-        // 宣告一個ArrayList用來儲存所有成績物件
-        List<Score> list = new ArrayList<>();
+class Main {
+    public static void main(String[] args) throws Exception{
+        //========================================================
+        // 呼叫靜態方法讀入的資料, 存在list中
+        //========================================================
+        List<String> lines = Utility.readData("d:/exams.csv");
         
-        // 宣告檔案讀取及寫出變數
-        BufferedReader br = null;
-        BufferedWriter bw = null;        
-   
-        try{   
-            // 建立檔案讀取及寫出物件  
-            br = new BufferedReader(new FileReader(new File("d:/exams.csv"))); 
-            bw = new BufferedWriter(new FileWriter(new File("d:/out.csv")));
+        // 存放待處理物件的List
+        List<Score> data = new ArrayList();
+        
+        // 存放將寫出的資料
+        List<String> output = new ArrayList();     
+        
+        //-------------------------------------------
+        // 逐筆處理讀入的字串
+        //-------------------------------------------
+        for(String line: lines){
+            // 顯示目前處理的資料
+            System.out.println(line);
             
-            //--------------------------------             
-            // 逐行讀入檔案內容, 加入list中
-            //-------------------------------- 
-            boolean firstLine = true;            
-            String line;     
-            
-            while ((line = br.readLine()) != null) {    
-                // 顯示輸入資料
-                System.out.println(line);  
+            //切割欄位            
+            String items[] = line.split(",");
                 
-                // 切割欄位內容
-                String items[] = line.split(",");
-                
-                String stuNo = items[0].trim();
-                String stuName = items[1].trim();
-                String gender = items[2].trim();
-                int chi = Integer.parseInt(items[3].trim());
-                int eng = Integer.parseInt(items[4].trim());                
-                int stat = Integer.parseInt(items[5].trim());
-                int comp = Integer.parseInt(items[6].trim());                
-
-                // 產生一個成績物件並將資料透過建構元放入其中
-                Score score = new Score(stuNo, stuName, gender, chi, eng, stat, comp);
-                
-                // 將成績物件加入ArrayList中
-                list.add(score);                 
-            }                 
-            //-------------------------------- 
+            String stuNo = items[0].trim();
+            String stuName = items[1].trim();
+            String gender = items[2].trim();
+            int chi = Integer.parseInt(items[3].trim());
+            int eng = Integer.parseInt(items[4].trim());                
+            int stat = Integer.parseInt(items[5].trim());
+            int comp = Integer.parseInt(items[6].trim());    
             
-            
-            //================================================================
-            // 排序, 以[總分]->[國文]->[英文]由大到小排序
-            //================================================================            
-            Collections.sort(
-                list, 
-                new Comparator<Score>(){
-                    public int compare(Score s1, Score s2){
-                        if(s1.total() != s2.total()){
-                            return -(s1.total() - s2.total());
-                        }else if(s1.getChi() != s2.getChi()){
-                            return -(s1.getChi() - s2.getChi());
-                        }else{
-                            return -(s1.getEng() - s2.getEng());
-                        }        
-                    }    
-                }
-            );
-            //================================================================
-            
-            
-            //----------------------------------------------
-            // 將list中的成績物件依序取出, 再寫到檔案中
-            //----------------------------------------------            
-            for(Score s : list){    
-                String data = s.getStuNo() + "," + s.getStuName() + "," + s.getGender() + "," + s.getChi() + "," + s.getEng() + "," + s.getStat() + "," + s.getComp() + "," + s.total();
-                
-                if(firstLine){
-                    bw.write(data);
-                    firstLine=false;
-                }else{
-                    bw.write(("\n"));
-                    bw.write(data);                
-                }   
+            // 產生成績物件, 加入data中
+            data.add(new Score(stuNo, stuName, gender, chi, eng, stat, comp));                       
+        }  
+        
+        //========================================================
+        // 排序data, 以[總分]->[國文]->[英文]由大到小排序
+        //========================================================           
+        Collections.sort(
+            data, 
+            new Comparator<Score>(){
+                public int compare(Score s1, Score s2){
+                    if(s1.total() != s2.total()){
+                        return -(s1.total() - s2.total());
+                    }else if(s1.getChi() != s2.getChi()){
+                        return -(s1.getChi() - s2.getChi());
+                    }else{
+                        return -(s1.getEng() - s2.getEng());
+                    }        
+                }    
             }
-            //----------------------------------------------           
-        }catch(IOException e){
-            System.out.println("發生錯誤, 原因: " + e);                     
-            return;
-        }finally{
-            // 關閉reader
-            if(br != null){
-                br.close();              
-            }  
+        );
+        
+        //---------------------------------------------- 
+        // 將data中的物件篩選加入output中(本例無篩選)
+        //----------------------------------------------        
+        boolean firstLine = true;                 
             
-            // 關閉writer
-            if(bw != null){
-                bw.close();              
-            }              
-        }       
+        for(Score s : data){                  
+            String str = s.getStuNo() + "," + s.getStuName() + "," + s.getGender() + "," + s.getChi() + "," + s.getEng() + "," + s.getStat() + "," + s.getComp() + "," + s.total(); 
+            output.add(str);
+        }        
+        
+        //========================================================
+        // 呼叫靜態方法, 將output內資料寫到檔案中
+        //========================================================       
+        boolean flag = Utility.writeData("d:/out.csv", output);
+        
+        if(flag){
+            System.out.println("寫檔成功");
+        }else{
+            System.out.println("寫檔失敗");
+        }
+        //========================================================        
     }    
 }
 ```
