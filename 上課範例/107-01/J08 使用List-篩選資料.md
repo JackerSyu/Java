@@ -104,7 +104,7 @@ import com.abc.Score;
 class Main {    
     public static void main(String[] args) throws IOException {
         //---------------------------------------- 
-        // 宣告一個ArrayList儲存所有成績物件
+        // 宣告一個data儲存所有成績物件
         //----------------------------------------        
         List<Score> data = new ArrayList<>();
        
