@@ -94,8 +94,6 @@ public class Score{
 ### (1-2) Main.java
 
 ```java
-package p40;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
