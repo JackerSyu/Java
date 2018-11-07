@@ -6,8 +6,8 @@
   4. 地址, address, String
   5. 緯度, lat, double
   6. 經度, lng, double
-  7. 平日價格, regular, int
-  8. 價日價格, holiday, int
+  7. 平日價格, regularPrice, int
+  8. 價日價格, holidayPrice, int
   9. 房間數, room, int
 --------------------------------------------------------------------------  
 
