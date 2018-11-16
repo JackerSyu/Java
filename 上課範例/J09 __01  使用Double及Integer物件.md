@@ -1,4 +1,4 @@
-# J09__02  使用Double及Integer物件
+# J09__01  使用Double及Integer物件
 
 
 ## (1) Double物件不同於double: 前者是一個物件, 後者是一個原生資料型態.
