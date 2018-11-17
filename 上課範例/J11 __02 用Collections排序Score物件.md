@@ -130,7 +130,7 @@ Java專案
    |__ Main.java
 ```
 
-### (1-1) Score.java
+### (2-1) Score.java
 
 ```java
 package com.abc;
@@ -187,7 +187,7 @@ public class Score {
 ```
 
 
-### (1-2) Main.java
+### (2-2) Main.java
 
 ```java
 import java.util.Collections;
