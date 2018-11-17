@@ -1,6 +1,6 @@
 # J11__02 用Collections排序Score物件
 
-## (1) Score物件中有國文, 英文, 總分. 用何標準排序應寫在sort()內的Comparator物件中.
+## (1) Score中有國文, 英文及總分. 用何標準排序應寫在sort()內的Comparator物件中.
 
 ```
 Java專案
