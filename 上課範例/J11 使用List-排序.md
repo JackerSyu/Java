@@ -525,6 +525,7 @@ class Main {
 ```
 Java專案
    |__ <com.abc>
+   |       |__ Utility.java   
    |       |__ Score.java
    |
    |__ Main.java
