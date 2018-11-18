@@ -197,12 +197,7 @@ class Main {
         // 存放待處理物件的List
         List<Score> data = new ArrayList();
         
-        // 存放將寫出的資料
-        List<String> output = new ArrayList();     
-        
-        //-------------------------------------------
         // 逐筆處理讀入的字串
-        //-------------------------------------------
         for(String line: lines){
             // 顯示目前處理的資料
             System.out.println(line);
@@ -234,7 +229,8 @@ class Main {
         //---------------------------------------------- 
         // 將data中的物件篩選加入output中(本例無篩選)
         //----------------------------------------------        
-        boolean firstLine = true;                 
+        // 存放將寫出的資料
+        List<String> output = new ArrayList();                  
             
         for(Score s : data){                  
             String str = s.getStuNo() + "," + s.getStuName() + "," + s.getGender() + "," + s.getChi() + "," + s.getEng() + "," + s.getStat() + "," + s.getComp() + "," + s.total(); 
