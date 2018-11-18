@@ -442,8 +442,6 @@ public class Score{
 ### (2-3) Main.java
 
 ```java
-package p40;
-
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -520,7 +518,7 @@ class Main {
 
 <br/>
 
-## (3) 產生Comparator物件排序 - 多個排序欄位
+## (3) 多個排序欄位
 
 ```
 Java專案
@@ -700,32 +698,25 @@ public class Score{
 ### (3-3) Main.java
 
 ```java
-package p40;
-
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import com.abc.Score;
 import com.abc.Utility;
 
 class Main {
     public static void main(String[] args) throws Exception{
         //========================================================
-        // 呼叫靜態方法讀入的資料, 存在list中
+        // 呼叫靜態方法讀入的資料, 存在data中
         //========================================================
+        // 存放讀入的每行資料
         List<String> lines = Utility.readData("d:/exams.csv");
         
-        // 存放待處理物件的List
+        // 存放待處理所有Score物件
         List<Score> data = new ArrayList();
         
-        // 存放將寫出的資料
-        List<String> output = new ArrayList();     
-        
-        //-------------------------------------------
-        // 逐筆處理讀入的字串
-        //-------------------------------------------
-        for(String line: lines){
+        // 逐行處理資料
+        lines.forEach(line -> {
             // 顯示目前處理的資料
             System.out.println(line);
             
@@ -742,35 +733,30 @@ class Main {
             
             // 產生成績物件, 加入data中
             data.add(new Score(stuNo, stuName, gender, chi, eng, stat, comp));                       
-        }  
+        });  
         
         //========================================================
         // 排序data, 以[總分]->[國文]->[英文]由大到小排序
         //========================================================           
-        Collections.sort(
-            data, 
-            new Comparator<Score>(){
-                public int compare(Score s1, Score s2){
-                    if(s1.total() != s2.total()){
-                        return -(s1.total() - s2.total());
-                    }else if(s1.getChi() != s2.getChi()){
-                        return -(s1.getChi() - s2.getChi());
-                    }else{
-                        return -(s1.getEng() - s2.getEng());
-                    }        
-                }    
-            }
-        );
+        Collections.sort(data, (x, y) -> {
+            if(x.total() != y.total()){
+                return -(x.total() - y.total());
+            }else if(x.getChi() != y.getChi()){
+                return -(x.getChi() - y.getChi());
+            }else{
+                return -(x.getEng() - y.getEng());
+            }    
+        });
         
         //---------------------------------------------- 
         // 將data中的物件篩選加入output中(本例無篩選)
         //----------------------------------------------        
-        boolean firstLine = true;                 
+        List<String> output = new ArrayList();                 
             
-        for(Score s : data){                  
+        data.forEach(s -> {                  
             String str = s.getStuNo() + "," + s.getStuName() + "," + s.getGender() + "," + s.getChi() + "," + s.getEng() + "," + s.getStat() + "," + s.getComp() + "," + s.total(); 
             output.add(str);
-        }        
+        });        
         
         //========================================================
         // 呼叫靜態方法, 將output內資料寫到檔案中
