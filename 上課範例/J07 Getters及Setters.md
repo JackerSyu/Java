@@ -26,7 +26,6 @@ public class Score{
     //=====================    
     private String stuNo;
     private String stuName;    
-    private String gender;
     private int chi;
     private int eng;
     private int stat;
@@ -35,10 +34,9 @@ public class Score{
     //=====================    
     // 建構元(1)
     //=====================    
-    public Score(String stuNo, String stuName, String gender, int chi, int eng, int stat, int comp){
+    public Score(String stuNo, String stuName, int chi, int eng, int stat, int comp){
         this.stuNo = stuNo;
         this.stuName = stuName;
-        this.gender = gender;
         this.chi = chi;
         this.eng = eng;
         this.stat = stat;
@@ -51,7 +49,6 @@ public class Score{
     public Score(){
         this.stuNo = null;
         this.stuName = null;
-        this.gender = null;
         this.chi = 0;
         this.eng = 0;
         this.stat = 0;
@@ -63,7 +60,6 @@ public class Score{
     //=====================    
     public String getStuNo(){return stuNo;}
     public String getStuName(){return stuName;}    
-    public String getGender(){return gender;}
     public int getChi(){return chi;}
     public int getEng(){return eng;}
     public int getStat(){return stat;}
@@ -74,7 +70,6 @@ public class Score{
     //=====================    
     public void setStuNo(String stuNo){this.stuNo = stuNo;}
     public void setStuName(String stuName){this.stuName = stuName;}
-    public void setGender(String gender){this.gender = gender;}
     public void setChi(int chi){this.chi = chi;}
     public void setEng(int eng){this.eng = eng;}
     public void setStat(int stat){this.stat = stat;}
@@ -130,17 +125,16 @@ class Main {
                 
                 String stuNo = items[0].trim();
                 String stuName = items[1].trim();
-                String gender = items[2].trim();
-                int chi = Integer.parseInt(items[3].trim());
-                int eng = Integer.parseInt(items[4].trim());                
-                int stat = Integer.parseInt(items[5].trim());
-                int comp = Integer.parseInt(items[6].trim());                
+                int chi = Integer.parseInt(items[2].trim());
+                int eng = Integer.parseInt(items[3].trim());                
+                int stat = Integer.parseInt(items[4].trim());
+                int comp = Integer.parseInt(items[5].trim());                
 
                 // 產生成績物件並將資料透過建構元放入物件中
-                Score score = new Score(stuNo, stuName, gender, chi, eng, stat, comp); 
+                Score score = new Score(stuNo, stuName, chi, eng, stat, comp); 
                 
                 // 將物件內容寫至檔案
-                String data = score.getStuNo() + "," + score.getStuName() + "," + score.getGender() + "," + score.getChi() + "," + score.total() + "," + score.average();
+                String data = score.getStuNo() + "," + score.getStuName() + "," + score.getChi() + "," + score.total() + "," + score.average();
                 
                 if(firstLine){
                     bw.write(data);
