@@ -1,0 +1,85 @@
+# J11__02 泛型-類別
+
+## (1) 用Box類別包裹各種不同的類別型態
+
+```
+Java專案
+   |__ <com.abc>
+   |       |__  Box.java
+   |
+   |__ Main.java
+```
+
+### (1-1) Box.java
+
+```java
+package com.abc;
+
+public class Box <T> {
+    //-----------------
+    // 成員
+    //-----------------
+    private T data;
+
+    //-----------------
+    // 建構元(1)
+    //-----------------
+    public Box(T data){
+        this.data = data;
+    }
+
+    //-----------------
+    // 建構元(2)
+    //-----------------
+    public Box(){
+        this.data = null;
+    }
+    
+    //-----------------
+    // getter
+    //-----------------   
+    public T getData(){return this.data;} 
+
+    //-----------------
+    // setter
+    //-----------------  
+    public void setData(T data){this.data = data;}
+}
+
+```
+
+
+
+### (1-2) Main.java
+
+```java
+import com.abc.Box;
+import java.util.List;
+import java.util.ArrayList;
+
+public class Main {
+    public static void main(String[] args) {
+        //---------------------------
+        // 以Box為型態包裹不同型別
+        //---------------------------        
+        List<Box> list = new ArrayList();    
+        
+        list.add(new Box(123));
+        list.add(new Box(12.345));
+        list.add(new Box("字串"));
+        list.add(new Box(true));  
+        list.add(new Box('字'));
+
+        //---------------------------
+        // 印出list內容
+        //---------------------------         
+        list.forEach(s ->{
+           System.out.println(s.getClass());
+           System.out.println(s.getData().getClass());
+           System.out.println(s.getData());
+           System.out.println("-----");
+        });
+        //---------------------------          
+    }  
+}
+```
