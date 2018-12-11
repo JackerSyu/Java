@@ -100,7 +100,7 @@ public class Utility{
 
 
 
-### (1-1) Score.java
+### (1-2) Score.java
 
 ```java
 package com.abc;
