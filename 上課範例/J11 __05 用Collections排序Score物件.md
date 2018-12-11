@@ -237,7 +237,7 @@ public class Main {
         //----------------------------
         // 輸出list內容
         //----------------------------          
-        list.forEach(d ->{
+        list.forEach(d -> {
             System.out.println(d.toString());
         });
         //----------------------------          
