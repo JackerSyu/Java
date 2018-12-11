@@ -222,7 +222,7 @@ class Main {
         //========================================================           
         Collections.sort(data, new Comparator<Score>(){
             public int compare(Score s1, Score s2){
-                return -(s1.total() - s2.total());                             
+                return s2.total() - s1.total();                             
             }    
         });
         
@@ -728,11 +728,11 @@ class Main {
         //========================================================           
         Collections.sort(data, (x, y) -> {
             if(x.total() != y.total()){
-                return -(x.total() - y.total());
+                return y.total() - x.total();
             }else if(x.getChi() != y.getChi()){
-                return -(x.getChi() - y.getChi());
+                return y.getChi() - x.getChi();
             }else{
-                return -(x.getEng() - y.getEng());
+                return y.getEng() - x.getEng();
             }    
         });
         
