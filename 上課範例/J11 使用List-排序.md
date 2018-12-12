@@ -111,7 +111,6 @@ public class Score{
     //=====================    
     private String stuNo;
     private String stuName;    
-    private String gender;
     private int chi;
     private int eng;
     private int stat;
@@ -120,10 +119,9 @@ public class Score{
     //=====================    
     // 建構元(1)
     //=====================    
-    public Score(String stuNo, String stuName, String gender, int chi, int eng, int stat, int comp){
+    public Score(String stuNo, String stuName, int chi, int eng, int stat, int comp){
         this.stuNo = stuNo;
         this.stuName = stuName;
-        this.gender = gender;
         this.chi = chi;
         this.eng = eng;
         this.stat = stat;
@@ -136,7 +134,6 @@ public class Score{
     public Score(){
         this.stuNo = null;
         this.stuName = null;
-        this.gender = null;
         this.chi = 0;
         this.eng = 0;
         this.stat = 0;
@@ -148,7 +145,6 @@ public class Score{
     //=====================    
     public String getStuNo(){return stuNo;}
     public String getStuName(){return stuName;}    
-    public String getGender(){return gender;}
     public int getChi(){return chi;}
     public int getEng(){return eng;}
     public int getStat(){return stat;}
@@ -159,7 +155,6 @@ public class Score{
     //=====================    
     public void setStuNo(String stuNo){this.stuNo = stuNo;}
     public void setStuName(String stuName){this.stuName = stuName;}
-    public void setGender(String gender){this.gender = gender;}
     public void setChi(int chi){this.chi = chi;}
     public void setEng(int eng){this.eng = eng;}
     public void setStat(int stat){this.stat = stat;}
@@ -190,15 +185,16 @@ import com.abc.Utility;
 class Main {
     public static void main(String[] args) throws Exception{
         //========================================================
-        // 呼叫靜態方法讀入的資料, 存在list中
+        // 呼叫靜態方法讀入的資料, 存在data中
         //========================================================
-        List<String> lines = Utility.readData("d:/exams.csv");
+        // 存放讀入的每行資料
+        List<String> lines = Utility.readData("e:/exams.csv");
         
-        // 存放待處理物件的List
+        // 存放待處理所有Score物件
         List<Score> data = new ArrayList();
         
-        // 逐筆處理讀入的字串
-        for(String line: lines){
+        // 逐行處理資料
+        lines.forEach(line -> {
             // 顯示目前處理的資料
             System.out.println(line);
             
@@ -207,15 +203,14 @@ class Main {
                 
             String stuNo = items[0].trim();
             String stuName = items[1].trim();
-            String gender = items[2].trim();
-            int chi = Integer.parseInt(items[3].trim());
-            int eng = Integer.parseInt(items[4].trim());                
-            int stat = Integer.parseInt(items[5].trim());
-            int comp = Integer.parseInt(items[6].trim());    
+            int chi = Integer.parseInt(items[2].trim());
+            int eng = Integer.parseInt(items[3].trim());                
+            int stat = Integer.parseInt(items[4].trim());
+            int comp = Integer.parseInt(items[5].trim());    
             
             // 產生成績物件, 加入data中
-            data.add(new Score(stuNo, stuName, gender, chi, eng, stat, comp));                       
-        }  
+            data.add(new Score(stuNo, stuName, chi, eng, stat, comp));                       
+        });  
         
         //========================================================
         // 排序data, 以[總分]由大到小排序
@@ -229,18 +224,17 @@ class Main {
         //---------------------------------------------- 
         // 將data中的物件篩選加入output中(本例無篩選)
         //----------------------------------------------        
-        // 存放將寫出的資料
-        List<String> output = new ArrayList();                  
+        List<String> output = new ArrayList();                 
             
-        for(Score s : data){                  
-            String str = s.getStuNo() + "," + s.getStuName() + "," + s.getGender() + "," + s.getChi() + "," + s.getEng() + "," + s.getStat() + "," + s.getComp() + "," + s.total(); 
+        data.forEach(s -> {                  
+            String str = s.getStuNo() + "," + s.getStuName() + "," + s.getChi() + "," + s.getEng() + "," + s.getStat() + "," + s.getComp() + "," + s.total(); 
             output.add(str);
-        }        
+        });        
         
         //========================================================
         // 呼叫靜態方法, 將output內資料寫到檔案中
         //========================================================       
-        boolean flag = Utility.writeData("d:/out.csv", output);
+        boolean flag = Utility.writeData("e:/out.csv", output);
         
         if(flag){
             System.out.println("寫檔成功");
@@ -364,7 +358,6 @@ public class Score{
     //=====================    
     private String stuNo;
     private String stuName;    
-    private String gender;
     private int chi;
     private int eng;
     private int stat;
@@ -373,10 +366,9 @@ public class Score{
     //=====================    
     // 建構元(1)
     //=====================    
-    public Score(String stuNo, String stuName, String gender, int chi, int eng, int stat, int comp){
+    public Score(String stuNo, String stuName, int chi, int eng, int stat, int comp){
         this.stuNo = stuNo;
         this.stuName = stuName;
-        this.gender = gender;
         this.chi = chi;
         this.eng = eng;
         this.stat = stat;
@@ -389,7 +381,6 @@ public class Score{
     public Score(){
         this.stuNo = null;
         this.stuName = null;
-        this.gender = null;
         this.chi = 0;
         this.eng = 0;
         this.stat = 0;
@@ -401,7 +392,6 @@ public class Score{
     //=====================    
     public String getStuNo(){return stuNo;}
     public String getStuName(){return stuName;}    
-    public String getGender(){return gender;}
     public int getChi(){return chi;}
     public int getEng(){return eng;}
     public int getStat(){return stat;}
@@ -412,7 +402,6 @@ public class Score{
     //=====================    
     public void setStuNo(String stuNo){this.stuNo = stuNo;}
     public void setStuName(String stuName){this.stuName = stuName;}
-    public void setGender(String gender){this.gender = gender;}
     public void setChi(int chi){this.chi = chi;}
     public void setEng(int eng){this.eng = eng;}
     public void setStat(int stat){this.stat = stat;}
@@ -433,6 +422,8 @@ public class Score{
 ### (2-3) Main.java
 
 ```java
+package p09;
+
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -445,7 +436,7 @@ class Main {
         // 呼叫靜態方法讀入的資料, 存在data中
         //========================================================
         // 存放讀入的每行資料
-        List<String> lines = Utility.readData("d:/exams.csv");
+        List<String> lines = Utility.readData("e:/exams.csv");
         
         // 存放待處理所有Score物件
         List<Score> data = new ArrayList();
@@ -460,21 +451,20 @@ class Main {
                 
             String stuNo = items[0].trim();
             String stuName = items[1].trim();
-            String gender = items[2].trim();
-            int chi = Integer.parseInt(items[3].trim());
-            int eng = Integer.parseInt(items[4].trim());                
-            int stat = Integer.parseInt(items[5].trim());
-            int comp = Integer.parseInt(items[6].trim());    
+            int chi = Integer.parseInt(items[2].trim());
+            int eng = Integer.parseInt(items[3].trim());                
+            int stat = Integer.parseInt(items[4].trim());
+            int comp = Integer.parseInt(items[5].trim());    
             
             // 產生成績物件, 加入data中
-            data.add(new Score(stuNo, stuName, gender, chi, eng, stat, comp));                       
+            data.add(new Score(stuNo, stuName, chi, eng, stat, comp));                       
         });  
         
         //========================================================
         // 排序data, 以[總分]由大到小排序
         //========================================================           
-        Collections.sort(data, (x, y) -> {
-            return y.total() - x.total();
+        Collections.sort(data, (s1, s2) -> {            
+                return s2.total() - s1.total();                                            
         });
         
         //---------------------------------------------- 
@@ -483,14 +473,14 @@ class Main {
         List<String> output = new ArrayList();                 
             
         data.forEach(s -> {                  
-            String str = s.getStuNo() + "," + s.getStuName() + "," + s.getGender() + "," + s.getChi() + "," + s.getEng() + "," + s.getStat() + "," + s.getComp() + "," + s.total(); 
+            String str = s.getStuNo() + "," + s.getStuName() + "," + s.getChi() + "," + s.getEng() + "," + s.getStat() + "," + s.getComp() + "," + s.total(); 
             output.add(str);
         });        
         
         //========================================================
         // 呼叫靜態方法, 將output內資料寫到檔案中
         //========================================================       
-        boolean flag = Utility.writeData("d:/out.csv", output);
+        boolean flag = Utility.writeData("e:/out.csv", output);
         
         if(flag){
             System.out.println("寫檔成功");
@@ -617,7 +607,6 @@ public class Score{
     //=====================    
     private String stuNo;
     private String stuName;    
-    private String gender;
     private int chi;
     private int eng;
     private int stat;
@@ -626,10 +615,9 @@ public class Score{
     //=====================    
     // 建構元(1)
     //=====================    
-    public Score(String stuNo, String stuName, String gender, int chi, int eng, int stat, int comp){
+    public Score(String stuNo, String stuName, int chi, int eng, int stat, int comp){
         this.stuNo = stuNo;
         this.stuName = stuName;
-        this.gender = gender;
         this.chi = chi;
         this.eng = eng;
         this.stat = stat;
@@ -642,7 +630,6 @@ public class Score{
     public Score(){
         this.stuNo = null;
         this.stuName = null;
-        this.gender = null;
         this.chi = 0;
         this.eng = 0;
         this.stat = 0;
@@ -654,7 +641,6 @@ public class Score{
     //=====================    
     public String getStuNo(){return stuNo;}
     public String getStuName(){return stuName;}    
-    public String getGender(){return gender;}
     public int getChi(){return chi;}
     public int getEng(){return eng;}
     public int getStat(){return stat;}
@@ -665,7 +651,6 @@ public class Score{
     //=====================    
     public void setStuNo(String stuNo){this.stuNo = stuNo;}
     public void setStuName(String stuName){this.stuName = stuName;}
-    public void setGender(String gender){this.gender = gender;}
     public void setChi(int chi){this.chi = chi;}
     public void setEng(int eng){this.eng = eng;}
     public void setStat(int stat){this.stat = stat;}
@@ -698,7 +683,7 @@ class Main {
         // 呼叫靜態方法讀入的資料, 存在data中
         //========================================================
         // 存放讀入的每行資料
-        List<String> lines = Utility.readData("d:/exams.csv");
+        List<String> lines = Utility.readData("e:/exams.csv");
         
         // 存放待處理所有Score物件
         List<Score> data = new ArrayList();
@@ -713,14 +698,13 @@ class Main {
                 
             String stuNo = items[0].trim();
             String stuName = items[1].trim();
-            String gender = items[2].trim();
-            int chi = Integer.parseInt(items[3].trim());
-            int eng = Integer.parseInt(items[4].trim());                
-            int stat = Integer.parseInt(items[5].trim());
-            int comp = Integer.parseInt(items[6].trim());    
+            int chi = Integer.parseInt(items[2].trim());
+            int eng = Integer.parseInt(items[3].trim());                
+            int stat = Integer.parseInt(items[4].trim());
+            int comp = Integer.parseInt(items[5].trim());    
             
             // 產生成績物件, 加入data中
-            data.add(new Score(stuNo, stuName, gender, chi, eng, stat, comp));                       
+            data.add(new Score(stuNo, stuName, chi, eng, stat, comp));                       
         });  
         
         //========================================================
@@ -742,14 +726,14 @@ class Main {
         List<String> output = new ArrayList();                 
             
         data.forEach(s -> {                  
-            String str = s.getStuNo() + "," + s.getStuName() + "," + s.getGender() + "," + s.getChi() + "," + s.getEng() + "," + s.getStat() + "," + s.getComp() + "," + s.total(); 
+            String str = s.getStuNo() + "," + s.getStuName() + "," + s.getChi() + "," + s.getEng() + "," + s.getStat() + "," + s.getComp() + "," + s.total(); 
             output.add(str);
         });        
         
         //========================================================
         // 呼叫靜態方法, 將output內資料寫到檔案中
         //========================================================       
-        boolean flag = Utility.writeData("d:/out.csv", output);
+        boolean flag = Utility.writeData("e:/out.csv", output);
         
         if(flag){
             System.out.println("寫檔成功");
