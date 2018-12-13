@@ -180,7 +180,6 @@ import java.util.TreeMap;
 import com.abc.Score;
 import com.abc.Utility;
 
-
 class Main {
     public static void main(String[] args) throws Exception{
         //---------------------------------------------- 
@@ -216,7 +215,7 @@ class Main {
         //********************************************************
         Map<Integer, Integer> map = new TreeMap();
 
-        // 累加考某個國文成績的人數
+        // 累加[某個國文成績]的人數
         data.forEach(s -> {    
             Integer score = s.getChi();            
             Integer cnt = map.get(score);
@@ -244,7 +243,7 @@ class Main {
         DecimalFormat df = new DecimalFormat("#.###");  //設定小數數值輸出格式
         
         for(Integer key: keys){
-            String str = key + "," + map.get(key) + "," + df.format(map.get(key) / total);
+            String str = "分數:" + key + ", 人數: " + map.get(key) + ", 比例" + df.format(map.get(key) / total);
             output.add(str);
         } 
         //********************************************************       
