@@ -172,27 +172,26 @@ public class Argiculture {
 ```java
 import java.util.List;
 import java.util.ArrayList;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.util.Set;
+import java.text.DecimalFormat;
 import java.util.Map;
 import java.util.TreeMap;
 
-import com.abc.Argiculture;
+import com.abc.Score;
 import com.abc.Utility;
-import java.text.DecimalFormat;
-import java.util.Set;
+
 
 class Main {
     public static void main(String[] args) throws Exception{
-        //========================================================
+        //---------------------------------------------- 
         // 呼叫靜態方法讀入的資料, 存在data中
-        //========================================================
+        //---------------------------------------------- 
         // 存放讀入的每行資料
-        List<String> lines = Utility.readData("e:/argiculture.csv");
+        List<String> lines = Utility.readData("e:/exams.csv");
         
         // 存放待處理所有Score物件
-        List<Argiculture> data = new ArrayList();
-      
+        List<Score> data = new ArrayList();
+        
         // 逐行處理資料
         lines.forEach(line -> {
             // 顯示目前處理的資料
@@ -200,72 +199,60 @@ class Main {
             
             //切割欄位            
             String items[] = line.split(",");
-           
-            //-----------------------
-            // 設定日期格式
-            //-----------------------
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-d");     
-
-            //-----------------------
-            // 轉換日期
-            //-----------------------            
-            LocalDate transDate = LocalDate.parse(items[0].trim(), formatter);
-            
-            String market = items[1].trim();
-            String name = items[2].trim();
-            double highPrice = Double.parseDouble(items[3].trim());                
-            double middlePrice = Double.parseDouble(items[4].trim());  
-            double lowPrice = Double.parseDouble(items[5].trim());  
-            double avgPrice = Double.parseDouble(items[6].trim());  
-            double amount = Double.parseDouble(items[7].trim());              
+                
+            String stuNo = items[0].trim();
+            String stuName = items[1].trim();
+            int chi = Integer.parseInt(items[2].trim());
+            int eng = Integer.parseInt(items[3].trim());                
+            int stat = Integer.parseInt(items[4].trim());
+            int comp = Integer.parseInt(items[5].trim());    
             
             // 產生成績物件, 加入data中
-            data.add(new Argiculture(transDate, market, name, highPrice, middlePrice, lowPrice, avgPrice, amount));                       
+            data.add(new Score(stuNo, stuName, chi, eng, stat, comp));                       
         });  
         
-        //========================================================
+        //********************************************************
         // 使用Map存放<Key, Value>資料
-        //========================================================
-        Map<String, Integer> map = new TreeMap();
+        //********************************************************
+        Map<Integer, Integer> map = new TreeMap();
 
-        data.forEach(s -> {            
-            Integer d = map.get(s.getName());
-            if(d == null){
-                map.put(s.getName(), 1);
+        // 累加考某個國文成績的人數
+        data.forEach(s -> {    
+            Integer score = s.getChi();            
+            Integer cnt = map.get(score);
+            
+            if(cnt == null){
+                map.put(score, 1);
             }else{
-                map.put(s.getName(), d+1);            
+                cnt++;
+                map.put(score, cnt);            
             }    
-        });        
+        });                  
         
-        //---------------------------------------------- 
-        // 將Map中的物件加入output中
-        //----------------------------------------------        
-        List<String> output = new ArrayList();                 
-        
-        //---------------------------------------------- 
         // 累加總資料數
-        //----------------------------------------------         
         double total = 0;
         
-        Set<String> keys = map.keySet();
-        for(String key: keys){
+        Set<Integer> keys = map.keySet();
+        for(Integer key: keys){
             total += map.get(key);
             total++;
         }
 
-        //----------------------------------------------  
         // 將Map中的物件加入output中
-        //----------------------------------------------          
-        DecimalFormat df = new DecimalFormat("#.####");  //設定小數數值輸出格式
+        List<String> output = new ArrayList(); 
         
-        for(String key: keys){
+        DecimalFormat df = new DecimalFormat("#.###");  //設定小數數值輸出格式
+        
+        for(Integer key: keys){
             String str = key + "," + map.get(key) + "," + df.format(map.get(key) / total);
             output.add(str);
-        }          
-        
-        //========================================================
+        } 
+        //********************************************************       
+
+
+        //---------------------------------------------- 
         // 呼叫靜態方法, 將output內資料寫到檔案中
-        //========================================================       
+        //----------------------------------------------      
         boolean flag = Utility.writeData("e:/out.csv", output);
         
         if(flag){
@@ -273,7 +260,7 @@ class Main {
         }else{
             System.out.println("寫檔失敗");
         }
-        //========================================================        
+        //----------------------------------------------       
     }    
 }
 ```
