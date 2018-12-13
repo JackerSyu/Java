@@ -179,6 +179,8 @@ import java.util.TreeMap;
 
 import com.abc.Argiculture;
 import com.abc.Utility;
+import java.text.DecimalFormat;
+import java.util.Set;
 
 class Main {
     public static void main(String[] args) throws Exception{
@@ -186,11 +188,11 @@ class Main {
         // 呼叫靜態方法讀入的資料, 存在data中
         //========================================================
         // 存放讀入的每行資料
-        List<String> lines = Utility.readData("d:/argiculture.csv");
+        List<String> lines = Utility.readData("e:/argiculture.csv");
         
         // 存放待處理所有Score物件
         List<Argiculture> data = new ArrayList();
-        
+      
         // 逐行處理資料
         lines.forEach(line -> {
             // 顯示目前處理的資料
@@ -239,16 +241,32 @@ class Main {
         // 將Map中的物件加入output中
         //----------------------------------------------        
         List<String> output = new ArrayList();                 
-            
-        map.forEach((k, v) -> {              
-            String str = k + "," + v;             
+        
+        //---------------------------------------------- 
+        // 累加總資料數
+        //----------------------------------------------         
+        double total = 0;
+        
+        Set<String> keys = map.keySet();
+        for(String key: keys){
+            total += map.get(key);
+            total++;
+        }
+
+        //----------------------------------------------  
+        // 將Map中的物件加入output中
+        //----------------------------------------------          
+        DecimalFormat df = new DecimalFormat("#.####");  //設定小數數值輸出格式
+        
+        for(String key: keys){
+            String str = key + "," + map.get(key) + "," + df.format(map.get(key) / total);
             output.add(str);
-        });        
+        }          
         
         //========================================================
         // 呼叫靜態方法, 將output內資料寫到檔案中
         //========================================================       
-        boolean flag = Utility.writeData("d:/out.csv", output);
+        boolean flag = Utility.writeData("e:/out.csv", output);
         
         if(flag){
             System.out.println("寫檔成功");
