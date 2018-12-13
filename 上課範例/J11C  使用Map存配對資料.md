@@ -100,68 +100,73 @@ public class Utility{
 
 
 
-### (2) Argiculture.java
+### (2) Score.java
 
 ```java
 package com.abc;
 
-import java.time.LocalDate;
-
-public class Argiculture {
-    //---------------------------
-    // 成員
-    //--------------------------- 
-    public LocalDate transDate;
-    public String market;
-    public String name;
-    public double highPrice;
-    public double middlePrice;
-    public double lowPrice;
-    public double avgPrice;
-    public double amount;
-
-    //---------------------------  
-    // 建構元(1) 傳8個參數
-    //--------------------------- 
-    public Argiculture(LocalDate transDate, String market, String name, double highPrice, double middlePrice, double lowPrice, double avgPrice, double amount){
-        this.transDate = transDate;
-        this.market = market;
-        this.name = name;
-        this.highPrice = highPrice;
-        this.middlePrice = middlePrice;
-        this.lowPrice = lowPrice;
-        this.avgPrice = avgPrice;
-        this.amount = amount;
+public class Score{
+    //=====================
+    // 成員    
+    //=====================    
+    private String stuNo;
+    private String stuName;    
+    private int chi;
+    private int eng;
+    private int stat;
+    private int comp;  
+    
+    //=====================    
+    // 建構元(1)
+    //=====================    
+    public Score(String stuNo, String stuName, int chi, int eng, int stat, int comp){
+        this.stuNo = stuNo;
+        this.stuName = stuName;
+        this.chi = chi;
+        this.eng = eng;
+        this.stat = stat;
+        this.comp = comp;        
     }
     
-    //---------------------------  
-    // 建構元(2) 傳0個參數
-    //---------------------------           
-    public Argiculture(){}
+    //=====================    
+    // 建構元(2)    
+    //=====================    
+    public Score(){
+        this.stuNo = null;
+        this.stuName = null;
+        this.chi = 0;
+        this.eng = 0;
+        this.stat = 0;
+        this.comp = 0;        
+    }
 
-    //---------------------------  
-    // getter
-    //---------------------------  
-    public LocalDate getTransDate(){return this.transDate;}
-    public String getMarket(){return this.market;}
-    public String getName(){return this.name;}
-    public double getHighPrice(){return this.highPrice;}
-    public double getMiddlePrice(){return this.middlePrice;}
-    public double getLowPrice(){return this.lowPrice;}
-    public double getAvgPrice(){return this.avgPrice;}
-    public double getAmount(){return this.amount;}
-
-    //---------------------------  
-    // setter
-    //--------------------------- 
-    public void setTransDate(LocalDate transDate){this.transDate = transDate;}
-    public void setMarket(String market){this.market = market;}
-    public void setName(String name){this.name = name;}
-    public void setHighPrice(double highPrice){this.highPrice = highPrice;}
-    public void setMiddlePrice(double middlePrice){this.middlePrice = middlePrice;}
-    public void setLowPrice(double lowPrice){this.lowPrice = lowPrice;}
-    public void setAvgPrice(double avgPrice){this.avgPrice = avgPrice;}
-    public void setAmount(double amount){this.amount = amount;} 			
+    //=====================
+    // getters
+    //=====================    
+    public String getStuNo(){return stuNo;}
+    public String getStuName(){return stuName;}    
+    public int getChi(){return chi;}
+    public int getEng(){return eng;}
+    public int getStat(){return stat;}
+    public int getComp(){return comp;}
+    
+    //=====================    
+    // setters
+    //=====================    
+    public void setStuNo(String stuNo){this.stuNo = stuNo;}
+    public void setStuName(String stuName){this.stuName = stuName;}
+    public void setChi(int chi){this.chi = chi;}
+    public void setEng(int eng){this.eng = eng;}
+    public void setStat(int stat){this.stat = stat;}
+    public void setComp(int comp){this.comp = comp;}
+    
+    //=====================    
+    // 方法(總分)    
+    //=====================    
+    public int total(){
+        return  chi + eng + stat + comp;                 
+    }       
+    //=====================    
 }
 ```
 
