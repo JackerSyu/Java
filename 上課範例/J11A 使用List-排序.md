@@ -422,8 +422,6 @@ public class Score{
 ### (2-3) Main.java
 
 ```java
-package p09;
-
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collections;
