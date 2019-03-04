@@ -1,4 +1,4 @@
-# J11__04 用Collections類別排序
+# J11-5 用Collections排序
 
 ## (1) Collections類別中有一個sort()靜態方法可以對List物件排序
 
