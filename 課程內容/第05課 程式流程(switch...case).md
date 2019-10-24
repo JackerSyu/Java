@@ -35,20 +35,20 @@ System.out.println(total);
 ```javascript
 //假設已有一個字元變數 rank, 也有一個 double 變數 total
 switch(rank){
-	case 'a':
+    case 'a':
     case 'b':
-		total*=0.7;
+        total*=0.7;
         break;
     case 'c':
     case 'd':
     case 'e':
-    	total*=0.8;
-    	break;
-	case 'f':
-    	total*=0.9;
-    	break;
+        total*=0.8;
+        break;
+    case 'f':
+        total*=0.9;
+        break;
     default:
-     	total*=0.95;
+        total*=0.95;
 }
 System.out.println(total);
 ```
