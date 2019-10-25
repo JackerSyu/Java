@@ -30,10 +30,10 @@ for(int i=1; i<=100; i++) System.out.println(i);
 以下是一個印出九九乘法表的兩層 for 迴圈範例.
 ```javascript
 for(int i=1; i<=9; i++){
-	for(int j=1; j<=9; j++){
-		System.out.printf("%d*%d=%d\t", i,j,i*j);
-	}
-	System.out.println();
+    for(int j=1; j<=9; j++){
+        System.out.printf("%d*%d=%d\t", i,j,i*j);
+    }
+    System.out.println();
 }	
 ```
 
@@ -60,11 +60,11 @@ for(int i=1; i%3==4; i++){
 ```javascript
 int i=1;
 for(;;){
-	if(i%11==1 && i%51==2 && i%91==3){
-		System.out.println(i);
-		break;
-	}
-	i++;
+    if(i%11==1 && i%51==2 && i%91==3){
+        System.out.println(i);
+        break;
+    }
+    i++;
 }	
 ```
 
